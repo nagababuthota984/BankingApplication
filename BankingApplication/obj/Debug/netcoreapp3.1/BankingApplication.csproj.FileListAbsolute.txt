@@ -1,0 +1,14 @@
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\BankingApplication.exe
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\BankingApplication.deps.json
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\BankingApplication.runtimeconfig.json
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\BankingApplication.runtimeconfig.dev.json
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\BankingApplication.dll
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\BankingApplication.pdb
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.csproj.AssemblyReference.cache
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.AssemblyInfoInputs.cache
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.AssemblyInfo.cs
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.csproj.CoreCompileInputs.cache
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.dll
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.pdb
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.genruntimeconfig.cache
