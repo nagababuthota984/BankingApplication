@@ -1,10 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Web.Script.Serialization;
 
 namespace BankingApplication
 {
     class Person
     {
+        public string name ;
+        public int age;
+        public double contactNumber;
+        public DateTime dob;
+        public string address;
+        public double aadharNumber;
+        public double panNumber;
         public Person()
         {
             string name = "";
@@ -19,12 +28,16 @@ namespace BankingApplication
     }
     class Account : Person
     {
+
+        public double accountNumber;
+        public string accountType;
+        public double balance;
+        public const int MIN_BALANCE = 250;
         public Account()
         {
             double accountNumber = 0;
             string accountType = "";
             double balance = 0;
-            const int MIN_BALANCE = 250;
 
         }
         public void createAccount()
@@ -48,6 +61,7 @@ namespace BankingApplication
             this.panNumber = Convert.ToInt64(Console.ReadLine());
             Console.WriteLine("Enter the Account type: ");
             this.accountType = Console.ReadLine();
+<<<<<<< HEAD
             this.balance = this.MIN_BALANCE;
             this.accountNumber = Random.Next(032510100091540, 032511111111111); //need to be checked.
             Console.WriteLine(this.accountNumber);
@@ -58,6 +72,21 @@ namespace BankingApplication
                 string json = r.ReadToEnd();
                 List<Item> items = JsonConvert.DeserializeObject<List<Item>>(json);b
             }
+=======
+            this.balance = Account.MIN_BALANCE;
+
+
+            string jsonFilePath = "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication\\data.json";
+
+            string json = File.ReadAllText(jsonFilePath);
+            Dictionary<string, object> json_Dictionary = (new JavaScriptSerializer()).Deserialize<Dictionary<string, object>>(json);
+
+            foreach (var item in json_Dictionary)
+            {
+                // parse here
+            }
+
+>>>>>>> 5b90ec49d3091ee0966057941de5815961926d46
         }
         public void depositAmount()
         {
@@ -136,9 +165,10 @@ namespace BankingApplication
                 Console.WriteLine("Choose any one option:\n1.Create Account\n2.Deposit\n3.Withdraw\n4.Transfer Amount\n5.Print Transaction history\n");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine(choice);
+                Account acc = new Account();
                 switch (choice)
                 {
-                    Account acc = new Account();
+                   
                     case 1: Console.WriteLine("Account to be Created!\n");
                             acc.createAccount();
                             break;
