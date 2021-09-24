@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Web.Script.Serialization;
+
 
 namespace BankingApplication
 {
@@ -61,15 +61,7 @@ namespace BankingApplication
             this.balance = Account.MIN_BALANCE;
 
 
-            string jsonFilePath = "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication\\data.json";
-
-            string json = File.ReadAllText(jsonFilePath);
-            Dictionary<string, object> json_Dictionary = (new JavaScriptSerializer()).Deserialize<Dictionary<string, object>>(json);
-
-            foreach (var item in json_Dictionary)
-            {
-                // parse here
-            }
+            
 
         }
         public void depositAmount()
