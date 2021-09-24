@@ -23,12 +23,31 @@ namespace BankingApplication
             double accountNumber = 0;
             string accountType = "";
             double balance = 0;
+            const int MIN_BALANCE = 250;
 
         }
         public void createAccount()
         {
             //collects basic details and creates an account.
-
+            Console.WriteLine("Enter your Full Name(as in ID Proof): ");
+            this.name = Console.ReadLine();
+            Console.WriteLine("Enter your Age: ");
+            this.age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter your Phone number: ");
+            this.contactNumber = Console.ReadLine();
+            Console.WriteLine("Enter your Date of Birth: ");
+            this.dob = Convert.ToDateTime(Console.ReadLine());
+            Console.WriteLine("Enter your Complete Address: ");
+            this.address = Console.ReadLine();
+            Console.WriteLine("Enter your Aadhar Number: ");
+            this.aadharNumber = Console.ReadLine();
+            Console.WriteLine("Enter your Pan Number: ");
+            this.panNumber = Console.ReadLine();
+            Console.WriteLine("Enter the Account type: ");
+            this.accountType = Console.ReadLine();
+            this.balance = this.MIN_BALANCE;
+            this.accountNumber = Random.Next(032510100091540, 032511111111111);
+            Console.WriteLine(this.accountNumber);
         }
         public void depositAmount()
         {
@@ -63,6 +82,7 @@ namespace BankingApplication
                 {
                     Account acc = new Account();
                     case 1: Console.WriteLine("Account to be Created!\n");
+                            acc.createAccount();
                             break;
                     case 2: Console.WriteLine("Amount deposited\n");
                             break;
