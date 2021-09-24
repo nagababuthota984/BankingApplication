@@ -12,3 +12,7 @@ C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplicatio
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.dll
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.pdb
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.genruntimeconfig.cache
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.csproj.CopyComplete
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\accounts.json
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\transactions.json

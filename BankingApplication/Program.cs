@@ -1,86 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-
+using Newtonsoft.Json.Linq;
 
 namespace BankingApplication
 {
-    class Person
-    {
-        public string name ;
-        public int age;
-        public double contactNumber;
-        public DateTime dob;
-        public string address;
-        public double aadharNumber;
-        public double panNumber;
-        public Person()
-        {
-            string name = "";
-            int age = 0;
-            double contactNumber = 0;
-            DateTime dob;
-            string address = "";
-            double aadharNumber = 0;
-            double panNumber = 0;
-        }
-    }
-    class Account : Person
-    {
-
-        public double accountNumber;
-        public string accountType;
-        public double balance;
-        public const int MIN_BALANCE = 250;
-        public Account()
-        {
-            double accountNumber = 0;
-            string accountType = "";
-            double balance = 0;
-
-        }
-        public void createAccount()
-        {
-            //collects basic details and creates an account.
-            Console.WriteLine("Enter your Full Name(as in ID Proof): ");
-            this.name = Console.ReadLine();
-            Console.WriteLine("Enter your Age: ");
-            this.age = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter your Phone number: ");
-            this.contactNumber = Convert.ToInt64(Console.ReadLine());
-            Console.WriteLine("Enter your Date of Birth: ");
-            this.dob = Convert.ToDateTime(Console.ReadLine());
-            Console.WriteLine("Enter your Complete Address: ");
-            this.address = Console.ReadLine();
-            Console.WriteLine("Enter your Aadhar Number: ");
-            this.aadharNumber = Convert.ToInt64(Console.ReadLine());
-            Console.WriteLine("Enter your Pan Number: ");
-            this.panNumber = Convert.ToInt64(Console.ReadLine());
-            Console.WriteLine("Enter the Account type: ");
-            this.accountType = Console.ReadLine();
-            this.balance = Account.MIN_BALANCE;
-
-
-            
-
-        }
-        public void depositAmount()
-        {
-            //deposits money and updates account details.
-        }
-        public void withdrawAmount()
-        {
-            //withdraws money and updates account details.
-        }
-        public void transferAmount()
-        {
-            //transfers money from one accc to another
-        }
-        public void printTransactionHistory()
-        {
-            //prints user's acount history
-        }
-    }
+    
     class Program
     {
         
@@ -90,6 +14,7 @@ namespace BankingApplication
 
             while(true)
             {
+
                 Console.WriteLine("Choose any one option:\n1.Create Account\n2.Deposit\n3.Withdraw\n4.Transfer Amount\n5.Print Transaction history\n");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine(choice);
