@@ -9,6 +9,7 @@ namespace BankingApplication
         {
             string name = "";
             int age = 0;
+            string gender = "";
             double contactNumber = 0;
             DateTime dob;
             string address = "";
@@ -33,33 +34,90 @@ namespace BankingApplication
             this.name = Console.ReadLine();
             Console.WriteLine("Enter your Age: ");
             this.age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter your Gender: ");
+            this.gender = Console.ReadLine();
             Console.WriteLine("Enter your Phone number: ");
-            this.contactNumber = Console.ReadLine();
+            this.contactNumber = Convert.ToInt64(Console.ReadLine());
             Console.WriteLine("Enter your Date of Birth: ");
             this.dob = Convert.ToDateTime(Console.ReadLine());
             Console.WriteLine("Enter your Complete Address: ");
             this.address = Console.ReadLine();
             Console.WriteLine("Enter your Aadhar Number: ");
-            this.aadharNumber = Console.ReadLine();
+            this.aadharNumber = Convert.ToInt64(Console.ReadLine());
             Console.WriteLine("Enter your Pan Number: ");
-            this.panNumber = Console.ReadLine();
+            this.panNumber = Convert.ToInt64(Console.ReadLine());
             Console.WriteLine("Enter the Account type: ");
             this.accountType = Console.ReadLine();
             this.balance = this.MIN_BALANCE;
-            this.accountNumber = Random.Next(032510100091540, 032511111111111);
+            this.accountNumber = Random.Next(032510100091540, 032511111111111); //need to be checked.
             Console.WriteLine(this.accountNumber);
+
+
+            using (StreamReader r = new StreamReader("data.json"))
+            {
+                string json = r.ReadToEnd();
+                List<Item> items = JsonConvert.DeserializeObject<List<Item>>(json);b
+            }
         }
         public void depositAmount()
         {
             //deposits money and updates account details.
+            int amount;
+            double accNumber;
+            Console.WriteLine("Enter your Account Number: ")
+            accNumber = Convert.ToInt64(Console.WriteLine());
+            if(accNumber == 1)   //check for validity.
+            {
+                Console.WriteLine("Enter amount to deposit: ");
+                amount = Convert.ToInt32(Console.WriteLine);
+                if(amount>0)
+                {
+                      //update current object's available balance.
+                }
+                else
+                {
+                    Console.WriteLine("Invalid amount to deposit.");
+                    return;
+                }
+            }
         }
         public void withdrawAmount()
         {
             //withdraws money and updates account details.
+            int amount = 0;
+            Console.WriteLine("Enter amount to withdraw: ");
+            amount = Convert.ToInt32(Console.ReadLine());
+            if(amount>0)
+            {
+                //do
+            }
+            else if (amount > Account.TRANS_LIMIT)
+            {
+                Console.WriteLine("Couldn't perform transaction. Transaction limit reached.\n")
+            }
+            else if(amount>Account.DAY_LIMIT)
+            {
+                Console.WriteLine("Couldn't perform transaction. Daylimit reached!\n");
+                return
+            }
+            
         }
         public void transferAmount()
         {
             //transfers money from one accc to another
+            double senderAcc;
+            double receiverAcc;
+            int amount;
+            Console.WriteLine("Enter Sender's account number: ");
+            senderAcc = Convert.ToInt64(Console.ReadLine());
+            Console.WriteLine("Enter Receiver's account number: ");
+            receiverAcc = Convert.ToInt64(Console.ReadLine());
+            if(senderAcc ==1 && receiverAcc ==1)//check whether both of the accounts exist.
+            {
+                Console.WriteLine("Enter amount to Transfer: ");
+
+            }
+
         }
         public void printTransactionHistory()
         {
