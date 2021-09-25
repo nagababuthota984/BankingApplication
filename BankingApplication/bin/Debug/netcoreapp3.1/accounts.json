@@ -1,1 +1,49 @@
-{"344230303":{"name":"Nagababu","age":"21","gender":"Male","contactNumber":"8464832529","dob":"12-11-2000 00:00:00","address":"1-95,pedalanka,kolluru,guntur,ap,522324","aadharNumber":"401781825624","panNumber":"12356789","accountType":"savings","balance":"250"}}
+{
+  "1234567890": {
+    "name": "nagababu",
+    "age": "21",
+    "gender": "male",
+    "contactNumber": "8464832529",
+    "dob": "2000-11-12",
+    "aadharNumber": "401781825624",
+    "panNumber": "3CPHBAGHB",
+    "accountType": "savings",
+    "balance": "250"
+  },
+  "5614883872": {
+    "name": "Nagababu Thota",
+    "age": "21",
+    "gender": "Male",
+    "contactNumber": "8464832529",
+    "dob": "12-11-2000 00:00:00",
+    "address": "1-95,pedalanka,kolluru,guntur,ap,india",
+    "aadharNumber": "1234567890",
+    "panNumber": "1234567890",
+    "accountType": "Savings",
+    "balance": "1100"
+  },
+  "1861285535": {
+    "name": "Sena",
+    "age": "20",
+    "gender": "female",
+    "contactNumber": "123456789",
+    "dob": "19-04-2001 00:00:00",
+    "address": "gfhdjk",
+    "aadharNumber": "1234567",
+    "panNumber": "1234567",
+    "accountType": "savings",
+    "balance": "13000"
+  },
+  "2446515353": {
+    "name": "Chandrika Thota",
+    "age": "19",
+    "gender": "female",
+    "contactNumber": "123456789",
+    "dob": "12-12-2001 00:00:00",
+    "address": "qwertyuikxcghjfd",
+    "aadharNumber": "1234567890",
+    "panNumber": "1234567890",
+    "accountType": "savings",
+    "balance": "250"
+  }
+}
