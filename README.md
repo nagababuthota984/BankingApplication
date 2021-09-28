@@ -12,4 +12,5 @@ UseCase(s): 1.Create Account
             5.Print transaction history
             
 Flowchart file also included in repository.
-![FlowchartSnapShot](https://user-images.githubusercontent.com/57616322/134760998-1181b1ec-dfae-48b0-ad50-06fc7bca8660.png)
+![BankingFlowchart-Page-1 drawio](https://user-images.githubusercontent.com/57616322/134762280-783db1ce-246b-42f6-afa7-eb68da65ed13.png)
+
