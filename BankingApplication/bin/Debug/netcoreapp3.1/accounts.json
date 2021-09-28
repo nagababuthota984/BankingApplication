@@ -32,7 +32,7 @@
     "aadharNumber": "1234567",
     "panNumber": "1234567",
     "accountType": "savings",
-    "balance": "13000"
+    "balance": "14500"
   },
   "2446515353": {
     "name": "Chandrika Thota",
@@ -44,6 +44,6 @@
     "aadharNumber": "1234567890",
     "panNumber": "1234567890",
     "accountType": "savings",
-    "balance": "250"
+    "balance": "500"
   }
 }

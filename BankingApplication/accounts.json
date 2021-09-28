@@ -45,5 +45,17 @@
     "panNumber": "1234567890",
     "accountType": "savings",
     "balance": "500"
+  },
+  "6373856736": {
+    "name": "Venkatesh Pulibandla",
+    "age": "21",
+    "gender": "male",
+    "contactNumber": "1234509876",
+    "dob": "20-08-2000 00:00:00",
+    "address": "dharmavaram,guntur,ap,india",
+    "aadharNumber": "7235802075207577",
+    "panNumber": "7258727408927085",
+    "accountType": "Savings",
+    "balance": "250"
   }
 }

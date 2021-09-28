@@ -23,20 +23,25 @@ namespace BankingApplication
                    
                     case 1:
                             Console.WriteLine("\t-------Account Creation-------\n");
-                            acc.createAccount();
+                            AccountCreation create = new AccountCreation();
+                            create.createAccount();
                             break;
                     case 2:
                             Console.WriteLine("\t-------Money Deposit-------\n");
-                            acc.depositAmount();
+                            DepositAmount trans = new DepositAmount();
+                            trans.depositAmount();
                             break;
                     case 3: Console.WriteLine("\n-------Amount Withdrawl-------\n");
-                            acc.withdrawAmount();
+                            Withdraw wd = new Withdraw();
+                            wd.withdrawAmount();
                             break;
                     case 4: Console.WriteLine("-------Amount Transfer-------\n");
-                            acc.transferAmount();
+                            Transfer tr = new Transfer();
+                            tr.transferAmount();
                             break;
                     case 5: Console.WriteLine("-------Transaction History-------\n");
-                            acc.printTransactionHistory();
+                            PrintStatement ps = new PrintStatement();
+                            ps.printTransactionHistory();
                             break;
                             
                     default:
