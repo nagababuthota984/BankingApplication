@@ -10,6 +10,45 @@
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
+      },
+      "BankingApplication.Database/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "bin/placeholder/BankingApplication.Database.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BankingApplication.Database.dll": {}
+        }
+      },
+      "BankingApplication.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "BankingApplication.Database": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BankingApplication.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BankingApplication.Models.dll": {}
+        }
+      },
+      "BankingApplication.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "BankingApplication.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BankingApplication.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BankingApplication.Services.dll": {}
+        }
       }
     }
   },
@@ -40,10 +79,26 @@
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
+    },
+    "BankingApplication.Database/1.0.0": {
+      "type": "project",
+      "path": "../BankingApplication.Database/BankingApplication.Database.csproj",
+      "msbuildProject": "../BankingApplication.Database/BankingApplication.Database.csproj"
+    },
+    "BankingApplication.Models/1.0.0": {
+      "type": "project",
+      "path": "../BankingApplication.Models/BankingApplication.Models.csproj",
+      "msbuildProject": "../BankingApplication.Models/BankingApplication.Models.csproj"
+    },
+    "BankingApplication.Services/1.0.0": {
+      "type": "project",
+      "path": "../BankingApplication.Services/BankingApplication.Services.csproj",
+      "msbuildProject": "../BankingApplication.Services/BankingApplication.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "BankingApplication.Services >= 1.0.0",
       "Newtonsoft.Json >= 13.0.1"
     ]
   },
@@ -53,9 +108,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication\\BankingApplication.csproj",
-      "projectName": "BankingApplication",
-      "projectPath": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication\\BankingApplication.csproj",
+      "projectUniqueName": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication\\BankingApplication.CLI.csproj",
+      "projectName": "BankingApplication.CLI",
+      "projectPath": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication\\BankingApplication.CLI.csproj",
       "packagesPath": "C:\\Users\\nagab\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication\\obj\\",
       "projectStyle": "PackageReference",
@@ -73,7 +128,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication.Services\\BankingApplication.Services.csproj": {
+              "projectPath": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication.Services\\BankingApplication.Services.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

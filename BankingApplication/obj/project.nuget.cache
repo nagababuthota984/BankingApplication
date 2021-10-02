@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yqylEihWeu0RoMPG9esJqinZ8uSkhNAJ/sEhYsdJU+VrUfLV3/50CSSkdhrrq02HHRZWzRpONYpUsAAS9Bvksg==",
+  "dgSpecHash": "M/UEv8Q+seWTrGeQsTJqMAx/8VtRjPfbfnZDBA6L4l1zj041dUDbBOA4Z7otV/7V4Fs2yegDV94GgPI4l5rUQg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication\\BankingApplication.csproj",
+  "projectFilePath": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication\\BankingApplication.CLI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nagab\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],

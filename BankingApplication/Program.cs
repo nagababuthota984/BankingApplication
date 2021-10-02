@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
-
-namespace BankingApplication
+using BankingApplication.Services;
+namespace BankingApplication.CLI
 {
     
     class Program
@@ -17,31 +16,26 @@ namespace BankingApplication
 
                 Console.WriteLine("Choose any one option:\n1.Create Account\n2.Deposit\n3.Withdraw\n4.Transfer Amount\n5.Print Transaction history\n");
                 int choice = Convert.ToInt32(Console.ReadLine());
-                Account acc = new Account();
+                TransactionManager manager = new TransactionManager();
                 switch (choice)
                 {
                    
                     case 1:
                             Console.WriteLine("\t-------Account Creation-------\n");
-                            AccountCreation create = new AccountCreation();
-                            create.createAccount();
+                            manager.CreateAccount();
                             break;
                     case 2:
                             Console.WriteLine("\t-------Money Deposit-------\n");
-                            DepositAmount trans = new DepositAmount();
-                            trans.depositAmount();
+                            manager.Deposit();
                             break;
                     case 3: Console.WriteLine("\n-------Amount Withdrawl-------\n");
-                            Withdraw wd = new Withdraw();
-                            wd.withdrawAmount();
+                            manager.Withdraw();
                             break;
                     case 4: Console.WriteLine("-------Amount Transfer-------\n");
-                            Transfer tr = new Transfer();
-                            tr.transferAmount();
+                            manager.TransferToAccount();
                             break;
                     case 5: Console.WriteLine("-------Transaction History-------\n");
-                            PrintStatement ps = new PrintStatement();
-                            ps.printTransactionHistory();
+                            manager.Statement();
                             break;
                             
                     default:
