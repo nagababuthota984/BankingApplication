@@ -1,0 +1,10 @@
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Exceptions\bin\Debug\netcoreapp3.1\BankingApplication.Exceptions.deps.json
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Exceptions\bin\Debug\netcoreapp3.1\BankingApplication.Exceptions.dll
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Exceptions\bin\Debug\netcoreapp3.1\BankingApplication.Exceptions.pdb
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Exceptions\obj\Debug\netcoreapp3.1\BankingApplication.Exceptions.csproj.AssemblyReference.cache
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Exceptions\obj\Debug\netcoreapp3.1\BankingApplication.Exceptions.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Exceptions\obj\Debug\netcoreapp3.1\BankingApplication.Exceptions.AssemblyInfoInputs.cache
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Exceptions\obj\Debug\netcoreapp3.1\BankingApplication.Exceptions.AssemblyInfo.cs
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Exceptions\obj\Debug\netcoreapp3.1\BankingApplication.Exceptions.csproj.CoreCompileInputs.cache
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Exceptions\obj\Debug\netcoreapp3.1\BankingApplication.Exceptions.dll
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Exceptions\obj\Debug\netcoreapp3.1\BankingApplication.Exceptions.pdb

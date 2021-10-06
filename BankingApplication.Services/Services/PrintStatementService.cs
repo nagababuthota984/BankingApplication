@@ -1,23 +1,17 @@
-﻿using BankingApplication.Models;
+﻿using BankingApplication.Exceptions;
+using BankingApplication.Models;
+using BankingApplication.UserInteraction;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BankingApplication.Services
 {
-    class PrintStatement
+    public class PrintStatementService
     {
-        double accNumber = 0;
-        public PrintStatement()
-        {
-            
-        }
-        public void printTransactionHistory()
+    
+        public void PrintTransactionHistory(double accNumber)
         {
             //prints user's acount history
-            Console.WriteLine("Enter your account number: ");
-            double accNumber = Convert.ToDouble(Console.ReadLine());
-
+            DataLoader.LoadData();
             if (Account.accounts.ContainsKey(accNumber))     //user should have an account
             {
                 if (Account.transactions.ContainsKey(accNumber))    //Should contain atleast one transaction.
@@ -25,22 +19,21 @@ namespace BankingApplication.Services
                     string trans = Account.transactions[accNumber];
                     string[] transList = trans.Split(",");
                     int count = 1;
+                    UserOutput.GreetUser(Account.accounts[accNumber]["name"]);
                     foreach (string transaction in transList)
                     {
-                        Console.WriteLine("{0}\t{1}", count, transaction);
+                        UserOutput.Statement(count,transaction);
                         count++;
                     }
-                    Console.WriteLine("\n");
                 }
                 else
                 {
-                    Console.WriteLine("None transactions recorded so far!");
+                    UserOutput.ErrorMessage("None transactions recorded so far!");
                 }
             }
             else
             {
-                Console.WriteLine("Account doesn't exist.");
-                return;
+                throw new AccountDoesntExistException("Account Doesnt Exist.");
             }
 
         }

@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BankingApplication.Exceptions\BankingApplication.Exceptions.csproj" />
     <ProjectReference Include="..\BankingApplication.Models\BankingApplication.Models.csproj" />
+    <ProjectReference Include="..\BankingApplication.UserInteraction\BankingApplication.UserInteraction.csproj" />
   </ItemGroup>
 
 </Project>

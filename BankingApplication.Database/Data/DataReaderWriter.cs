@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
-using Newtonsoft.Json;
 
 namespace BankingApplication.Database
 {

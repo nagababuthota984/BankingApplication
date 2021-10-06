@@ -5,11 +5,15 @@ VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingApplication.CLI", "BankingApplication.CLI.csproj", "{F4601D5C-27A1-46FE-9C73-BEE5060841F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingApplication.Models", "..\BankingApplication.Models\BankingApplication.Models.csproj", "{1000A565-0C30-4A20-B098-4C2190A537F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingApplication.Models", "..\BankingApplication.Models\BankingApplication.Models.csproj", "{1000A565-0C30-4A20-B098-4C2190A537F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingApplication.Services", "..\BankingApplication.Services\BankingApplication.Services.csproj", "{A342C659-93AC-49CC-91F6-D930D249E41E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingApplication.Services", "..\BankingApplication.Services\BankingApplication.Services.csproj", "{A342C659-93AC-49CC-91F6-D930D249E41E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingApplication.Database", "..\BankingApplication.Database\BankingApplication.Database.csproj", "{9C0774B0-CD33-442D-968B-31E95B61289A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingApplication.Database", "..\BankingApplication.Database\BankingApplication.Database.csproj", "{9C0774B0-CD33-442D-968B-31E95B61289A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingApplication.UserInteraction", "..\BankingApplication.UserInteraction\BankingApplication.UserInteraction.csproj", "{291F2BC1-0CB2-4462-B43A-A0418FBE9A83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingApplication.Exceptions", "..\BankingApplication.Exceptions\BankingApplication.Exceptions.csproj", "{28BAC34B-3E45-4A4D-A886-222BAD7E2656}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{9C0774B0-CD33-442D-968B-31E95B61289A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C0774B0-CD33-442D-968B-31E95B61289A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C0774B0-CD33-442D-968B-31E95B61289A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{291F2BC1-0CB2-4462-B43A-A0418FBE9A83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{291F2BC1-0CB2-4462-B43A-A0418FBE9A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{291F2BC1-0CB2-4462-B43A-A0418FBE9A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{291F2BC1-0CB2-4462-B43A-A0418FBE9A83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28BAC34B-3E45-4A4D-A886-222BAD7E2656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28BAC34B-3E45-4A4D-A886-222BAD7E2656}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28BAC34B-3E45-4A4D-A886-222BAD7E2656}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28BAC34B-3E45-4A4D-A886-222BAD7E2656}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

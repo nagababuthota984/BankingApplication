@@ -1,34 +1,23 @@
 ﻿using BankingApplication.Database;
 using BankingApplication.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using BankingApplication.Exceptions;
+using BankingApplication.UserInteraction;
 
 namespace BankingApplication.Services
 {
-    class Transfer
+    public class TransferService
     {
-        double senderAcc;
-        double receiverAcc;
-        int amount;
-        public Transfer()
-        {
-            amount = 0;
-        }
-        public void transferAmount()
+        public void TransferAmount(double senderAcc, double receiverAcc, int amount)
         {
             //transfers money from one accc to another
+            DataLoader.LoadData();
             
-            Console.WriteLine("Enter Sender's account number: ");
-            senderAcc = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter Receiver's account number: ");
-            receiverAcc = Convert.ToDouble(Console.ReadLine());
             if (Account.accounts.ContainsKey(senderAcc))//check whether both of the accounts exist.
             {
                 if (Account.accounts.ContainsKey(receiverAcc))
                 {
-                    Console.WriteLine("Enter amount to Transfer: ");
-                    amount = Convert.ToInt32(Console.ReadLine());
+                    
                     if (amount > 0)
                     {
                         if (amount <= Convert.ToInt32(Account.accounts[senderAcc]["balance"]))
@@ -44,9 +33,8 @@ namespace BankingApplication.Services
                             Account.accounts[receiverAcc]["balance"] = Convert.ToString(receiverBalance);
 
                             DataReaderWriter.writeAccounts(Account.accounts);
-
-                            Console.WriteLine("Amount has been transferred to {0} successfully!", Account.accounts[receiverAcc]["name"]);
-                            Console.WriteLine("Current balance ->{0}\n\n", Account.accounts[senderAcc]["balance"]);
+                            UserOutput.Success(Account.accounts[receiverAcc]["name"], amount);
+                            UserOutput.ShowBalance(int.Parse(Account.accounts[senderAcc]["balance"]));
 
 
                             //lgging the transaction for sender
@@ -75,7 +63,7 @@ namespace BankingApplication.Services
                         }
                         else
                         {
-                            Console.WriteLine("Insufficient account balance.\n");
+                            throw new InsufficientBalanceException("Insufficient account balance.\n");
                         }
 
 
@@ -83,13 +71,13 @@ namespace BankingApplication.Services
                     }
                     else
                     {
-                        Console.WriteLine("Invalid receipient account number.");
+                        throw new AccountDoesntExistException("Invalid receipient account number.");
                     }
 
                 }
                 else
                 {
-                    Console.WriteLine("Invalid sender account number.");
+                    throw new AccountDoesntExistException("Invalid Sender account number.");
                 }
 
             }

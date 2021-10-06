@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using BankingApplication.Database;
+﻿using BankingApplication.Database;
+using System.Collections.Generic;
 
 namespace BankingApplication.Models
 {
@@ -15,16 +15,14 @@ namespace BankingApplication.Models
         public static Dictionary<double, string> transactions;
         public Account()
         {
-            double accountNumber = 0;
-            string accountType = "";
-            double balance = 0;
+            
             accounts = DataReaderWriter.readAccounts();
             transactions = DataReaderWriter.readTransactions();
 
 
         }
-    
-        
-        
+
+
+
     }
 }

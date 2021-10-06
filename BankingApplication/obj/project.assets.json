@@ -24,6 +24,16 @@
           "bin/placeholder/BankingApplication.Database.dll": {}
         }
       },
+      "BankingApplication.Exceptions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/BankingApplication.Exceptions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BankingApplication.Exceptions.dll": {}
+        }
+      },
       "BankingApplication.Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -41,13 +51,25 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "BankingApplication.Models": "1.0.0"
+          "BankingApplication.Exceptions": "1.0.0",
+          "BankingApplication.Models": "1.0.0",
+          "BankingApplication.UserInteraction": "1.0.0"
         },
         "compile": {
           "bin/placeholder/BankingApplication.Services.dll": {}
         },
         "runtime": {
           "bin/placeholder/BankingApplication.Services.dll": {}
+        }
+      },
+      "BankingApplication.UserInteraction/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/BankingApplication.UserInteraction.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BankingApplication.UserInteraction.dll": {}
         }
       }
     }
@@ -85,6 +107,11 @@
       "path": "../BankingApplication.Database/BankingApplication.Database.csproj",
       "msbuildProject": "../BankingApplication.Database/BankingApplication.Database.csproj"
     },
+    "BankingApplication.Exceptions/1.0.0": {
+      "type": "project",
+      "path": "../BankingApplication.Exceptions/BankingApplication.Exceptions.csproj",
+      "msbuildProject": "../BankingApplication.Exceptions/BankingApplication.Exceptions.csproj"
+    },
     "BankingApplication.Models/1.0.0": {
       "type": "project",
       "path": "../BankingApplication.Models/BankingApplication.Models.csproj",
@@ -94,11 +121,18 @@
       "type": "project",
       "path": "../BankingApplication.Services/BankingApplication.Services.csproj",
       "msbuildProject": "../BankingApplication.Services/BankingApplication.Services.csproj"
+    },
+    "BankingApplication.UserInteraction/1.0.0": {
+      "type": "project",
+      "path": "../BankingApplication.UserInteraction/BankingApplication.UserInteraction.csproj",
+      "msbuildProject": "../BankingApplication.UserInteraction/BankingApplication.UserInteraction.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "BankingApplication.Exceptions >= 1.0.0",
       "BankingApplication.Services >= 1.0.0",
+      "BankingApplication.UserInteraction >= 1.0.0",
       "Newtonsoft.Json >= 13.0.1"
     ]
   },
@@ -129,8 +163,14 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
+            "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication.Exceptions\\BankingApplication.Exceptions.csproj": {
+              "projectPath": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication.Exceptions\\BankingApplication.Exceptions.csproj"
+            },
             "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication.Services\\BankingApplication.Services.csproj": {
               "projectPath": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication.Services\\BankingApplication.Services.csproj"
+            },
+            "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication.UserInteraction\\BankingApplication.UserInteraction.csproj": {
+              "projectPath": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication.UserInteraction\\BankingApplication.UserInteraction.csproj"
             }
           }
         }

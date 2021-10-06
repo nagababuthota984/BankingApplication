@@ -20,7 +20,7 @@
     "aadharNumber": "1234567890",
     "panNumber": "1234567890",
     "accountType": "Savings",
-    "balance": "800"
+    "balance": "1400"
   },
   "1861285535": {
     "name": "Sena",
@@ -57,5 +57,29 @@
     "panNumber": "7258727408927085",
     "accountType": "Savings",
     "balance": "250"
+  },
+  "4886726252": {
+    "name": "Ravi Teja",
+    "age": "22",
+    "gender": "male",
+    "contactNumber": "6547389",
+    "dob": "20-08-1998 00:00:00",
+    "address": "lhsdfffff",
+    "aadharNumber": "5748392",
+    "panNumber": "5748392",
+    "accountType": "savings",
+    "balance": "250"
+  },
+  "3778613028": {
+    "name": "Thota Rajeswari",
+    "age": "37",
+    "gender": "Female",
+    "contactNumber": "8374230804",
+    "dob": "11-03-1985 00:00:00",
+    "address": "guntur,ap, india",
+    "aadharNumber": "56743892",
+    "panNumber": "5743829884",
+    "accountType": "Savings",
+    "balance": "1250"
   }
 }

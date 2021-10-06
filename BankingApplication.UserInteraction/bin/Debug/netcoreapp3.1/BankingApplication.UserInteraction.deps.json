@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "BankingApplication.UserInteraction/1.0.0": {
+        "runtime": {
+          "BankingApplication.UserInteraction.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BankingApplication.UserInteraction/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

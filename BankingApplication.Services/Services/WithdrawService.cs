@@ -1,32 +1,23 @@
 ﻿using BankingApplication.Database;
 using BankingApplication.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using BankingApplication.Exceptions;
+using BankingApplication.UserInteraction;
 
 namespace BankingApplication.Services
 {
-    class Withdraw
+    public class WithdrawService
     {
-        int amount;
-        double accNumber;
-        public Withdraw()
-        {
-            int amount = 0;
-            
-        }
-        public void withdrawAmount()
+       
+        public void WithdrawAmount(double accNumber, int amount)
         {
             //withdraws money and updates account details.
-            
-            Console.WriteLine("Enter your Account Number: ");
-            accNumber = Convert.ToDouble(Console.ReadLine());
 
+
+            DataLoader.LoadData();
             if (Account.accounts.ContainsKey(accNumber))   //check for validity.
             {
-                Console.WriteLine("Hello! {0}", Account.accounts[accNumber]["name"]);
-                Console.WriteLine("Enter amount to withdraw: ");
-                amount = Convert.ToInt32(Console.ReadLine());
+                UserOutput.GreetUser(Account.accounts[accNumber]["name"]);
                 if (amount > 0)
                 {
                     if (amount <= Convert.ToInt32(Account.accounts[accNumber]["balance"]))
@@ -36,8 +27,10 @@ namespace BankingApplication.Services
                         amount = Convert.ToInt32(Account.accounts[accNumber]["balance"]) - amount;
                         Account.accounts[accNumber]["balance"] = Convert.ToString(amount);
                         DataReaderWriter.writeAccounts(Account.accounts);
-                        Console.WriteLine("Amount has been debited successfully!");
-                        Console.WriteLine("Current balance ->{0}\n\n", Account.accounts[accNumber]["balance"]);
+                        System.Threading.Thread.Sleep(1000);
+                        UserOutput.Success("Debited");
+                        System.Threading.Thread.Sleep(1000);
+                        UserOutput.ShowBalance(int.Parse(Account.accounts[accNumber]["balance"]));
                         //making the transaction
                         if (!Account.transactions.ContainsKey(accNumber))
                         {
@@ -53,21 +46,19 @@ namespace BankingApplication.Services
                     }
                     else
                     {
-                        Console.WriteLine("Insufficient account balance.\n");
+                        throw new InsufficientBalanceException("Insufficient account balance.\n");
                     }
 
 
                 }
                 else
                 {
-                    Console.WriteLine("Invalid amount to withdraw.\n");
-                    return;
+                    throw new InvalidAmountException("Invalid amount to withdraw.\n");
                 }
             }
             else
             {
-                Console.WriteLine("Account doesn't exist.");
-                return;
+                throw new AccountDoesntExistException("\nInvalid account Number. Please provide a valid one.");
             }
         }
     }
