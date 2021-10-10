@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BankingApplication.Exceptions
+namespace BankingApplication.Models
 {
     public class InsufficientBalanceException:Exception
     {

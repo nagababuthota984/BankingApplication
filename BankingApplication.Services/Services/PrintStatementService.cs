@@ -1,6 +1,5 @@
-﻿using BankingApplication.Exceptions;
+﻿using BankingApplication.Database;
 using BankingApplication.Models;
-using BankingApplication.UserInteraction;
 using System;
 
 namespace BankingApplication.Services
@@ -8,33 +7,21 @@ namespace BankingApplication.Services
     public class PrintStatementService
     {
     
-        public void PrintTransactionHistory(double accNumber)
+        public string[] FetchTransactionHistory(double AccNumber)
         {
             //prints user's acount history
-            DataLoader.LoadData();
-            if (Account.accounts.ContainsKey(accNumber))     //user should have an account
+            DataLoaderService.LoadData();
+            if (DataStructures.Transactions.ContainsKey(AccNumber))    //If there is atleast one transaction.
             {
-                if (Account.transactions.ContainsKey(accNumber))    //Should contain atleast one transaction.
-                {
-                    string trans = Account.transactions[accNumber];
-                    string[] transList = trans.Split(",");
-                    int count = 1;
-                    UserOutput.GreetUser(Account.accounts[accNumber]["name"]);
-                    foreach (string transaction in transList)
-                    {
-                        UserOutput.Statement(count,transaction);
-                        count++;
-                    }
-                }
-                else
-                {
-                    UserOutput.ErrorMessage("None transactions recorded so far!");
-                }
+                string Trans = DataStructures.Transactions[AccNumber];
+                string[] TransList = Trans.Split(",");
+                return TransList;
             }
             else
             {
-                throw new AccountDoesntExistException("Account Doesnt Exist.");
+                return(new string[] { "None transactions recorded so far!" });
             }
+            
 
         }
     }

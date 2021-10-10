@@ -15,7 +15,3 @@ C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplicatio
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Services\obj\Debug\netcoreapp3.1\BankingApplication.Services.csproj.CopyComplete
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Services\obj\Debug\netcoreapp3.1\BankingApplication.Services.dll
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Services\obj\Debug\netcoreapp3.1\BankingApplication.Services.pdb
-C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Services\bin\Debug\netcoreapp3.1\BankingApplication.Exceptions.dll
-C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Services\bin\Debug\netcoreapp3.1\BankingApplication.UserInteraction.dll
-C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Services\bin\Debug\netcoreapp3.1\BankingApplication.Exceptions.pdb
-C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Services\bin\Debug\netcoreapp3.1\BankingApplication.UserInteraction.pdb

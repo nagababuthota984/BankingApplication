@@ -20,7 +20,7 @@
     "aadharNumber": "1234567890",
     "panNumber": "1234567890",
     "accountType": "Savings",
-    "balance": "1400"
+    "balance": "1200"
   },
   "1861285535": {
     "name": "Sena",
@@ -81,5 +81,17 @@
     "panNumber": "5743829884",
     "accountType": "Savings",
     "balance": "1250"
+  },
+  "7704368200": {
+    "name": "Sanjay",
+    "age": "35",
+    "gender": "Male",
+    "contactNumber": "5743892",
+    "dob": "12-12-2000 00:00:00",
+    "address": "fhjfhdjfh",
+    "aadharNumber": "56743829",
+    "panNumber": "56743892",
+    "accountType": "Savings",
+    "balance": "300"
   }
 }

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "dRAeGmajgXT4NCNpFjtM7f+QYbIN8xMj1iEet2pXte1xqDzvg2AEe4pekbGbQ30Jz1ewfzqQmqmpArekp/LAqw==",
+  "dgSpecHash": "uG/CdEoQ8IqbKRY8up6q9lsk/cT62n3S9wAJEsk8kzEMSxXwxU2kgOjQDbo/5v+7jVIDy0P4GbsJPJPIS+3aBg==",
   "success": true,
   "projectFilePath": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication.UserInteraction\\BankingApplication.UserInteraction.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\nagab\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

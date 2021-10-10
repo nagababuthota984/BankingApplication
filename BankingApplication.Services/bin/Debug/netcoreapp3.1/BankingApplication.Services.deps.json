@@ -8,9 +8,7 @@
     ".NETCoreApp,Version=v3.1": {
       "BankingApplication.Services/1.0.0": {
         "dependencies": {
-          "BankingApplication.Exceptions": "1.0.0",
-          "BankingApplication.Models": "1.0.0",
-          "BankingApplication.UserInteraction": "1.0.0"
+          "BankingApplication.Models": "1.0.0"
         },
         "runtime": {
           "BankingApplication.Services.dll": {}
@@ -32,22 +30,12 @@
           "BankingApplication.Database.dll": {}
         }
       },
-      "BankingApplication.Exceptions/1.0.0": {
-        "runtime": {
-          "BankingApplication.Exceptions.dll": {}
-        }
-      },
       "BankingApplication.Models/1.0.0": {
         "dependencies": {
           "BankingApplication.Database": "1.0.0"
         },
         "runtime": {
           "BankingApplication.Models.dll": {}
-        }
-      },
-      "BankingApplication.UserInteraction/1.0.0": {
-        "runtime": {
-          "BankingApplication.UserInteraction.dll": {}
         }
       }
     }
@@ -70,17 +58,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "BankingApplication.Exceptions/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "BankingApplication.Models/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "BankingApplication.UserInteraction/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

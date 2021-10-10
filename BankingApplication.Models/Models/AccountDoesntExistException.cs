@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BankingApplication.Exceptions
+namespace BankingApplication.Models
 {
     public class AccountDoesntExistException : Exception
     {

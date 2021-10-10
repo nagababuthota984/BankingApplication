@@ -2,18 +2,43 @@
 using BankingApplication.Models;
 using System;
 using System.Collections.Generic;
-using BankingApplication.UserInteraction;
 namespace BankingApplication.Services
 {
     public class AccountCreationService : Account
     {
         //creates a new account
-        public void CreateAccount(Account newAccount)
+        public Account CreateAccount(Account newAccount)
         {
 
             //Account newAccount = new Account();
-            newAccount.accountType = UserInput.AskUser("Account Type(Savings/Current)");
-            newAccount.balance = Account.MIN_BALANCE;
+            DataLoaderService.LoadData();
+            newAccount.balance = 0;
+            newAccount.accountNumber = GenerateAccountNumber();
+            DataStructures.Accounts.Add(newAccount.accountNumber, new Dictionary<string, string>());
+            DataStructures.Accounts[newAccount.accountNumber]["name"] = newAccount.name;
+            DataStructures.Accounts[newAccount.accountNumber]["age"] = Convert.ToString(newAccount.age);
+            DataStructures.Accounts[newAccount.accountNumber]["gender"] = newAccount.gender;
+            DataStructures.Accounts[newAccount.accountNumber]["contactNumber"] = Convert.ToString(newAccount.contactNumber);
+            DataStructures.Accounts[newAccount.accountNumber]["dob"] = Convert.ToString(newAccount.dob);
+            DataStructures.Accounts[newAccount.accountNumber]["address"] = newAccount.address;
+            DataStructures.Accounts[newAccount.accountNumber]["aadharNumber"] = Convert.ToString(newAccount.aadharNumber);
+            DataStructures.Accounts[newAccount.accountNumber]["panNumber"] = Convert.ToString(newAccount.panNumber);
+            DataStructures.Accounts[newAccount.accountNumber]["accountType"] = newAccount.accountType;
+            DataStructures.Accounts[newAccount.accountNumber]["balance"] = Convert.ToString(newAccount.balance);
+            
+
+            //writing to json
+            DataReaderWriter.writeAccounts(DataStructures.Accounts);
+            return newAccount;
+
+
+
+
+        }
+        private static double GenerateAccountNumber()
+        {
+            double Number = 0;
+
             do
             {
                 Random random = new Random();          //account number generator.
@@ -23,32 +48,13 @@ namespace BankingApplication.Services
                 {
                     r += random.Next(0, 9).ToString();
                 }
-                newAccount.accountNumber = Convert.ToDouble(r);
+                Number = Convert.ToDouble(r);
 
 
-            } while (accounts.ContainsKey(newAccount.accountNumber));
-
-            accounts.Add(newAccount.accountNumber, new Dictionary<string, string>());
-            accounts[newAccount.accountNumber]["name"] = newAccount.name;
-            accounts[newAccount.accountNumber]["age"] = Convert.ToString(newAccount.age);
-            accounts[newAccount.accountNumber]["gender"] = newAccount.gender;
-            accounts[newAccount.accountNumber]["contactNumber"] = Convert.ToString(newAccount.contactNumber);
-            accounts[newAccount.accountNumber]["dob"] = Convert.ToString(newAccount.dob);
-            accounts[newAccount.accountNumber]["address"] = newAccount.address;
-            accounts[newAccount.accountNumber]["aadharNumber"] = Convert.ToString(newAccount.aadharNumber);
-            accounts[newAccount.accountNumber]["panNumber"] = Convert.ToString(newAccount.panNumber);
-            accounts[newAccount.accountNumber]["accountType"] = newAccount.accountType;
-            accounts[newAccount.accountNumber]["balance"] = Convert.ToString(newAccount.balance);
-            
-            UserOutput.AccountCreationSuccess(newAccount.name, newAccount.accountNumber.ToString());
-
-            //writing to json
-            DataReaderWriter.writeAccounts(accounts);
-
-
-
-
+            } while (DataStructures.Accounts.ContainsKey(Number));
+            return Number;
 
         }
+
     }
 }

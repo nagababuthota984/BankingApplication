@@ -11,10 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingApplication.Services
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingApplication.Database", "..\BankingApplication.Database\BankingApplication.Database.csproj", "{9C0774B0-CD33-442D-968B-31E95B61289A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingApplication.UserInteraction", "..\BankingApplication.UserInteraction\BankingApplication.UserInteraction.csproj", "{291F2BC1-0CB2-4462-B43A-A0418FBE9A83}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingApplication.Exceptions", "..\BankingApplication.Exceptions\BankingApplication.Exceptions.csproj", "{28BAC34B-3E45-4A4D-A886-222BAD7E2656}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,14 +33,6 @@ Global
 		{9C0774B0-CD33-442D-968B-31E95B61289A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C0774B0-CD33-442D-968B-31E95B61289A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C0774B0-CD33-442D-968B-31E95B61289A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{291F2BC1-0CB2-4462-B43A-A0418FBE9A83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{291F2BC1-0CB2-4462-B43A-A0418FBE9A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{291F2BC1-0CB2-4462-B43A-A0418FBE9A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{291F2BC1-0CB2-4462-B43A-A0418FBE9A83}.Release|Any CPU.Build.0 = Release|Any CPU
-		{28BAC34B-3E45-4A4D-A886-222BAD7E2656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28BAC34B-3E45-4A4D-A886-222BAD7E2656}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28BAC34B-3E45-4A4D-A886-222BAD7E2656}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{28BAC34B-3E45-4A4D-A886-222BAD7E2656}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

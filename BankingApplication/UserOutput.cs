@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BankingApplication.UserInteraction
+namespace BankingApplication.CLI
 {
     public class UserOutput
     {
@@ -33,6 +33,15 @@ namespace BankingApplication.UserInteraction
         public static void Statement(int serialNumber, string transaction)
         {
             Console.WriteLine("{0}\t{1}",serialNumber,transaction);
+        }
+        public static void ShowTransactions(string[] Transactions)
+        {
+            int count = 1;
+            foreach( string trans in Transactions)
+            {
+                Console.WriteLine("{0}\t{1}\n",count,trans);
+                count++;
+            }
         }
     }
 }

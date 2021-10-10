@@ -4,9 +4,9 @@ using System.Text;
 
 namespace BankingApplication.Models
 {
-    public class Menu
-    {
-        public enum MenuItems
+    
+    
+        public enum WelcomeMenu
         {
             CreateAccount=1,
             Deposit,
@@ -14,5 +14,5 @@ namespace BankingApplication.Models
             Transfer,
             PrintStatement
         }
-    }
+    
 }

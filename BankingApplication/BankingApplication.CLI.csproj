@@ -10,9 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BankingApplication.Exceptions\BankingApplication.Exceptions.csproj" />
     <ProjectReference Include="..\BankingApplication.Services\BankingApplication.Services.csproj" />
-    <ProjectReference Include="..\BankingApplication.UserInteraction\BankingApplication.UserInteraction.csproj" />
   </ItemGroup>
 
 </Project>

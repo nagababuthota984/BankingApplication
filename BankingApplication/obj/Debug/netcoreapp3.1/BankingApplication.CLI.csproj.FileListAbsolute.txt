@@ -22,7 +22,3 @@ C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplicatio
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.CLI.dll
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.CLI.pdb
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.CLI.genruntimeconfig.cache
-C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\BankingApplication.Exceptions.dll
-C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\BankingApplication.UserInteraction.dll
-C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\BankingApplication.UserInteraction.pdb
-C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\BankingApplication.Exceptions.pdb

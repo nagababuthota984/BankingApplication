@@ -69,5 +69,17 @@
     "panNumber": "5748392",
     "accountType": "savings",
     "balance": "250"
+  },
+  "3778613028": {
+    "name": "Thota Rajeswari",
+    "age": "37",
+    "gender": "Female",
+    "contactNumber": "8374230804",
+    "dob": "11-03-1985 00:00:00",
+    "address": "guntur,ap, india",
+    "aadharNumber": "56743892",
+    "panNumber": "5743829884",
+    "accountType": "Savings",
+    "balance": "1250"
   }
 }
