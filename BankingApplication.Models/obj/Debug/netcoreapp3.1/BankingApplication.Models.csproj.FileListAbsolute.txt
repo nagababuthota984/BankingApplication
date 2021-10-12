@@ -1,5 +1,3 @@
-C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Models\bin\Debug\netcoreapp3.1\Data\accounts.json
-C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Models\bin\Debug\netcoreapp3.1\Data\transactions.json
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Models\bin\Debug\netcoreapp3.1\BankingApplication.Models.deps.json
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Models\bin\Debug\netcoreapp3.1\BankingApplication.Models.dll
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Models\bin\Debug\netcoreapp3.1\BankingApplication.Models.pdb

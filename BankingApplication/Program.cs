@@ -16,36 +16,36 @@ namespace BankingApplication.CLI
             while (true)
             {
 
-                WelcomeMenu choice = UserInput.ShowMenu();
-                switch (choice)
+                WelcomeMenu Choice = UserInput.ShowMenu();
+                switch (Choice)
                 {
                     //done
                     case WelcomeMenu.CreateAccount:
                         Console.WriteLine("\t-------Account Creation-------\n");
-                        Account newAccount = new Account();
-                        newAccount.name = UserInput.AskUser("Name");
-                        newAccount.age = int.Parse(UserInput.AskUser("age"));
-                        newAccount.gender = UserInput.AskUser("Gender");
-                        newAccount.dob = DateTime.Parse(UserInput.AskUser("Date of Birth"));
-                        newAccount.contactNumber = Double.Parse(UserInput.AskUser("Contact Number"));
-                        newAccount.aadharNumber = Double.Parse(UserInput.AskUser("Aadhar Number"));
-                        newAccount.panNumber = Double.Parse(UserInput.AskUser("PAN Number"));
-                        newAccount.address = UserInput.AskUser("Address");
-                        newAccount.accountType = UserInput.AskUser("Account Type(Savings/Current)");
+                        Account NewAccount = new Account();
+                        NewAccount.Name = UserInput.AskUser("Name");
+                        NewAccount.Age = int.Parse(UserInput.AskUser("age"));
+                        NewAccount.Gender = UserInput.AskUser("Gender");
+                        NewAccount.Dob = DateTime.Parse(UserInput.AskUser("Date of Birth"));
+                        NewAccount.ContactNumber = Double.Parse(UserInput.AskUser("Contact Number"));
+                        NewAccount.AadharNumber = Double.Parse(UserInput.AskUser("Aadhar Number"));
+                        NewAccount.PanNumber = Double.Parse(UserInput.AskUser("PAN Number"));
+                        NewAccount.Address = UserInput.AskUser("Address");
+                        NewAccount.AccountType = UserInput.AskUser("Account Type(Savings/Current)");
                         
                         AccountCreationService acc = new AccountCreationService();
-                        Account FreshAccount = acc.CreateAccount(newAccount);
-                        UserOutput.AccountCreationSuccess(FreshAccount.name, FreshAccount.accountNumber.ToString());
+                        Account FreshAccount = acc.CreateAccount(NewAccount);
+                        UserOutput.AccountCreationSuccess(FreshAccount.Name, FreshAccount.AccountNumber.ToString());
                         break;
                     case WelcomeMenu.Deposit:
                         Console.WriteLine("\t-------Money Deposit-------\n");
                         double AccNumber = Double.Parse(UserInput.AskUser("Account Number"));
-                        int amount = int.Parse(UserInput.AskUser("amount to Deposit"));
+                        int Amount = int.Parse(UserInput.AskUser("Amount to Deposit"));
                         try
                         {
                             AccountValidatorService.ValidateAccount(AccNumber);
                             DepositAmountService deposit = new DepositAmountService();
-                            deposit.DepositAmount(AccNumber, amount);
+                            deposit.DepositAmount(AccNumber, Amount);
                             UserOutput.Success("Credited");
                             UserOutput.ShowBalance(int.Parse(DataStructures.Accounts[AccNumber]["balance"]));
                         }
@@ -63,15 +63,15 @@ namespace BankingApplication.CLI
                     case WelcomeMenu.Withdraw:
                         Console.WriteLine("\n-------Amount Withdrawl-------\n");
                         AccNumber = Double.Parse(UserInput.AskUser("Account number"));
-                        amount = int.Parse(UserInput.AskUser("Amount to Withdraw"));
+                        Amount = int.Parse(UserInput.AskUser("Amount to Withdraw"));
                         try
                         {
                             AccountValidatorService.ValidateAccount(AccNumber);
-                            UserOutput.GreetUser(DataStructures.Accounts[AccNumber]["name"]);
+                            UserOutput.GreetUser(DataStructures.Accounts[AccNumber]["Name"]);
                             WithdrawService ws = new WithdrawService();
-                            ws.WithdrawAmount(AccNumber, amount);
+                            ws.WithdrawAmount(AccNumber, Amount);
                             UserOutput.Success("Debited");
-                            UserOutput.ShowBalance(int.Parse(DataStructures.Accounts[AccNumber]["balance"]));
+                            UserOutput.ShowBalance(int.Parse(DataStructures.Accounts[AccNumber]["Balance"]));
                         }
                         catch (InsufficientBalanceException e)
                         {
@@ -93,15 +93,15 @@ namespace BankingApplication.CLI
                         Console.WriteLine("-------Amount Transfer-------\n");
                         AccNumber = Double.Parse(UserInput.AskUser("Sender Account number"));
                         double receiver = Double.Parse(UserInput.AskUser("Receiver Account Number"));
-                        amount = int.Parse(UserInput.AskUser("Amount to Transfer"));
+                        Amount = int.Parse(UserInput.AskUser("Amount to Transfer"));
                         try
                         {
                             AccountValidatorService.ValidateAccount(AccNumber);
                             AccountValidatorService.ValidateAccount(receiver);
                             TransferService ts = new TransferService();
-                            ts.TransferAmount(AccNumber, receiver, amount);
-                            UserOutput.Success(DataStructures.Accounts[receiver]["name"], amount);
-                            UserOutput.ShowBalance(int.Parse(DataStructures.Accounts[AccNumber]["balance"]));
+                            ts.TransferAmount(AccNumber, receiver, Amount);
+                            UserOutput.Success(DataStructures.Accounts[receiver]["Name"], Amount);
+                            UserOutput.ShowBalance(int.Parse(DataStructures.Accounts[AccNumber]["Balance"]));
 
                         }
                         catch (InsufficientBalanceException e)

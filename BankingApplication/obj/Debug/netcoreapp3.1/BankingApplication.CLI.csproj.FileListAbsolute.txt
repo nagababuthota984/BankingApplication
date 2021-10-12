@@ -4,8 +4,6 @@ C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplicatio
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.CLI.AssemblyInfo.cs
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.CLI.csproj.CoreCompileInputs.cache
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\BankingApplication.CLI.exe
-C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\Data\accounts.json
-C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\Data\transactions.json
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\BankingApplication.CLI.deps.json
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\BankingApplication.CLI.runtimeconfig.json
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication\bin\Debug\netcoreapp3.1\BankingApplication.CLI.runtimeconfig.dev.json
