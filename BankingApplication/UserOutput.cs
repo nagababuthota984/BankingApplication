@@ -22,11 +22,11 @@ namespace BankingApplication.CLI
         {
             Console.WriteLine("Amount has been {0} successfully!",Action);
         }
-        public static void Success(string ReceiverName, int Amount)
+        public static void Success(string ReceiverName, decimal Amount)
         {
             Console.WriteLine("{0} has been successfully transferred to {1}",Amount,ReceiverName);
         }
-        public static void ShowBalance(int Balance)
+        public static void ShowBalance(decimal Balance)
         {
             Console.WriteLine("Current Balance: {0} ",Balance);
         }
@@ -34,13 +34,16 @@ namespace BankingApplication.CLI
         {
             Console.WriteLine("{0}\t{1}",serialNumber,Transaction);
         }
-        public static void ShowTransactions(string[] Transactions)
+        public static void ShowTransactions(List<string> Transactions)
         {
             int Count = 1;
+
             foreach( string Trans in Transactions)
             {
-                Console.WriteLine("{0}\t{1}\n",Count,Trans);
+                string[] temp = Trans.Split("|");
+                Console.WriteLine("{0}\t"+"TID - "+ "{1}\n\t\t" + "Type - " + "{2}\n\t\t" + "Amount - " + "{3}\n\t\t" + "Balance - " + "{4}\n\t\t" + "DoneOn - " + "{5}", Count,temp[0],temp[1],temp[2],temp[3],temp[4]);
                 Count++;
+                Console.WriteLine();
             }
         }
     }

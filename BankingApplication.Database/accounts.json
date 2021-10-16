@@ -1,0 +1,84 @@
+[
+  {
+    "BankAccounts": [
+      {
+        "BankBranch": "Guntur",
+        "BankIfsc": "UBIN000087",
+        "BankName": "Union",
+        "Name": "NagababuThota",
+        "Age": 21,
+        "Gender": "Male",
+        "ContactNumber": 8464832529.0,
+        "Dob": "2000-11-12T00:00:00",
+        "Address": "Guntur",
+        "AadharNumber": 401781825624.0,
+        "PanNumber": "CBCPT6311A",
+        "AccountNumber": "54141423848",
+        "AccountId": "Nag20001112",
+        "AccountType": "Savings",
+        "Balance": 800.0,
+        "Transactions": [
+          {
+            "TransId": "TXNUni20211016Nag2000111220211016",
+            "Type": 0,
+            "DoneOn": "2021-10-16T11:33:16.2720287+05:30",
+            "TransactionAmount": 2000.0,
+            "BalanceAmount": 2000.0
+          },
+          {
+            "TransId": "TXNUni20211016Nag2000111220211016",
+            "Type": 1,
+            "DoneOn": "2021-10-16T11:33:33.9796507+05:30",
+            "TransactionAmount": 300.0,
+            "BalanceAmount": 1700.0
+          },
+          {
+            "TransId": "TXNUni20211016Nag2000111220211016",
+            "Type": 1,
+            "DoneOn": "2021-10-16T11:35:41.2702155+05:30",
+            "TransactionAmount": 900.0,
+            "BalanceAmount": 800.0
+          }
+        ]
+      }
+    ],
+    "BankId": "Uni20211016",
+    "Name": "Union",
+    "Branch": "Guntur",
+    "Ifsc": "UBIN000087"
+  },
+  {
+    "BankAccounts": [
+      {
+        "BankBranch": "Guntur",
+        "BankIfsc": "AXIS0000325",
+        "BankName": "Axis",
+        "Name": "Sena ",
+        "Age": 20,
+        "Gender": "Female",
+        "ContactNumber": 8179596420.0,
+        "Dob": "2001-04-19T00:00:00",
+        "Address": "Guntur",
+        "AadharNumber": 892984892894.0,
+        "PanNumber": "98427759282",
+        "AccountNumber": "21727601553",
+        "AccountId": "Sen20010419",
+        "AccountType": "Savings",
+        "Balance": 900.0,
+        "Transactions": [
+          {
+            "TransId": "TXNAxi20211016Sen2001041920211016",
+            "Type": 0,
+            "DoneOn": "2021-10-16T11:35:41.2975125+05:30",
+            "TransactionAmount": 900.0,
+            "BalanceAmount": 900.0
+          }
+        ]
+      }
+    ],
+    "BankId": "Axi20211016",
+    "Name": "Axis",
+    "Branch": "Guntur",
+    "Ifsc": "AXIS0000325"
+  }
+]
