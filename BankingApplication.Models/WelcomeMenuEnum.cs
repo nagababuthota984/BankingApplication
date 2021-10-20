@@ -12,5 +12,10 @@
         AddBank,
         RemoveBank
     }
+    public enum Currency
+    {
+        INR=1,
+        USD
+    }
 
 }

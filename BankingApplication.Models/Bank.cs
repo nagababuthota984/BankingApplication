@@ -10,7 +10,11 @@ namespace BankingApplication.Models
         public string Name { get;  set ;  }
         public string Branch { get; set; }
         public string Ifsc { get; set; }
-
+        public int Default_RTGS { get; set; }
+        public int Default_IMPS { get; set; }
+        public int Other_RTGS { get; set; }
+        public int Other_IMPS { get; set; }
+        public Currency CurrencyType { get; set; }
 
     }
 }
