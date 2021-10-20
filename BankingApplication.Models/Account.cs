@@ -6,21 +6,23 @@ namespace BankingApplication.Models
     {
 
         // public double accountNumber;
-        public string BankBranch;
-        public string BankIfsc;
-        public string BankName;
-        public string Name;
-        public int Age;
-        public string Gender;
-        public double ContactNumber;
-        public System.DateTime Dob;
-        public string Address;
-        public double AadharNumber;
-        public string PanNumber;
-        public string AccountNumber;
-        public string AccountId;
-        public string AccountType;
-        public decimal Balance;
+        public string BankBranch { get; set; }
+        public string BankIfsc { get; set; }
+        public string BankName { get; set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public string Gender { get; set; }
+        public double ContactNumber { get; set; }
+        public System.DateTime Dob { get; set; }
+        public string Address { get; set; }
+        public double AadharNumber { get; set; }
+        public string PanNumber { get; set; }
+        public string AccountNumber { get; set; }
+        public string AccountId { get; set; }
+        public string AccountType { get; set; }
+        public decimal Balance { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
         public List<Transaction> Transactions { get; set; }
 
 

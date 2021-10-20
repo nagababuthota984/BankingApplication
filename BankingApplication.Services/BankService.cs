@@ -20,6 +20,11 @@ namespace BankingApplication.Services
             NewBank.BankId = NewBank.Name.Substring(0,3)+DateTime.Now.ToString("yyyyMMdd");
             NewBank.Branch = branch;
             NewBank.Ifsc = ifsc;
+            NewBank.SelfRTGS = 0;
+            NewBank.SelfIMPS = 5;
+            NewBank.OtherRTGS = 2;
+            NewBank.OtherIMPS = 6;
+            NewBank.CurrencyType = Currency.INR;
             NewBank.BankAccounts = new List<Account>();
             Storage.Banks.Add(NewBank);
             return;
@@ -54,6 +59,8 @@ namespace BankingApplication.Services
                 NewAccount.AccountNumber = GenerateRandomNumber(12).ToString();
             } while (IsDuplicateAccountNumber(NewAccount.AccountNumber,bank.BankId));
             //account number generated.
+            NewAccount.UserName = NewAccount.Name.Substring(0, 3) + NewAccount.Dob.ToString("yyyy");
+            NewAccount.Password = NewAccount.Dob.ToString("ddMMyyyy");
             NewAccount.AccountId = NewAccount.Name.Substring(0,3) + NewAccount.Dob.ToString("yyyyMMdd");
             NewAccount.Transactions = new List<Transaction>();
             bank.BankAccounts.Add(NewAccount);

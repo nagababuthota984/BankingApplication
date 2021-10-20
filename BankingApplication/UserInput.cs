@@ -11,10 +11,10 @@ namespace BankingApplication.CLI
             Console.WriteLine("Enter your {0}:", property);
             return Console.ReadLine();
         }
-        public static WelcomeMenu ShowMenu()
+        public static AccountHolderMenu ShowMenu()
         {
             Console.WriteLine("\nChoose any one option:\n1.Create Account\n2.Deposit\n3.Withdraw\n4.Transfer Amount\n5.Print Transaction history\n");
-            return (WelcomeMenu)int.Parse(Console.ReadLine());
+            return (AccountHolderMenu)int.Parse(Console.ReadLine());
         }
     }
 }
