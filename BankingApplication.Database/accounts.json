@@ -1,131 +1,57 @@
 [
   {
-    "BankAccounts": [
+    "Accounts": [
       {
-        "BankBranch": "Guntur",
-        "BankIfsc": "UBIN000087",
-        "BankName": "Union",
-        "Name": "NagababuThota",
+        "Name": "Nagababu Thota",
         "Age": 21,
         "Gender": "Male",
-        "ContactNumber": 8464832529.0,
+        "ContactNumber": "8464832529",
         "Dob": "2000-11-12T00:00:00",
         "Address": "Guntur",
-        "AadharNumber": 401781825624.0,
+        "AadharNumber": "401781825624",
         "PanNumber": "CBCPT6311A",
-        "AccountNumber": "54141423848",
+        "AccountNumber": "18117401758",
         "AccountId": "Nag20001112",
-        "AccountType": "Savings",
-        "Balance": 800.0,
-        "UserName": null,
-        "Password": null,
+        "TypeOfAccount": 1,
+        "Balance": 200.0,
+        "UserName": "Nag2000",
+        "Password": "20001112",
         "Transactions": [
           {
-            "TransId": "TXNUni20211016Nag2000111220211016",
+            "TransId": "TXNAxi20211021Nag2000111220211021",
             "Type": 0,
-            "DoneOn": "2021-10-16T11:33:16.2720287+05:30",
-            "TransactionAmount": 2000.0,
-            "BalanceAmount": 2000.0
+            "SenderAccountId": null,
+            "ReceiverAccountId": null,
+            "On": "2021-10-21T21:34:58.6480275+05:30",
+            "TransactionAmount": 500.0,
+            "BalanceAmount": 500.0
           },
           {
-            "TransId": "TXNUni20211016Nag2000111220211016",
+            "TransId": "TXNAxi20211021Nag2000111220211021",
             "Type": 1,
-            "DoneOn": "2021-10-16T11:33:33.9796507+05:30",
+            "SenderAccountId": null,
+            "ReceiverAccountId": null,
+            "On": "2021-10-21T21:35:10.7282487+05:30",
             "TransactionAmount": 300.0,
-            "BalanceAmount": 1700.0
-          },
-          {
-            "TransId": "TXNUni20211016Nag2000111220211016",
-            "Type": 1,
-            "DoneOn": "2021-10-16T11:35:41.2702155+05:30",
-            "TransactionAmount": 900.0,
-            "BalanceAmount": 800.0
+            "BalanceAmount": 200.0
           }
-        ]
+        ],
+        "BankId": null,
+        "BankName": "AxisBank",
+        "Branch": "Kolluru",
+        "Ifsc": "UBIN00007"
       }
     ],
-    "BankId": "Uni20211016",
-    "Name": "Union",
-    "Branch": "Guntur",
-    "Ifsc": "UBIN000087",
-    "SelfRTGS": 0.0,
-    "SelfIMPS": 0.0,
-    "OtherRTGS": 0.0,
-    "OtherIMPS": 0.0,
-    "CurrencyType": 0
-  },
-  {
-    "BankAccounts": [
-      {
-        "BankBranch": "Guntur",
-        "BankIfsc": "AXIS0000325",
-        "BankName": "Axis",
-        "Name": "Sena ",
-        "Age": 20,
-        "Gender": "Female",
-        "ContactNumber": 8179596420.0,
-        "Dob": "2001-04-19T00:00:00",
-        "Address": "Guntur",
-        "AadharNumber": 892984892894.0,
-        "PanNumber": "98427759282",
-        "AccountNumber": "21727601553",
-        "AccountId": "Sen20010419",
-        "AccountType": "Savings",
-        "Balance": 900.0,
-        "UserName": null,
-        "Password": null,
-        "Transactions": [
-          {
-            "TransId": "TXNAxi20211016Sen2001041920211016",
-            "Type": 0,
-            "DoneOn": "2021-10-16T11:35:41.2975125+05:30",
-            "TransactionAmount": 900.0,
-            "BalanceAmount": 900.0
-          }
-        ]
-      }
-    ],
-    "BankId": "Axi20211016",
-    "Name": "Axis",
-    "Branch": "Guntur",
-    "Ifsc": "AXIS0000325",
-    "SelfRTGS": 0.0,
-    "SelfIMPS": 0.0,
-    "OtherRTGS": 0.0,
-    "OtherIMPS": 0.0,
-    "CurrencyType": 0
-  },
-  {
-    "BankAccounts": [
-      {
-        "BankBranch": "Kolluru",
-        "BankIfsc": "ANDB000325",
-        "BankName": "AndhraBank",
-        "Name": "RaviKumar",
-        "Age": 25,
-        "Gender": "Male",
-        "ContactNumber": 8464832529.0,
-        "Dob": "2000-11-12T00:00:00",
-        "Address": "guntur",
-        "AadharNumber": 9292002948.0,
-        "PanNumber": "93938383893",
-        "AccountNumber": "50445211501",
-        "AccountId": "Rav20001112",
-        "AccountType": "Savings",
-        "Balance": 0.0,
-        "UserName": "Rav2000",
-        "Password": "12112000",
-        "Transactions": []
-      }
-    ],
-    "BankId": "And20211020",
-    "Name": "AndhraBank",
-    "Branch": "Kolluru",
-    "Ifsc": "ANDB000325",
     "SelfRTGS": 0.0,
     "SelfIMPS": 5.0,
     "OtherRTGS": 2.0,
     "OtherIMPS": 6.0,
-    "CurrencyType": 1
+    "Balance": 0.0,
+    "ChargesTransactions": null,
+    "CurrencyType": 1,
+    "BankId": "Axi20211021",
+    "BankName": "AxisBank",
+    "Branch": "Kolluru",
+    "Ifsc": "UBIN00007"
   }
 ]

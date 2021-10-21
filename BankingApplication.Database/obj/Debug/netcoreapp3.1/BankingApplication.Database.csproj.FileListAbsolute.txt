@@ -7,3 +7,4 @@ C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplicatio
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.csproj.CoreCompileInputs.cache
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.dll
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.pdb
+C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.csproj.AssemblyReference.cache

@@ -23,11 +23,11 @@ namespace BankingApplication.Services
                 Bank UserBank = new Bank();
                 BankService.ValidateAccount(accNumber, bankname);
                 ValidateBalance(accNumber, bankname, 0, amount);
-                foreach (var bank in Storage.Banks)
+                foreach (var bank in RbiStorage.Banks)
                 {
-                    if (bank.Name == bankname)
+                    if (bank.BankName == bankname)
                     {
-                        foreach (var account in bank.BankAccounts)
+                        foreach (var account in bank.Accounts)
                         {
                             if (account.AccountNumber == accNumber)
                             {
@@ -42,7 +42,7 @@ namespace BankingApplication.Services
                 }
                 Transaction NewTrans = new Transaction(TransType.Credit,DateTime.Now, amount, UserAccount.Balance,UserBank.BankId,UserAccount.AccountId);
                 UserAccount.Transactions.Add(NewTrans);
-                DataReaderWriter.WriteData(Storage.Banks);
+                DataReaderWriter.WriteData(RbiStorage.Banks);
                 return UserAccount.Balance;
             }
             catch (InvalidAmountException e)
@@ -70,11 +70,11 @@ namespace BankingApplication.Services
                 Bank UserBank = new Bank();
                 BankService.ValidateAccount(accNumber, bankname);
                 ValidateBalance(accNumber, bankname, amount, 0);
-                foreach (var bank in Storage.Banks)
+                foreach (var bank in RbiStorage.Banks)
                 {
-                    if (bank.Name == bankname)
+                    if (bank.BankName == bankname)
                     {
-                        foreach (var account in bank.BankAccounts)
+                        foreach (var account in bank.Accounts)
                         {
                             if (account.AccountNumber == accNumber)
                             {
@@ -88,7 +88,7 @@ namespace BankingApplication.Services
                 }
                 Transaction NewTrans = new Transaction(TransType.Debit, DateTime.Now, amount, UserAccount.Balance, UserBank.BankId, UserAccount.AccountId);
                 UserAccount.Transactions.Add(NewTrans);
-                DataReaderWriter.WriteData(Storage.Banks);
+                DataReaderWriter.WriteData(RbiStorage.Banks);
                 return UserAccount.Balance;
 
             }
@@ -183,7 +183,8 @@ namespace BankingApplication.Services
                 {
                     foreach(var transaction in UserAccount.Transactions)
                     {
-                        string temp = transaction.TransId + "|" + transaction.Type + "|" + transaction.TransactionAmount + "|" + transaction.BalanceAmount + "|" + transaction.DoneOn;
+                        string temp = $"{transaction.TransId}|{transaction.Type}|{transaction.TransactionAmount}|{transaction.BalanceAmount}|{transaction.On}";
+                        
                         Transactions.Add(temp);
                     }
                     return Transactions;

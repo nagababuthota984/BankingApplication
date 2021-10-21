@@ -30,4 +30,14 @@
         ViewTransactions,
         RevertTransaction
     }
+    public enum AccountType
+    {
+        Savings=1,
+        Current
+    }
+    public enum TransType
+    {
+        Credit,
+        Debit
+    }
 }

@@ -26,14 +26,14 @@ namespace BankingApplication.CLI
                         NewAccount.Age = int.Parse(UserInput.AskUser("age"));
                         NewAccount.Gender = UserInput.AskUser("Gender");
                         NewAccount.Dob = DateTime.Parse(UserInput.AskUser("Date of Birth"));
-                        NewAccount.ContactNumber = Double.Parse(UserInput.AskUser("Contact Number"));
-                        NewAccount.AadharNumber = Double.Parse(UserInput.AskUser("Aadhar Number"));
+                        NewAccount.ContactNumber = UserInput.AskUser("Contact Number");
+                        NewAccount.AadharNumber = UserInput.AskUser("Aadhar Number");
                         NewAccount.PanNumber = UserInput.AskUser("PAN Number");
                         NewAccount.Address = UserInput.AskUser("Address");
-                        NewAccount.AccountType = UserInput.AskUser("Account Type(Savings/Current)");
+                        NewAccount.TypeOfAccount = (AccountType)int.Parse(UserInput.AskUser("Account Type(1.Savings/2.Current)"));
                         NewAccount.BankName = UserInput.AskUser("Name of the bank");
-                        NewAccount.BankBranch = UserInput.AskUser("Bank Branch");
-                        NewAccount.BankIfsc = UserInput.AskUser("IFSC");
+                        NewAccount.Branch = UserInput.AskUser("Bank Branch");
+                        NewAccount.Ifsc = UserInput.AskUser("IFSC");
 
                         BankService acc = new BankService();
                         List<string> Details = acc.CreateAccount(NewAccount);

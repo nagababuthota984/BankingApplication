@@ -9,7 +9,7 @@ namespace BankingApplication.Services
         public static void LoadData()
         {
 
-            Storage.Banks = DataReaderWriter.ReadData();
+            RbiStorage.Banks = DataReaderWriter.ReadData();
         }
 
     }

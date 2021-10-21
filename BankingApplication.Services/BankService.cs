@@ -15,26 +15,30 @@ namespace BankingApplication.Services
         }
         public static void Add(string name, string branch, string ifsc)
         {
-            Bank NewBank = new Bank();
-            NewBank.Name = name;
-            NewBank.BankId = NewBank.Name.Substring(0,3)+DateTime.Now.ToString("yyyyMMdd");
-            NewBank.Branch = branch;
-            NewBank.Ifsc = ifsc;
-            NewBank.SelfRTGS = 0;
-            NewBank.SelfIMPS = 5;
-            NewBank.OtherRTGS = 2;
-            NewBank.OtherIMPS = 6;
-            NewBank.CurrencyType = Currency.INR;
-            NewBank.BankAccounts = new List<Account>();
-            Storage.Banks.Add(NewBank);
+            Bank NewBank = new Bank
+            {
+                BankName = name,
+                BankId = $"{name.Substring(0, 3)}{DateTime.Now:yyyyMMdd}",
+                Branch = branch,
+                Ifsc = ifsc,
+                SelfRTGS = 0,
+                SelfIMPS = 5,
+                OtherRTGS = 2,
+                OtherIMPS = 6,
+                CurrencyType = Currency.INR,
+                Accounts = new List<Account>()
+            };
+        
+            
+            RbiStorage.Banks.Add(NewBank);
             return;
         }
         public bool Remove(string name)
         {
-            Bank bank = Storage.Banks.SingleOrDefault(e => e.Name == name);
+            Bank bank = RbiStorage.Banks.SingleOrDefault(e => e.BankName == name);
             if (bank != null)
             {
-                Storage.Banks.Remove(bank);
+                RbiStorage.Banks.Remove(bank);
                 return true;
             }
             else
@@ -47,24 +51,24 @@ namespace BankingApplication.Services
 
             DataLoaderService.LoadData();
             //takes the details.. checks if the bank exists or else add the bank first then add this account to the bank which was created.
-            if (Storage.Banks.SingleOrDefault(bank => bank.Name == NewAccount.BankName) == null)   
+            if (RbiStorage.Banks.SingleOrDefault(bank => bank.BankName == NewAccount.BankName) == null)   
             {
-                BankService.Add(NewAccount.BankName, NewAccount.BankBranch, NewAccount.BankIfsc);
+                BankService.Add(NewAccount.BankName, NewAccount.Branch, NewAccount.Ifsc);
             }//bank created
             
 
-            Bank bank = Storage.Banks.Single(bank => bank.Name == NewAccount.BankName);
+            Bank bank = RbiStorage.Banks.Single(bank => bank.BankName == NewAccount.BankName);
             do
             {
                 NewAccount.AccountNumber = GenerateRandomNumber(12).ToString();
             } while (IsDuplicateAccountNumber(NewAccount.AccountNumber,bank.BankId));
             //account number generated.
-            NewAccount.UserName = NewAccount.Name.Substring(0, 3) + NewAccount.Dob.ToString("yyyy");
-            NewAccount.Password = NewAccount.Dob.ToString("ddMMyyyy");
-            NewAccount.AccountId = NewAccount.Name.Substring(0,3) + NewAccount.Dob.ToString("yyyyMMdd");
+            NewAccount.UserName = $"{NewAccount.Name.Substring(0, 3)}{NewAccount.Dob:yyyy}";
+            NewAccount.Password = $"{NewAccount.Dob:yyyyMMdd}";
+            NewAccount.AccountId = $"{NewAccount.Name.Substring(0,3)}{NewAccount.Dob:yyyyMMdd}";
             NewAccount.Transactions = new List<Transaction>();
-            bank.BankAccounts.Add(NewAccount);
-            DataReaderWriter.WriteData(Storage.Banks);
+            bank.Accounts.Add(NewAccount);
+            DataReaderWriter.WriteData(RbiStorage.Banks);
             return new List<string>() { NewAccount.Name, NewAccount.AccountNumber };
 
 
@@ -75,10 +79,10 @@ namespace BankingApplication.Services
         private bool IsDuplicateAccountNumber(string accountNumber, string bankid)
         {
             
-            var RequiredBank = Storage.Banks.SingleOrDefault(bank => bank.BankId == bankid);
+            var RequiredBank = RbiStorage.Banks.SingleOrDefault(bank => bank.BankId == bankid);
             if (RequiredBank != null)
             {
-                foreach(var Acc in RequiredBank.BankAccounts)
+                foreach(var Acc in RequiredBank.Accounts)
                 {
                     if(Acc.AccountNumber==accountNumber)
                     {
@@ -92,10 +96,10 @@ namespace BankingApplication.Services
         public static string ValidateAccount(string AccNumber,string bankname)
         {
             DataLoaderService.LoadData();
-            Bank RequiredBank = Storage.Banks.SingleOrDefault(bank => bank.Name == bankname);
+            Bank RequiredBank = RbiStorage.Banks.Single(bank => bank.BankName == bankname);
             if (RequiredBank != null)
             {
-                foreach (var Acc in RequiredBank.BankAccounts)
+                foreach (var Acc in RequiredBank.Accounts)
                 {
                     if (Acc.AccountNumber == AccNumber)
                     {
@@ -126,10 +130,10 @@ namespace BankingApplication.Services
         public static List<Account> FetchAccountsFromBank(string bankname)
         {
             DataLoaderService.LoadData();
-            Bank bank = Storage.Banks.SingleOrDefault(bank => bank.Name == bankname);
+            Bank bank = RbiStorage.Banks.SingleOrDefault(bank => bank.BankName == bankname);
             if(bank != null)
             {
-                return bank.BankAccounts;
+                return bank.Accounts;
             }
             else
             {

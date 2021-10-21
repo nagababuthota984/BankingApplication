@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BankingApplication.Models
 {
-    public class Storage
+    public class RbiStorage
     {
         public static List<Bank> Banks = new List<Bank>();
 
