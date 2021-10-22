@@ -47,7 +47,7 @@ namespace BankingApplication.CLI
                         decimal Amount = int.Parse(UserInput.AskUser("Amount to Deposit"));
                         try
                         {
-                            string UserName = BankService.ValidateAccount(AccNumber, BankName);
+                            string UserName = Utilities.ValidateAccount(AccNumber, BankName);
                             UserOutput.GreetUser(UserName);
                             AccountService Service = new AccountService();
                             decimal Balance = Service.DepositAmount(AccNumber, Amount, BankName);
@@ -72,7 +72,7 @@ namespace BankingApplication.CLI
                         Amount = decimal.Parse(UserInput.AskUser("Amount to Withdraw"));
                         try
                         {
-                            string UserName = BankService.ValidateAccount(AccNumber, BankName);
+                            string UserName = Utilities.ValidateAccount(AccNumber, BankName);
                             UserOutput.GreetUser(UserName);
                             AccountService Service = new AccountService();
                             decimal Balance = Service.WithdrawAmount(AccNumber, BankName, Amount);
@@ -110,8 +110,8 @@ namespace BankingApplication.CLI
                         Amount = decimal.Parse(UserInput.AskUser("Amount to Transfer"));
                         try
                         {
-                            BankService.ValidateAccount(SenderAccNumber, SenderBank);
-                            BankService.ValidateAccount(ReceiverAccNumber, ReceiverBank);
+                            Utilities.ValidateAccount(SenderAccNumber, SenderBank);
+                            Utilities.ValidateAccount(ReceiverAccNumber, ReceiverBank);
                             AccountService Service = new AccountService();
                             List<string> TransDetails = Service.TransferAmount(SenderAccNumber, SenderBank, ReceiverAccNumber, ReceiverBank, Amount);
                             UserOutput.Success(TransDetails[0], decimal.Parse(TransDetails[1]));
