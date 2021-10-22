@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankingApplication.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -34,14 +35,13 @@ namespace BankingApplication.CLI
         {
             Console.WriteLine("{0}\t{1}",serialNumber,Transaction);
         }
-        public static void ShowTransactions(List<string> Transactions)
+        public static void ShowTransactions(List<Transaction> Transactions)
         {
             int Count = 1;
 
-            foreach( string Trans in Transactions)
+            foreach( Transaction trans in Transactions)
             {
-                string[] temp = Trans.Split("|");
-                Console.WriteLine("{0}\t"+"TID - "+ "{1}\n\t\t" + "Type - " + "{2}\n\t\t" + "Amount - " + "{3}\n\t\t" + "Balance - " + "{4}\n\t\t" + "DoneOn - " + "{5}", Count,temp[0],temp[1],temp[2],temp[3],temp[4]);
+                Console.WriteLine("{0}\t"+"TID - "+ "{1}\n\t\t" + "Type - " + "{2}\n\t\t" + "Amount - " + "{3}\n\t\t" + "Balance - " + "{4}\n\t\t" + "DoneOn - " + "{5}", Count,trans.TransId,trans.Type,trans.TransactionAmount,trans.BalanceAmount,trans.On);
                 Count++;
                 Console.WriteLine();
             }

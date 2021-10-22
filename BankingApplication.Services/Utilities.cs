@@ -14,6 +14,7 @@ namespace BankingApplication.Services
 
             List<Account> Accounts = FetchAccountsFromBank(bankname);
             Account acc = new Account();
+
             foreach (var account in Accounts)
             {
                 if (account.AccountNumber == AccNumber)
@@ -38,7 +39,7 @@ namespace BankingApplication.Services
         internal static bool IsDuplicateAccountNumber(string accountNumber, string bankid)
         {
 
-            var RequiredBank = RbiStorage.Banks.SingleOrDefault(bank => bank.BankId == bankid);
+            var RequiredBank = RBIStorage.Banks.SingleOrDefault(bank => bank.BankId == bankid);
             if (RequiredBank != null)
             {
                 foreach (var Acc in RequiredBank.Accounts)
@@ -51,30 +52,26 @@ namespace BankingApplication.Services
             }
             return false;
         }
-        public static string ValidateAccount(string AccNumber, string bankname)
+        public static void ValidateAccount(string accNumber, string bankname)
         {
             DataLoaderService.LoadData();
-            Bank RequiredBank = RbiStorage.Banks.Single(bank => bank.BankName == bankname);
-            if (RequiredBank != null)
+            try
             {
-                foreach (var Acc in RequiredBank.Accounts)
-                {
-                    if (Acc.AccountNumber == AccNumber)
-                    {
-                        return Acc.Name;
-                    }
-                }
-                throw new AccountDoesntExistException("Invalid account number. Please provide a valid one.");
+                Bank RequiredBank = FetchBank(bankname);
+                FetchAccount(accNumber, bankname);
             }
-            else
+            catch(InvalidBankException e)
             {
-                throw new InvalidBankException("Invalid Bank details");
+                throw new InvalidBankException(e.Message);
+            }
+            catch(AccountDoesntExistException e)
+            {
+                throw new AccountDoesntExistException(e.Message);
             }
 
         }
-        internal static double GenerateRandomNumber(int length)
+        internal static string GenerateRandomNumber(int length)
         {
-            double Number = 0;
             Random r = new Random();          //account number generator.
             string NumberString = "";
             int i;
@@ -82,13 +79,12 @@ namespace BankingApplication.Services
             {
                 NumberString += r.Next(0, 9).ToString();
             }
-            Number = Convert.ToInt64(NumberString);
-            return Number;
+            return NumberString;
         }
         public static List<Account> FetchAccountsFromBank(string bankname)
         {
             DataLoaderService.LoadData();
-            Bank bank = RbiStorage.Banks.SingleOrDefault(bank => bank.BankName == bankname);
+            Bank bank = RBIStorage.Banks.SingleOrDefault(bank => bank.BankName == bankname);
             if (bank != null)
             {
                 return bank.Accounts;
@@ -112,6 +108,17 @@ namespace BankingApplication.Services
                 throw new AccountDoesntExistException("Account does Not exists. Please enter valid account number.");
             }
 
+        }
+        public static decimal FetchBalance(string accountNumber, string bankname)
+        {
+            Account UserAccount = FetchAccount(accountNumber, bankname);
+            return UserAccount.Balance;
+        }
+        internal static Bank FetchBank(string bankName)
+        {
+           
+             return RBIStorage.Banks.SingleOrDefault(bank => bank.BankName == bankName);
+            
         }
     }
 }

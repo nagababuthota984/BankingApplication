@@ -35,9 +35,16 @@
         Savings=1,
         Current
     }
-    public enum TransType
+    public enum TransactionType
     {
         Credit,
-        Debit
+        Debit,
+        Transfer
+    }
+    public enum ModeOfTransfer
+    {
+        RTGS=1,
+        IMPS,
+        None
     }
 }

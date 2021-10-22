@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using BankingApplication.Database;
 using BankingApplication.Models;
 
 namespace BankingApplication.Services
@@ -30,15 +29,15 @@ namespace BankingApplication.Services
             };
         
             
-            RbiStorage.Banks.Add(NewBank);
+            RBIStorage.Banks.Add(NewBank);
             return;
         }
         public bool Remove(string name)
         {
-            Bank bank = RbiStorage.Banks.SingleOrDefault(e => e.BankName == name);
+            Bank bank = RBIStorage.Banks.SingleOrDefault(e => e.BankName == name);
             if (bank != null)
             {
-                RbiStorage.Banks.Remove(bank);
+                RBIStorage.Banks.Remove(bank);
                 return true;
             }
             else
@@ -46,41 +45,51 @@ namespace BankingApplication.Services
                 return false;
             }
         }
-        public List<string> CreateAccount(Account NewAccount)
+        public List<string> CreateAccount(Customer newCustomer, Account NewAccount)
         {
 
             DataLoaderService.LoadData();
             //add the bank if it not exists already
-            if (RbiStorage.Banks.SingleOrDefault(bank => bank.BankName == NewAccount.BankName) == null)   
-            {
-                BankService.Add(NewAccount.BankName, NewAccount.Branch, NewAccount.Ifsc);
-            }//bank created
-            
+            SetUpBank(NewAccount.BankName,NewAccount.Branch,NewAccount.Password);
+            Bank bank = Utilities.FetchBank(NewAccount.BankName);
 
-            Bank bank = RbiStorage.Banks.Single(bank => bank.BankName == NewAccount.BankName);
-            do
-            {
-                NewAccount.AccountNumber = Utilities.GenerateRandomNumber(12).ToString();
-            } while (Utilities.IsDuplicateAccountNumber(NewAccount.AccountNumber,bank.BankId));
+            NewAccount.AccountNumber = GenerateAccountNumber(bank.BankId);
+            
             //account number generated.
-            NewAccount.UserName = $"{NewAccount.Name.Substring(0, 3)}{NewAccount.Dob:yyyy}";
-            NewAccount.Password = $"{NewAccount.Dob:yyyyMMdd}";
-            NewAccount.AccountId = $"{NewAccount.Name.Substring(0,3)}{NewAccount.Dob:yyyyMMdd}";
+            NewAccount.BankId = bank.BankId;
+            
+            NewAccount.UserName = $"{newCustomer.Name.Substring(0, 3)}{newCustomer.Dob:yyyy}";
+            NewAccount.Password = $"{newCustomer.Dob:yyyyMMdd}";
+            NewAccount.AccountId = $"{newCustomer.Name.Substring(0,3)}{newCustomer.Dob:yyyyMMdd}";
+            
+            newCustomer.AccountId = NewAccount.AccountId;
+            NewAccount.CustomerOfAccount = newCustomer;
+            
             NewAccount.Transactions = new List<Transaction>();
             bank.Accounts.Add(NewAccount);
-            DataReaderWriter.WriteData(RbiStorage.Banks);
-            return new List<string>() { NewAccount.Name, NewAccount.AccountNumber };
+            DataLoaderService.WriteData(RBIStorage.Banks);
+            return new List<string>() { newCustomer.Name, NewAccount.AccountNumber };
 
 
         }
 
-       
+        private string GenerateAccountNumber(string bankid)
+        {
+            string accNumber = "";
+            do
+            {
+                accNumber = Utilities.GenerateRandomNumber(12).ToString();
+            } while (Utilities.IsDuplicateAccountNumber(accNumber, bankid));
+            return accNumber;
+        }
 
-        
-
-        
-        
-        
+        private void SetUpBank(string bankName,string branch,string ifsc)
+        {
+            if (RBIStorage.Banks.SingleOrDefault(bank => bank.BankName == bankName) == null)
+            {
+                BankService.Add(bankName, branch, ifsc);
+            }//bank created
+        }
     }
 }
 

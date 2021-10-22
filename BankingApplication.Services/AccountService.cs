@@ -1,7 +1,7 @@
-﻿using BankingApplication.Database;
-using BankingApplication.Models;
+﻿using BankingApplication.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BankingApplication.Services
@@ -13,7 +13,7 @@ namespace BankingApplication.Services
             DataLoaderService.LoadData();
         }
 
-        public decimal DepositAmount(string accNumber, decimal amount, string bankname)
+        public void DepositAmount(string accNumber, decimal amount, string bankname)
         {
 
             //update current object's available balance.
@@ -23,7 +23,7 @@ namespace BankingApplication.Services
                 Bank UserBank = new Bank();
                 Utilities.ValidateAccount(accNumber, bankname);
                 Utilities.ValidateBalance(accNumber, bankname, 0, amount);
-                foreach (var bank in RbiStorage.Banks)
+                foreach (var bank in RBIStorage.Banks)
                 {
                     if (bank.BankName == bankname)
                     {
@@ -40,10 +40,8 @@ namespace BankingApplication.Services
                         }
                     }
                 }
-                Transaction NewTrans = new Transaction(TransType.Credit,DateTime.Now, amount, UserAccount.Balance,UserBank.BankId,UserAccount.AccountId);
-                UserAccount.Transactions.Add(NewTrans);
-                DataReaderWriter.WriteData(RbiStorage.Banks);
-                return UserAccount.Balance;
+                TransactionService.RecordTransaction(UserAccount, TransactionType.Credit, DateTime.Now, amount, UserBank.BankId);
+                DataLoaderService.WriteData(RBIStorage.Banks);
             }
             catch (InvalidAmountException e)
             {
@@ -58,7 +56,7 @@ namespace BankingApplication.Services
                 throw new AccountDoesntExistException(e.Message);
             }
         }
-        public decimal WithdrawAmount(string accNumber,string bankname, decimal amount)
+        public void WithdrawAmount(string accNumber,string bankname, decimal amount)
         {
             //withdraws money and updates account details.
 
@@ -66,30 +64,13 @@ namespace BankingApplication.Services
             DataLoaderService.LoadData();
             try
             {
-                Account UserAccount = new Account();
+                Account UserAccount = Utilities.FetchAccount(accNumber, bankname);
                 Bank UserBank = new Bank();
                 Utilities.ValidateAccount(accNumber, bankname);
                 Utilities.ValidateBalance(accNumber, bankname, amount, 0);
-                foreach (var bank in RbiStorage.Banks)
-                {
-                    if (bank.BankName == bankname)
-                    {
-                        foreach (var account in bank.Accounts)
-                        {
-                            if (account.AccountNumber == accNumber)
-                            {
-                                account.Balance -= amount;
-                                UserAccount = account;
-                                UserBank = bank;
-                                break;
-                            }
-                        }
-                    }
-                }
-                Transaction NewTrans = new Transaction(TransType.Debit, DateTime.Now, amount, UserAccount.Balance, UserBank.BankId, UserAccount.AccountId);
-                UserAccount.Transactions.Add(NewTrans);
-                DataReaderWriter.WriteData(RbiStorage.Banks);
-                return UserAccount.Balance;
+                
+                TransactionService.RecordTransaction(UserAccount, TransactionType.Credit, DateTime.Now, amount, UserAccount.BankId, true, ModeOfTransfer.RTGS);
+                DataLoaderService.WriteData(RBIStorage.Banks);
 
             }
             catch (InsufficientBalanceException e)
@@ -105,23 +86,24 @@ namespace BankingApplication.Services
                 throw new AccountDoesntExistException(e.Message);
             }
         }
-        public List<string> TransferAmount(string senderaccnumber, string senderbank, string receiveraccnumber, string receiverbank, decimal amount)
+        public void TransferAmount(string senderaccnumber, string senderbank, string receiveraccnumber, string receiverbank, decimal amount)
         {
+            //needs a lot of logical modifications.
             //transfers money from one accc to another
             try
             {
-                string SenderName = Utilities.ValidateAccount(senderaccnumber, senderbank);
-                string ReceiverName = Utilities.ValidateAccount(receiveraccnumber, receiverbank);
+                Utilities.ValidateAccount(senderaccnumber, senderbank);
+                Utilities.ValidateAccount(receiveraccnumber, receiverbank);
                 //balance validator
                 Utilities.ValidateBalance(senderaccnumber, senderbank,  amount, 0);
                 Utilities.ValidateBalance(receiveraccnumber, receiverbank,0, amount);
 
 
                 //calculate sender and receiver balances
-                decimal SenderBalance = WithdrawAmount(senderaccnumber, senderbank, amount);
+                WithdrawAmount(senderaccnumber, senderbank, amount);
                 DepositAmount(receiveraccnumber, amount, receiverbank);
-                return new List<string>() {  ReceiverName, amount.ToString(), SenderBalance.ToString() };
-
+                
+                //rtgs and imps to be added.
                 
             }
             catch (InsufficientBalanceException e)
@@ -144,28 +126,16 @@ namespace BankingApplication.Services
 
         }
         
-        public List<string> FetchTransactionHistory(string AccNumber,string bankname)
+        public List<Transaction> FetchTransactionHistory(string AccNumber,string bankname)
         {
             try
             {
                 //prints user's acount history
                 List<string> Transactions = new List<string>();
                 Utilities.ValidateAccount(AccNumber, bankname);
-                Account UserAccount = Utilities.FetchAccount(AccNumber, bankname);
-                if (UserAccount.Transactions.Count > 0)    //If there is atleast one transaction.
-                {
-                    foreach(var transaction in UserAccount.Transactions)
-                    {
-                        string temp = $"{transaction.TransId}|{transaction.Type}|{transaction.TransactionAmount}|{transaction.BalanceAmount}|{transaction.On}";
-                        
-                        Transactions.Add(temp);
-                    }
-                    return Transactions;
-                }
-                else
-                {
-                    return (new List<string>() { "None transactions recorded so far!" });
-                }
+                Account userAccount = Utilities.FetchAccount(AccNumber, bankname);
+                return userAccount.Transactions;
+                
             }
             catch(InvalidBankException e)
             {
