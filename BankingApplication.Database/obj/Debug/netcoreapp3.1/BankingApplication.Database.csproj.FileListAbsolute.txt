@@ -8,3 +8,13 @@ C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplicatio
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.dll
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.pdb
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.csproj.AssemblyReference.cache
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\bin\Debug\netcoreapp3.1\BankingApplication.Database.deps.json
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\bin\Debug\netcoreapp3.1\BankingApplication.Database.dll
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\bin\Debug\netcoreapp3.1\BankingApplication.Database.pdb
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.csproj.AssemblyReference.cache
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.AssemblyInfoInputs.cache
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.AssemblyInfo.cs
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.csproj.CoreCompileInputs.cache
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.dll
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.pdb

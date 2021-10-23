@@ -7,162 +7,83 @@ namespace BankingApplication.CLI
 {
     public class AccountHolderPage
     {
-        public static void ShowMenu()
+        public void UserInterface()
         {
-            Console.WriteLine("\nWelcome to Technovert Banking Solutions!\n");
-
+            string userName = UserInput.AskUser("Username");
+            string password = UserInput.AskUser("Password");
+            TransactionService transService = new TransactionService();
+            Account userAccount = AccountService.FetchAccountByUserName(userName);
             while (true)
             {
-
-                AccountHolderMenu Choice = UserInput.ShowMenu();
-                switch (Choice)
+                try
                 {
-                    //done
-                    case AccountHolderMenu.CreateAccount:
-                        Console.WriteLine("\t-------Account Creation-------\n");
-                        Customer newCustomer = new Customer();
-                        Account NewAccount = new Account();
-                        newCustomer.Name = UserInput.AskUser("Name");
-                        newCustomer.Age = int.Parse(UserInput.AskUser("age"));
-                        newCustomer.Gender = UserInput.AskUser("Gender");
-                        newCustomer.Dob = DateTime.Parse(UserInput.AskUser("Date of Birth"));
-                        newCustomer.ContactNumber = UserInput.AskUser("Contact Number");
-                        newCustomer.AadharNumber = UserInput.AskUser("Aadhar Number");
-                        newCustomer.PanNumber = UserInput.AskUser("PAN Number");
-                        newCustomer.Address = UserInput.AskUser("Address");
-                        NewAccount.BankName = UserInput.AskUser("Name of the bank");
-                        NewAccount.TypeOfAccount = (AccountType)int.Parse(UserInput.AskUser("Account Type(1.Savings/2.Current)"));
-                        NewAccount.Branch = UserInput.AskUser("Bank Branch");
-                        NewAccount.Ifsc = UserInput.AskUser("IFSC");
 
-                        BankService acc = new BankService();
-                        List<string> Details = acc.CreateAccount(newCustomer,NewAccount);
-                        UserOutput.AccountCreationSuccess(Details[0], Details[1].ToString());
-                        break;
+                    AccountHolderMenu Choice = UserInput.ShowMenu();
 
-                    case AccountHolderMenu.Deposit:
-                        Console.WriteLine("\t-------Money Deposit-------\n");
-                        string AccNumber = UserInput.AskUser("Account Number");
-                        string BankName = UserInput.AskUser("Name of the bank");
-                        decimal Amount = int.Parse(UserInput.AskUser("Amount to Deposit"));
-                        try
-                        {
-                            Utilities.ValidateAccount(AccNumber, BankName);
-                            //UserOutput.GreetUser(UserName);
-                            AccountService Service = new AccountService();
-                            Service.DepositAmount(AccNumber, Amount, BankName);
+                    switch (Choice)
+                    {
+                        //done
+
+
+                        case AccountHolderMenu.Deposit:
+                            Console.WriteLine("\t-------Money Deposit-------\n");
+                            decimal amount = int.Parse(UserInput.AskUser("Amount to Deposit"));
+                            transService.DepositAmount(userAccount, amount);
                             UserOutput.Success("Credited");
-                            UserOutput.ShowBalance(Utilities.FetchBalance(AccNumber,BankName));
-                        }
-                        catch (AccountDoesntExistException e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                        catch (InvalidAmountException e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                        break;
 
-                    //done
-                    case AccountHolderMenu.Withdraw:
-                        Console.WriteLine("\n-------Amount Withdrawl-------\n");
-                        AccNumber = UserInput.AskUser("Account number");
-                        BankName = UserInput.AskUser("Bank Name");
-                        Amount = decimal.Parse(UserInput.AskUser("Amount to Withdraw"));
-                        try
-                        {
-                            Utilities.ValidateAccount(AccNumber, BankName);
-                            //UserOutput.GreetUser(UserName);
-                            AccountService Service = new AccountService();
-                            Service.WithdrawAmount(AccNumber, BankName, Amount);
+                            break;
+
+                        //done
+                        case AccountHolderMenu.Withdraw:
+                            //Console.WriteLine("\n-------Amount Withdrawl-------\n");
+                            amount = decimal.Parse(UserInput.AskUser("Amount to Withdraw"));
+                            transService.WithdrawAmount(userAccount, amount);
                             UserOutput.Success("Debited");
-                            UserOutput.ShowBalance(Utilities.FetchBalance(AccNumber, BankName));
-                        }
-                        catch (InsufficientBalanceException e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                        catch (InvalidAmountException e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                        catch (InvalidBankException e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                        catch (AccountDoesntExistException e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
+                            break;
+                        //done
+                        case AccountHolderMenu.Transfer:
+                            Console.WriteLine("-------Amount Transfer-------\n");
+                            string receiverAccNumber = UserInput.AskUser("Receiver Account Number");
+                            Account recipientAccount = AccountService.FetchAccountByAccNumber(receiverAccNumber);
+                            amount = decimal.Parse(UserInput.AskUser("Amount to Transfer"));
+                            ModeOfTransfer mode = (ModeOfTransfer)int.Parse(UserInput.AskUser("mode of transfer(1.RTGS\n2.IMPS."));
+                            transService.TransferAmount(userAccount, recipientAccount, amount, mode);
+                            UserOutput.Success("Transferred");
+                            break;
+                        case AccountHolderMenu.PrintStatement:
+                            Console.WriteLine("-------Transaction History-------\n");
+                            UserOutput.ShowTransactions(transService.FetchTransactionHistory(userAccount));
+                            break;
 
-
-                        break;
-                    //done
-                    case AccountHolderMenu.Transfer:
-                        Console.WriteLine("-------Amount Transfer-------\n");
-                        string SenderAccNumber = UserInput.AskUser("Sender Account number");
-                        string SenderBank = UserInput.AskUser("Sender Bank Name");
-
-                        string ReceiverAccNumber = UserInput.AskUser("Receiver Account Number");
-                        string ReceiverBank = UserInput.AskUser("Receiver Bank Name");
-
-                        Amount = decimal.Parse(UserInput.AskUser("Amount to Transfer"));
-                        try
-                        {
-                            Utilities.ValidateAccount(SenderAccNumber, SenderBank);
-                            Utilities.ValidateAccount(ReceiverAccNumber, ReceiverBank);
-                            AccountService Service = new AccountService();
-                            Service.TransferAmount(SenderAccNumber, SenderBank, ReceiverAccNumber, ReceiverBank, Amount);
-
-                        }
-                        catch (InsufficientBalanceException e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                        catch (InvalidAmountException e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                        catch (AccountDoesntExistException e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                        catch (InvalidBankException e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-
-
-                        break;
-                    case AccountHolderMenu.PrintStatement:
-                        Console.WriteLine("-------Transaction History-------\n");
-                        AccNumber = UserInput.AskUser("AccountNumber");
-                        string bankname = UserInput.AskUser("BankName");
-
-                        try
-                        {
-                            AccountService Service = new AccountService();
-                            UserOutput.ShowTransactions(Service.FetchTransactionHistory(AccNumber, bankname));
-
-                        }
-                        catch (AccountDoesntExistException e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                        catch(InvalidBankException e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                        break;
-
-                    default:
-                        Environment.Exit(0);
-                        break;
+                        default:
+                            Environment.Exit(0);
+                            break;
+                    }
                 }
-
-
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
+        }
+
+
+        private static bool IsValidUser(string username, string password)
+        {
+            foreach (var bank in RBIStorage.banks)
+            {
+                foreach (var account in bank.Accounts)
+                {
+                    if (account.UserName.Equals(username))
+                    {
+                        if (account.Password.Equals(password))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
     }
 }

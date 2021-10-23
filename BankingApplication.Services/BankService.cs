@@ -8,10 +8,7 @@ namespace BankingApplication.Services
 {
     public class BankService
     {
-        public BankService()
-        {
-            DataLoaderService.LoadData();
-        }
+
         public static void Add(string name, string branch, string ifsc)
         {
             Bank NewBank = new Bank
@@ -24,20 +21,21 @@ namespace BankingApplication.Services
                 SelfIMPS = 5,
                 OtherRTGS = 2,
                 OtherIMPS = 6,
+                Balance=0,
                 CurrencyType = Currency.INR,
-                Accounts = new List<Account>()
+                Accounts = new List<Account>(),
+                Transactions = new List<Transaction>()
             };
-        
-            
-            RBIStorage.Banks.Add(NewBank);
-            return;
+
+
+            RBIStorage.banks.Add(NewBank);
         }
         public bool Remove(string name)
         {
-            Bank bank = RBIStorage.Banks.SingleOrDefault(e => e.BankName == name);
+            Bank bank = RBIStorage.banks.SingleOrDefault(e => e.BankName == name);
             if (bank != null)
             {
-                RBIStorage.Banks.Remove(bank);
+                RBIStorage.banks.Remove(bank);
                 return true;
             }
             else
@@ -45,34 +43,26 @@ namespace BankingApplication.Services
                 return false;
             }
         }
-        public List<string> CreateAccount(Customer newCustomer, Account NewAccount)
+        public void CreateAccount(Customer newCustomer, Account newAccount)
         {
-
-            DataLoaderService.LoadData();
-            //add the bank if it not exists already
-            SetUpBank(NewAccount.BankName,NewAccount.Branch,NewAccount.Password);
-            Bank bank = Utilities.FetchBank(NewAccount.BankName);
-
-            NewAccount.AccountNumber = GenerateAccountNumber(bank.BankId);
-            
-            //account number generated.
-            NewAccount.BankId = bank.BankId;
-            
-            NewAccount.UserName = $"{newCustomer.Name.Substring(0, 3)}{newCustomer.Dob:yyyy}";
-            NewAccount.Password = $"{newCustomer.Dob:yyyyMMdd}";
-            NewAccount.AccountId = $"{newCustomer.Name.Substring(0,3)}{newCustomer.Dob:yyyyMMdd}";
-            
-            newCustomer.AccountId = NewAccount.AccountId;
-            NewAccount.CustomerOfAccount = newCustomer;
-            
-            NewAccount.Transactions = new List<Transaction>();
-            bank.Accounts.Add(NewAccount);
-            DataLoaderService.WriteData(RBIStorage.Banks);
-            return new List<string>() { newCustomer.Name, NewAccount.AccountNumber };
-
-
+            //Checking if the bank exists in the database. else adding it now.
+            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankName.Equals(newAccount.BankName));
+            if (bank == null)
+            {
+                Add(newAccount.BankName, newAccount.Branch, newAccount.Ifsc);
+                bank = RBIStorage.banks.FirstOrDefault(b => b.BankName.Equals(newAccount.BankName));
+            }
+            newAccount.AccountNumber = GenerateAccountNumber(bank.BankId);
+            newAccount.UserName = $"{newCustomer.Name.Substring(0, 3)}{newCustomer.Dob:yyyy}";
+            newAccount.Password = $"{newCustomer.Dob:yyyyMMdd}";
+            newAccount.AccountId = $"{newCustomer.Name.Substring(0, 3)}{newCustomer.Dob:yyyyMMdd}";
+            newAccount.Transactions = new List<Transaction>();
+            newAccount.BankId = bank.BankId;
+            newCustomer.AccountId = newAccount.AccountId;
+            newAccount.Customer = newCustomer;
+            bank.Accounts.Add(newAccount);
+            FileHelper.WriteData(RBIStorage.banks);
         }
-
         private string GenerateAccountNumber(string bankid)
         {
             string accNumber = "";
@@ -82,19 +72,23 @@ namespace BankingApplication.Services
             } while (Utilities.IsDuplicateAccountNumber(accNumber, bankid));
             return accNumber;
         }
-
-        private void SetUpBank(string bankName,string branch,string ifsc)
+        public static Bank GetBankByBankId(string bankId)
         {
-            if (RBIStorage.Banks.SingleOrDefault(bank => bank.BankName == bankName) == null)
+            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankId.Equals(bankId));
+            if(bank!=null)
             {
-                BankService.Add(bankName, branch, ifsc);
-            }//bank created
+                return bank;
+            }
+            else
+            {
+                throw new InvalidBankException("Bank Doesnt Exist.");
+            }
         }
     }
 }
 
 
-        
+
 
 
 

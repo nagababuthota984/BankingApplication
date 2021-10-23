@@ -11,3 +11,15 @@ C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplicatio
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Models\obj\Debug\netcoreapp3.1\BankingApplication.Models.csproj.CopyComplete
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Models\obj\Debug\netcoreapp3.1\BankingApplication.Models.dll
 C:\Users\nagab\OneDrive\Desktop\Technovert\Banking Application\BankingApplication.Models\obj\Debug\netcoreapp3.1\BankingApplication.Models.pdb
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Models\bin\Debug\netcoreapp3.1\BankingApplication.Models.deps.json
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Models\bin\Debug\netcoreapp3.1\BankingApplication.Models.dll
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Models\bin\Debug\netcoreapp3.1\BankingApplication.Models.pdb
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Models\bin\Debug\netcoreapp3.1\BankingApplication.Database.dll
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Models\bin\Debug\netcoreapp3.1\BankingApplication.Database.pdb
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Models\obj\Debug\netcoreapp3.1\BankingApplication.Models.csproj.AssemblyReference.cache
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Models\obj\Debug\netcoreapp3.1\BankingApplication.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Models\obj\Debug\netcoreapp3.1\BankingApplication.Models.AssemblyInfoInputs.cache
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Models\obj\Debug\netcoreapp3.1\BankingApplication.Models.AssemblyInfo.cs
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Models\obj\Debug\netcoreapp3.1\BankingApplication.Models.csproj.CoreCompileInputs.cache
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Models\obj\Debug\netcoreapp3.1\BankingApplication.Models.dll
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Models\obj\Debug\netcoreapp3.1\BankingApplication.Models.pdb

@@ -103,19 +103,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nagab\\.nuget\\packages\\": {}
+    "C:\\Users\\hp\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication\\BankingApplication.CLI.csproj",
+      "projectUniqueName": "C:\\Users\\hp\\source\\repos\\BankingApplication\\BankingApplication\\BankingApplication.CLI.csproj",
       "projectName": "BankingApplication.CLI",
-      "projectPath": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication\\BankingApplication.CLI.csproj",
-      "packagesPath": "C:\\Users\\nagab\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication\\obj\\",
+      "projectPath": "C:\\Users\\hp\\source\\repos\\BankingApplication\\BankingApplication\\BankingApplication.CLI.csproj",
+      "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hp\\source\\repos\\BankingApplication\\BankingApplication\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\nagab\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -129,8 +129,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication.Services\\BankingApplication.Services.csproj": {
-              "projectPath": "C:\\Users\\nagab\\OneDrive\\Desktop\\Technovert\\Banking Application\\BankingApplication.Services\\BankingApplication.Services.csproj"
+            "C:\\Users\\hp\\source\\repos\\BankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj": {
+              "projectPath": "C:\\Users\\hp\\source\\repos\\BankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj"
             }
           }
         }
@@ -165,7 +165,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

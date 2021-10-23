@@ -8,13 +8,12 @@
     }
     public enum AccountHolderMenu
     {
-        CreateAccount = 1,
-        Deposit,
+        Deposit=1,
         Withdraw,
         Transfer,
         PrintStatement,
-        AddBank,
-        RemoveBank
+        CheckBalance,
+        LogOut
     }
     public enum Currency
     {
@@ -39,7 +38,8 @@
     {
         Credit,
         Debit,
-        Transfer
+        Transfer,
+        ServiceCharge
     }
     public enum ModeOfTransfer
     {

@@ -11,17 +11,30 @@ namespace BankingApplication.CLI
 
         static void Main(string[] args) //welcome page shows AccountHolder Login, Bank Staff Login.
         {
-            MainMenu choice;
+            RBIStorage.banks = FileHelper.GetData();
             Console.WriteLine("\t\tWelcome to Technovert Banking Solutions.\n1.Account Holder Login\n2.Bank Staff Login.\n");
-            choice = (MainMenu)int.Parse(Console.ReadLine());
-            switch(choice)
+            MainMenu choice = (MainMenu)int.Parse(Console.ReadLine());
+            while (true)
             {
-                case MainMenu.AccountHolder:
-                    AccountHolderPage.ShowMenu();
-                    break;
-                case MainMenu.BankStaff:
-                    BankStaffPage.ShowMenu();
-                    break;
+                try
+                {
+                    switch (choice)
+                    {
+                        case MainMenu.AccountHolder:
+                            new AccountHolderPage().UserInterface();
+                            break;
+                        case MainMenu.BankStaff:
+                            new BankStaffPage().StaffActions();
+                            break;
+                        default:
+                            Environment.Exit(0);
+                            break;
+                    }
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
         }
     }
