@@ -12,7 +12,8 @@ namespace BankingApplication.Models
         public decimal OtherRTGS { get; set; }
         public decimal OtherIMPS { get; set; }
         public decimal Balance { get; set; }
-        public List<Transaction> Transactions = new List<Transaction>();
+        public List<Transaction> Transactions  { get; set; }
+        public List<Staff> Employees { get; set; }
         public Currency CurrencyType { get; set; }
 
     }

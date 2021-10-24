@@ -8,6 +8,14 @@ namespace BankingApplication.Services
 {
     public class AccountService
     {
+        public AccountService()
+        {
+            if (RBIStorage.banks == null)     //initializes the json file if it is empty.
+            {
+                RBIStorage.banks = new List<Bank>();
+                FileHelper.WriteData(RBIStorage.banks);
+            }
+        }
         public static Account FetchAccountByUserName(string username)
         {
             foreach(var bank in RBIStorage.banks)

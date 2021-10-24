@@ -89,11 +89,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hp\\source\\repos\\BankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj",
+      "projectUniqueName": "C:\\Users\\hp\\Source\\Repos\\BankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj",
       "projectName": "BankingApplication.Services",
-      "projectPath": "C:\\Users\\hp\\source\\repos\\BankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj",
+      "projectPath": "C:\\Users\\hp\\Source\\Repos\\BankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj",
       "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hp\\source\\repos\\BankingApplication\\BankingApplication.Services\\obj\\",
+      "outputPath": "C:\\Users\\hp\\Source\\Repos\\BankingApplication\\BankingApplication.Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -110,8 +110,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\hp\\source\\repos\\BankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj": {
-              "projectPath": "C:\\Users\\hp\\source\\repos\\BankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj"
+            "C:\\Users\\hp\\Source\\Repos\\BankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj": {
+              "projectPath": "C:\\Users\\hp\\Source\\Repos\\BankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj"
             }
           }
         }

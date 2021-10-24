@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using BankingApplication.Models;
 using BankingApplication.Services;
 namespace BankingApplication.CLI
@@ -23,7 +21,8 @@ namespace BankingApplication.CLI
             
             while(true)
             {
-                BankStaffMenu choice = (BankStaffMenu)int.Parse(UserInput.AskUser("\nChoose an Option\n1.Create Account\n2.UpdateOrDeleteAccount\n3.AddNewCurrency\n4.SetServiceCharge\n5.ViewTransactions\n6.RevertTransaction"));
+                BankStaffMenu choice = (BankStaffMenu)int.Parse(UserInput.AskUser("Choice:\n1.Create Account\n2.UpdateOrDeleteAccount\n3.AddNewCurrency\n4.SetServiceCharge\n5.ViewTransactions\n6.RevertTransaction"));
+                BankService bankService = new BankService();
                 switch (choice)
                 {
                     case BankStaffMenu.CreateAccount:
@@ -43,11 +42,20 @@ namespace BankingApplication.CLI
                         NewAccount.Branch = UserInput.AskUser("Bank Branch");
                         NewAccount.Ifsc = UserInput.AskUser("IFSC");
 
-                        BankService acc = new BankService();
-                        acc.CreateAccount(newCustomer, NewAccount);
+                        bankService.CreateAccount(newCustomer, NewAccount);
                         UserOutput.AccountCreationSuccess(NewAccount.UserName, NewAccount.Password);
                         break;
-
+                    case BankStaffMenu.AddNewEmployee:
+                        Console.WriteLine("\n-----------New Employee-----------\n");
+                        Staff newStaff = new Staff();
+                        newStaff.Name = UserInput.AskUser("Employee Name");
+                        newStaff.Age = int.Parse(UserInput.AskUser("Employee Age"));
+                        newStaff.Gender = UserInput.AskUser("Employee Gender");
+                        newStaff.BankId = UserInput.AskUser("BankId");
+                        newStaff.Designation = (StaffDesignation)int.Parse(UserInput.AskUser("Employee Designation"));
+                        bankService.AddStaff(newStaff);
+                        
+                        break;
                     default:Environment.Exit(0);
                         break;
                 }

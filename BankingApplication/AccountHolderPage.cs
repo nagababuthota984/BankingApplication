@@ -11,58 +11,65 @@ namespace BankingApplication.CLI
         {
             string userName = UserInput.AskUser("Username");
             string password = UserInput.AskUser("Password");
-            TransactionService transService = new TransactionService();
-            Account userAccount = AccountService.FetchAccountByUserName(userName);
-            while (true)
+            if (!IsValidUser(userName, password))
             {
-                try
+                Console.WriteLine("Invalid Credentials\n");
+            }
+            else
+            {
+                TransactionService transService = new TransactionService();
+                Account userAccount = AccountService.FetchAccountByUserName(userName);
+                while (true)
                 {
-
-                    AccountHolderMenu Choice = UserInput.ShowMenu();
-
-                    switch (Choice)
+                    try
                     {
-                        //done
+
+                        AccountHolderMenu Choice = UserInput.ShowMenu();
+
+                        switch (Choice)
+                        {
+                            //done
 
 
-                        case AccountHolderMenu.Deposit:
-                            Console.WriteLine("\t-------Money Deposit-------\n");
-                            decimal amount = int.Parse(UserInput.AskUser("Amount to Deposit"));
-                            transService.DepositAmount(userAccount, amount);
-                            UserOutput.Success("Credited");
+                            case AccountHolderMenu.Deposit:
+                                Console.WriteLine("\t-------Money Deposit-------\n");
+                                decimal amount = int.Parse(UserInput.AskUser("Amount to Deposit"));
+                                transService.DepositAmount(userAccount, amount);
+                                UserOutput.Success("Credited");
 
-                            break;
+                                break;
 
-                        //done
-                        case AccountHolderMenu.Withdraw:
-                            //Console.WriteLine("\n-------Amount Withdrawl-------\n");
-                            amount = decimal.Parse(UserInput.AskUser("Amount to Withdraw"));
-                            transService.WithdrawAmount(userAccount, amount);
-                            UserOutput.Success("Debited");
-                            break;
-                        //done
-                        case AccountHolderMenu.Transfer:
-                            Console.WriteLine("-------Amount Transfer-------\n");
-                            string receiverAccNumber = UserInput.AskUser("Receiver Account Number");
-                            Account recipientAccount = AccountService.FetchAccountByAccNumber(receiverAccNumber);
-                            amount = decimal.Parse(UserInput.AskUser("Amount to Transfer"));
-                            ModeOfTransfer mode = (ModeOfTransfer)int.Parse(UserInput.AskUser("mode of transfer(1.RTGS\n2.IMPS."));
-                            transService.TransferAmount(userAccount, recipientAccount, amount, mode);
-                            UserOutput.Success("Transferred");
-                            break;
-                        case AccountHolderMenu.PrintStatement:
-                            Console.WriteLine("-------Transaction History-------\n");
-                            UserOutput.ShowTransactions(transService.FetchTransactionHistory(userAccount));
-                            break;
+                            //done
+                            case AccountHolderMenu.Withdraw:
+                                //Console.WriteLine("\n-------Amount Withdrawl-------\n");
+                                amount = decimal.Parse(UserInput.AskUser("Amount to Withdraw"));
+                                transService.WithdrawAmount(userAccount, amount);
+                                UserOutput.Success("Debited");
+                                break;
+                            //done
+                            case AccountHolderMenu.Transfer:
+                                Console.WriteLine("-------Amount Transfer-------\n");
+                                string receiverAccNumber = UserInput.AskUser("Receiver Account Number");
+                                Account recipientAccount = AccountService.FetchAccountByAccNumber(receiverAccNumber);
+                                amount = decimal.Parse(UserInput.AskUser("Amount to Transfer"));
+                                ModeOfTransfer mode = (ModeOfTransfer)int.Parse(UserInput.AskUser("mode of transfer\n1.RTGS \n2.IMPS."));
+                                transService.TransferAmount(userAccount, recipientAccount, amount, mode);
+                                UserOutput.Success("Transferred");
+                                break;
+                            case AccountHolderMenu.PrintStatement:
+                                Console.WriteLine("-------Transaction History-------\n");
+                                UserOutput.ShowTransactions(transService.FetchTransactionHistory(userAccount));
+                                break;
 
-                        default:
-                            Environment.Exit(0);
-                            break;
+                            default:
+                                Environment.Exit(0);
+                                break;
+                        }
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
             }
         }
@@ -70,20 +77,27 @@ namespace BankingApplication.CLI
 
         private static bool IsValidUser(string username, string password)
         {
-            foreach (var bank in RBIStorage.banks)
+            if (RBIStorage.banks != null)
             {
-                foreach (var account in bank.Accounts)
+                foreach (var bank in RBIStorage.banks)
                 {
-                    if (account.UserName.Equals(username))
+                    foreach (var account in bank.Accounts)
                     {
-                        if (account.Password.Equals(password))
+                        if (account.UserName.Equals(username))
                         {
-                            return true;
+                            if (account.Password.Equals(password))
+                            {
+                                return true;
+                            }
                         }
                     }
                 }
+                return false;
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
     }
 }

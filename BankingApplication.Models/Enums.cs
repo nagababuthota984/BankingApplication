@@ -24,6 +24,7 @@
     {
         CreateAccount=1,
         UpdateOrDeleteAccount,
+        AddNewEmployee,
         AddNewCurrency,
         SetServiceCharge,
         ViewTransactions,
@@ -46,5 +47,12 @@
         RTGS=1,
         IMPS,
         None
+    }
+    public enum StaffDesignation
+    {
+        Manager=1,
+        AccountsManager,
+        FinancialAnalyst,
+        LoanOfficer
     }
 }

@@ -8,8 +8,16 @@ namespace BankingApplication.Services
 {
     public class BankService
     {
+        public BankService()
+        {
+            if(RBIStorage.banks==null)
+            {
+                RBIStorage.banks = new List<Bank>();
+                FileHelper.WriteData(RBIStorage.banks);
+            }
+        }
 
-        public static void Add(string name, string branch, string ifsc)
+        public void Add(string name, string branch, string ifsc)
         {
             Bank NewBank = new Bank
             {
@@ -24,7 +32,8 @@ namespace BankingApplication.Services
                 Balance=0,
                 CurrencyType = Currency.INR,
                 Accounts = new List<Account>(),
-                Transactions = new List<Transaction>()
+                Transactions = new List<Transaction>(),
+                Employees = new List<Staff>()
             };
 
 
@@ -83,6 +92,16 @@ namespace BankingApplication.Services
             {
                 throw new InvalidBankException("Bank Doesnt Exist.");
             }
+        }
+
+        public void AddStaff(Staff newStaff)
+        {
+            Bank bank = GetBankByBankId(newStaff.BankId);
+            newStaff.StaffId = $"{newStaff.BankId}{Utilities.GenerateRandomNumber(4)}";
+            newStaff.UserName = $"{newStaff.Name.Substring(0, 3)}{newStaff.StaffId.Substring(4, 3)}";
+
+            bank.Employees.Add(newStaff);
+            FileHelper.WriteData(RBIStorage.banks);
         }
     }
 }

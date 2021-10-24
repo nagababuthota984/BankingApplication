@@ -2,178 +2,28 @@
   {
     "Accounts": [
       {
-        "Customer": null,
-        "AccountNumber": "60681633278",
-        "AccountId": "Nag20001112",
-        "AccountType": 0,
-        "Balance": 5196.0,
-        "UserName": "Nag2000",
-        "Password": "20001112",
-        "Transactions": [
-          {
-            "TransId": "TXNAxi20211022Nag2000111220211022",
-            "Type": 0,
-            "SenderAccountId": null,
-            "ReceiverAccountId": null,
-            "On": "2021-10-22T18:33:22.0482922+05:30",
-            "TransactionAmount": 250.0,
-            "BalanceAmount": 250.0,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNAxi20211022Nag2000111220211022",
-            "Type": 0,
-            "SenderAccountId": null,
-            "ReceiverAccountId": null,
-            "On": "2021-10-22T18:33:55.4079222+05:30",
-            "TransactionAmount": 15.0,
-            "BalanceAmount": 235.0,
-            "TransferMode": 1
-          },
-          {
-            "TransId": "TXNAxi20211022Nag2000111220211022",
-            "Type": 0,
-            "SenderAccountId": null,
-            "ReceiverAccountId": null,
-            "On": "2021-10-22T19:26:46.765514+05:30",
-            "TransactionAmount": 1500.0,
-            "BalanceAmount": 1735.0,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNNag2000111220211023",
-            "Type": 0,
-            "SenderAccountId": null,
-            "ReceiverAccountId": null,
-            "On": "2021-10-23T13:51:06.9055879+05:30",
-            "TransactionAmount": 210.0,
-            "BalanceAmount": 5201.0,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNNag2000111220211023",
-            "Type": 1,
-            "SenderAccountId": null,
-            "ReceiverAccountId": null,
-            "On": "2021-10-23T14:22:20.1722765+05:30",
-            "TransactionAmount": 4.0,
-            "BalanceAmount": 5197.0,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNNag2000111220211023",
-            "Type": 1,
-            "SenderAccountId": "Nag20001112",
-            "ReceiverAccountId": "Nag20001112",
-            "On": "2021-10-23T15:24:28.2556189+05:30",
-            "TransactionAmount": 1.0,
-            "BalanceAmount": 5196.0,
-            "TransferMode": 3
-          }
-        ],
-        "BankId": "Axi20211022",
-        "BankName": "AxisBank",
-        "Branch": "Guntur",
-        "Ifsc": "UBIPT00006"
-      }
-    ],
-    "SelfRTGS": 0.0,
-    "SelfIMPS": 5.0,
-    "OtherRTGS": 2.0,
-    "OtherIMPS": 6.0,
-    "Balance": 0.0,
-    "Transactions": [],
-    "CurrencyType": 1,
-    "BankId": "Axi20211022",
-    "BankName": "AxisBank",
-    "Branch": "Guntur",
-    "Ifsc": null
-  },
-  {
-    "Accounts": [
-      {
-        "Customer": null,
-        "AccountNumber": "60480615468",
-        "AccountId": "Ven20000720",
-        "AccountType": 0,
-        "Balance": 409.0,
-        "UserName": "Ven2000",
-        "Password": "20000720",
-        "Transactions": [
-          {
-            "TransId": "TXNAnd20211022Ven2000072020211022",
-            "Type": 0,
-            "SenderAccountId": null,
-            "ReceiverAccountId": null,
-            "On": "2021-10-22T19:25:43.469404+05:30",
-            "TransactionAmount": 2000.0,
-            "BalanceAmount": 2000.0,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNAnd20211022Ven2000072020211022",
-            "Type": 0,
-            "SenderAccountId": null,
-            "ReceiverAccountId": null,
-            "On": "2021-10-22T19:25:57.2908868+05:30",
-            "TransactionAmount": 91.0,
-            "BalanceAmount": 1909.0,
-            "TransferMode": 1
-          },
-          {
-            "TransId": "TXNAnd20211022Ven2000072020211022",
-            "Type": 0,
-            "SenderAccountId": null,
-            "ReceiverAccountId": null,
-            "On": "2021-10-22T19:26:46.7603758+05:30",
-            "TransactionAmount": 1500.0,
-            "BalanceAmount": 409.0,
-            "TransferMode": 1
-          }
-        ],
-        "BankId": "And20211022",
-        "BankName": "AndhraBank",
-        "Branch": "Guntur",
-        "Ifsc": "UBIN0007"
-      }
-    ],
-    "SelfRTGS": 0.0,
-    "SelfIMPS": 5.0,
-    "OtherRTGS": 2.0,
-    "OtherIMPS": 6.0,
-    "Balance": 0.0,
-    "Transactions": [],
-    "CurrencyType": 1,
-    "BankId": "And20211022",
-    "BankName": "AndhraBank",
-    "Branch": "Guntur",
-    "Ifsc": null
-  },
-  {
-    "Accounts": [
-      {
+        "Transactions": [],
         "Customer": {
-          "AccountId": "Van20001111",
-          "Name": "Vani",
-          "Age": 20,
-          "Gender": "Female",
-          "ContactNumber": "0029283893",
-          "Dob": "2000-11-11T00:00:00",
+          "AccountId": "Nag20001112",
+          "Name": "Nagababu Thota",
+          "Age": 21,
+          "Gender": "Male",
+          "ContactNumber": "9202029920",
+          "Dob": "2000-11-12T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": "0393838920",
-          "PanNumber": "02987482902"
+          "AadharNumber": "9292820229",
+          "PanNumber": "0292020289"
         },
-        "AccountNumber": "18215242853",
-        "AccountId": "Van20001111",
+        "AccountNumber": "63355138146",
+        "AccountId": "Nag20001112",
         "AccountType": 1,
         "Balance": 0.0,
-        "UserName": "Van2000",
-        "Password": "20001111",
-        "Transactions": [],
-        "BankId": "Bar20211023",
-        "BankName": "Baroda",
-        "Branch": "Kolluru",
-        "Ifsc": "JADY09191"
+        "UserName": "Nag2000",
+        "Password": "20001112",
+        "BankId": "Axi20211024",
+        "BankName": "AxisBank",
+        "Branch": "Guntur",
+        "Ifsc": "AXI00091"
       }
     ],
     "SelfRTGS": 0.0,
@@ -182,10 +32,11 @@
     "OtherIMPS": 6.0,
     "Balance": 0.0,
     "Transactions": [],
+    "Employees": [],
     "CurrencyType": 1,
-    "BankId": "Bar20211023",
-    "BankName": "Baroda",
+    "BankId": "Axi20211024",
+    "BankName": "AxisBank",
     "Branch": "Guntur",
-    "Ifsc": "JADY09191"
+    "Ifsc": "AXI00091"
   }
 ]

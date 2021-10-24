@@ -7,6 +7,14 @@ namespace BankingApplication.Services
 {
     public class TransactionService
     {
+        public TransactionService()
+        {
+            if (RBIStorage.banks == null)
+            {
+                RBIStorage.banks = new List<Bank>();
+                FileHelper.WriteData(RBIStorage.banks);
+            }
+        }
 
         private void CreateTransaction(Account userAccount, TransactionType transtype, decimal transactionamount )
         {
