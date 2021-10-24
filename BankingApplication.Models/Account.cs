@@ -11,7 +11,8 @@ namespace BankingApplication.Models
         public decimal Balance { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public List<Transaction> Transactions = new List<Transaction>();
+        public AccountStatus Status { get; set; }
+        public List<Transaction> Transactions { get; set; }
 
     }
 }

@@ -22,7 +22,7 @@ namespace BankingApplication.Services
             {
                 foreach(var account in bank.Accounts)
                 {
-                    if(account.UserName.Equals(username))
+                    if(account.UserName.Equals(username) && !account.Status.Equals(AccountStatus.Closed))
                     {
                         return account;
                     }
@@ -36,7 +36,7 @@ namespace BankingApplication.Services
             {
                 foreach (var account in bank.Accounts)
                 {
-                    if (account.AccountNumber.Equals(accNumber))
+                    if (account.AccountNumber.Equals(accNumber) && !account.Status.Equals(AccountStatus.Closed))
                     {
                         return account;
                     }
@@ -45,6 +45,32 @@ namespace BankingApplication.Services
             throw new AccountDoesntExistException("Account Doesn't Exists");
         }
 
+        public Account FetchAccountByAccountId(string accountId)
+        {
+            foreach(var bank in RBIStorage.banks)
+            {
+                foreach(var account in bank.Accounts)
+                {
+                    if(account.AccountId.Equals(accountId) && !account.Status.Equals(AccountStatus.Closed))
+                    {
+                        return account;
+                    }
+                }
+            }
+
+            throw new AccountDoesntExistException("Account Doesn't Exist");
+        }
+
+        public void UpdateAccount(Account userAccount)
+        {
+            
+        }
+
+        public void DeleteAccount(Account userAccount)
+        {
+            userAccount.Status = AccountStatus.Closed;
+            FileHelper.WriteData(RBIStorage.banks);
+        }
     }
 }
 

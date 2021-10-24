@@ -29,8 +29,7 @@ namespace BankingApplication.Services
                 SelfIMPS = 5,
                 OtherRTGS = 2,
                 OtherIMPS = 6,
-                Balance=0,
-                CurrencyType = Currency.INR,
+                Balance = 0,
                 Accounts = new List<Account>(),
                 Transactions = new List<Transaction>(),
                 Employees = new List<Staff>()
@@ -93,15 +92,19 @@ namespace BankingApplication.Services
                 throw new InvalidBankException("Bank Doesnt Exist.");
             }
         }
-
         public void AddStaff(Staff newStaff)
         {
             Bank bank = GetBankByBankId(newStaff.BankId);
             newStaff.StaffId = $"{newStaff.BankId}{Utilities.GenerateRandomNumber(4)}";
             newStaff.UserName = $"{newStaff.Name.Substring(0, 3)}{newStaff.StaffId.Substring(4, 3)}";
-
+            newStaff.Password = $"{newStaff.Dob:yyyyMMdd}";
             bank.Employees.Add(newStaff);
             FileHelper.WriteData(RBIStorage.banks);
+        }
+
+        public void AddNewCurrency(string bankId, string newCurrency,decimal exchangeRate)
+        {
+            
         }
     }
 }

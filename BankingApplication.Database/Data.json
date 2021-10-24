@@ -2,7 +2,6 @@
   {
     "Accounts": [
       {
-        "Transactions": [],
         "Customer": {
           "AccountId": "Nag20001112",
           "Name": "Nagababu Thota",
@@ -20,6 +19,8 @@
         "Balance": 0.0,
         "UserName": "Nag2000",
         "Password": "20001112",
+        "Status": 2,
+        "Transactions": [],
         "BankId": "Axi20211024",
         "BankName": "AxisBank",
         "Branch": "Guntur",
@@ -32,7 +33,30 @@
     "OtherIMPS": 6.0,
     "Balance": 0.0,
     "Transactions": [],
-    "Employees": [],
+    "Employees": [
+      {
+        "Name": "Venkatesh Pulibandla",
+        "Gender": "Male",
+        "Dob": "0001-01-01T00:00:00",
+        "BankId": "Axi20211024",
+        "Age": 21,
+        "StaffId": "Axi20211024831",
+        "UserName": "Ven021",
+        "Password": null,
+        "Designation": 1
+      },
+      {
+        "Name": "Surabhi",
+        "Gender": "Female",
+        "Dob": "2000-11-12T00:00:00",
+        "BankId": "Axi20211024",
+        "Age": 21,
+        "StaffId": "Axi20211024343",
+        "UserName": "Sur021",
+        "Password": "20001112",
+        "Designation": 2
+      }
+    ],
     "CurrencyType": 1,
     "BankId": "Axi20211024",
     "BankName": "AxisBank",

@@ -8,7 +8,7 @@ namespace BankingApplication.CLI
     {
         public static string AskUser(string property)
         {
-            Console.WriteLine("Enter your {0}:", property);
+            Console.WriteLine("Enter {0}:", property);
             return Console.ReadLine();
         }
         public static AccountHolderMenu ShowMenu()

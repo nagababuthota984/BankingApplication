@@ -23,7 +23,8 @@
     public enum BankStaffMenu
     {
         CreateAccount=1,
-        UpdateOrDeleteAccount,
+        UpdateAccount,
+        DeleteAccount,
         AddNewEmployee,
         AddNewCurrency,
         SetServiceCharge,
@@ -54,5 +55,11 @@
         AccountsManager,
         FinancialAnalyst,
         LoanOfficer
+    }
+    public enum AccountStatus
+    {
+        Active,
+        Inactive,
+        Closed
     }
 }

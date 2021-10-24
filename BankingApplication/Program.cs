@@ -9,7 +9,7 @@ namespace BankingApplication.CLI
     class Program
     {
 
-        static void Main(string[] args) //welcome page shows AccountHolder Login, Bank Staff Login.
+        public static void Main(string[] args) //welcome page shows AccountHolder Login, Bank Staff Login.
         {
             RBIStorage.banks = FileHelper.GetData();
             Console.WriteLine("\t\tWelcome to Technovert Banking Solutions.\n1.Account Holder Login\n2.Bank Staff Login.\n");
@@ -24,7 +24,7 @@ namespace BankingApplication.CLI
                             new AccountHolderPage().UserInterface();
                             break;
                         case MainMenu.BankStaff:
-                            new BankStaffPage().StaffActions();
+                            new BankStaffPage().UserInterface();
                             break;
                         default:
                             Environment.Exit(0);
