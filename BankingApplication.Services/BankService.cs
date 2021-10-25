@@ -39,6 +39,22 @@ namespace BankingApplication.Services
 
             RBIStorage.banks.Add(NewBank);
         }
+
+        public Staff FetchStaffByUserName(string userName)
+        {
+            foreach(var bank in RBIStorage.banks)
+            {
+                foreach(var employee in bank.Employees)
+                {
+                    if(employee.UserName.Equals(userName))
+                    {
+                        return employee;
+                    }
+                }
+            }
+            throw new AccountDoesntExistException("Staff account doesn't exists.");
+        }
+
         public bool Remove(string name)
         {
             Bank bank = RBIStorage.banks.SingleOrDefault(e => e.BankName == name);
@@ -107,6 +123,33 @@ namespace BankingApplication.Services
             Bank bank = GetBankByBankId(bankId);
             bank.SupportedCurrency.Add(new Currency(newCurrencyName, exchangeRate));
         }
+        public decimal GetServiceCharge(ModeOfTransfer mode, bool isSelfBankTransfer, string bankId)
+        {
+            Bank bank = GetBankByBankId(bankId);
+            if(isSelfBankTransfer)
+            {
+                if(mode.Equals(ModeOfTransfer.IMPS))
+                {
+                    return bank.SelfIMPS;
+                }
+                else
+                {
+                    return bank.SelfRTGS;
+                }
+            }
+            else
+            {
+                if(mode.Equals(ModeOfTransfer.IMPS))
+                {
+                    return bank.OtherIMPS;
+                }
+                else
+                {
+                    return bank.OtherRTGS;
+                }
+            }
+        }
+
         public void SetServiceCharge(ModeOfTransfer mode, bool isSelfBankCharge, string bankId, decimal newValue)
         {
             Bank bank = GetBankByBankId(bankId);
@@ -133,6 +176,26 @@ namespace BankingApplication.Services
                 }
             }
             FileHelper.WriteData(RBIStorage.banks);
+        }
+
+        public List<Transaction> FetchAccountTransactions(string accountId)
+        {
+            Account userAccount = new AccountService().FetchAccountByAccountId(accountId);
+            return new TransactionService().FetchTransactionHistory(userAccount);
+        }
+
+        public void RevertTransaction(string transactionId, string bankId)
+        {
+            Bank bank = GetBankByBankId(bankId);
+            List<Transaction> transactions = new TransactionService().FetchTransactionsByBankId(bankId);
+            Transaction transaction = transactions.FirstOrDefault(tr => tr.TransId.Equals(transactionId));
+            if(transaction!=null)
+            {
+                if(transaction.Type.Equals(TransactionType.Credit))
+                {
+                    new TransactionService().Withdraw
+                }
+            }
         }
     }
 }

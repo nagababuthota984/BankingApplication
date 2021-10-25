@@ -1,6 +1,7 @@
 ﻿using BankingApplication.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BankingApplication.Services
@@ -161,6 +162,25 @@ namespace BankingApplication.Services
                 }
             }
         }
+
+        internal List<Transaction> FetchTransactionsByBankId(string bankId)
+        {
+            List<Transaction> allTransactions = null;
+            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankId.Equals(bankId));
+            if(bank!=null)
+            {
+                foreach(var account in bank.Accounts)
+                {
+                    allTransactions.AddRange(account.Transactions);
+                }
+                return allTransactions;
+            }
+            else
+            {
+                throw new InvalidBankException("Invalid bank details");
+            }
+        }
+
         public List<Transaction> FetchTransactionHistory(Account userAccount)
         {
             return userAccount.Transactions;

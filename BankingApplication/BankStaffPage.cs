@@ -20,6 +20,7 @@ namespace BankingApplication.CLI
                     BankStaffMenu choice = (BankStaffMenu)int.Parse(UserInput.AskUser("Choice\n1.Create Account\n2.UpdateAccount\n3.Delete an Account\n4.AddNewEmployee\n5.AddNewCurrency\n6.SetServiceCharge\n7.ViewTransactions\n8.RevertTransaction"));
                     BankService bankService = new BankService();
                     AccountService acService = new AccountService();
+                    Staff currentWorkingStaff = bankService.FetchStaffByUserName(userName);
                     switch (choice)
                     {
                         case BankStaffMenu.CreateAccount:
@@ -82,8 +83,26 @@ namespace BankingApplication.CLI
                             break;
                         case BankStaffMenu.SetServiceCharge:
                             bankId = UserInput.AskUser("Bank Id");
-                            
+                            ModeOfTransfer mode = (ModeOfTransfer)int.Parse(UserInput.AskUser("Change service charge:\n1.RTGS\n2.IMPS"));
+                            bool isSelfBankTransfer = (int.Parse(UserInput.AskUser("Charge type:\n1.Money Transfer Within bank.\n2.Money transfer to other banks")).Equals(1) )? true : false ;
+                            decimal newValue = decimal.Parse(UserInput.AskUser("New Charge Value:"));
+                            bankService.SetServiceCharge(mode, isSelfBankTransfer, bankId, newValue);
+                            if (bankService.GetServiceCharge(mode, isSelfBankTransfer, bankId).Equals(newValue))
+                            {
+                                UserOutput.ShowMessage("Updation success");
+                            }
+                            else
+                            {
+                                UserOutput.ShowMessage("Cannot update. Try again.");
+                            }
                             break;
+                        case BankStaffMenu.ViewTransactions:
+                            accountId = UserInput.AskUser("Account Id");
+                            UserOutput.ShowTransactions(bankService.FetchAccountTransactions(accountId));
+                            break;
+                        case BankStaffMenu.RevertTransaction:
+                            string transactionId = UserInput.AskUser("Transaction Id");
+                            bankService.RevertTransaction(transactionId,currentWorkingStaff.BankId);
                         default:
                             Environment.Exit(0);
                             break;
@@ -92,7 +111,6 @@ namespace BankingApplication.CLI
 
             }
         }
-
 
         
 

@@ -29,8 +29,8 @@
     ],
     "SelfRTGS": 0.0,
     "SelfIMPS": 5.0,
-    "OtherRTGS": 2.0,
-    "OtherIMPS": 6.0,
+    "OtherRTGS": 5.0,
+    "OtherIMPS": 12.5,
     "Balance": 0.0,
     "Transactions": [],
     "Employees": [
@@ -42,7 +42,7 @@
         "Age": 21,
         "StaffId": "Axi20211024831",
         "UserName": "Ven021",
-        "Password": null,
+        "Password": "20001111",
         "Designation": 1
       },
       {
@@ -57,7 +57,7 @@
         "Designation": 2
       }
     ],
-    "CurrencyType": 1,
+    "SupportedCurrency": null,
     "BankId": "Axi20211024",
     "BankName": "AxisBank",
     "Branch": "Guntur",
