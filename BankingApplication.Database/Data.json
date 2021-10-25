@@ -60,6 +60,26 @@
             "TransactionAmount": 2500.0,
             "BalanceAmount": 250.0,
             "TransferMode": 3
+          },
+          {
+            "TransId": "TXNAxi20211024Nag2000111220211025",
+            "Type": 2,
+            "SenderAccountId": "Nag20001112",
+            "ReceiverAccountId": "Cha20020510",
+            "On": "2021-10-25T18:06:24.3862145+05:30",
+            "TransactionAmount": 110.0,
+            "BalanceAmount": 140.0,
+            "TransferMode": 1
+          },
+          {
+            "TransId": "TXNAxi20211024Nag2000111220211025",
+            "Type": 0,
+            "SenderAccountId": "Nag20001112",
+            "ReceiverAccountId": "Nag20001112",
+            "On": "2021-10-25T18:07:09.6812387+05:30",
+            "TransactionAmount": 110.0,
+            "BalanceAmount": 250.0,
+            "TransferMode": 3
           }
         ],
         "BankId": "Axi20211024",
@@ -126,6 +146,16 @@
             "TransactionAmount": 2500.0,
             "BalanceAmount": 3750.0,
             "TransferMode": 3
+          },
+          {
+            "TransId": "TXNAxi20211024Cha2002051020211025",
+            "Type": 1,
+            "SenderAccountId": "Cha20020510",
+            "ReceiverAccountId": "Cha20020510",
+            "On": "2021-10-25T18:07:09.6268703+05:30",
+            "TransactionAmount": 110.0,
+            "BalanceAmount": 3750.0,
+            "TransferMode": 3
           }
         ],
         "BankId": "Axi20211024",
@@ -156,6 +186,16 @@
         "SenderAccountId": "Nag20001112",
         "ReceiverAccountId": "Axi20211024",
         "On": "2021-10-25T17:20:17.7542611+05:30",
+        "TransactionAmount": 0.0,
+        "BalanceAmount": 0.0,
+        "TransferMode": 3
+      },
+      {
+        "TransId": "TXNAxi20211024Nag2000111225-10-2021 18:06:24",
+        "Type": 3,
+        "SenderAccountId": "Nag20001112",
+        "ReceiverAccountId": "Axi20211024",
+        "On": "2021-10-25T18:06:24.3792375+05:30",
         "TransactionAmount": 0.0,
         "BalanceAmount": 0.0,
         "TransferMode": 3

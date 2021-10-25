@@ -51,7 +51,7 @@ namespace BankingApplication.Services
             userAccount.Transactions.Add(senderTransaction);
             Transaction receiverTransaction = new Transaction
             {
-                TransId = $"TXN{receiverAccount.BankId}{receiverAccount.AccountId}{timestamp:yyyyMMdd}",
+                TransId = $"TXN{receiverAccount.BankId}{receiverAccount.AccountId}{timestamp:yyyyMMddHHmmss}",
                 SenderAccountId = userAccount.AccountId,
                 ReceiverAccountId = receiverAccount.AccountId,
                 Type = TransactionType.Transfer,

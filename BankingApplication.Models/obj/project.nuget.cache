@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "i9PVYHU6mzYM/ySXuFp0Znn49d3cFyRDPEakMr1QdN5kWJMQihxRq9nfOItTpixOLde8kF9zi1HRh9/fkTIYHA==",
+  "dgSpecHash": "pLrerWhfLF3KZMTGnTCzC5p/ggYj0siJ9BXhIs30Duzw/ujXBvi2ZEOm/iepP9vRsN3GLm+X3GfvNjwg86YUSw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj",
+  "projectFilePath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nagab\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\nagab\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",

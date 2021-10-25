@@ -16,7 +16,7 @@ namespace BankingApplication.Services
                 FileHelper.WriteData(RBIStorage.banks);
             }
         }
-        public static Account FetchAccountByUserName(string username)
+        public  Account FetchAccountByUserName(string username)
         {
             foreach(var bank in RBIStorage.banks)
             {
@@ -28,9 +28,9 @@ namespace BankingApplication.Services
                     }
                 }
             }
-            throw new AccountDoesntExistException("Account Doesn't Exists");
+            throw new AccountDoesntExistException("Account Doesn't Exists"); 
         }
-        public static Account FetchAccountByAccNumber(string accNumber)
+        public  Account FetchAccountByAccNumber(string accNumber)
         {
             foreach (var bank in RBIStorage.banks)
             {

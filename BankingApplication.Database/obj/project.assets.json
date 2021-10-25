@@ -54,11 +54,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Database\\BankingApplication.Database.csproj",
+      "projectUniqueName": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Database\\BankingApplication.Database.csproj",
       "projectName": "BankingApplication.Database",
-      "projectPath": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Database\\BankingApplication.Database.csproj",
+      "projectPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Database\\BankingApplication.Database.csproj",
       "packagesPath": "C:\\Users\\nagab\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Database\\obj\\",
+      "outputPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Database\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
