@@ -16,7 +16,7 @@ namespace BankingApplication.Services
                 FileHelper.WriteData(RBIStorage.banks);
             }
         }
-        public  Account FetchAccountByUserName(string username)
+        public Account FetchAccountByUserName(string username)
         {
             foreach(var bank in RBIStorage.banks)
             {

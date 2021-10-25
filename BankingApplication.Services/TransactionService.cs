@@ -8,14 +8,6 @@ namespace BankingApplication.Services
 {
     public class TransactionService
     {
-        public TransactionService()
-        {
-            if (RBIStorage.banks == null)
-            {
-                RBIStorage.banks = new List<Bank>();
-                FileHelper.WriteData(RBIStorage.banks);
-            }
-        }
 
         private void CreateTransaction(Account userAccount, TransactionType transtype, decimal transactionamount )
         {
@@ -78,38 +70,63 @@ namespace BankingApplication.Services
             };
             bank.Transactions.Add(newBankTransaction);
         }
-        public void DepositAmount(Account userAccount, decimal amount)
+        public void DepositAmount(Account userAccount, decimal amount, string currencyName)
         {
             if (amount > 0)
             {
-                userAccount.Balance += amount;
-                CreateTransaction(userAccount, TransactionType.Credit, amount);
-                FileHelper.WriteData(RBIStorage.banks);
+                Bank bank = BankService.GetBankByBankId(userAccount.BankId);
+                Currency currency = bank.SupportedCurrency.FirstOrDefault(c => c.CurrencyName.Equals(currencyName));
+                if(currency != null)
+                {
+                    amount = amount * currency.ExchangeRate;
+                    userAccount.Balance += amount;
+                    CreateTransaction(userAccount, TransactionType.Credit, amount);
+                    FileHelper.WriteData(RBIStorage.banks);
+                }
+                else
+                {
+                    throw new UnsupportedCurrencyException("Currency Not Supported");
+                }
+                
             }
             else
             {
                 throw new InvalidAmountException("Please enter valid amount to deposit.");
             }
         }
-        public void WithdrawAmount(Account userAccount,decimal amount)
+        public void WithdrawAmount(Account userAccount,decimal amount,string currencyName)
         {
-            if(amount<=0)
+
+            Bank bank = BankService.GetBankByBankId(userAccount.BankId);
+            Currency currency = bank.SupportedCurrency.FirstOrDefault(c => c.CurrencyName.Equals(currencyName));
+            if (currency != null)
             {
-                throw new InvalidAmountException("Please enter a valid amount to withdraw.");
-            }
-            else if(amount>userAccount.Balance)
-            {
-                throw new InsufficientBalanceException("Insufficient funds.");
+                amount = amount * currency.ExchangeRate;
+                if (amount <= 0)
+                {
+                    throw new InvalidAmountException("Please enter a valid amount to withdraw.");
+                }
+                else if (amount > userAccount.Balance)
+                {
+                    throw new InsufficientBalanceException("Insufficient funds.");
+                }
+                else
+                {
+                    userAccount.Balance -= amount;
+                    CreateTransaction(userAccount, TransactionType.Debit, amount);
+                    FileHelper.WriteData(RBIStorage.banks);
+                }
             }
             else
             {
-                userAccount.Balance -= amount;
-                CreateTransaction(userAccount, TransactionType.Debit, amount);
-                FileHelper.WriteData(RBIStorage.banks);
+                throw new UnsupportedCurrencyException("Currency Not Supported");
             }
         }
-        public void TransferAmount(Account senderAccount,Account receiverAccount,decimal amount,ModeOfTransfer mode)
+        public void TransferAmount(Account senderAccount,Account receiverAccount,decimal amount,ModeOfTransfer mode,string currencyName)
         {
+            Bank bank = BankService.GetBankByBankId(senderAccount.BankId);
+            Currency currency = bank.SupportedCurrency.FirstOrDefault(c => c.CurrencyName.Equals(currencyName));
+            amount = amount * currency.ExchangeRate;
             if (amount <= senderAccount.Balance)
             {
                 senderAccount.Balance -= amount;

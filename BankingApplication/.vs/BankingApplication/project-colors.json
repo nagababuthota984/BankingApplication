@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "f4601d5c-27a1-46fe-9c73-bee5060841f2": {
+      "ProjectGuid": "f4601d5c-27a1-46fe-9c73-bee5060841f2",
+      "DisplayName": "BankingApplication.CLI",
+      "ColorIndex": 0
+    },
+    "a342c659-93ac-49cc-91f6-d930d249e41e": {
+      "ProjectGuid": "a342c659-93ac-49cc-91f6-d930d249e41e",
+      "DisplayName": "BankingApplication.Services",
+      "ColorIndex": 1
+    },
+    "1000a565-0c30-4a20-b098-4c2190a537f4": {
+      "ProjectGuid": "1000a565-0c30-4a20-b098-4c2190a537f4",
+      "DisplayName": "BankingApplication.Models",
+      "ColorIndex": 2
+    },
+    "9c0774b0-cd33-442d-968b-31e95b61289a": {
+      "ProjectGuid": "9c0774b0-cd33-442d-968b-31e95b61289a",
+      "DisplayName": "BankingApplication.Database",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}

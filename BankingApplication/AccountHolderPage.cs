@@ -18,7 +18,7 @@ namespace BankingApplication.CLI
             else
             {
                 TransactionService transService = new TransactionService();
-                Account userAccount = AccountService.FetchAccountByUserName(userName);
+                Account userAccount = new AccountService().FetchAccountByUserName(userName);
                 while (true)
                 {
                     try
@@ -28,32 +28,32 @@ namespace BankingApplication.CLI
 
                         switch (Choice)
                         {
-                            //done
 
 
                             case AccountHolderMenu.Deposit:
                                 Console.WriteLine("\t-------Money Deposit-------\n");
                                 decimal amount = int.Parse(UserInput.AskUser("Amount to Deposit"));
-                                transService.DepositAmount(userAccount, amount);
+                                string currencyName = UserInput.AskUser("Currency Name");
+                                transService.DepositAmount(userAccount, amount,currencyName);
                                 UserOutput.Success("Credited");
 
                                 break;
 
-                            //done
                             case AccountHolderMenu.Withdraw:
-                                //Console.WriteLine("\n-------Amount Withdrawl-------\n");
+                                Console.WriteLine("\n-------Amount Withdrawl-------\n");
                                 amount = decimal.Parse(UserInput.AskUser("Amount to Withdraw"));
-                                transService.WithdrawAmount(userAccount, amount);
+                                currencyName = UserInput.AskUser("Currency name");
+                                transService.WithdrawAmount(userAccount, amount,currencyName);
                                 UserOutput.Success("Debited");
                                 break;
-                            //done
                             case AccountHolderMenu.Transfer:
                                 Console.WriteLine("-------Amount Transfer-------\n");
                                 string receiverAccNumber = UserInput.AskUser("Receiver Account Number");
-                                Account recipientAccount = AccountService.FetchAccountByAccNumber(receiverAccNumber);
+                                Account recipientAccount = new AccountService().FetchAccountByAccNumber(receiverAccNumber);
                                 amount = decimal.Parse(UserInput.AskUser("Amount to Transfer"));
+                                currencyName = UserInput.AskUser("Currency name");
                                 ModeOfTransfer mode = (ModeOfTransfer)int.Parse(UserInput.AskUser("mode of transfer\n1.RTGS \n2.IMPS."));
-                                transService.TransferAmount(userAccount, recipientAccount, amount, mode);
+                                transService.TransferAmount(userAccount, recipientAccount, amount, mode,currencyName);
                                 UserOutput.Success("Transferred");
                                 break;
                             case AccountHolderMenu.PrintStatement:

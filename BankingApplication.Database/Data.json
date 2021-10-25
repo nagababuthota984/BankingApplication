@@ -16,7 +16,7 @@
         "AccountNumber": "63355138146",
         "AccountId": "Nag20001112",
         "AccountType": 1,
-        "Balance": 250.0,
+        "Balance": 1750.0,
         "UserName": "Nag2000",
         "Password": "20001112",
         "Status": 1,
@@ -79,6 +79,16 @@
             "On": "2021-10-25T18:07:09.6812387+05:30",
             "TransactionAmount": 110.0,
             "BalanceAmount": 250.0,
+            "TransferMode": 3
+          },
+          {
+            "TransId": "TXNAxi20211024Nag2000111220211025",
+            "Type": 0,
+            "SenderAccountId": "Nag20001112",
+            "ReceiverAccountId": "Nag20001112",
+            "On": "2021-10-25T22:12:58.8795816+05:30",
+            "TransactionAmount": 1500.0,
+            "BalanceAmount": 1750.0,
             "TransferMode": 3
           }
         ],
@@ -169,6 +179,10 @@
     "OtherRTGS": 5.0,
     "OtherIMPS": 12.5,
     "Balance": 0.0,
+    "DefaultCurrency": {
+      "CurrencyName": "INR",
+      "ExchangeRate": 1.0
+    },
     "Transactions": [
       {
         "TransId": "TXNAxi20211024Cha2002051025-10-2021 16:31:59",
@@ -225,7 +239,12 @@
         "Designation": 2
       }
     ],
-    "SupportedCurrency": null,
+    "SupportedCurrency": [
+      {
+        "CurrencyName": "INR",
+        "ExchangeRate": 1.0
+      }
+    ],
     "BankId": "Axi20211024",
     "BankName": "AxisBank",
     "Branch": "Guntur",

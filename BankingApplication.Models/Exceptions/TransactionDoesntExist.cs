@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace BankingApplication.Services
+namespace BankingApplication.Models
 {
     public class TransactionDoesntExist : Exception
     {

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication\\BankingApplication.CLI.csproj": {}
+    "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication\\BankingApplication.CLI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Database\\BankingApplication.Database.csproj": {
+    "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Database\\BankingApplication.Database.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Database\\BankingApplication.Database.csproj",
+        "projectUniqueName": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Database\\BankingApplication.Database.csproj",
         "projectName": "BankingApplication.Database",
-        "projectPath": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Database\\BankingApplication.Database.csproj",
+        "projectPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Database\\BankingApplication.Database.csproj",
         "packagesPath": "C:\\Users\\nagab\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Database\\obj\\",
+        "outputPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Database\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -82,14 +82,14 @@
         }
       }
     },
-    "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj": {
+    "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj",
+        "projectUniqueName": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj",
         "projectName": "BankingApplication.Models",
-        "projectPath": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj",
+        "projectPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj",
         "packagesPath": "C:\\Users\\nagab\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Models\\obj\\",
+        "outputPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -110,8 +110,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Database\\BankingApplication.Database.csproj": {
-                "projectPath": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Database\\BankingApplication.Database.csproj"
+              "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Database\\BankingApplication.Database.csproj": {
+                "projectPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Database\\BankingApplication.Database.csproj"
               }
             }
           }
@@ -158,14 +158,14 @@
         }
       }
     },
-    "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj": {
+    "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj",
+        "projectUniqueName": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj",
         "projectName": "BankingApplication.Services",
-        "projectPath": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj",
+        "projectPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj",
         "packagesPath": "C:\\Users\\nagab\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Services\\obj\\",
+        "outputPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -186,8 +186,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj": {
-                "projectPath": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj"
+              "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj": {
+                "projectPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj"
               }
             }
           }
@@ -234,14 +234,14 @@
         }
       }
     },
-    "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication\\BankingApplication.CLI.csproj": {
+    "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication\\BankingApplication.CLI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication\\BankingApplication.CLI.csproj",
+        "projectUniqueName": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication\\BankingApplication.CLI.csproj",
         "projectName": "BankingApplication.CLI",
-        "projectPath": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication\\BankingApplication.CLI.csproj",
+        "projectPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication\\BankingApplication.CLI.csproj",
         "packagesPath": "C:\\Users\\nagab\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication\\obj\\",
+        "outputPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -262,8 +262,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj": {
-                "projectPath": "C:\\Users\\nagab\\Source\\Repos\\TechnovertBankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj"
+              "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj": {
+                "projectPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj"
               }
             }
           }
