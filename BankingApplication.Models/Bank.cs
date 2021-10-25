@@ -14,7 +14,6 @@ namespace BankingApplication.Models
         public decimal Balance { get; set; }
         public List<Transaction> Transactions  { get; set; }
         public List<Staff> Employees { get; set; }
-        public Dictionary<Currency,decimal> CurrencyType { get; set; }
-
+        public List<Currency> SupportedCurrency { get; set; }
     }
 }

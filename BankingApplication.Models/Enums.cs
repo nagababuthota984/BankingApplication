@@ -15,11 +15,6 @@
         CheckBalance,
         LogOut
     }
-    public enum Currency
-    {
-        INR=1,
-        USD
-    }
     public enum BankStaffMenu
     {
         CreateAccount=1,

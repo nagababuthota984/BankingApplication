@@ -10,7 +10,7 @@ namespace BankingApplication.Services
     {
         public BankService()
         {
-            if(RBIStorage.banks==null)
+            if (RBIStorage.banks == null)
             {
                 RBIStorage.banks = new List<Bank>();
                 FileHelper.WriteData(RBIStorage.banks);
@@ -30,6 +30,7 @@ namespace BankingApplication.Services
                 OtherRTGS = 2,
                 OtherIMPS = 6,
                 Balance = 0,
+                SupportedCurrency = new List<Currency> { new Currency("INR", 1) },
                 Accounts = new List<Account>(),
                 Transactions = new List<Transaction>(),
                 Employees = new List<Staff>()
@@ -83,7 +84,7 @@ namespace BankingApplication.Services
         public static Bank GetBankByBankId(string bankId)
         {
             Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankId.Equals(bankId));
-            if(bank!=null)
+            if (bank != null)
             {
                 return bank;
             }
@@ -101,10 +102,37 @@ namespace BankingApplication.Services
             bank.Employees.Add(newStaff);
             FileHelper.WriteData(RBIStorage.banks);
         }
-
-        public void AddNewCurrency(string bankId, string newCurrency,decimal exchangeRate)
+        public void AddNewCurrency(string bankId, string newCurrencyName, decimal exchangeRate)
         {
-            
+            Bank bank = GetBankByBankId(bankId);
+            bank.SupportedCurrency.Add(new Currency(newCurrencyName, exchangeRate));
+        }
+        public void SetServiceCharge(ModeOfTransfer mode, bool isSelfBankCharge, string bankId, decimal newValue)
+        {
+            Bank bank = GetBankByBankId(bankId);
+            if(isSelfBankCharge)
+            {
+                if(mode==ModeOfTransfer.RTGS)
+                {
+                    bank.SelfRTGS = newValue;
+                }
+                else
+                {
+                    bank.SelfIMPS = newValue;
+                }
+            }
+            else
+            {
+                if(mode==ModeOfTransfer.RTGS)
+                {
+                    bank.OtherRTGS = newValue;
+                }
+                else
+                {
+                    bank.OtherIMPS = newValue;
+                }
+            }
+            FileHelper.WriteData(RBIStorage.banks);
         }
     }
 }

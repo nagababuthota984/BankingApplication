@@ -80,6 +80,10 @@ namespace BankingApplication.CLI
                             decimal exchangeRate = decimal.Parse(UserInput.AskUser("exchange rate"));
                             bankService.AddNewCurrency(bankId, newCurrency,exchangeRate);
                             break;
+                        case BankStaffMenu.SetServiceCharge:
+                            bankId = UserInput.AskUser("Bank Id");
+                            
+                            break;
                         default:
                             Environment.Exit(0);
                             break;
