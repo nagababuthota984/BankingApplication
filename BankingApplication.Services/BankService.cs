@@ -187,14 +187,36 @@ namespace BankingApplication.Services
         public void RevertTransaction(string transactionId, string bankId)
         {
             Bank bank = GetBankByBankId(bankId);
-            List<Transaction> transactions = new TransactionService().FetchTransactionsByBankId(bankId);
-            Transaction transaction = transactions.FirstOrDefault(tr => tr.TransId.Equals(transactionId));
+            Transaction transaction = new TransactionService().FetchTransactionByTransactionId(transactionId);
             if(transaction!=null)
             {
-                if(transaction.Type.Equals(TransactionType.Credit))
+                Account userAccount = new AccountService().FetchAccountByAccountId(transaction.SenderAccountId);
+                TransactionService transService = new TransactionService();
+                if (transaction.Type.Equals(TransactionType.Credit))
                 {
-                    new TransactionService().Withdraw
+                    transService.WithdrawAmount(userAccount, transaction.TransactionAmount);
+                    userAccount.Transactions.Remove(transaction);
                 }
+                else if(transaction.Type.Equals(TransactionType.Debit))
+                {
+                    transService.DepositAmount(userAccount,transaction.TransactionAmount);
+                    userAccount.Transactions.Remove(transaction);
+                }
+                else if(transaction.Type.Equals(TransactionType.Transfer))
+                {
+                    Account receiverAccount = new AccountService().FetchAccountByAccountId(transaction.ReceiverAccountId);
+                    transService.WithdrawAmount(receiverAccount, transaction.TransactionAmount);
+                    receiverAccount.Transactions.Remove(transaction);
+                    transService.DepositAmount(userAccount,transaction.TransactionAmount);
+                    userAccount.Transactions.Remove(transaction);
+
+
+                }
+                FileHelper.WriteData(RBIStorage.banks);
+            }
+            else
+            {
+                throw new TransactionDoesntExist("Invalid Transaction details");
             }
         }
     }

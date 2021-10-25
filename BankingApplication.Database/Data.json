@@ -16,15 +16,122 @@
         "AccountNumber": "63355138146",
         "AccountId": "Nag20001112",
         "AccountType": 1,
-        "Balance": 0.0,
+        "Balance": 250.0,
         "UserName": "Nag2000",
         "Password": "20001112",
-        "Status": 2,
-        "Transactions": [],
+        "Status": 1,
+        "Transactions": [
+          {
+            "TransId": "TXNAxi20211024Nag2000111220211025",
+            "Type": 1,
+            "SenderAccountId": "Nag20001112",
+            "ReceiverAccountId": "Nag20001112",
+            "On": "2021-10-25T17:02:16.4974702+05:30",
+            "TransactionAmount": 2500.0,
+            "BalanceAmount": 0.0,
+            "TransferMode": 3
+          },
+          {
+            "TransId": "TXNAxi20211024Nag2000111220211025",
+            "Type": 0,
+            "SenderAccountId": "Nag20001112",
+            "ReceiverAccountId": "Nag20001112",
+            "On": "2021-10-25T17:19:27.9249907+05:30",
+            "TransactionAmount": 4000.0,
+            "BalanceAmount": 4000.0,
+            "TransferMode": 3
+          },
+          {
+            "TransId": "TXNAxi20211024Nag2000111220211025",
+            "Type": 2,
+            "SenderAccountId": "Nag20001112",
+            "ReceiverAccountId": "Cha20020510",
+            "On": "2021-10-25T17:20:17.8081339+05:30",
+            "TransactionAmount": 1250.0,
+            "BalanceAmount": 2750.0,
+            "TransferMode": 1
+          },
+          {
+            "TransId": "TXNAxi20211024Nag2000111220211025",
+            "Type": 1,
+            "SenderAccountId": "Nag20001112",
+            "ReceiverAccountId": "Nag20001112",
+            "On": "2021-10-25T17:27:57.1991808+05:30",
+            "TransactionAmount": 2500.0,
+            "BalanceAmount": 250.0,
+            "TransferMode": 3
+          }
+        ],
         "BankId": "Axi20211024",
         "BankName": "AxisBank",
         "Branch": "Guntur",
         "Ifsc": "AXI00091"
+      },
+      {
+        "Customer": {
+          "AccountId": "Cha20020510",
+          "Name": "Chandrika Thota",
+          "Age": 21,
+          "Gender": "Female",
+          "ContactNumber": "010299303039",
+          "Dob": "2002-05-10T00:00:00",
+          "Address": "Guntur",
+          "AadharNumber": "0393902903939",
+          "PanNumber": "93930039393"
+        },
+        "AccountNumber": "17540207068",
+        "AccountId": "Cha20020510",
+        "AccountType": 1,
+        "Balance": 3750.0,
+        "UserName": "Cha2002",
+        "Password": "20020510",
+        "Status": 0,
+        "Transactions": [
+          {
+            "TransId": "TXNAxi20211024Cha2002051020211025",
+            "Type": 0,
+            "SenderAccountId": "Cha20020510",
+            "ReceiverAccountId": "Cha20020510",
+            "On": "2021-10-25T17:02:16.5541293+05:30",
+            "TransactionAmount": 2500.0,
+            "BalanceAmount": 3500.0,
+            "TransferMode": 3
+          },
+          {
+            "TransId": "TXNAxi20211024Cha2002051020211025",
+            "Type": 2,
+            "SenderAccountId": "Nag20001112",
+            "ReceiverAccountId": "Cha20020510",
+            "On": "2021-10-25T17:20:17.8081339+05:30",
+            "TransactionAmount": 1250.0,
+            "BalanceAmount": 4750.0,
+            "TransferMode": 1
+          },
+          {
+            "TransId": "TXNAxi20211024Cha2002051020211025",
+            "Type": 1,
+            "SenderAccountId": "Cha20020510",
+            "ReceiverAccountId": "Cha20020510",
+            "On": "2021-10-25T17:21:17.1989616+05:30",
+            "TransactionAmount": 3500.0,
+            "BalanceAmount": 1250.0,
+            "TransferMode": 3
+          },
+          {
+            "TransId": "TXNAxi20211024Cha2002051020211025",
+            "Type": 0,
+            "SenderAccountId": "Cha20020510",
+            "ReceiverAccountId": "Cha20020510",
+            "On": "2021-10-25T17:28:23.7979929+05:30",
+            "TransactionAmount": 2500.0,
+            "BalanceAmount": 3750.0,
+            "TransferMode": 3
+          }
+        ],
+        "BankId": "Axi20211024",
+        "BankName": "AxisBank",
+        "Branch": "Guntur",
+        "Ifsc": "UBIN0000261"
       }
     ],
     "SelfRTGS": 0.0,
@@ -32,7 +139,28 @@
     "OtherRTGS": 5.0,
     "OtherIMPS": 12.5,
     "Balance": 0.0,
-    "Transactions": [],
+    "Transactions": [
+      {
+        "TransId": "TXNAxi20211024Cha2002051025-10-2021 16:31:59",
+        "Type": 3,
+        "SenderAccountId": "Cha20020510",
+        "ReceiverAccountId": "Axi20211024",
+        "On": "2021-10-25T16:31:59.8238775+05:30",
+        "TransactionAmount": 0.0,
+        "BalanceAmount": 0.0,
+        "TransferMode": 3
+      },
+      {
+        "TransId": "TXNAxi20211024Nag2000111225-10-2021 17:20:17",
+        "Type": 3,
+        "SenderAccountId": "Nag20001112",
+        "ReceiverAccountId": "Axi20211024",
+        "On": "2021-10-25T17:20:17.7542611+05:30",
+        "TransactionAmount": 0.0,
+        "BalanceAmount": 0.0,
+        "TransferMode": 3
+      }
+    ],
     "Employees": [
       {
         "Name": "Venkatesh Pulibandla",

@@ -163,21 +163,24 @@ namespace BankingApplication.Services
             }
         }
 
-        internal List<Transaction> FetchTransactionsByBankId(string bankId)
+        internal Transaction FetchTransactionByTransactionId(string transactionId)
         {
-            List<Transaction> allTransactions = null;
-            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankId.Equals(bankId));
-            if(bank!=null)
+            Transaction transaction = null;
+            if(RBIStorage.banks!=null)
             {
-                foreach(var account in bank.Accounts)
+                foreach (var bank in RBIStorage.banks)
                 {
-                    allTransactions.AddRange(account.Transactions);
+                    foreach (var account in bank.Accounts)
+                    {
+                        transaction = account.Transactions.FirstOrDefault(t => t.TransId.Equals(transactionId));
+                        if(transaction!=null) return transaction;
+                    }
                 }
-                return allTransactions;
+                return transaction;
             }
             else
             {
-                throw new InvalidBankException("Invalid bank details");
+                throw new TransactionDoesntExist("Invalid bank details");
             }
         }
 

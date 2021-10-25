@@ -13,7 +13,7 @@ namespace BankingApplication.CLI
         }
         public static AccountHolderMenu ShowMenu()
         {
-            Console.WriteLine("\nChoose any one option:\n1.Create Account\n2.Deposit\n3.Withdraw\n4.Transfer Amount\n5.Print Transaction history\n");
+            Console.WriteLine("\nChoose any one option:\n1.Deposit\n2.Withdraw\n3.Transfer Amount\n4.Print Transaction history\n");
             return (AccountHolderMenu)int.Parse(Console.ReadLine());
         }
     }

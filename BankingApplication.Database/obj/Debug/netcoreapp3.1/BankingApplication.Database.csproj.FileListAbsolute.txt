@@ -18,3 +18,13 @@ C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\obj\Debu
 C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.csproj.CoreCompileInputs.cache
 C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.dll
 C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.pdb
+C:\Users\nagab\Source\Repos\TechnovertBankingApplication\BankingApplication.Database\bin\Debug\netcoreapp3.1\BankingApplication.Database.deps.json
+C:\Users\nagab\Source\Repos\TechnovertBankingApplication\BankingApplication.Database\bin\Debug\netcoreapp3.1\BankingApplication.Database.dll
+C:\Users\nagab\Source\Repos\TechnovertBankingApplication\BankingApplication.Database\bin\Debug\netcoreapp3.1\BankingApplication.Database.pdb
+C:\Users\nagab\Source\Repos\TechnovertBankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.csproj.AssemblyReference.cache
+C:\Users\nagab\Source\Repos\TechnovertBankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nagab\Source\Repos\TechnovertBankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.AssemblyInfoInputs.cache
+C:\Users\nagab\Source\Repos\TechnovertBankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.AssemblyInfo.cs
+C:\Users\nagab\Source\Repos\TechnovertBankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.csproj.CoreCompileInputs.cache
+C:\Users\nagab\Source\Repos\TechnovertBankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.dll
+C:\Users\nagab\Source\Repos\TechnovertBankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.pdb
