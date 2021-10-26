@@ -4,7 +4,7 @@
       {
         "Customer": {
           "AccountId": "Nag20001112",
-          "Name": "Nagababu Thota",
+          "Name": "NagababuThota",
           "Age": 21,
           "Gender": "Male",
           "ContactNumber": "9202029920",
@@ -249,5 +249,55 @@
     "BankName": "AxisBank",
     "Branch": "Guntur",
     "Ifsc": "AXI00091"
+  },
+  {
+    "Accounts": [
+      {
+        "Customer": {
+          "AccountId": "Sen20010419",
+          "Name": "SenaSowseelya",
+          "Age": 20,
+          "Gender": "Female",
+          "ContactNumber": "02093939930",
+          "Dob": "2001-04-19T00:00:00",
+          "Address": "Guntur",
+          "AadharNumber": "0393930993",
+          "PanNumber": "03939030393"
+        },
+        "AccountNumber": "16677721625",
+        "AccountId": "Sen20010419",
+        "AccountType": 1,
+        "Balance": 0.0,
+        "UserName": "Sen2001",
+        "Password": "20010419",
+        "Status": 0,
+        "Transactions": [],
+        "BankId": "Sta20211026",
+        "BankName": "StateBankOfIndia",
+        "Branch": "Guntur",
+        "Ifsc": "SBIN000232"
+      }
+    ],
+    "SelfRTGS": 0.0,
+    "SelfIMPS": 5.0,
+    "OtherRTGS": 2.0,
+    "OtherIMPS": 6.0,
+    "Balance": 0.0,
+    "DefaultCurrency": {
+      "CurrencyName": "INR",
+      "ExchangeRate": 1.0
+    },
+    "Transactions": [],
+    "Employees": [],
+    "SupportedCurrency": [
+      {
+        "CurrencyName": "INR",
+        "ExchangeRate": 1.0
+      }
+    ],
+    "BankId": "Sta20211026",
+    "BankName": "StateBankOfIndia",
+    "Branch": "Guntur",
+    "Ifsc": "SBIN000232"
   }
 ]

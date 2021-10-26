@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace BankingApplication.Services
@@ -61,8 +62,20 @@ namespace BankingApplication.Services
             throw new AccountDoesntExistException("Account Doesn't Exist");
         }
 
-        public void UpdateAccount(Account userAccount)
+        public void UpdateAccount(Account userAccount,string property,string newValue)
         {
+
+            PropertyInfo myProp = userAccount.Customer.GetType().GetProperty(property);
+            if (property.ToLower().Equals("dob"))
+            {
+                DateTime newDate = DateTime.Parse(newValue);
+                myProp.SetValue(userAccount.Customer, newValue, null);
+            }
+            else
+            {
+                myProp.SetValue(userAccount.Customer, newValue, null);
+            }
+            FileHelper.WriteData(RBIStorage.banks);
             
         }
 
@@ -74,3 +87,4 @@ namespace BankingApplication.Services
     }
 }
 
+ 

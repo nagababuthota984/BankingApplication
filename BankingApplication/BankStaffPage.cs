@@ -48,8 +48,12 @@ namespace BankingApplication.CLI
                             case BankStaffMenu.UpdateAccount:
                                 string accountId = UserInput.AskUser("Account Id");
                                 Account userAccount = acService.FetchAccountByAccountId(accountId);
-                                UpdateAccountHandler(userAccount);
-                                new AccountService().UpdateAccount(userAccount);
+                                Console.WriteLine("\nYou will only be able to modify customer related properties. Properties like account number, accound Id, Balance Cannot be changed!\n");
+                                string property = UserInput.AskUser("property you want to update");
+                                Console.WriteLine("Enter new value: ");
+                                string newValue = Console.ReadLine();
+                                new AccountService().UpdateAccount(userAccount,property,newValue);
+                                UserOutput.ShowMessage("Updated!");
                                 break;
                             case BankStaffMenu.DeleteAccount:
                                 accountId = UserInput.AskUser("Account Id");
@@ -87,9 +91,9 @@ namespace BankingApplication.CLI
                                 bankId = UserInput.AskUser("Bank Id");
                                 ModeOfTransfer mode = (ModeOfTransfer)int.Parse(UserInput.AskUser("Change service charge:\n1.RTGS\n2.IMPS"));
                                 bool isSelfBankTransfer = (int.Parse(UserInput.AskUser("Charge type:\n1.Money Transfer Within bank.\n2.Money transfer to other banks")).Equals(1)) ? true : false;
-                                decimal newValue = decimal.Parse(UserInput.AskUser("New Charge Value:"));
-                                bankService.SetServiceCharge(mode, isSelfBankTransfer, bankId, newValue);
-                                if (bankService.GetServiceCharge(mode, isSelfBankTransfer, bankId).Equals(newValue))
+                                decimal value = decimal.Parse(UserInput.AskUser("New Charge Value:"));
+                                bankService.SetServiceCharge(mode, isSelfBankTransfer, bankId, value);
+                                if (bankService.GetServiceCharge(mode, isSelfBankTransfer, bankId).Equals(value))
                                 {
                                     UserOutput.ShowMessage("Updation success");
                                 }
