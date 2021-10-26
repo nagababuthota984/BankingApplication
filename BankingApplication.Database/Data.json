@@ -5,7 +5,7 @@
         "Customer": {
           "AccountId": "Nag20001112",
           "Name": "NagababuThota",
-          "Age": 21,
+          "Age": "21",
           "Gender": "Male",
           "ContactNumber": "9202029920",
           "Dob": "2000-11-12T00:00:00",
@@ -19,7 +19,7 @@
         "Balance": 1750.0,
         "UserName": "Nag2000",
         "Password": "20001112",
-        "Status": 1,
+        "Status": 2,
         "Transactions": [
           {
             "TransId": "TXNAxi20211024Nag2000111220211025",
@@ -29,6 +29,7 @@
             "On": "2021-10-25T17:02:16.4974702+05:30",
             "TransactionAmount": 2500.0,
             "BalanceAmount": 0.0,
+            "Currency": null,
             "TransferMode": 3
           },
           {
@@ -39,6 +40,7 @@
             "On": "2021-10-25T17:19:27.9249907+05:30",
             "TransactionAmount": 4000.0,
             "BalanceAmount": 4000.0,
+            "Currency": null,
             "TransferMode": 3
           },
           {
@@ -49,6 +51,7 @@
             "On": "2021-10-25T17:20:17.8081339+05:30",
             "TransactionAmount": 1250.0,
             "BalanceAmount": 2750.0,
+            "Currency": null,
             "TransferMode": 1
           },
           {
@@ -59,6 +62,7 @@
             "On": "2021-10-25T17:27:57.1991808+05:30",
             "TransactionAmount": 2500.0,
             "BalanceAmount": 250.0,
+            "Currency": null,
             "TransferMode": 3
           },
           {
@@ -69,6 +73,7 @@
             "On": "2021-10-25T18:06:24.3862145+05:30",
             "TransactionAmount": 110.0,
             "BalanceAmount": 140.0,
+            "Currency": null,
             "TransferMode": 1
           },
           {
@@ -79,6 +84,7 @@
             "On": "2021-10-25T18:07:09.6812387+05:30",
             "TransactionAmount": 110.0,
             "BalanceAmount": 250.0,
+            "Currency": null,
             "TransferMode": 3
           },
           {
@@ -89,6 +95,7 @@
             "On": "2021-10-25T22:12:58.8795816+05:30",
             "TransactionAmount": 1500.0,
             "BalanceAmount": 1750.0,
+            "Currency": null,
             "TransferMode": 3
           }
         ],
@@ -101,7 +108,7 @@
         "Customer": {
           "AccountId": "Cha20020510",
           "Name": "Chandrika Thota",
-          "Age": 21,
+          "Age": "21",
           "Gender": "Female",
           "ContactNumber": "010299303039",
           "Dob": "2002-05-10T00:00:00",
@@ -125,6 +132,7 @@
             "On": "2021-10-25T17:02:16.5541293+05:30",
             "TransactionAmount": 2500.0,
             "BalanceAmount": 3500.0,
+            "Currency": null,
             "TransferMode": 3
           },
           {
@@ -135,6 +143,7 @@
             "On": "2021-10-25T17:20:17.8081339+05:30",
             "TransactionAmount": 1250.0,
             "BalanceAmount": 4750.0,
+            "Currency": null,
             "TransferMode": 1
           },
           {
@@ -145,6 +154,7 @@
             "On": "2021-10-25T17:21:17.1989616+05:30",
             "TransactionAmount": 3500.0,
             "BalanceAmount": 1250.0,
+            "Currency": null,
             "TransferMode": 3
           },
           {
@@ -155,6 +165,7 @@
             "On": "2021-10-25T17:28:23.7979929+05:30",
             "TransactionAmount": 2500.0,
             "BalanceAmount": 3750.0,
+            "Currency": null,
             "TransferMode": 3
           },
           {
@@ -165,6 +176,7 @@
             "On": "2021-10-25T18:07:09.6268703+05:30",
             "TransactionAmount": 110.0,
             "BalanceAmount": 3750.0,
+            "Currency": null,
             "TransferMode": 3
           }
         ],
@@ -172,13 +184,75 @@
         "BankName": "AxisBank",
         "Branch": "Guntur",
         "Ifsc": "UBIN0000261"
+      },
+      {
+        "Customer": {
+          "AccountId": "Moh20020911",
+          "Name": "Mohith",
+          "Age": "20",
+          "Gender": "Male",
+          "ContactNumber": "02093993",
+          "Dob": "2002-09-11T00:00:00",
+          "Address": "Guntur",
+          "AadharNumber": "0393993030",
+          "PanNumber": "9394393903"
+        },
+        "AccountNumber": "58143602568",
+        "AccountId": "Moh20020911",
+        "AccountType": 1,
+        "Balance": 170.00,
+        "UserName": "Moh2002",
+        "Password": "20020911",
+        "Status": 0,
+        "Transactions": [
+          {
+            "TransId": "TXNAxi20211024Moh2002091120211026",
+            "Type": 0,
+            "SenderAccountId": "Moh20020911",
+            "ReceiverAccountId": "Moh20020911",
+            "On": "2021-10-26T17:18:52.2147235+05:30",
+            "TransactionAmount": 200.0,
+            "BalanceAmount": 200.0,
+            "Currency": null,
+            "TransferMode": 3
+          },
+          {
+            "TransId": "TXNAxi20211024Moh2002091120211026",
+            "Type": 1,
+            "SenderAccountId": "Moh20020911",
+            "ReceiverAccountId": "Moh20020911",
+            "On": "2021-10-26T17:19:05.1001633+05:30",
+            "TransactionAmount": 9.0,
+            "BalanceAmount": 191.0,
+            "Currency": null,
+            "TransferMode": 3
+          },
+          {
+            "TransId": "TXNAxi20211024Moh2002091120211026",
+            "Type": 2,
+            "SenderAccountId": "Moh20020911",
+            "ReceiverAccountId": "Sen20010419",
+            "On": "2021-10-26T17:19:41.9095953+05:30",
+            "TransactionAmount": 20.0,
+            "BalanceAmount": 170.00,
+            "Currency": {
+              "CurrencyName": "INR",
+              "ExchangeRate": 1.0
+            },
+            "TransferMode": 1
+          }
+        ],
+        "BankId": "Axi20211024",
+        "BankName": "AxisBank",
+        "Branch": "Guntur",
+        "Ifsc": "INDJ0091"
       }
     ],
     "SelfRTGS": 0.0,
     "SelfIMPS": 5.0,
     "OtherRTGS": 5.0,
-    "OtherIMPS": 12.5,
-    "Balance": 0.0,
+    "OtherIMPS": 12.0,
+    "Balance": 1.00,
     "DefaultCurrency": {
       "CurrencyName": "INR",
       "ExchangeRate": 1.0
@@ -192,6 +266,7 @@
         "On": "2021-10-25T16:31:59.8238775+05:30",
         "TransactionAmount": 0.0,
         "BalanceAmount": 0.0,
+        "Currency": null,
         "TransferMode": 3
       },
       {
@@ -202,6 +277,7 @@
         "On": "2021-10-25T17:20:17.7542611+05:30",
         "TransactionAmount": 0.0,
         "BalanceAmount": 0.0,
+        "Currency": null,
         "TransferMode": 3
       },
       {
@@ -212,6 +288,21 @@
         "On": "2021-10-25T18:06:24.3792375+05:30",
         "TransactionAmount": 0.0,
         "BalanceAmount": 0.0,
+        "Currency": null,
+        "TransferMode": 3
+      },
+      {
+        "TransId": "TXNAxi20211024Moh2002091126-10-2021 17:19:41",
+        "Type": 3,
+        "SenderAccountId": "Moh20020911",
+        "ReceiverAccountId": "Axi20211024",
+        "On": "2021-10-26T17:19:41.9083757+05:30",
+        "TransactionAmount": 1.00,
+        "BalanceAmount": 1.00,
+        "Currency": {
+          "CurrencyName": "INR",
+          "ExchangeRate": 1.0
+        },
         "TransferMode": 3
       }
     ],
@@ -237,12 +328,27 @@
         "UserName": "Sur021",
         "Password": "20001112",
         "Designation": 2
+      },
+      {
+        "Name": "Kiran",
+        "Gender": "Male",
+        "Dob": "2000-11-11T00:00:00",
+        "BankId": "Axi20211024",
+        "Age": 20,
+        "StaffId": "Axi20211024053",
+        "UserName": "Kir021",
+        "Password": "20001111",
+        "Designation": 1
       }
     ],
     "SupportedCurrency": [
       {
         "CurrencyName": "INR",
         "ExchangeRate": 1.0
+      },
+      {
+        "CurrencyName": "USD",
+        "ExchangeRate": 76.0
       }
     ],
     "BankId": "Axi20211024",
@@ -256,7 +362,7 @@
         "Customer": {
           "AccountId": "Sen20010419",
           "Name": "SenaSowseelya",
-          "Age": 20,
+          "Age": "22",
           "Gender": "Female",
           "ContactNumber": "02093939930",
           "Dob": "2001-04-19T00:00:00",
@@ -267,11 +373,26 @@
         "AccountNumber": "16677721625",
         "AccountId": "Sen20010419",
         "AccountType": 1,
-        "Balance": 0.0,
+        "Balance": 20.0,
         "UserName": "Sen2001",
         "Password": "20010419",
         "Status": 0,
-        "Transactions": [],
+        "Transactions": [
+          {
+            "TransId": "TXNSta20211026Sen2001041920211026171941",
+            "Type": 2,
+            "SenderAccountId": "Moh20020911",
+            "ReceiverAccountId": "Sen20010419",
+            "On": "2021-10-26T17:19:41.9095953+05:30",
+            "TransactionAmount": 20.0,
+            "BalanceAmount": 20.0,
+            "Currency": {
+              "CurrencyName": "INR",
+              "ExchangeRate": 1.0
+            },
+            "TransferMode": 1
+          }
+        ],
         "BankId": "Sta20211026",
         "BankName": "StateBankOfIndia",
         "Branch": "Guntur",

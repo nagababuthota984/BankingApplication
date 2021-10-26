@@ -9,7 +9,7 @@ namespace BankingApplication.CLI
     class Program
     {
 
-        public static void Main(string[] args) //welcome page shows AccountHolder Login, Bank Staff Login.
+        public static void Main() 
         {
             if (RBIStorage.banks == null)
             {

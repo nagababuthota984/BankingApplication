@@ -24,7 +24,7 @@ namespace BankingApplication.CLI
                     try
                     {
 
-                        AccountHolderMenu Choice = UserInput.ShowMenu();
+                        AccountHolderMenu Choice = UserInput.ShowAccountHolderMenu();
 
                         switch (Choice)
                         {
@@ -35,8 +35,7 @@ namespace BankingApplication.CLI
                                 decimal amount = int.Parse(UserInput.AskUser("Amount to Deposit"));
                                 string currencyName = UserInput.AskUser("Currency Name");
                                 transService.DepositAmount(userAccount, amount,currencyName);
-                                UserOutput.Success("Credited");
-
+                                UserOutput.ShowMessage("Credited successfully");
                                 break;
 
                             case AccountHolderMenu.Withdraw:
@@ -44,7 +43,7 @@ namespace BankingApplication.CLI
                                 amount = decimal.Parse(UserInput.AskUser("Amount to Withdraw"));
                                 currencyName = UserInput.AskUser("Currency name");
                                 transService.WithdrawAmount(userAccount, amount,currencyName);
-                                UserOutput.Success("Debited");
+                                UserOutput.ShowMessage("Debited successfully");
                                 break;
                             case AccountHolderMenu.Transfer:
                                 Console.WriteLine("-------Amount Transfer-------\n");
@@ -54,7 +53,7 @@ namespace BankingApplication.CLI
                                 currencyName = UserInput.AskUser("Currency name");
                                 ModeOfTransfer mode = (ModeOfTransfer)int.Parse(UserInput.AskUser("mode of transfer\n1.RTGS \n2.IMPS."));
                                 transService.TransferAmount(userAccount, recipientAccount, amount, mode,currencyName);
-                                UserOutput.Success("Transferred");
+                                UserOutput.ShowMessage("Transferred successfully");
                                 break;
                             case AccountHolderMenu.PrintStatement:
                                 Console.WriteLine("-------Transaction History-------\n");
@@ -62,7 +61,7 @@ namespace BankingApplication.CLI
                                 break;
 
                             default:
-                                Environment.Exit(0);
+                                Program.Main();
                                 break;
                         }
                     }

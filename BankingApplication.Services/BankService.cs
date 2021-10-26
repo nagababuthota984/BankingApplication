@@ -111,6 +111,7 @@ namespace BankingApplication.Services
         {
             Bank bank = GetBankByBankId(bankId);
             bank.SupportedCurrency.Add(new Currency(newCurrencyName, exchangeRate));
+            FileHelper.WriteData(RBIStorage.banks);
         }
         public decimal GetServiceCharge(ModeOfTransfer mode, bool isSelfBankTransfer, string bankId)
         {

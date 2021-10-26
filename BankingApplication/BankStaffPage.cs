@@ -19,7 +19,7 @@ namespace BankingApplication.CLI
                 {
                     while (true)
                     {
-                        BankStaffMenu choice = (BankStaffMenu)int.Parse(UserInput.AskUser("Choice\n1.Create Account\n2.UpdateAccount\n3.Delete an Account\n4.AddNewEmployee\n5.AddNewCurrency\n6.SetServiceCharge\n7.ViewTransactions\n8.RevertTransaction"));
+                        BankStaffMenu choice = (BankStaffMenu)int.Parse(UserInput.AskUser("Choice\n1.Create Account\n2.AddBank\n3.UpdateAccount\n4.Delete an Account\n5.AddNewEmployee\n6.AddNewCurrency\n7.SetServiceCharge\n8.ViewTransactions\n9.RevertTransaction\nAny other key to logout."));
                         BankService bankService = new BankService();
                         AccountService acService = new AccountService();
                         Staff currentWorkingStaff = bankService.FetchStaffByUserName(userName);
@@ -90,20 +90,20 @@ namespace BankingApplication.CLI
                                 newStaff.Age = int.Parse(UserInput.AskUser("Employee Age"));
                                 newStaff.Dob = DateTime.Parse(UserInput.AskUser("Employee Date of Birth"));
                                 newStaff.Gender = UserInput.AskUser("Employee Gender");
-                                newStaff.BankId = UserInput.AskUser("BankId");
+                                newStaff.BankId = newStaff.BankId;
                                 newStaff.Designation = (StaffDesignation)int.Parse(UserInput.AskUser("Employee Designation"));
                                 bankService.AddStaff(newStaff);
                                 output = $"Employee {newStaff.Name} has been added! Credentials:\n{newStaff.UserName}\n{newStaff.Password}\n";
                                 UserOutput.ShowMessage(output);
                                 break;
                             case BankStaffMenu.AddNewCurrency:
-                                string bankId = UserInput.AskUser("bank Id");
+                                string bankId = currentWorkingStaff.BankId;
                                 string newCurrency = UserInput.AskUser("new currency type");
                                 decimal exchangeRate = decimal.Parse(UserInput.AskUser("exchange rate"));
                                 bankService.AddNewCurrency(bankId, newCurrency, exchangeRate);
                                 break;
                             case BankStaffMenu.SetServiceCharge:
-                                bankId = UserInput.AskUser("Bank Id");
+                                bankId = currentWorkingStaff.BankId;
                                 ModeOfTransfer mode = (ModeOfTransfer)int.Parse(UserInput.AskUser("Change service charge:\n1.RTGS\n2.IMPS"));
                                 bool isSelfBankTransfer = (int.Parse(UserInput.AskUser("Charge type:\n1.Money Transfer Within bank.\n2.Money transfer to other banks")).Equals(1)) ? true : false;
                                 decimal value = decimal.Parse(UserInput.AskUser("New Charge Value:"));
@@ -126,7 +126,7 @@ namespace BankingApplication.CLI
                                 bankService.RevertTransaction(transactionId, currentWorkingStaff.BankId);
                                 break;
                             default:
-                                Environment.Exit(0);
+                                Program.Main();
                                 break;
                         }
                     }

@@ -11,7 +11,7 @@ namespace BankingApplication.CLI
             Console.WriteLine("Enter {0}:", property);
             return Console.ReadLine();
         }
-        public static AccountHolderMenu ShowMenu()
+        public static AccountHolderMenu ShowAccountHolderMenu()
         {
             Console.WriteLine("\nChoose any one option:\n1.Deposit\n2.Withdraw\n3.Transfer Amount\n4.Print Transaction history\n");
             return (AccountHolderMenu)int.Parse(Console.ReadLine());

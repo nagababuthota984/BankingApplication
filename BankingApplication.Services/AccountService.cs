@@ -69,7 +69,7 @@ namespace BankingApplication.Services
             if (property.ToLower().Equals("dob"))
             {
                 DateTime newDate = DateTime.Parse(newValue);
-                myProp.SetValue(userAccount.Customer, newValue, null);
+                myProp.SetValue(userAccount.Customer, newDate, null);
             }
             else
             {

@@ -14,7 +14,7 @@ namespace BankingApplication.Services
             DateTime timestamp = DateTime.Now;
             Transaction NewTrans = new Transaction
             {
-                TransId = $"TXN{userAccount.BankId}{userAccount.AccountId}{timestamp:yyyyMMdd}",
+                TransId = $"TXN{userAccount.BankId}{userAccount.AccountId}{timestamp:yyyyMMddhhmmss}",
                 Type = transtype,
                 On = timestamp,
                 SenderAccountId = userAccount.AccountId,
@@ -31,7 +31,7 @@ namespace BankingApplication.Services
             DateTime timestamp = DateTime.Now;
             Transaction senderTransaction = new Transaction
             {
-                TransId = $"TXN{userAccount.BankId}{userAccount.AccountId}{timestamp:yyyyMMdd}",
+                TransId = $"TXN{userAccount.BankId}{userAccount.AccountId}{timestamp:yyyyMMddhhmmss}",
                 SenderAccountId = userAccount.AccountId,
                 ReceiverAccountId = receiverAccount.AccountId,
                 Type = TransactionType.Transfer,
@@ -44,7 +44,7 @@ namespace BankingApplication.Services
             userAccount.Transactions.Add(senderTransaction);
             Transaction receiverTransaction = new Transaction
             {
-                TransId = $"TXN{receiverAccount.BankId}{receiverAccount.AccountId}{timestamp:yyyyMMddHHmmss}",
+                TransId = $"TXN{receiverAccount.BankId}{receiverAccount.AccountId}{timestamp:yyyyMMddhhmmss}",
                 SenderAccountId = userAccount.AccountId,
                 ReceiverAccountId = receiverAccount.AccountId,
                 Type = TransactionType.Transfer,
@@ -61,7 +61,7 @@ namespace BankingApplication.Services
             DateTime timestamp = DateTime.Now;
             Transaction newBankTransaction = new Transaction
             {
-                TransId = $"TXN{bank.BankId}{accountId}{timestamp}",
+                TransId = $"TXN{bank.BankId}{accountId}{timestamp:yyyyMMddhhmmss}",
                 Type = TransactionType.ServiceCharge,
                 SenderAccountId = accountId,
                 ReceiverAccountId = bank.BankId,

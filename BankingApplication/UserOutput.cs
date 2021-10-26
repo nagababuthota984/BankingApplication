@@ -13,10 +13,6 @@ namespace BankingApplication.CLI
         {
             Console.WriteLine(Message);
         }
-        public static void Success (string Action)
-        {
-            Console.WriteLine("{0} successfully!",Action);
-        }
         
         public static void ShowTransactions(List<Transaction> Transactions)
         {
