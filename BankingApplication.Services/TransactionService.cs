@@ -74,7 +74,7 @@ namespace BankingApplication.Services
         {
             if (amount > 0)
             {
-                Bank bank = BankService.GetBankByBankId(userAccount.BankId);
+                Bank bank = new BankService().GetBankByBankId(userAccount.BankId);
                 Currency currency = bank.SupportedCurrency.FirstOrDefault(c => c.CurrencyName.Equals(currencyName));
                 if(currency != null)
                 {
@@ -97,7 +97,7 @@ namespace BankingApplication.Services
         public void WithdrawAmount(Account userAccount,decimal amount,string currencyName)
         {
 
-            Bank bank = BankService.GetBankByBankId(userAccount.BankId);
+            Bank bank = new BankService().GetBankByBankId(userAccount.BankId);
             Currency currency = bank.SupportedCurrency.FirstOrDefault(c => c.CurrencyName.Equals(currencyName));
             if (currency != null)
             {
@@ -124,7 +124,7 @@ namespace BankingApplication.Services
         }
         public void TransferAmount(Account senderAccount,Account receiverAccount,decimal amount,ModeOfTransfer mode,string currencyName)
         {
-            Bank bank = BankService.GetBankByBankId(senderAccount.BankId);
+            Bank bank = new BankService().GetBankByBankId(senderAccount.BankId);
             Currency currency = bank.SupportedCurrency.FirstOrDefault(c => c.CurrencyName.Equals(currencyName));
             amount = amount * currency.ExchangeRate;
             if (amount <= senderAccount.Balance)
@@ -142,7 +142,7 @@ namespace BankingApplication.Services
         }
         private void ApplyTransferCharges(Account senderAccount, string receiverBankId, decimal amount, ModeOfTransfer mode)
         {
-            Bank bank = BankService.GetBankByBankId(senderAccount.BankId);
+            Bank bank = new BankService().GetBankByBankId(senderAccount.BankId);
             if (mode.Equals(ModeOfTransfer.RTGS))
             {
                 //RTGS charge based on transfer to account within the same bank

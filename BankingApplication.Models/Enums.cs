@@ -18,6 +18,8 @@
     public enum BankStaffMenu
     {
         CreateAccount=1,
+        AddBank,
+        RemoveBank,
         UpdateAccount,
         DeleteAccount,
         AddNewEmployee,

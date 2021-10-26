@@ -30,7 +30,7 @@ namespace BankingApplication.CLI
                                 Customer newCustomer = new Customer();
                                 Account NewAccount = new Account();
                                 newCustomer.Name = UserInput.AskUser("Name");
-                                newCustomer.Age = int.Parse(UserInput.AskUser("age"));
+                                newCustomer.Age = UserInput.AskUser("age");
                                 newCustomer.Gender = UserInput.AskUser("Gender");
                                 newCustomer.Dob = DateTime.Parse(UserInput.AskUser("Date of Birth"));
                                 newCustomer.ContactNumber = UserInput.AskUser("Contact Number");
@@ -44,6 +44,21 @@ namespace BankingApplication.CLI
                                 bankService.CreateAccount(newCustomer, NewAccount);
                                 string output = $"Account has been created!\nCredentials:Username - {NewAccount.UserName}\nPassword - {NewAccount.Password}\nAccount Number - {NewAccount.AccountNumber}\n";
                                 UserOutput.ShowMessage(output);
+                                break;
+                            case BankStaffMenu.AddBank:
+                                string bankName = UserInput.AskUser("Name of the bank");
+                                string branch = UserInput.AskUser("Branch");
+                                string ifsc = UserInput.AskUser("IFSC");
+                                bankService.Add(bankName,branch, ifsc);
+                                Bank bank = bankService.GetBankByIfsc(ifsc);
+                                if(bank == null)
+                                {
+                                    UserOutput.ShowMessage("Bank not created! Try again.");
+                                }
+                                else
+                                {
+                                    UserOutput.ShowMessage($"Bank created with bank id - {bank.BankId}");
+                                }
                                 break;
                             case BankStaffMenu.UpdateAccount:
                                 string accountId = UserInput.AskUser("Account Id");

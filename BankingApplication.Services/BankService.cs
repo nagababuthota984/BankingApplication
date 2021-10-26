@@ -15,7 +15,7 @@ namespace BankingApplication.Services
             Bank NewBank = new Bank
             {
                 BankName = name,
-                BankId = $"{name.Substring(0, 3)}{DateTime.Now:yyyyMMdd}",
+                BankId = $"{name.Substring(0, 3)}{DateTime.Now:yyyyMMddhhmmss}",
                 Branch = branch,
                 Ifsc = ifsc,
                 SelfRTGS = 0,
@@ -29,8 +29,6 @@ namespace BankingApplication.Services
                 Transactions = new List<Transaction>(),
                 Employees = new List<Staff>()
             };
-
-
             RBIStorage.banks.Add(NewBank);
         }
 
@@ -47,20 +45,6 @@ namespace BankingApplication.Services
                 }
             }
             throw new AccountDoesntExistException("Staff account doesn't exists.");
-        }
-
-        public bool Remove(string name)
-        {
-            Bank bank = RBIStorage.banks.SingleOrDefault(e => e.BankName == name);
-            if (bank != null)
-            {
-                RBIStorage.banks.Remove(bank);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
         public void CreateAccount(Customer newCustomer, Account newAccount)
         {
@@ -91,7 +75,7 @@ namespace BankingApplication.Services
             } while (Utilities.IsDuplicateAccountNumber(accNumber, bankid));
             return accNumber;
         }
-        public static Bank GetBankByBankId(string bankId)
+        public Bank GetBankByBankId(string bankId)
         {
             Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankId.Equals(bankId));
             if (bank != null)
@@ -102,6 +86,17 @@ namespace BankingApplication.Services
             {
                 throw new InvalidBankException("Bank Doesnt Exist.");
             }
+        }
+        public Bank GetBankByIfsc(string ifsc)
+        {
+            foreach(var bank in RBIStorage.banks)
+            {
+                if(bank.Ifsc.Equals(ifsc.ToUpper()))
+                {
+                    return bank;
+                }
+            }
+            return null;
         }
         public void AddStaff(Staff newStaff)
         {
@@ -143,7 +138,6 @@ namespace BankingApplication.Services
                 }
             }
         }
-
         public void SetServiceCharge(ModeOfTransfer mode, bool isSelfBankCharge, string bankId, decimal newValue)
         {
             Bank bank = GetBankByBankId(bankId);
@@ -171,13 +165,11 @@ namespace BankingApplication.Services
             }
             FileHelper.WriteData(RBIStorage.banks);
         }
-
         public List<Transaction> FetchAccountTransactions(string accountId)
         {
             Account userAccount = new AccountService().FetchAccountByAccountId(accountId);
             return new TransactionService().FetchTransactionHistory(userAccount);
         }
-
         public void RevertTransaction(string transactionId, string bankId)
         {
             Bank bank = GetBankByBankId(bankId);
@@ -185,7 +177,7 @@ namespace BankingApplication.Services
             if(transaction!=null)
             {
                 Account userAccount = new AccountService().FetchAccountByAccountId(transaction.SenderAccountId);
-                bank = BankService.GetBankByBankId(userAccount.BankId);
+                bank = new BankService().GetBankByBankId(userAccount.BankId);
                 TransactionService transService = new TransactionService();
                 if (transaction.Type.Equals(TransactionType.Credit))
                 {
