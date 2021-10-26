@@ -9,7 +9,7 @@ namespace BankingApplication.Services
     public class TransactionService
     {
 
-        private void CreateTransaction(Account userAccount, TransactionType transtype, decimal transactionamount )
+        private void CreateTransaction(Account userAccount, TransactionType transtype, decimal transactionamount, Currency currency)
         {
             DateTime timestamp = DateTime.Now;
             Transaction NewTrans = new Transaction
@@ -26,7 +26,7 @@ namespace BankingApplication.Services
             };
             userAccount.Transactions.Add(NewTrans);
         }
-        private void CreateTransferTransaction(Account userAccount,Account receiverAccount,decimal transactionAmount,ModeOfTransfer mode)
+        private void CreateTransferTransaction(Account userAccount,Account receiverAccount,decimal transactionAmount,ModeOfTransfer mode, Currency currency)
         {
             DateTime timestamp = DateTime.Now;
             Transaction senderTransaction = new Transaction
@@ -38,6 +38,7 @@ namespace BankingApplication.Services
                 On = timestamp,
                 TransactionAmount = transactionAmount,
                 BalanceAmount = userAccount.Balance,
+                Currency = currency,
                 TransferMode = mode
             };
             userAccount.Transactions.Add(senderTransaction);
@@ -50,11 +51,12 @@ namespace BankingApplication.Services
                 On = timestamp,
                 TransactionAmount = transactionAmount,
                 BalanceAmount = receiverAccount.Balance,
+                Currency = currency,
                 TransferMode = mode
             };
             receiverAccount.Transactions.Add(receiverTransaction);
         }
-        private void CreateBankTransaction(Bank bank, string accountId, decimal charges)
+        private void CreateBankTransaction(Bank bank, string accountId, decimal charges,Currency currency)
         {
             DateTime timestamp = DateTime.Now;
             Transaction newBankTransaction = new Transaction
@@ -66,6 +68,7 @@ namespace BankingApplication.Services
                 On = timestamp,
                 TransactionAmount = charges,
                 TransferMode = ModeOfTransfer.None,
+                Currency = currency,
                 BalanceAmount = bank.Balance
             };
             bank.Transactions.Add(newBankTransaction);
@@ -80,7 +83,7 @@ namespace BankingApplication.Services
                 {
                     amount = amount * currency.ExchangeRate;
                     userAccount.Balance += amount;
-                    CreateTransaction(userAccount, TransactionType.Credit, amount);
+                    CreateTransaction(userAccount, TransactionType.Credit, amount,currency);
                     FileHelper.WriteData(RBIStorage.banks);
                 }
                 else
@@ -113,7 +116,7 @@ namespace BankingApplication.Services
                 else
                 {
                     userAccount.Balance -= amount;
-                    CreateTransaction(userAccount, TransactionType.Debit, amount);
+                    CreateTransaction(userAccount, TransactionType.Debit, amount,currency);
                     FileHelper.WriteData(RBIStorage.banks);
                 }
             }
@@ -131,8 +134,8 @@ namespace BankingApplication.Services
             {
                 senderAccount.Balance -= amount;
                 receiverAccount.Balance += amount;
-                ApplyTransferCharges(senderAccount, receiverAccount.BankId, amount, mode);
-                CreateTransferTransaction(senderAccount, receiverAccount, amount, mode);
+                ApplyTransferCharges(senderAccount, receiverAccount.BankId, amount, mode,currency);
+                CreateTransferTransaction(senderAccount, receiverAccount, amount, mode ,currency);
                 FileHelper.WriteData(RBIStorage.banks);
             }
             else
@@ -140,7 +143,7 @@ namespace BankingApplication.Services
                 throw new InvalidAmountException("Invalid amount to transfer.");
             }
         }
-        private void ApplyTransferCharges(Account senderAccount, string receiverBankId, decimal amount, ModeOfTransfer mode)
+        private void ApplyTransferCharges(Account senderAccount, string receiverBankId, decimal amount, ModeOfTransfer mode,Currency currency)
         {
             Bank bank = new BankService().GetBankByBankId(senderAccount.BankId);
             if (mode.Equals(ModeOfTransfer.RTGS))
@@ -151,14 +154,14 @@ namespace BankingApplication.Services
                     decimal charges = (bank.SelfRTGS * amount) / 100;
                     senderAccount.Balance -= charges;
                     bank.Balance += charges;
-                    CreateBankTransaction(bank, senderAccount.AccountId, charges);
+                    CreateBankTransaction(bank, senderAccount.AccountId, charges, currency);
                 }
                 else 
                 {
                     decimal charges = (bank.OtherRTGS * amount) / 100;
                     senderAccount.Balance -= charges;
                     bank.Balance += charges;
-                    CreateBankTransaction(bank, senderAccount.AccountId, charges);
+                    CreateBankTransaction(bank, senderAccount.AccountId, charges, currency);
                 }
             }
             else
@@ -168,14 +171,14 @@ namespace BankingApplication.Services
                     decimal charges = (bank.SelfIMPS * amount) / 100;
                     senderAccount.Balance -= charges;
                     bank.Balance += charges;
-                    CreateBankTransaction(bank, senderAccount.AccountId, charges);
+                    CreateBankTransaction(bank, senderAccount.AccountId, charges, currency);
                 }
                 else
                 {
                     decimal charges = (bank.OtherIMPS * amount) / 100;
                     senderAccount.Balance -= charges;
                     bank.Balance += charges;
-                    CreateBankTransaction(bank, senderAccount.AccountId, charges);
+                    CreateBankTransaction(bank, senderAccount.AccountId, charges, currency);
                 }
             }
         }

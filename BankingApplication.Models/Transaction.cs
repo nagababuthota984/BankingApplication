@@ -13,6 +13,7 @@ namespace BankingApplication.Models
         public DateTime On { get; set; }
         public decimal TransactionAmount { get; set; }
         public decimal BalanceAmount { get; set; }
+        public Currency Currency { get; set; }
         public ModeOfTransfer TransferMode { get; set; }
     }
     
