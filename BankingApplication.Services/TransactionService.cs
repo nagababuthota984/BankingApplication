@@ -171,19 +171,22 @@ namespace BankingApplication.Services
             }
         }
 
-        internal Transaction FetchTransactionByTransactionId(string transactionId)
+        public Transaction FetchTransactionByTransactionId(string transactionId)
         {
             Transaction transaction = null;
-            string bankId = transactionId.Substring(3, 11);
-            string accountId = transactionId.Substring(14, 11);
-            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankId.Equals(bankId));
-            if (bank != null)
+            if (transactionId.Substring(0, 3) == "TXN" || transactionId.Length >=38)
             {
-                Account account = bank.Accounts.FirstOrDefault(b => b.AccountId.Equals(accountId));
-                if (account != null)
+                string bankId = transactionId.Substring(3, 11);
+                string accountId = transactionId.Substring(14, 11);
+                Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankId.Equals(bankId));
+                if (bank != null)
                 {
-                    transaction = account.Transactions.FirstOrDefault(t => t.TransId.Equals(transactionId));
-                    return transaction;
+                    Account account = bank.Accounts.FirstOrDefault(b => b.AccountId.Equals(accountId));
+                    if (account != null)
+                    {
+                        transaction = account.Transactions.FirstOrDefault(t => t.TransId.Equals(transactionId));
+                        return transaction;
+                    }
                 }
             }
             return transaction;

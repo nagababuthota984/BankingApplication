@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BankingApplication.Models;
 using BankingApplication.Services;
@@ -67,33 +68,47 @@ namespace BankingApplication.CLI
                                 case BankStaffMenu.UpdateAccount:
                                     string accountId = UserInput.AskUser("Account Id");
                                     Account userAccount = acService.FetchAccountByAccountId(accountId);
-                                    Console.WriteLine("\nYou will only be able to modify customer related properties. Properties like account number, accound Id, Balance Cannot be changed!\n");
-                                    string property = UserInput.AskUser("property you want to update");
-                                    Console.WriteLine("Enter new value: ");
-                                    string newValue = Console.ReadLine();
-                                    new AccountService().UpdateAccount(userAccount, property, newValue);
-                                    UserOutput.ShowMessage("Updated!");
+                                    if (userAccount!=null)
+                                    {
+                                        Console.WriteLine("\nYou will only be able to modify customer related properties. Properties like account number, accound Id, Balance Cannot be changed!\n");
+                                        string property = UserInput.AskUser("property you want to update");
+                                        Console.WriteLine("Enter new value: ");
+                                        string newValue = Console.ReadLine();
+                                        new AccountService().UpdateAccount(userAccount, property, newValue);
+                                        UserOutput.ShowMessage("Updated!"); 
+                                    }
+                                    else
+                                    {
+                                        UserOutput.ShowMessage("Account Does not exists.\n");
+                                    }
                                     break;
                                 case BankStaffMenu.DeleteAccount:
                                     accountId = UserInput.AskUser("Account Id");
                                     userAccount = acService.FetchAccountByAccountId(accountId);
-                                    acService.DeleteAccount(userAccount);
-                                    if (userAccount.Status.Equals(AccountStatus.Closed))
+                                    if (userAccount!=null)
                                     {
-                                        UserOutput.ShowMessage("Account Deleted");
+                                        acService.DeleteAccount(userAccount);
+                                        if (userAccount.Status.Equals(AccountStatus.Closed))
+                                        {
+                                            UserOutput.ShowMessage("Account Deleted");
+                                        }
+                                        else
+                                        {
+                                            UserOutput.ShowMessage("Account was not deleted. Try again later.");
+                                        } 
                                     }
                                     else
                                     {
-                                        UserOutput.ShowMessage("Account was not deleted. Try again later.");
+                                        UserOutput.ShowMessage("Account Does not exists.\n");
                                     }
                                     break;
                                 case BankStaffMenu.AddNewEmployee:
                                     Console.WriteLine("\n-----------New Employee-----------\n");
                                     Staff newStaff = new Staff();
-                                    newStaff.Name = UserInput.AskUser("Employee Name");
-                                    newStaff.Age = Convert.ToInt32(UserInput.AskUser("Employee Age"));
+                                    newStaff.Name = AskName();
+                                    newStaff.Age = Convert.ToInt32(AskAge());
                                     newStaff.Dob = Convert.ToDateTime(UserInput.AskUser("Employee Date of Birth"));
-                                    newStaff.Gender = UserInput.AskUser("Employee Gender");
+                                    newStaff.Gender = GetGenderByInteger(Convert.ToInt32(UserInput.AskUser("Employee Gender")));
                                     newStaff.BankId = newStaff.BankId;
                                     newStaff.Designation = (StaffDesignation)Convert.ToInt32(UserInput.AskUser("Employee Designation"));
                                     bankService.AddStaff(newStaff);
@@ -123,16 +138,29 @@ namespace BankingApplication.CLI
                                     break;
                                 case BankStaffMenu.ViewTransactions:
                                     accountId = UserInput.AskUser("Account Id");
-                                    UserOutput.ShowTransactions(bankService.FetchAccountTransactions(accountId));
+                                    List<Transaction> transactions = bankService.FetchAccountTransactions(accountId);
+                                    if (transactions != null)
+                                    {
+                                        UserOutput.ShowTransactions(transactions);
+                                    }
+                                    else
+                                    {
+                                        UserOutput.ShowMessage("Account does not exists.\n");
+                                    }
                                     break;
                                 case BankStaffMenu.RevertTransaction:
                                     string transactionId = UserInput.AskUser("Transaction Id");
-                                    if (transactionId != null)
+                                    Transaction transaction = new TransactionService().FetchTransactionByTransactionId(transactionId);
+                                    if (transaction != null)
                                     {
                                         Console.WriteLine("Are you sure you want to revert the transaction(Y/N)?\n");
                                         if(Console.ReadLine().ToLower().Contains("y"))
                                         {
-                                            bankService.RevertTransaction(transactionId, currentWorkingStaff.BankId);
+                                            bankService.RevertTransaction(transaction, currentWorkingStaff.BankId);
+                                        }
+                                        else
+                                        {
+                                            break;
                                         }
                                     }
                                     else
@@ -141,7 +169,7 @@ namespace BankingApplication.CLI
                                     }
                                     break;
                                 case BankStaffMenu.Logout:
-                                    UserInterface();
+                                    Program.Main();
                                     break;
                             }
                         }

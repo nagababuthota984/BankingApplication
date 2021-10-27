@@ -14,21 +14,33 @@ namespace BankingApplication.Services
         {
 
             Bank bank = RBIStorage.banks.FirstOrDefault(b => b.Accounts.Any(a => a.UserName == username && !a.Status.Equals(AccountStatus.Closed)));
-            Account account = bank.Accounts.FirstOrDefault(a => a.UserName == username && !a.Status.Equals(AccountStatus.Closed));
-            return account; 
+            if (bank != null)
+            {
+                Account account = bank.Accounts.FirstOrDefault(a => a.UserName == username && !a.Status.Equals(AccountStatus.Closed));
+                return account;
+            }
+            return null;
         }
         public  Account FetchAccountByAccNumber(string accNumber)
         {
             Bank bank = RBIStorage.banks.FirstOrDefault(b => b.Accounts.Any(a => a.AccountNumber == accNumber && !a.Status.Equals(AccountStatus.Closed)));
-            Account account = bank.Accounts.FirstOrDefault(a => a.AccountNumber == accNumber && !a.Status.Equals(AccountStatus.Closed));
-            return account;
+            if (bank != null)
+            {
+                Account account = bank.Accounts.FirstOrDefault(a => a.AccountNumber == accNumber && !a.Status.Equals(AccountStatus.Closed));
+                return account;
+            }
+            return null;
         }
 
         public Account FetchAccountByAccountId(string accountId)
         {
             Bank bank = RBIStorage.banks.FirstOrDefault(b => b.Accounts.Any(a => a.AccountId == accountId && !a.Status.Equals(AccountStatus.Closed)));
-            Account account = bank.Accounts.FirstOrDefault(a => a.AccountId == accountId && !a.Status.Equals(AccountStatus.Closed));
-            return account;
+            if (bank != null)
+            {
+                Account account = bank.Accounts.FirstOrDefault(a => a.AccountId == accountId && !a.Status.Equals(AccountStatus.Closed));
+                return account;
+            }
+            return null;
         }
 
         public void UpdateAccount(Account userAccount,string property,string newValue)

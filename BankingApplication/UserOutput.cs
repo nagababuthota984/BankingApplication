@@ -22,7 +22,7 @@ namespace BankingApplication.CLI
             Console.WriteLine("-----------------------------------------------------------------------------------------------");
             foreach ( Transaction trans in Transactions)
             {
-                string output = $"{count,5}|{trans.TransId,19}   |{trans.Type,7}|{trans.TransactionAmount,7}|{trans.BalanceAmount,7}|{trans.On}";
+                string output = $"{count,5}|{trans.TransId,19}   |{trans.Type,7}|{trans.TransactionAmount,7}|{trans.BalanceAmount,10}|{trans.On}";
                 Console.WriteLine(output);
                 count++;
                 Console.WriteLine();

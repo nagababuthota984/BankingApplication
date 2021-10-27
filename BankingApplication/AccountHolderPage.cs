@@ -2,6 +2,7 @@
 using System;
 using BankingApplication.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BankingApplication.CLI
 {
@@ -71,23 +72,31 @@ namespace BankingApplication.CLI
                                 Console.WriteLine("-------Amount Transfer-------\n");
                                 string receiverAccNumber = UserInput.AskUser("Receiver Account Number");
                                 Account recipientAccount = new AccountService().FetchAccountByAccNumber(receiverAccNumber);
-                                amount = Convert.ToDecimal(UserInput.AskUser("Amount to Transfer"));
-                                if (amount>0 )
+
+                                if (recipientAccount!=null)
                                 {
-                                    if (amount>=userAccount.Balance)
+                                    amount = Convert.ToDecimal(UserInput.AskUser("Amount to Transfer"));
+                                    if (amount > 0)
                                     {
-                                        ModeOfTransfer mode = (ModeOfTransfer)Convert.ToInt32(UserInput.AskUser("mode of transfer\n1.RTGS \n2.IMPS."));
-                                        transService.TransferAmount(userAccount, recipientAccount, amount, mode);
-                                        UserOutput.ShowMessage("Transferred successfully"); 
-                                    } 
+                                        if (amount >= userAccount.Balance)
+                                        {
+                                            ModeOfTransfer mode = (ModeOfTransfer)Convert.ToInt32(UserInput.AskUser("mode of transfer\n1.RTGS \n2.IMPS."));
+                                            transService.TransferAmount(userAccount, recipientAccount, amount, mode);
+                                            UserOutput.ShowMessage("Transferred successfully");
+                                        }
+                                        else
+                                        {
+                                            UserOutput.ShowMessage("Insufficient Funds.\n");
+                                        }
+                                    }
                                     else
                                     {
-                                        UserOutput.ShowMessage("Insufficient Funds.\n");
+                                        UserOutput.ShowMessage("Please enter valid amount.\n");
                                     }
                                 }
                                 else
                                 {
-                                    UserOutput.ShowMessage("Please enter valid amount.\n");
+                                    UserOutput.ShowMessage("Recipient account doesn't exists.\n");
                                 }
                                 break;
                             case AccountHolderMenu.PrintStatement:
@@ -98,7 +107,7 @@ namespace BankingApplication.CLI
                                 Console.WriteLine($"\nCurrent Balance - {userAccount.Balance} INR\n");
                                 break;
                             case AccountHolderMenu.LogOut:
-                                UserInterface();
+                                Program.Main();
                                 break;
                             
                         }
@@ -114,24 +123,8 @@ namespace BankingApplication.CLI
 
         private static bool IsValidUser(string username, string password)
         {
-            if (RBIStorage.banks != null)
-            {
-                foreach (var bank in RBIStorage.banks)
-                {
-                    foreach (var account in bank.Accounts)
-                    {
-                        if (account.UserName.Equals(username) && account.Password.Equals(password))
-                        {
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            }
-            else
-            {
-                return false;
-            }
+            return RBIStorage.banks.Any(b=>b.Accounts.Any(a=>a.UserName.Equals(username) && a.Password.Equals(password)));
+            
         }
     }
 }

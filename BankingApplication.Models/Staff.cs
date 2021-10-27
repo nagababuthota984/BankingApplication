@@ -7,7 +7,7 @@ namespace BankingApplication.Models
     public class Staff
     {
         public string Name { get; set; }
-        public string Gender { get; set; }
+        public Gender Gender { get; set; }
         public DateTime Dob { get; set; }
         public string BankId { get; set; }
         public int Age { get; set; }
