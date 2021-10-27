@@ -214,7 +214,7 @@
         "AccountNumber": "58143602568",
         "AccountId": "Moh20020911",
         "AccountType": 1,
-        "Balance": 98.40,
+        "Balance": 279.40,
         "UserName": "Moh2002",
         "Password": "20020911",
         "Status": 0,
@@ -255,6 +255,28 @@
             "On": "2021-10-27T16:24:37.5858725+05:30",
             "TransactionAmount": 46.0,
             "BalanceAmount": 98.40,
+            "Currency": null,
+            "TransferMode": 3
+          },
+          {
+            "TransId": "TXNAxi20211024Moh2002091120211027070934",
+            "Type": 0,
+            "SenderAccountId": "Moh20020911",
+            "ReceiverAccountId": "Moh20020911",
+            "On": "2021-10-27T19:09:34.0013081+05:30",
+            "TransactionAmount": 29.0,
+            "BalanceAmount": 127.40,
+            "Currency": null,
+            "TransferMode": 3
+          },
+          {
+            "TransId": "TXNAxi20211024Moh2002091120211027070950",
+            "Type": 0,
+            "SenderAccountId": "Moh20020911",
+            "ReceiverAccountId": "Moh20020911",
+            "On": "2021-10-27T19:09:50.5032629+05:30",
+            "TransactionAmount": 152.0,
+            "BalanceAmount": 279.40,
             "Currency": null,
             "TransferMode": 3
           }

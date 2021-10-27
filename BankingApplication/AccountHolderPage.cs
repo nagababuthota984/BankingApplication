@@ -14,16 +14,17 @@ namespace BankingApplication.CLI
             string userName = UserInput.GetInputValue("Username");
             string password = UserInput.GetInputValue("Password");
             Console.WriteLine();
-            if (!IsValidUser(userName, password))
+            AccountService accountService = new AccountService();
+            Account userAccount = accountService.FetchAccountByUserName(userName);
+
+            if (userAccount==null)
             {
                 Console.WriteLine("Invalid Credentials\n");
             }
             else
             {
                 TransactionService transService = new TransactionService();
-                AccountService accountService = new AccountService();
                 BankService bankService =  new BankService();
-                Account userAccount = accountService.FetchAccountByUserName(userName);
                 Bank bank = bankService.GetBankByBankId(userAccount.BankId);
                 while (true)
                 {
@@ -129,10 +130,5 @@ namespace BankingApplication.CLI
         }
 
 
-        private static bool IsValidUser(string username, string password)
-        {
-            return RBIStorage.banks.Any(b=>b.Accounts.Any(a=>a.UserName.Equals(username) && a.Password.Equals(password)));
-            
-        }
     }
 }

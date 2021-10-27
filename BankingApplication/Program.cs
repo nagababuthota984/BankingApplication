@@ -13,7 +13,6 @@ namespace BankingApplication.CLI
         {
             
             RBIStorage.banks = FileHelper.GetData();
-            Console.WriteLine("\n\n==============================Welcome to Technovert Banking Solutions=============================.\n********************\n1.Account Holder Login\n2.Bank Staff Login.\n\nPlease enter one option\n********************");
             WelcomeMenu();
         }
 
@@ -21,6 +20,7 @@ namespace BankingApplication.CLI
         {
             AccountHolderPage accPage = new AccountHolderPage();
             BankStaffPage staffPage = new BankStaffPage();
+            Console.WriteLine("\n\n==============================Welcome to Technovert Banking Solutions=============================.\n********************\n1.Account Holder Login\n2.Bank Staff Login.\n\nPlease enter one option\n********************");
             MainMenu choice = GetMainMenuByInput(Convert.ToInt32(Console.ReadLine()));
             while (true)
             {
