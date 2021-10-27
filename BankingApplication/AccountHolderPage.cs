@@ -11,8 +11,8 @@ namespace BankingApplication.CLI
         public void UserInterface()
         {
             Console.WriteLine("=================CUSTOMER LOGIN================");
-            string userName = UserInput.AskUser("Username");
-            string password = UserInput.AskUser("Password");
+            string userName = UserInput.GetInputValue("Username");
+            string password = UserInput.GetInputValue("Password");
             Console.WriteLine();
             if (!IsValidUser(userName, password))
             {
@@ -21,26 +21,34 @@ namespace BankingApplication.CLI
             else
             {
                 TransactionService transService = new TransactionService();
-                Account userAccount = new AccountService().FetchAccountByUserName(userName);
+                AccountService accountService = new AccountService();
+                BankService bankService =  new BankService();
+                Account userAccount = accountService.FetchAccountByUserName(userName);
+                Bank bank = bankService.GetBankByBankId(userAccount.BankId);
                 while (true)
                 {
                     try
                     {
 
                         AccountHolderMenu choice = UserInput.ShowAccountHolderMenu();
-
                         switch (choice)
                         {
-
-
                             case AccountHolderMenu.Deposit:
                                 Console.WriteLine("\t-------Money Deposit-------\n");
-                                decimal amount = Convert.ToInt32(UserInput.AskUser("Amount to Deposit"));
+                                decimal amount = Convert.ToInt32(UserInput.GetInputValue("Amount to Deposit"));
                                 if (amount>0)
                                 {
-                                    string currencyName = UserInput.AskUser("Currency Name");
-                                    transService.DepositAmount(userAccount, amount, currencyName);
-                                    UserOutput.ShowMessage("Credited successfully\n"); 
+                                    string currencyName = UserInput.GetInputValue("Currency Name");
+                                    Currency currency = bank.SupportedCurrency.FirstOrDefault(c => (c.CurrencyName.ToLower())==(currencyName.ToLower()));
+                                    if (currency != null)
+                                    {
+                                        accountService.DepositAmount(userAccount, amount,currency);
+                                        UserOutput.ShowMessage("Credited successfully\n");
+                                    }
+                                    else
+                                    {
+                                        UserOutput.ShowMessage("Unsupported currency type");
+                                    }
                                 }
                                 else
                                 {
@@ -50,12 +58,12 @@ namespace BankingApplication.CLI
 
                             case AccountHolderMenu.Withdraw:
                                 Console.WriteLine("\n-------Amount Withdrawl-------\n");
-                                amount = Convert.ToDecimal(UserInput.AskUser("Amount to Withdraw"));
+                                amount = Convert.ToDecimal(UserInput.GetInputValue("Amount to Withdraw"));
                                 if (amount > 0)
                                 {
                                     if (amount <= userAccount.Balance)
                                     {
-                                        transService.WithdrawAmount(userAccount, amount);
+                                        accountService.WithdrawAmount(userAccount, amount,bank);
                                         UserOutput.ShowMessage("Debited successfully");
                                     }
                                     else
@@ -70,18 +78,18 @@ namespace BankingApplication.CLI
                                 break;
                             case AccountHolderMenu.Transfer:
                                 Console.WriteLine("-------Amount Transfer-------\n");
-                                string receiverAccNumber = UserInput.AskUser("Receiver Account Number");
+                                string receiverAccNumber = UserInput.GetInputValue("Receiver Account Number");
                                 Account recipientAccount = new AccountService().FetchAccountByAccNumber(receiverAccNumber);
 
                                 if (recipientAccount!=null)
                                 {
-                                    amount = Convert.ToDecimal(UserInput.AskUser("Amount to Transfer"));
+                                    amount = Convert.ToDecimal(UserInput.GetInputValue("Amount to Transfer"));
                                     if (amount > 0)
                                     {
                                         if (amount >= userAccount.Balance)
                                         {
-                                            ModeOfTransfer mode = (ModeOfTransfer)Convert.ToInt32(UserInput.AskUser("mode of transfer\n1.RTGS \n2.IMPS."));
-                                            transService.TransferAmount(userAccount, recipientAccount, amount, mode);
+                                            ModeOfTransfer mode = (ModeOfTransfer)Convert.ToInt32(UserInput.GetInputValue("mode of transfer\n1.RTGS \n2.IMPS."));
+                                            accountService.TransferAmount(userAccount, recipientAccount, amount, mode);
                                             UserOutput.ShowMessage("Transferred successfully");
                                         }
                                         else
@@ -107,7 +115,7 @@ namespace BankingApplication.CLI
                                 Console.WriteLine($"\nCurrent Balance - {userAccount.Balance} INR\n");
                                 break;
                             case AccountHolderMenu.LogOut:
-                                Program.Main();
+                                Program.WelcomeMenu();
                                 break;
                             
                         }

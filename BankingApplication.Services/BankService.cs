@@ -8,7 +8,7 @@ namespace BankingApplication.Services
 {
     public class BankService
     {
-
+        AccountService accountService = new AccountService();
 
         public void Add(string name, string branch, string ifsc)
         {
@@ -98,9 +98,8 @@ namespace BankingApplication.Services
             bank.Employees.Add(newStaff);
             FileHelper.WriteData(RBIStorage.banks);
         }
-        public void AddNewCurrency(string bankId, string newCurrencyName, decimal exchangeRate)
+        public void AddNewCurrency(Bank bank, string newCurrencyName, decimal exchangeRate)
         {
-            Bank bank = GetBankByBankId(bankId);
             bank.SupportedCurrency.Add(new Currency(newCurrencyName, exchangeRate));
             FileHelper.WriteData(RBIStorage.banks);
         }
@@ -169,27 +168,25 @@ namespace BankingApplication.Services
                 return null;
             }
         }
-        public void RevertTransaction(Transaction transaction, string bankId)
+        public void RevertTransaction(Transaction transaction, Bank bank)
         {
-            Account userAccount = new AccountService().FetchAccountByAccountId(transaction.SenderAccountId);
-            Bank bank = new BankService().GetBankByBankId(userAccount.BankId);
-            TransactionService transService = new TransactionService();
+            Account userAccount = accountService.FetchAccountByAccountId(transaction.SenderAccountId);
             if (transaction.Type.Equals(TransactionType.Credit))
             {
-                transService.WithdrawAmount(userAccount, transaction.TransactionAmount);
+                accountService.WithdrawAmount(userAccount, transaction.TransactionAmount,bank);
                 userAccount.Transactions.Remove(transaction);
             }
             else if (transaction.Type.Equals(TransactionType.Debit))
             {
-                transService.DepositAmount(userAccount, transaction.TransactionAmount, bank.DefaultCurrency.CurrencyName);
+                accountService.DepositAmount(userAccount, transaction.TransactionAmount, bank.DefaultCurrency);
                 userAccount.Transactions.Remove(transaction);
             }
             else if (transaction.Type.Equals(TransactionType.Transfer))
             {
                 Account receiverAccount = new AccountService().FetchAccountByAccountId(transaction.ReceiverAccountId);
-                transService.WithdrawAmount(receiverAccount, transaction.TransactionAmount);
+                accountService.WithdrawAmount(receiverAccount, transaction.TransactionAmount,bank);
                 receiverAccount.Transactions.Remove(transaction);
-                transService.DepositAmount(userAccount, transaction.TransactionAmount, bank.DefaultCurrency.CurrencyName);
+                accountService.DepositAmount(userAccount, transaction.TransactionAmount, bank.DefaultCurrency);
                 userAccount.Transactions.Remove(transaction);
 
 

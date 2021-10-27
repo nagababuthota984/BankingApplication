@@ -214,7 +214,7 @@
         "AccountNumber": "58143602568",
         "AccountId": "Moh20020911",
         "AccountType": 1,
-        "Balance": 52.40,
+        "Balance": 98.40,
         "UserName": "Moh2002",
         "Password": "20020911",
         "Status": 0,
@@ -246,6 +246,17 @@
               "ExchangeRate": 1.0
             },
             "TransferMode": 1
+          },
+          {
+            "TransId": "TXNAxi20211024Moh2002091120211027042437",
+            "Type": 0,
+            "SenderAccountId": "Moh20020911",
+            "ReceiverAccountId": "Moh20020911",
+            "On": "2021-10-27T16:24:37.5858725+05:30",
+            "TransactionAmount": 46.0,
+            "BalanceAmount": 98.40,
+            "Currency": null,
+            "TransferMode": 3
           }
         ],
         "BankId": "Axi20211024",
@@ -296,6 +307,31 @@
         "Balance": 0.0,
         "UserName": "Sri2009",
         "Password": "20090909",
+        "Status": 0,
+        "Transactions": [],
+        "BankId": "Axi20211024",
+        "BankName": "AxisBank",
+        "Branch": "Guntur",
+        "Ifsc": "AXI00091"
+      },
+      {
+        "Customer": {
+          "AccountId": "nag20001112",
+          "Name": "nag",
+          "Age": "20",
+          "Gender": 1,
+          "ContactNumber": "9200292020",
+          "Dob": "2000-11-12T00:00:00",
+          "Address": "gnt",
+          "AadharNumber": "0292902902",
+          "PanNumber": "9292029920"
+        },
+        "AccountNumber": "47361533216",
+        "AccountId": "nag20001112",
+        "AccountType": 1,
+        "Balance": 0.0,
+        "UserName": "nag2000",
+        "Password": "20001112",
         "Status": 0,
         "Transactions": [],
         "BankId": "Axi20211024",
@@ -393,7 +429,7 @@
     "Employees": [
       {
         "Name": "Venkatesh Pulibandla",
-        "Gender": "Male",
+        "Gender": 1,
         "Dob": "0001-01-01T00:00:00",
         "BankId": "Axi20211024",
         "Age": 21,
@@ -404,7 +440,7 @@
       },
       {
         "Name": "Surabhi",
-        "Gender": "Female",
+        "Gender": 2,
         "Dob": "2000-11-12T00:00:00",
         "BankId": "Axi20211024",
         "Age": 21,
@@ -415,7 +451,7 @@
       },
       {
         "Name": "Kiran",
-        "Gender": "Male",
+        "Gender": 1,
         "Dob": "2000-11-11T00:00:00",
         "BankId": "Axi20211024",
         "Age": 20,

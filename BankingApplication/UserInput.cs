@@ -6,7 +6,7 @@ namespace BankingApplication.CLI
 {
     public class UserInput
     {
-        public static string AskUser(string property)
+        public static string GetInputValue(string property)
         {
             Console.WriteLine("Please Enter {0}", property);
             return Console.ReadLine();
