@@ -4,7 +4,7 @@
     public enum MainMenu
     {
         AccountHolder=1,
-        BankStaff,
+        BankEmployee,
         CloseApplication
     }
     public enum AccountHolderMenu
@@ -16,7 +16,7 @@
         CheckBalance,
         LogOut
     }
-    public enum BankStaffMenu
+    public enum BankEmployeeMenu
     {
         CreateAccount=1,
         AddBank,
@@ -47,7 +47,7 @@
         IMPS,
         None
     }
-    public enum StaffDesignation
+    public enum EmployeeDesignation
     {
         Manager=1,
         AccountsManager,

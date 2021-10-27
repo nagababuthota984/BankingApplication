@@ -20,85 +20,7 @@
         "UserName": "Nag2000",
         "Password": "20001112",
         "Status": 2,
-        "Transactions": [
-          {
-            "TransId": "TXNAxi20211024Nag2000111220211025",
-            "Type": 1,
-            "SenderAccountId": "Nag20001112",
-            "ReceiverAccountId": "Nag20001112",
-            "On": "2021-10-25T17:02:16.4974702+05:30",
-            "TransactionAmount": 2500.0,
-            "BalanceAmount": 0.0,
-            "Currency": null,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNAxi20211024Nag2000111220211025",
-            "Type": 0,
-            "SenderAccountId": "Nag20001112",
-            "ReceiverAccountId": "Nag20001112",
-            "On": "2021-10-25T17:19:27.9249907+05:30",
-            "TransactionAmount": 4000.0,
-            "BalanceAmount": 4000.0,
-            "Currency": null,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNAxi20211024Nag2000111220211025",
-            "Type": 2,
-            "SenderAccountId": "Nag20001112",
-            "ReceiverAccountId": "Cha20020510",
-            "On": "2021-10-25T17:20:17.8081339+05:30",
-            "TransactionAmount": 1250.0,
-            "BalanceAmount": 2750.0,
-            "Currency": null,
-            "TransferMode": 1
-          },
-          {
-            "TransId": "TXNAxi20211024Nag2000111220211025",
-            "Type": 1,
-            "SenderAccountId": "Nag20001112",
-            "ReceiverAccountId": "Nag20001112",
-            "On": "2021-10-25T17:27:57.1991808+05:30",
-            "TransactionAmount": 2500.0,
-            "BalanceAmount": 250.0,
-            "Currency": null,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNAxi20211024Nag2000111220211025",
-            "Type": 2,
-            "SenderAccountId": "Nag20001112",
-            "ReceiverAccountId": "Cha20020510",
-            "On": "2021-10-25T18:06:24.3862145+05:30",
-            "TransactionAmount": 110.0,
-            "BalanceAmount": 140.0,
-            "Currency": null,
-            "TransferMode": 1
-          },
-          {
-            "TransId": "TXNAxi20211024Nag2000111220211025",
-            "Type": 0,
-            "SenderAccountId": "Nag20001112",
-            "ReceiverAccountId": "Nag20001112",
-            "On": "2021-10-25T18:07:09.6812387+05:30",
-            "TransactionAmount": 110.0,
-            "BalanceAmount": 250.0,
-            "Currency": null,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNAxi20211024Nag2000111220211025",
-            "Type": 0,
-            "SenderAccountId": "Nag20001112",
-            "ReceiverAccountId": "Nag20001112",
-            "On": "2021-10-25T22:12:58.8795816+05:30",
-            "TransactionAmount": 1500.0,
-            "BalanceAmount": 1750.0,
-            "Currency": null,
-            "TransferMode": 3
-          }
-        ],
+        "Transactions": [],
         "BankId": "Axi20211024",
         "BankName": "AxisBank",
         "Branch": "Guntur",
@@ -123,77 +45,7 @@
         "UserName": "Cha2002",
         "Password": "20020510",
         "Status": 0,
-        "Transactions": [
-          {
-            "TransId": "TXNAxi20211024Cha2002051020211025",
-            "Type": 0,
-            "SenderAccountId": "Cha20020510",
-            "ReceiverAccountId": "Cha20020510",
-            "On": "2021-10-25T17:02:16.5541293+05:30",
-            "TransactionAmount": 2500.0,
-            "BalanceAmount": 3500.0,
-            "Currency": null,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNAxi20211024Cha2002051020211025",
-            "Type": 2,
-            "SenderAccountId": "Nag20001112",
-            "ReceiverAccountId": "Cha20020510",
-            "On": "2021-10-25T17:20:17.8081339+05:30",
-            "TransactionAmount": 1250.0,
-            "BalanceAmount": 4750.0,
-            "Currency": null,
-            "TransferMode": 1
-          },
-          {
-            "TransId": "TXNAxi20211024Cha2002051020211025",
-            "Type": 1,
-            "SenderAccountId": "Cha20020510",
-            "ReceiverAccountId": "Cha20020510",
-            "On": "2021-10-25T17:21:17.1989616+05:30",
-            "TransactionAmount": 3500.0,
-            "BalanceAmount": 1250.0,
-            "Currency": null,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNAxi20211024Cha2002051020211025",
-            "Type": 0,
-            "SenderAccountId": "Cha20020510",
-            "ReceiverAccountId": "Cha20020510",
-            "On": "2021-10-25T17:28:23.7979929+05:30",
-            "TransactionAmount": 2500.0,
-            "BalanceAmount": 3750.0,
-            "Currency": null,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNAxi20211024Cha2002051020211025",
-            "Type": 1,
-            "SenderAccountId": "Cha20020510",
-            "ReceiverAccountId": "Cha20020510",
-            "On": "2021-10-25T18:07:09.6268703+05:30",
-            "TransactionAmount": 110.0,
-            "BalanceAmount": 3750.0,
-            "Currency": null,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNAxi20211024Cha2002051020211026074759",
-            "Type": 2,
-            "SenderAccountId": "Sen20010419",
-            "ReceiverAccountId": "Cha20020510",
-            "On": "2021-10-26T19:47:59.3018167+05:30",
-            "TransactionAmount": -20.0,
-            "BalanceAmount": 3730.0,
-            "Currency": {
-              "CurrencyName": "INR",
-              "ExchangeRate": 1.0
-            },
-            "TransferMode": 1
-          }
-        ],
+        "Transactions": [],
         "BankId": "Axi20211024",
         "BankName": "AxisBank",
         "Branch": "Guntur",
@@ -218,69 +70,7 @@
         "UserName": "Moh2002",
         "Password": "20020911",
         "Status": 0,
-        "Transactions": [
-          {
-            "TransId": "TXNAxi20211024Moh2002091120211026074251",
-            "Type": 2,
-            "SenderAccountId": "Moh20020911",
-            "ReceiverAccountId": "Sen20010419",
-            "On": "2021-10-26T19:42:51.1395982+05:30",
-            "TransactionAmount": 100.0,
-            "BalanceAmount": 65.00,
-            "Currency": {
-              "CurrencyName": "INR",
-              "ExchangeRate": 1.0
-            },
-            "TransferMode": 1
-          },
-          {
-            "TransId": "TXNAxi20211024Moh2002091120211027090514",
-            "Type": 2,
-            "SenderAccountId": "Moh20020911",
-            "ReceiverAccountId": "Sen20010419",
-            "On": "2021-10-27T09:05:14.8448543+05:30",
-            "TransactionAmount": 12.0,
-            "BalanceAmount": 52.40,
-            "Currency": {
-              "CurrencyName": "INR",
-              "ExchangeRate": 1.0
-            },
-            "TransferMode": 1
-          },
-          {
-            "TransId": "TXNAxi20211024Moh2002091120211027042437",
-            "Type": 0,
-            "SenderAccountId": "Moh20020911",
-            "ReceiverAccountId": "Moh20020911",
-            "On": "2021-10-27T16:24:37.5858725+05:30",
-            "TransactionAmount": 46.0,
-            "BalanceAmount": 98.40,
-            "Currency": null,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNAxi20211024Moh2002091120211027070934",
-            "Type": 0,
-            "SenderAccountId": "Moh20020911",
-            "ReceiverAccountId": "Moh20020911",
-            "On": "2021-10-27T19:09:34.0013081+05:30",
-            "TransactionAmount": 29.0,
-            "BalanceAmount": 127.40,
-            "Currency": null,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNAxi20211024Moh2002091120211027070950",
-            "Type": 0,
-            "SenderAccountId": "Moh20020911",
-            "ReceiverAccountId": "Moh20020911",
-            "On": "2021-10-27T19:09:50.5032629+05:30",
-            "TransactionAmount": 152.0,
-            "BalanceAmount": 279.40,
-            "Currency": null,
-            "TransferMode": 3
-          }
-        ],
+        "Transactions": [],
         "BankId": "Axi20211024",
         "BankName": "AxisBank",
         "Branch": "Guntur",
@@ -360,6 +150,56 @@
         "BankName": "AxisBank",
         "Branch": "Guntur",
         "Ifsc": "AXI00091"
+      },
+      {
+        "Customer": {
+          "AccountId": "Sur20090812",
+          "Name": "Suresh",
+          "Age": "21",
+          "Gender": 1,
+          "ContactNumber": "0292920929",
+          "Dob": "2009-08-12T00:00:00",
+          "Address": "Guntur",
+          "AadharNumber": "0092902029",
+          "PanNumber": "029202092920"
+        },
+        "AccountNumber": "01485423557",
+        "AccountId": "Sur20090812",
+        "AccountType": 0,
+        "Balance": 0.0,
+        "UserName": "Sur2009",
+        "Password": "20090812",
+        "Status": 0,
+        "Transactions": [],
+        "BankId": "Axi20211024",
+        "BankName": null,
+        "Branch": null,
+        "Ifsc": null
+      },
+      {
+        "Customer": {
+          "AccountId": "Yas20001111",
+          "Name": "Yasin",
+          "Age": "20",
+          "Gender": 1,
+          "ContactNumber": "0293903020020",
+          "Dob": "2000-11-11T00:00:00",
+          "Address": "Guntur",
+          "AadharNumber": "010020200202",
+          "PanNumber": "0292902002020"
+        },
+        "AccountNumber": "77778207842",
+        "AccountId": "Yas20001111",
+        "AccountType": 1,
+        "Balance": 0.0,
+        "UserName": "Yas2000",
+        "Password": "20001111",
+        "Status": 0,
+        "Transactions": [],
+        "BankId": "Axi20211024",
+        "BankName": null,
+        "Branch": null,
+        "Ifsc": null
       }
     ],
     "SelfRTGS": 0.0,
@@ -371,91 +211,15 @@
       "CurrencyName": "INR",
       "ExchangeRate": 1.0
     },
-    "Transactions": [
-      {
-        "TransId": "TXNAxi20211024Cha2002051025-10-2021 16:31:59",
-        "Type": 3,
-        "SenderAccountId": "Cha20020510",
-        "ReceiverAccountId": "Axi20211024",
-        "On": "2021-10-25T16:31:59.8238775+05:30",
-        "TransactionAmount": 0.0,
-        "BalanceAmount": 0.0,
-        "Currency": null,
-        "TransferMode": 3
-      },
-      {
-        "TransId": "TXNAxi20211024Nag2000111225-10-2021 17:20:17",
-        "Type": 3,
-        "SenderAccountId": "Nag20001112",
-        "ReceiverAccountId": "Axi20211024",
-        "On": "2021-10-25T17:20:17.7542611+05:30",
-        "TransactionAmount": 0.0,
-        "BalanceAmount": 0.0,
-        "Currency": null,
-        "TransferMode": 3
-      },
-      {
-        "TransId": "TXNAxi20211024Nag2000111225-10-2021 18:06:24",
-        "Type": 3,
-        "SenderAccountId": "Nag20001112",
-        "ReceiverAccountId": "Axi20211024",
-        "On": "2021-10-25T18:06:24.3792375+05:30",
-        "TransactionAmount": 0.0,
-        "BalanceAmount": 0.0,
-        "Currency": null,
-        "TransferMode": 3
-      },
-      {
-        "TransId": "TXNAxi20211024Moh2002091126-10-2021 17:19:41",
-        "Type": 3,
-        "SenderAccountId": "Moh20020911",
-        "ReceiverAccountId": "Axi20211024",
-        "On": "2021-10-26T17:19:41.9083757+05:30",
-        "TransactionAmount": 1.00,
-        "BalanceAmount": 1.00,
-        "Currency": {
-          "CurrencyName": "INR",
-          "ExchangeRate": 1.0
-        },
-        "TransferMode": 3
-      },
-      {
-        "TransId": "TXNAxi20211024Moh2002091120211026074251",
-        "Type": 3,
-        "SenderAccountId": "Moh20020911",
-        "ReceiverAccountId": "Axi20211024",
-        "On": "2021-10-26T19:42:51.1387727+05:30",
-        "TransactionAmount": 5.00,
-        "BalanceAmount": 6.00,
-        "Currency": {
-          "CurrencyName": "INR",
-          "ExchangeRate": 1.0
-        },
-        "TransferMode": 3
-      },
-      {
-        "TransId": "TXNAxi20211024Moh2002091120211027090514",
-        "Type": 3,
-        "SenderAccountId": "Moh20020911",
-        "ReceiverAccountId": "Axi20211024",
-        "On": "2021-10-27T09:05:14.7929779+05:30",
-        "TransactionAmount": 0.60,
-        "BalanceAmount": 6.60,
-        "Currency": {
-          "CurrencyName": "INR",
-          "ExchangeRate": 1.0
-        },
-        "TransferMode": 3
-      }
-    ],
+    "Transactions": [],
     "Employees": [
       {
         "Name": "Venkatesh Pulibandla",
         "Gender": 1,
         "Dob": "0001-01-01T00:00:00",
         "BankId": "Axi20211024",
-        "Age": 21,
-        "StaffId": "Axi20211024831",
+        "Age": "21",
+        "EmployeeId": "Axi20211024831",
         "UserName": "Ven021",
         "Password": "20001111",
         "Designation": 1
@@ -465,8 +229,8 @@
         "Gender": 2,
         "Dob": "2000-11-12T00:00:00",
         "BankId": "Axi20211024",
-        "Age": 21,
-        "StaffId": "Axi20211024343",
+        "Age": "21",
+        "EmployeeId": "Axi20211024343",
         "UserName": "Sur021",
         "Password": "20001112",
         "Designation": 2
@@ -476,8 +240,8 @@
         "Gender": 1,
         "Dob": "2000-11-11T00:00:00",
         "BankId": "Axi20211024",
-        "Age": 20,
-        "StaffId": "Axi20211024053",
+        "Age": "20",
+        "EmployeeId": "Axi20211024053",
         "UserName": "Kir021",
         "Password": "20001111",
         "Designation": 1
@@ -491,6 +255,10 @@
       {
         "CurrencyName": "USD",
         "ExchangeRate": 76.0
+      },
+      {
+        "CurrencyName": "EURO",
+        "ExchangeRate": 101.0
       }
     ],
     "BankId": "Axi20211024",
@@ -525,6 +293,8 @@
             "Type": 2,
             "SenderAccountId": "Moh20020911",
             "ReceiverAccountId": "Sen20010419",
+            "SenderBankId": null,
+            "ReceiverBankId": null,
             "On": "2021-10-26T17:19:41.9095953+05:30",
             "TransactionAmount": 20.0,
             "BalanceAmount": 20.0,
@@ -539,6 +309,8 @@
             "Type": 2,
             "SenderAccountId": "Moh20020911",
             "ReceiverAccountId": "Sen20010419",
+            "SenderBankId": null,
+            "ReceiverBankId": null,
             "On": "2021-10-26T19:42:51.1395982+05:30",
             "TransactionAmount": 100.0,
             "BalanceAmount": 120.0,
@@ -553,6 +325,8 @@
             "Type": 0,
             "SenderAccountId": "Sen20010419",
             "ReceiverAccountId": "Sen20010419",
+            "SenderBankId": null,
+            "ReceiverBankId": null,
             "On": "2021-10-26T19:47:06.9042745+05:30",
             "TransactionAmount": 300.0,
             "BalanceAmount": 420.0,
@@ -564,6 +338,8 @@
             "Type": 1,
             "SenderAccountId": "Sen20010419",
             "ReceiverAccountId": "Sen20010419",
+            "SenderBankId": null,
+            "ReceiverBankId": null,
             "On": "2021-10-26T19:47:20.3547801+05:30",
             "TransactionAmount": 420.0,
             "BalanceAmount": 0.0,
@@ -575,6 +351,8 @@
             "Type": 2,
             "SenderAccountId": "Sen20010419",
             "ReceiverAccountId": "Cha20020510",
+            "SenderBankId": null,
+            "ReceiverBankId": null,
             "On": "2021-10-26T19:47:59.3018167+05:30",
             "TransactionAmount": -20.0,
             "BalanceAmount": 20.40,
@@ -589,6 +367,8 @@
             "Type": 2,
             "SenderAccountId": "Moh20020911",
             "ReceiverAccountId": "Sen20010419",
+            "SenderBankId": null,
+            "ReceiverBankId": null,
             "On": "2021-10-27T09:05:14.8448543+05:30",
             "TransactionAmount": 12.0,
             "BalanceAmount": 32.40,
@@ -620,6 +400,8 @@
         "Type": 3,
         "SenderAccountId": "Sen20010419",
         "ReceiverAccountId": "Sta20211026",
+        "SenderBankId": null,
+        "ReceiverBankId": null,
         "On": "2021-10-26T19:47:59.3016897+05:30",
         "TransactionAmount": -0.40,
         "BalanceAmount": -0.40,

@@ -15,7 +15,7 @@ namespace BankingApplication.CLI
             string password = UserInput.GetInputValue("Password");
             Console.WriteLine();
             AccountService accountService = new AccountService();
-            Account userAccount = accountService.FetchAccountByUserName(userName);
+            Account userAccount = accountService.GetAccountByUserName(userName);
 
             if (userAccount==null)
             {
@@ -80,7 +80,7 @@ namespace BankingApplication.CLI
                             case AccountHolderMenu.Transfer:
                                 Console.WriteLine("-------Amount Transfer-------\n");
                                 string receiverAccNumber = UserInput.GetInputValue("Receiver Account Number");
-                                Account recipientAccount = new AccountService().FetchAccountByAccNumber(receiverAccNumber);
+                                Account recipientAccount = accountService.GetAccountByAccNumber(receiverAccNumber);
 
                                 if (recipientAccount!=null)
                                 {
@@ -90,7 +90,7 @@ namespace BankingApplication.CLI
                                         if (amount >= userAccount.Balance)
                                         {
                                             ModeOfTransfer mode = (ModeOfTransfer)Convert.ToInt32(UserInput.GetInputValue("mode of transfer\n1.RTGS \n2.IMPS."));
-                                            accountService.TransferAmount(userAccount, recipientAccount, amount, mode);
+                                            accountService.TransferAmount(userAccount,bank, recipientAccount, amount, mode);
                                             UserOutput.ShowMessage("Transferred successfully");
                                         }
                                         else
@@ -110,7 +110,7 @@ namespace BankingApplication.CLI
                                 break;
                             case AccountHolderMenu.PrintStatement:
                                 Console.WriteLine("\n-------Transaction History-------\n");
-                                UserOutput.ShowTransactions(transService.FetchTransactionHistory(userAccount));
+                                UserOutput.ShowTransactions(userAccount.Transactions);
                                 break;
                             case AccountHolderMenu.CheckBalance:
                                 Console.WriteLine($"\nCurrent Balance - {userAccount.Balance} INR\n");

@@ -5,15 +5,20 @@ using BankingApplication.Models;
 using BankingApplication.Services;
 namespace BankingApplication.CLI
 {
-    public class BankStaffPage
+
+    public class BankEmployeePage
     {
+        BankService bankService = new BankService();
+        AccountService accountService = new AccountService();
+        TransactionService transactionService = new TransactionService();
         public void UserInterface()
         {
-            Console.WriteLine("\n===================BANK STAFF LOGIN===================\n");
+            Console.WriteLine("\n===================BANK Employee LOGIN===================\n");
             string userName = UserInput.GetInputValue("Username");
             string password = UserInput.GetInputValue("Password");
             Console.WriteLine();
-            if(!IsValidStaff(userName,password))
+            Employee currentWorkingEmployee = bankService.GetEmployeeByUserName(userName);
+            if (currentWorkingEmployee == null)
             {
                 UserOutput.ShowMessage("Invalid Credentials\n");
             }
@@ -21,37 +26,30 @@ namespace BankingApplication.CLI
             {
                 try
                 {
-                    BankService bankService = new BankService();
-                    AccountService acService = new AccountService();
-                    Staff currentWorkingStaff = bankService.FetchStaffByUserName(userName);
-                    Bank bank = bankService.GetBankByBankId(currentWorkingStaff.BankId);
-                    if (currentWorkingStaff != null)
+                    Bank bank = bankService.GetBankByBankId(currentWorkingEmployee.BankId);
                     {
                         while (true)
                         {
                             Console.WriteLine("\n========================BANK STAFF MENU==========================\n");
-                            BankStaffMenu choice = GetBankStaffMenuByInteger(Convert.ToInt32(UserInput.GetInputValue("Choice\n1.Create Account\n2.AddBank\n3.UpdateAccount\n4.Delete an Account\n5.AddNewEmployee\n6.AddNewCurrency\n7.SetServiceCharge\n8.ViewTransactions\n9.RevertTransaction\nAny other key to logout.")));
-                            Console.WriteLine();
-                            switch (choice)
+                            switch (GetBankEmployeeMenuByInteger(Convert.ToInt32(UserInput.GetInputValue(Constant.employeeMenu))))
                             {
-                                case BankStaffMenu.CreateAccount:
+                                case BankEmployeeMenu.CreateAccount:
                                     Console.WriteLine("\t-------Account Creation-------\n");
-                                    Customer newCustomer = new Customer();
-                                    Account NewAccount = new Account();
-                                    newCustomer.Name = AskName();
-                                    newCustomer.Age = AskAge();
-                                    newCustomer.Gender = GetGenderByInteger(Convert.ToInt32(UserInput.GetInputValue("Gender:\n1.Male\n2.Female\n3.Prefer Not to say")));
-                                    newCustomer.Dob = Convert.ToDateTime(UserInput.GetInputValue("Date of Birth"));
-                                    newCustomer.ContactNumber = UserInput.GetInputValue("Contact Number");
-                                    newCustomer.AadharNumber = UserInput.GetInputValue("Aadhar Number");
-                                    newCustomer.PanNumber = UserInput.GetInputValue("PAN Number");
-                                    newCustomer.Address = UserInput.GetInputValue("Address");
-                                    NewAccount.AccountType = (AccountType)Convert.ToInt32(UserInput.GetInputValue("Account Type(1.Savings/2.Current)"));
-                                    bankService.CreateAccount(newCustomer, NewAccount,currentWorkingStaff.BankId);
-                                    string output = $"Account has been created!\nCredentials:Username - {NewAccount.UserName}\nPassword - {NewAccount.Password}\nAccount Number - {NewAccount.AccountNumber}\n";
-                                    UserOutput.ShowMessage(output);
+                                    string name = AskName();
+                                    string age = AskAge();
+                                    Gender gender = GetGenderByInteger(Convert.ToInt32(UserInput.GetInputValue("Gender:\n1.Male\n2.Female\n3.Prefer Not to say")));
+                                    DateTime dob = Convert.ToDateTime(UserInput.GetInputValue("Date of Birth"));
+                                    string contactNumber = UserInput.GetInputValue("Contact Number");
+                                    string aadharNumber = UserInput.GetInputValue("Aadhar Number");
+                                    string panNumber = UserInput.GetInputValue("PAN Number");
+                                    string address = UserInput.GetInputValue("Address");
+                                    AccountType accountType = (AccountType)Convert.ToInt32(UserInput.GetInputValue("Account Type(1.Savings/2.Current)"));
+                                    Customer newCustomer = new Customer(name, age, gender, dob, contactNumber, aadharNumber, panNumber, address);
+                                    Account newAccount = new Account(newCustomer,accountType);
+                                    bankService.CreateAccount(newAccount, bank);
+                                    UserOutput.ShowMessage($"Account has been created!\nCredentials:Username - {newAccount.UserName}\nPassword - {newAccount.Password}\nAccount Number - {newAccount.AccountNumber}\n");
                                     break;
-                                case BankStaffMenu.AddBank:
+                                case BankEmployeeMenu.AddBank:
                                     string bankName = UserInput.GetInputValue("Name of the bank");
                                     string branch = UserInput.GetInputValue("Branch");
                                     string ifsc = UserInput.GetInputValue("IFSC");
@@ -66,69 +64,76 @@ namespace BankingApplication.CLI
                                         UserOutput.ShowMessage($"Bank created with bank id - {newBank.BankId}");
                                     }
                                     break;
-                                case BankStaffMenu.UpdateAccount:
+                                case BankEmployeeMenu.UpdateAccount:
                                     string accountId = UserInput.GetInputValue("Account Id");
-                                    Account userAccount = acService.FetchAccountByAccountId(accountId);
-                                    if (userAccount!=null)
+                                    Account userAccount = accountService.GetAccountById(accountId);
+                                    if (userAccount != null)
                                     {
                                         Console.WriteLine("\nYou will only be able to modify customer related properties. Properties like account number, accound Id, Balance Cannot be changed!\n");
                                         string property = UserInput.GetInputValue("property you want to update");
                                         Console.WriteLine("Enter new value: ");
                                         string newValue = Console.ReadLine();
-                                        new AccountService().UpdateAccount(userAccount, property, newValue);
-                                        UserOutput.ShowMessage("Updated!"); 
+                                        accountService.UpdateAccount(userAccount, property, newValue);
+                                        UserOutput.ShowMessage("Updated!");
                                     }
                                     else
                                     {
                                         UserOutput.ShowMessage("Account Does not exists.\n");
                                     }
                                     break;
-                                case BankStaffMenu.DeleteAccount:
+                                case BankEmployeeMenu.DeleteAccount:
                                     accountId = UserInput.GetInputValue("Account Id");
-                                    userAccount = acService.FetchAccountByAccountId(accountId);
-                                    if (userAccount!=null)
+                                    userAccount = accountService.GetAccountById(accountId);
+                                    if (userAccount != null)
                                     {
-                                        acService.DeleteAccount(userAccount);
-                                        if (userAccount.Status.Equals(AccountStatus.Closed))
+                                        if (accountService.DeleteAccount(userAccount))
                                         {
                                             UserOutput.ShowMessage("Account Deleted");
                                         }
                                         else
                                         {
                                             UserOutput.ShowMessage("Account was not deleted. Try again later.");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        UserOutput.ShowMessage("Account does not exists.\n");
+                                    }
+                                    break;
+                                case BankEmployeeMenu.AddNewEmployee:
+                                    Console.WriteLine("\n-----------New Employee-----------\n");
+                                    name = AskName();
+                                    age = AskAge();
+                                    dob = Convert.ToDateTime(UserInput.GetInputValue("Employee Date of Birth"));
+                                    gender = GetGenderByInteger(Convert.ToInt32(UserInput.GetInputValue("Employee Gender")));
+                                    EmployeeDesignation role = (EmployeeDesignation)Convert.ToInt32(UserInput.GetInputValue("Employee Designation"));
+                                    Employee newEmployee = bankService.CreateAndGetEmployee(name,age,dob,gender,role,bank);
+                                    UserOutput.ShowMessage($"Employee {newEmployee.Name} has been added! Credentials:\n{newEmployee.UserName}\n{newEmployee.Password}\n"); 
+                                    break;
+                                case BankEmployeeMenu.AddNewCurrency:
+                                    string newCurrency = UserInput.GetInputValue("new currency type");
+                                    decimal exchangeRate = Convert.ToDecimal(UserInput.GetInputValue("exchange rate"));
+                                    if (exchangeRate>0)
+                                    {
+                                        if (bankService.AddNewCurrency(bank, newCurrency, exchangeRate))
+                                        {
+                                            UserOutput.ShowMessage("New Currency Added!");
+                                        }
+                                        else
+                                        {
+                                            UserOutput.ShowMessage("Currency Already Exists!");
                                         } 
                                     }
                                     else
                                     {
-                                        UserOutput.ShowMessage("Account Does not exists.\n");
+                                        UserOutput.ShowMessage("Invalid exchange rate");
                                     }
                                     break;
-                                case BankStaffMenu.AddNewEmployee:
-                                    Console.WriteLine("\n-----------New Employee-----------\n");
-                                    Staff newStaff = new Staff();
-                                    newStaff.Name = AskName();
-                                    newStaff.Age = Convert.ToInt32(AskAge());
-                                    newStaff.Dob = Convert.ToDateTime(UserInput.GetInputValue("Employee Date of Birth"));
-                                    newStaff.Gender = GetGenderByInteger(Convert.ToInt32(UserInput.GetInputValue("Employee Gender")));
-                                    newStaff.BankId = newStaff.BankId;
-                                    newStaff.Designation = (StaffDesignation)Convert.ToInt32(UserInput.GetInputValue("Employee Designation"));
-                                    bankService.AddStaff(newStaff);
-                                    output = $"Employee {newStaff.Name} has been added! Credentials:\n{newStaff.UserName}\n{newStaff.Password}\n";
-                                    UserOutput.ShowMessage(output);
-                                    break;
-                                case BankStaffMenu.AddNewCurrency:
-                                    string bankId = currentWorkingStaff.BankId;
-                                    string newCurrency = UserInput.GetInputValue("new currency type");
-                                    decimal exchangeRate = Convert.ToDecimal(UserInput.GetInputValue("exchange rate"));
-                                    bankService.AddNewCurrency(bank, newCurrency, exchangeRate);
-                                    break;
-                                case BankStaffMenu.SetServiceCharge:
-                                    bankId = currentWorkingStaff.BankId;
+                                case BankEmployeeMenu.SetServiceCharge:
                                     ModeOfTransfer mode = (ModeOfTransfer)Convert.ToInt32(UserInput.GetInputValue("Change service charge:\n1.RTGS\n2.IMPS"));
                                     bool isSelfBankTransfer = (Convert.ToInt32(UserInput.GetInputValue("Charge type:\n1.Money Transfer Within bank.\n2.Money transfer to other banks")).Equals(1)) ? true : false;
                                     decimal value = Convert.ToDecimal(UserInput.GetInputValue("New Charge Value:"));
-                                    bankService.SetServiceCharge(mode, isSelfBankTransfer, bankId, value);
-                                    if (bankService.GetServiceCharge(mode, isSelfBankTransfer, bankId).Equals(value))
+                                    if (bankService.SetServiceCharge(mode, isSelfBankTransfer, bank, value))
                                     {
                                         UserOutput.ShowMessage("Updation success");
                                     }
@@ -137,9 +142,9 @@ namespace BankingApplication.CLI
                                         UserOutput.ShowMessage("Cannot update. Try again.");
                                     }
                                     break;
-                                case BankStaffMenu.ViewTransactions:
+                                case BankEmployeeMenu.ViewTransactions:
                                     accountId = UserInput.GetInputValue("Account Id");
-                                    List<Transaction> transactions = bankService.FetchAccountTransactions(accountId);
+                                    List<Transaction> transactions = bankService.GetAccountTransactions(accountId);
                                     if (transactions != null)
                                     {
                                         UserOutput.ShowTransactions(transactions);
@@ -149,19 +154,26 @@ namespace BankingApplication.CLI
                                         UserOutput.ShowMessage("Account does not exists.\n");
                                     }
                                     break;
-                                case BankStaffMenu.RevertTransaction:
+                                case BankEmployeeMenu.RevertTransaction:
                                     string transactionId = UserInput.GetInputValue("Transaction Id");
-                                    Transaction transaction = new TransactionService().FetchTransactionByTransactionId(transactionId);
+                                    Transaction transaction = transactionService.GetTransactionById(transactionId);
                                     if (transaction != null)
                                     {
-                                        Console.WriteLine("Are you sure you want to revert the transaction(Y/N)?\n");
-                                        if(Console.ReadLine().ToLower().Contains("y"))
+                                        if (transaction.SenderBankId.Equals(transaction.ReceiverBankId))
                                         {
-                                            bankService.RevertTransaction(transaction, bank);
+                                            Console.WriteLine("Are you sure you want to revert the transaction(Y/N)?\n");
+                                            if (Console.ReadLine().ToLower().Contains("y"))
+                                            {
+                                                bankService.RevertTransaction(transaction, bank);
+                                            }
+                                            else
+                                            {
+                                                break;
+                                            }
                                         }
                                         else
                                         {
-                                            break;
+                                            Console.WriteLine("Cannot revert transaction involving other bank.");
                                         }
                                     }
                                     else
@@ -169,38 +181,32 @@ namespace BankingApplication.CLI
                                         UserOutput.ShowMessage("No such transaction found!\n");
                                     }
                                     break;
-                                case BankStaffMenu.Logout:
+                                case BankEmployeeMenu.Logout:
                                     Program.WelcomeMenu();
                                     break;
                             }
                         }
-                    }
-                    else
-                    {
-                        UserOutput.ShowMessage("Staff doesn't exist");
-                    }
 
+
+
+                    }
                 }
-                catch(Exception ex)
-                { 
-                    Console.WriteLine(ex.Message); 
-                }  
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
 
             }
         }
         private Gender GetGenderByInteger(int v)
         {
-            if(v==1)
+            if (v == 1)
             {
                 return Gender.Male;
             }
-            else if(v==2)
+            else if (v == 2)
             {
                 return Gender.Female;
-            }
-            else if(v==3)
-            {
-                return Gender.PreferNotToSay;
             }
             else
             {
@@ -215,69 +221,46 @@ namespace BankingApplication.CLI
             {
                 Console.WriteLine("Name should not have digits in it.Please enter the name again:\n");
                 name = Console.ReadLine();
-            } 
+            }
             return name;
         }
         private string AskAge()
         {
             Console.WriteLine("Please enter customer's age");
             int age = Convert.ToInt32(Console.ReadLine());
-            while (age <= 0 || age>100)
+            while (age <= 0 || age > 100)
             {
                 Console.WriteLine("Please enter valid age. Re-enter age:");
                 age = Convert.ToInt32(Console.ReadLine());
             }
             return age.ToString();
         }
-        private BankStaffMenu GetBankStaffMenuByInteger(int v)
+        private BankEmployeeMenu GetBankEmployeeMenuByInteger(int v)
         {
             if (v == 1)
-                return BankStaffMenu.CreateAccount;
+                return BankEmployeeMenu.CreateAccount;
             else if (v == 2)
-                return BankStaffMenu.AddBank;
+                return BankEmployeeMenu.AddBank;
             else if (v == 3)
-                return BankStaffMenu.UpdateAccount;
+                return BankEmployeeMenu.UpdateAccount;
             else if (v == 4)
-                return BankStaffMenu.DeleteAccount;
+                return BankEmployeeMenu.DeleteAccount;
             else if (v == 5)
-                return BankStaffMenu.AddNewEmployee;
+                return BankEmployeeMenu.AddNewEmployee;
             else if (v == 6)
-                return BankStaffMenu.AddNewCurrency;
+                return BankEmployeeMenu.AddNewCurrency;
             else if (v == 7)
-                return BankStaffMenu.SetServiceCharge;
+                return BankEmployeeMenu.SetServiceCharge;
             else if (v == 8)
-                return BankStaffMenu.ViewTransactions;
+                return BankEmployeeMenu.ViewTransactions;
             else if (v == 9)
-                return BankStaffMenu.RevertTransaction;
+                return BankEmployeeMenu.RevertTransaction;
             else if (v == 10)
-                return BankStaffMenu.Logout;
+                return BankEmployeeMenu.Logout;
             else
-                return BankStaffMenu.Logout;
+                return BankEmployeeMenu.Logout;
         }
-        private bool IsValidStaff(string userName, string password)
-        {
-            if (RBIStorage.banks != null)
-            {
-                foreach (var bank in RBIStorage.banks)
-                {
-                    foreach (var employee in bank.Employees)
-                    {
-                        if (employee.UserName.Equals(userName))
-                        {
-                            if (employee.Password.Equals(password))
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                }
-                return false;
-            }
-            else
-            {
-                return false;
-            }
-        }
-       
+
+
     }
 }

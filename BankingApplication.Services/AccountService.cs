@@ -11,7 +11,7 @@ namespace BankingApplication.Services
     {
         TransactionService transService = new TransactionService();
 
-        public Account FetchAccountByUserName(string username)
+        public Account GetAccountByUserName(string username)
         {
 
             Bank bank = RBIStorage.banks.FirstOrDefault(b => b.Accounts.Any(a => a.UserName == username && !a.Status.Equals(AccountStatus.Closed)));
@@ -22,7 +22,7 @@ namespace BankingApplication.Services
             }
             return null;
         }
-        public Account FetchAccountByAccNumber(string accNumber)
+        public Account GetAccountByAccNumber(string accNumber)
         {
             Bank bank = RBIStorage.banks.FirstOrDefault(b => b.Accounts.Any(a => a.AccountNumber == accNumber && !a.Status.Equals(AccountStatus.Closed)));
             if (bank != null)
@@ -33,7 +33,7 @@ namespace BankingApplication.Services
             return null;
         }
 
-        public Account FetchAccountByAccountId(string accountId)
+        public Account GetAccountById(string accountId)
         {
             foreach (Bank bank in RBIStorage.banks)
             {
@@ -59,10 +59,11 @@ namespace BankingApplication.Services
 
         }
 
-        public void DeleteAccount(Account userAccount)
+        public bool DeleteAccount(Account userAccount)
         {
             userAccount.Status = AccountStatus.Closed;
             FileHelper.WriteData(RBIStorage.banks);
+            return true;
         }
         public void DepositAmount(Account userAccount, decimal amount, Currency currency)
         {
@@ -87,53 +88,51 @@ namespace BankingApplication.Services
                 throw new UnsupportedCurrencyException("Currency Not Supported");
             }
         }
-        public void TransferAmount(Account senderAccount, Account receiverAccount, decimal amount, ModeOfTransfer mode)
+        public void TransferAmount(Account senderAccount,Bank senderBank, Account receiverAccount, decimal amount, ModeOfTransfer mode)
         {
-            Bank bank = new BankService().GetBankByBankId(senderAccount.BankId);
-            Currency currency = bank.DefaultCurrency;
+            Currency currency = senderBank.DefaultCurrency;
             amount = amount * currency.ExchangeRate;
             senderAccount.Balance -= amount;
             receiverAccount.Balance += amount;
-            ApplyTransferCharges(senderAccount, receiverAccount.BankId, amount, mode, currency);
+            ApplyTransferCharges(senderAccount,senderBank, receiverAccount.BankId, amount, mode, currency);
             transService.CreateTransferTransaction(senderAccount, receiverAccount, amount, mode, currency);
             FileHelper.WriteData(RBIStorage.banks);
         }
-        private void ApplyTransferCharges(Account senderAccount, string receiverBankId, decimal amount, ModeOfTransfer mode, Currency currency)
+        private void ApplyTransferCharges(Account senderAccount,Bank senderBank, string receiverBankId, decimal amount, ModeOfTransfer mode, Currency currency)
         {
-            Bank bank = new BankService().GetBankByBankId(senderAccount.BankId);
             if (mode.Equals(ModeOfTransfer.RTGS))
             {
                 //RTGS charge based on transfer to account within the same bank
                 if (senderAccount.BankId.Equals(receiverBankId))
                 {
-                    decimal charges = (bank.SelfRTGS * amount) / 100;
+                    decimal charges = (senderBank.SelfRTGS * amount) / 100;
                     senderAccount.Balance -= charges;
-                    bank.Balance += charges;
-                    transService.CreateBankTransaction(bank, senderAccount.AccountId, charges, currency);
+                    senderBank.Balance += charges;
+                    transService.CreateBankTransaction(senderBank, senderAccount.AccountId, charges, currency);
                 }
                 else
                 {
-                    decimal charges = (bank.OtherRTGS * amount) / 100;
+                    decimal charges = (senderBank.OtherRTGS * amount) / 100;
                     senderAccount.Balance -= charges;
-                    bank.Balance += charges;
-                    transService.CreateBankTransaction(bank, senderAccount.AccountId, charges, currency);
+                    senderBank.Balance += charges;
+                    transService.CreateBankTransaction(senderBank, senderAccount.AccountId, charges, currency);
                 }
             }
             else
             {
                 if (senderAccount.BankId.Equals(receiverBankId))
                 {
-                    decimal charges = (bank.SelfIMPS * amount) / 100;
+                    decimal charges = (senderBank.SelfIMPS * amount) / 100;
                     senderAccount.Balance -= charges;
-                    bank.Balance += charges;
-                    transService.CreateBankTransaction(bank, senderAccount.AccountId, charges, currency);
+                    senderBank.Balance += charges;
+                    transService.CreateBankTransaction(senderBank, senderAccount.AccountId, charges, currency);
                 }
                 else
                 {
-                    decimal charges = (bank.OtherIMPS * amount) / 100;
+                    decimal charges = (senderBank.OtherIMPS * amount) / 100;
                     senderAccount.Balance -= charges;
-                    bank.Balance += charges;
-                    transService.CreateBankTransaction(bank, senderAccount.AccountId, charges, currency);
+                    senderBank.Balance += charges;
+                    transService.CreateBankTransaction(senderBank, senderAccount.AccountId, charges, currency);
                 }
             }
         }

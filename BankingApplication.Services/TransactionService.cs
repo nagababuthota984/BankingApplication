@@ -11,72 +11,24 @@ namespace BankingApplication.Services
 
         public void CreateTransaction(Account userAccount, TransactionType transtype, decimal transactionamount, Currency currency)
         {
-            DateTime timestamp = DateTime.Now;
-            Transaction NewTrans = new Transaction
-            {
-                TransId = $"TXN{userAccount.BankId}{userAccount.AccountId}{timestamp:yyyyMMddhhmmss}",
-                Type = transtype,
-                On = timestamp,
-                SenderAccountId = userAccount.AccountId,
-                ReceiverAccountId = userAccount.AccountId,
-                TransactionAmount = transactionamount,
-                BalanceAmount = userAccount.Balance,
-                TransferMode = ModeOfTransfer.None
-                
-            };
-            userAccount.Transactions.Add(NewTrans);
+            Transaction newTransaction = new Transaction(userAccount,transtype,transactionamount,currency);
+            userAccount.Transactions.Add(newTransaction);
         }
         public void CreateTransferTransaction(Account userAccount,Account receiverAccount,decimal transactionAmount,ModeOfTransfer mode, Currency currency)
         {
-            DateTime timestamp = DateTime.Now;
-            Transaction senderTransaction = new Transaction
-            {
-                TransId = $"TXN{userAccount.BankId}{userAccount.AccountId}{timestamp:yyyyMMddhhmmss}",
-                SenderAccountId = userAccount.AccountId,
-                ReceiverAccountId = receiverAccount.AccountId,
-                Type = TransactionType.Transfer,
-                On = timestamp,
-                TransactionAmount = transactionAmount,
-                BalanceAmount = userAccount.Balance,
-                Currency = currency,
-                TransferMode = mode
-            };
+            Transaction senderTransaction = new Transaction(userAccount,receiverAccount, TransactionType.Transfer, transactionAmount, currency,mode);
             userAccount.Transactions.Add(senderTransaction);
-            Transaction receiverTransaction = new Transaction
-            {
-                TransId = $"TXN{receiverAccount.BankId}{receiverAccount.AccountId}{timestamp:yyyyMMddhhmmss}",
-                SenderAccountId = userAccount.AccountId,
-                ReceiverAccountId = receiverAccount.AccountId,
-                Type = TransactionType.Transfer,
-                On = timestamp,
-                TransactionAmount = transactionAmount,
-                BalanceAmount = receiverAccount.Balance,
-                Currency = currency,
-                TransferMode = mode
-            };
+            Transaction receiverTransaction = new Transaction(receiverAccount,userAccount, TransactionType.Transfer, transactionAmount, currency, mode);
+            receiverTransaction.SenderAccountId = userAccount.AccountId;
+            receiverTransaction.ReceiverAccountId = receiverAccount.AccountId;
             receiverAccount.Transactions.Add(receiverTransaction);
         }
         public void CreateBankTransaction(Bank bank, string accountId, decimal charges,Currency currency)
         {
-            DateTime timestamp = DateTime.Now;
-            Transaction newBankTransaction = new Transaction
-            {
-                TransId = $"TXN{bank.BankId}{accountId}{timestamp:yyyyMMddhhmmss}",
-                Type = TransactionType.ServiceCharge,
-                SenderAccountId = accountId,
-                ReceiverAccountId = bank.BankId,
-                On = timestamp,
-                TransactionAmount = charges,
-                TransferMode = ModeOfTransfer.None,
-                Currency = currency,
-                BalanceAmount = bank.Balance
-            };
+            Transaction newBankTransaction = new Transaction(accountId, bank, TransactionType.ServiceCharge, charges, currency);
             bank.Transactions.Add(newBankTransaction);
         }
-        
-
-        
-        public Transaction FetchTransactionByTransactionId(string transactionId)
+        public Transaction GetTransactionById(string transactionId)
         {
             Transaction transaction = null;
             if (transactionId.Substring(0, 3) == "TXN" || transactionId.Length >=38)
@@ -97,9 +49,6 @@ namespace BankingApplication.Services
             return transaction;
         }
 
-        public List<Transaction> FetchTransactionHistory(Account userAccount)
-        {
-            return userAccount.Transactions;
-        }
+        
     }
 }
