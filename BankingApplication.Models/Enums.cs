@@ -4,7 +4,8 @@
     public enum MainMenu
     {
         AccountHolder=1,
-        BankStaff
+        BankStaff,
+        CloseApplication
     }
     public enum AccountHolderMenu
     {
@@ -25,7 +26,8 @@
         AddNewCurrency,
         SetServiceCharge,
         ViewTransactions,
-        RevertTransaction
+        RevertTransaction,
+        Logout
     }
     public enum AccountType
     {
@@ -57,5 +59,11 @@
         Active,
         Inactive,
         Closed
+    }
+    public enum Gender
+    {
+        Male=1,
+        Female,
+        PreferNotToSay
     }
 }

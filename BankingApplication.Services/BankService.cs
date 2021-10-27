@@ -44,23 +44,20 @@ namespace BankingApplication.Services
                     }
                 }
             }
-            throw new AccountDoesntExistException("Staff account doesn't exists.");
+            return null;
         }
-        public void CreateAccount(Customer newCustomer, Account newAccount)
+        public void CreateAccount(Customer newCustomer, Account newAccount, string bankId)
         {
-            //Checking if the bank exists in the database. else adding it now.
-            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankName.Equals(newAccount.BankName));
-            if (bank == null)
-            {
-                Add(newAccount.BankName, newAccount.Branch, newAccount.Ifsc);
-                bank = RBIStorage.banks.FirstOrDefault(b => b.BankName.Equals(newAccount.BankName));
-            }
+            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankId.Equals(bankId));
             newAccount.AccountNumber = GenerateAccountNumber(bank.BankId);
             newAccount.UserName = $"{newCustomer.Name.Substring(0, 3)}{newCustomer.Dob:yyyy}";
             newAccount.Password = $"{newCustomer.Dob:yyyyMMdd}";
             newAccount.AccountId = $"{newCustomer.Name.Substring(0, 3)}{newCustomer.Dob:yyyyMMdd}";
             newAccount.Transactions = new List<Transaction>();
             newAccount.BankId = bank.BankId;
+            newAccount.BankName = bank.BankName;
+            newAccount.Branch = bank.Branch;
+            newAccount.Ifsc = bank.Ifsc;
             newCustomer.AccountId = newAccount.AccountId;
             newAccount.Customer = newCustomer;
             bank.Accounts.Add(newAccount);
@@ -89,14 +86,8 @@ namespace BankingApplication.Services
         }
         public Bank GetBankByIfsc(string ifsc)
         {
-            foreach(var bank in RBIStorage.banks)
-            {
-                if(bank.Ifsc.Equals(ifsc.ToUpper()))
-                {
-                    return bank;
-                }
-            }
-            return null;
+            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.Ifsc.Equals(ifsc));
+            return bank;
         }
         public void AddStaff(Staff newStaff)
         {
@@ -182,7 +173,7 @@ namespace BankingApplication.Services
                 TransactionService transService = new TransactionService();
                 if (transaction.Type.Equals(TransactionType.Credit))
                 {
-                    transService.WithdrawAmount(userAccount, transaction.TransactionAmount,bank.DefaultCurrency.CurrencyName);
+                    transService.WithdrawAmount(userAccount, transaction.TransactionAmount);
                     userAccount.Transactions.Remove(transaction);
                 }
                 else if(transaction.Type.Equals(TransactionType.Debit))
@@ -193,7 +184,7 @@ namespace BankingApplication.Services
                 else if(transaction.Type.Equals(TransactionType.Transfer))
                 {
                     Account receiverAccount = new AccountService().FetchAccountByAccountId(transaction.ReceiverAccountId);
-                    transService.WithdrawAmount(receiverAccount, transaction.TransactionAmount,bank.DefaultCurrency.CurrencyName);
+                    transService.WithdrawAmount(receiverAccount, transaction.TransactionAmount);
                     receiverAccount.Transactions.Remove(transaction);
                     transService.DepositAmount(userAccount,transaction.TransactionAmount,bank.DefaultCurrency.CurrencyName);
                     userAccount.Transactions.Remove(transaction);

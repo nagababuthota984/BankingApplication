@@ -9,15 +9,12 @@ namespace BankingApplication.CLI
     class Program
     {
 
-        public static void Main() 
+        public static void Main()
         {
-            if (RBIStorage.banks == null)
-            {
-                RBIStorage.banks = new List<Bank>();
-            }
+            
             RBIStorage.banks = FileHelper.GetData();
-            Console.WriteLine("\t\tWelcome to Technovert Banking Solutions.\n1.Account Holder Login\n2.Bank Staff Login.\n");
-            MainMenu choice = (MainMenu)int.Parse(Console.ReadLine());
+            Console.WriteLine("Welcome to Technovert Banking Solutions.\n********************\n1.Account Holder Login\n2.Bank Staff Login.\n\nPlease enter one option\n********************");
+            MainMenu choice = GetMainMenuByInput(Convert.ToInt32(Console.ReadLine()));
             while (true)
             {
                 try
@@ -30,16 +27,27 @@ namespace BankingApplication.CLI
                         case MainMenu.BankStaff:
                             new BankStaffPage().UserInterface();
                             break;
-                        default:
+                        case MainMenu.CloseApplication:
                             Environment.Exit(0);
                             break;
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
             }
+        }
+
+
+        public static MainMenu GetMainMenuByInput(int value)
+        {
+            if (value == 1)
+                return MainMenu.AccountHolder;
+            else if (value == 2)
+                return MainMenu.BankStaff;
+            else
+                return MainMenu.CloseApplication;
         }
     }
 }

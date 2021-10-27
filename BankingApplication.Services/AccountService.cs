@@ -9,57 +9,26 @@ namespace BankingApplication.Services
 {
     public class AccountService
     {
-        public AccountService()
-        {
-            if (RBIStorage.banks == null)     //initializes the json file if it is empty.
-            {
-                RBIStorage.banks = new List<Bank>();
-                FileHelper.WriteData(RBIStorage.banks);
-            }
-        }
+        
         public Account FetchAccountByUserName(string username)
         {
-            foreach(var bank in RBIStorage.banks)
-            {
-                foreach(var account in bank.Accounts)
-                {
-                    if(account.UserName.Equals(username) && !account.Status.Equals(AccountStatus.Closed))
-                    {
-                        return account;
-                    }
-                }
-            }
-            throw new AccountDoesntExistException("Account Doesn't Exists"); 
+
+            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.Accounts.Any(a => a.UserName == username && !a.Status.Equals(AccountStatus.Closed)));
+            Account account = bank.Accounts.FirstOrDefault(a => a.UserName == username && !a.Status.Equals(AccountStatus.Closed));
+            return account; 
         }
         public  Account FetchAccountByAccNumber(string accNumber)
         {
-            foreach (var bank in RBIStorage.banks)
-            {
-                foreach (var account in bank.Accounts)
-                {
-                    if (account.AccountNumber.Equals(accNumber) && !account.Status.Equals(AccountStatus.Closed))
-                    {
-                        return account;
-                    }
-                }
-            }
-            throw new AccountDoesntExistException("Account Doesn't Exists");
+            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.Accounts.Any(a => a.AccountNumber == accNumber && !a.Status.Equals(AccountStatus.Closed)));
+            Account account = bank.Accounts.FirstOrDefault(a => a.AccountNumber == accNumber && !a.Status.Equals(AccountStatus.Closed));
+            return account;
         }
 
         public Account FetchAccountByAccountId(string accountId)
         {
-            foreach(var bank in RBIStorage.banks)
-            {
-                foreach(var account in bank.Accounts)
-                {
-                    if(account.AccountId.Equals(accountId) && !account.Status.Equals(AccountStatus.Closed))
-                    {
-                        return account;
-                    }
-                }
-            }
-
-            throw new AccountDoesntExistException("Account Doesn't Exist");
+            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.Accounts.Any(a => a.AccountId == accountId && !a.Status.Equals(AccountStatus.Closed)));
+            Account account = bank.Accounts.FirstOrDefault(a => a.AccountId == accountId && !a.Status.Equals(AccountStatus.Closed));
+            return account;
         }
 
         public void UpdateAccount(Account userAccount,string property,string newValue)
@@ -68,7 +37,7 @@ namespace BankingApplication.Services
             PropertyInfo myProp = userAccount.Customer.GetType().GetProperty(property);
             if (property.ToLower().Equals("dob"))
             {
-                DateTime newDate = DateTime.Parse(newValue);
+                DateTime newDate = Convert.ToDateTime(newValue);
                 myProp.SetValue(userAccount.Customer, newDate, null);
             }
             else

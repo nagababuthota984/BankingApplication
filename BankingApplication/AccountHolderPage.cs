@@ -9,8 +9,10 @@ namespace BankingApplication.CLI
     {
         public void UserInterface()
         {
+            Console.WriteLine("=================CUSTOMER LOGIN================");
             string userName = UserInput.AskUser("Username");
             string password = UserInput.AskUser("Password");
+            Console.WriteLine();
             if (!IsValidUser(userName, password))
             {
                 Console.WriteLine("Invalid Credentials\n");
@@ -24,45 +26,81 @@ namespace BankingApplication.CLI
                     try
                     {
 
-                        AccountHolderMenu Choice = UserInput.ShowAccountHolderMenu();
+                        AccountHolderMenu choice = UserInput.ShowAccountHolderMenu();
 
-                        switch (Choice)
+                        switch (choice)
                         {
 
 
                             case AccountHolderMenu.Deposit:
                                 Console.WriteLine("\t-------Money Deposit-------\n");
-                                decimal amount = int.Parse(UserInput.AskUser("Amount to Deposit"));
-                                string currencyName = UserInput.AskUser("Currency Name");
-                                transService.DepositAmount(userAccount, amount,currencyName);
-                                UserOutput.ShowMessage("Credited successfully");
+                                decimal amount = Convert.ToInt32(UserInput.AskUser("Amount to Deposit"));
+                                if (amount>0)
+                                {
+                                    string currencyName = UserInput.AskUser("Currency Name");
+                                    transService.DepositAmount(userAccount, amount, currencyName);
+                                    UserOutput.ShowMessage("Credited successfully\n"); 
+                                }
+                                else
+                                {
+                                    UserOutput.ShowMessage("Please enter valid amount.\n");
+                                }
                                 break;
 
                             case AccountHolderMenu.Withdraw:
                                 Console.WriteLine("\n-------Amount Withdrawl-------\n");
-                                amount = decimal.Parse(UserInput.AskUser("Amount to Withdraw"));
-                                currencyName = UserInput.AskUser("Currency name");
-                                transService.WithdrawAmount(userAccount, amount,currencyName);
-                                UserOutput.ShowMessage("Debited successfully");
+                                amount = Convert.ToDecimal(UserInput.AskUser("Amount to Withdraw"));
+                                if (amount > 0)
+                                {
+                                    if (amount <= userAccount.Balance)
+                                    {
+                                        transService.WithdrawAmount(userAccount, amount);
+                                        UserOutput.ShowMessage("Debited successfully");
+                                    }
+                                    else
+                                    {
+                                        UserOutput.ShowMessage("Insufficient funds.\n");
+                                    }
+                                }
+                                else
+                                {
+                                    UserOutput.ShowMessage("Invalid amount to withdraw.\n");
+                                }
                                 break;
                             case AccountHolderMenu.Transfer:
                                 Console.WriteLine("-------Amount Transfer-------\n");
                                 string receiverAccNumber = UserInput.AskUser("Receiver Account Number");
                                 Account recipientAccount = new AccountService().FetchAccountByAccNumber(receiverAccNumber);
-                                amount = decimal.Parse(UserInput.AskUser("Amount to Transfer"));
-                                currencyName = UserInput.AskUser("Currency name");
-                                ModeOfTransfer mode = (ModeOfTransfer)int.Parse(UserInput.AskUser("mode of transfer\n1.RTGS \n2.IMPS."));
-                                transService.TransferAmount(userAccount, recipientAccount, amount, mode,currencyName);
-                                UserOutput.ShowMessage("Transferred successfully");
+                                amount = Convert.ToDecimal(UserInput.AskUser("Amount to Transfer"));
+                                if (amount>0 )
+                                {
+                                    if (amount>=userAccount.Balance)
+                                    {
+                                        ModeOfTransfer mode = (ModeOfTransfer)Convert.ToInt32(UserInput.AskUser("mode of transfer\n1.RTGS \n2.IMPS."));
+                                        transService.TransferAmount(userAccount, recipientAccount, amount, mode);
+                                        UserOutput.ShowMessage("Transferred successfully"); 
+                                    } 
+                                    else
+                                    {
+                                        UserOutput.ShowMessage("Insufficient Funds.\n");
+                                    }
+                                }
+                                else
+                                {
+                                    UserOutput.ShowMessage("Please enter valid amount.\n");
+                                }
                                 break;
                             case AccountHolderMenu.PrintStatement:
-                                Console.WriteLine("-------Transaction History-------\n");
+                                Console.WriteLine("\n-------Transaction History-------\n");
                                 UserOutput.ShowTransactions(transService.FetchTransactionHistory(userAccount));
                                 break;
-
-                            default:
-                                Program.Main();
+                            case AccountHolderMenu.CheckBalance:
+                                Console.WriteLine($"\nCurrent Balance - {userAccount.Balance} INR\n");
                                 break;
+                            case AccountHolderMenu.LogOut:
+                                UserInterface();
+                                break;
+                            
                         }
                     }
                     catch (Exception e)
@@ -82,12 +120,9 @@ namespace BankingApplication.CLI
                 {
                     foreach (var account in bank.Accounts)
                     {
-                        if (account.UserName.Equals(username))
+                        if (account.UserName.Equals(username) && account.Password.Equals(password))
                         {
-                            if (account.Password.Equals(password))
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                     }
                 }

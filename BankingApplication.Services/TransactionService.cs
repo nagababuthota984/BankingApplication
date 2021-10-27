@@ -75,33 +75,28 @@ namespace BankingApplication.Services
         }
         public void DepositAmount(Account userAccount, decimal amount, string currencyName)
         {
-            if (amount > 0)
+            
+            Bank bank = new BankService().GetBankByBankId(userAccount.BankId);
+            Currency currency = bank.SupportedCurrency.FirstOrDefault(c => c.CurrencyName.Equals(currencyName));
+            if (currency != null)
             {
-                Bank bank = new BankService().GetBankByBankId(userAccount.BankId);
-                Currency currency = bank.SupportedCurrency.FirstOrDefault(c => c.CurrencyName.Equals(currencyName));
-                if(currency != null)
-                {
-                    amount = amount * currency.ExchangeRate;
-                    userAccount.Balance += amount;
-                    CreateTransaction(userAccount, TransactionType.Credit, amount,currency);
-                    FileHelper.WriteData(RBIStorage.banks);
-                }
-                else
-                {
-                    throw new UnsupportedCurrencyException("Currency Not Supported");
-                }
-                
+                amount = amount * currency.ExchangeRate;
+                userAccount.Balance += amount;
+                CreateTransaction(userAccount, TransactionType.Credit, amount, currency);
+                FileHelper.WriteData(RBIStorage.banks);
             }
             else
             {
-                throw new InvalidAmountException("Please enter valid amount to deposit.");
+                throw new UnsupportedCurrencyException("Currency Not Supported");
             }
+
         }
-        public void WithdrawAmount(Account userAccount,decimal amount,string currencyName)
+
+        public void WithdrawAmount(Account userAccount,decimal amount)
         {
 
             Bank bank = new BankService().GetBankByBankId(userAccount.BankId);
-            Currency currency = bank.SupportedCurrency.FirstOrDefault(c => c.CurrencyName.Equals(currencyName));
+            Currency currency = bank.DefaultCurrency;
             if (currency != null)
             {
                 amount = amount * currency.ExchangeRate;
@@ -125,23 +120,16 @@ namespace BankingApplication.Services
                 throw new UnsupportedCurrencyException("Currency Not Supported");
             }
         }
-        public void TransferAmount(Account senderAccount,Account receiverAccount,decimal amount,ModeOfTransfer mode,string currencyName)
+        public void TransferAmount(Account senderAccount, Account receiverAccount, decimal amount, ModeOfTransfer mode)
         {
             Bank bank = new BankService().GetBankByBankId(senderAccount.BankId);
-            Currency currency = bank.SupportedCurrency.FirstOrDefault(c => c.CurrencyName.Equals(currencyName));
+            Currency currency = bank.DefaultCurrency;
             amount = amount * currency.ExchangeRate;
-            if (amount <= senderAccount.Balance)
-            {
-                senderAccount.Balance -= amount;
-                receiverAccount.Balance += amount;
-                ApplyTransferCharges(senderAccount, receiverAccount.BankId, amount, mode,currency);
-                CreateTransferTransaction(senderAccount, receiverAccount, amount, mode ,currency);
-                FileHelper.WriteData(RBIStorage.banks);
-            }
-            else
-            {
-                throw new InvalidAmountException("Invalid amount to transfer.");
-            }
+            senderAccount.Balance -= amount;
+            receiverAccount.Balance += amount;
+            ApplyTransferCharges(senderAccount, receiverAccount.BankId, amount, mode, currency);
+            CreateTransferTransaction(senderAccount, receiverAccount, amount, mode ,currency);
+            FileHelper.WriteData(RBIStorage.banks);
         }
         private void ApplyTransferCharges(Account senderAccount, string receiverBankId, decimal amount, ModeOfTransfer mode,Currency currency)
         {
@@ -186,29 +174,24 @@ namespace BankingApplication.Services
         internal Transaction FetchTransactionByTransactionId(string transactionId)
         {
             Transaction transaction = null;
-            if(RBIStorage.banks!=null)
+            string bankId = transactionId.Substring(3, 11);
+            string accountId = transactionId.Substring(14, 11);
+            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankId.Equals(bankId));
+            if (bank != null)
             {
-                foreach (var bank in RBIStorage.banks)
+                Account account = bank.Accounts.FirstOrDefault(b => b.AccountId.Equals(accountId));
+                if (account != null)
                 {
-                    foreach (var account in bank.Accounts)
-                    {
-                        transaction = account.Transactions.FirstOrDefault(t => t.TransId.Equals(transactionId));
-                        if(transaction!=null) return transaction;
-                    }
+                    transaction = account.Transactions.FirstOrDefault(t => t.TransId.Equals(transactionId));
+                    return transaction;
                 }
-                return transaction;
             }
-            else
-            {
-                throw new TransactionDoesntExist("Invalid bank details");
-            }
+            return transaction;
         }
 
         public List<Transaction> FetchTransactionHistory(Account userAccount)
         {
             return userAccount.Transactions;
         }
-        
-        
     }
 }
