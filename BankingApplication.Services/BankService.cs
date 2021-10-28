@@ -10,19 +10,20 @@ namespace BankingApplication.Services
     {
         AccountService accountService = new AccountService();
 
-        public void Add(string name, string branch, string ifsc)
+        public Bank CreateAndGetBank(string name, string branch, string ifsc)
         {
-            Bank NewBank = new Bank(name, branch, ifsc);
-            RBIStorage.banks.Add(NewBank);
+            Bank newBank = new Bank(name, branch, ifsc);
+            RBIStorage.banks.Add(newBank);
+            return newBank;
         }
 
-        public Employee GetEmployeeByUserName(string userName)
+        public Employee GetEmployeeByUserNameAndPassword(string userName,string password)
         {
             foreach (var bank in RBIStorage.banks)
             {
                 foreach (var employee in bank.Employees)
                 {
-                    if (employee.UserName.Equals(userName))
+                    if (employee.UserName.Equals(userName) &&  employee.Password.Equals(password))
                     {
                         return employee;
                     }
@@ -61,12 +62,6 @@ namespace BankingApplication.Services
                 throw new InvalidBankException("Bank Doesnt Exist.");
             }
         }
-        public Bank GetBankByIfsc(string ifsc)
-        {
-            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.Ifsc.Equals(ifsc));
-            return bank;
-        }
-        
         public bool AddNewCurrency(Bank bank, string newCurrencyName, decimal exchangeRate)
         {
             if(bank.SupportedCurrency.Any(c => c.CurrencyName.ToLower() == newCurrencyName.ToLower()))
@@ -148,7 +143,7 @@ namespace BankingApplication.Services
             Account userAccount = accountService.GetAccountById(transaction.SenderAccountId);
             if (transaction.Type.Equals(TransactionType.Credit))
             {
-                accountService.WithdrawAmount(userAccount, transaction.TransactionAmount,bank);
+                accountService.WithdrawAmount(userAccount, transaction.TransactionAmount,bank.DefaultCurrency);
                 userAccount.Transactions.Remove(transaction);
             }
             else if (transaction.Type.Equals(TransactionType.Debit))
@@ -159,7 +154,7 @@ namespace BankingApplication.Services
             else if (transaction.Type.Equals(TransactionType.Transfer))
             {
                 Account receiverAccount = accountService.GetAccountById(transaction.ReceiverAccountId);
-                accountService.WithdrawAmount(receiverAccount, transaction.TransactionAmount,bank);
+                accountService.WithdrawAmount(receiverAccount, transaction.TransactionAmount,bank.DefaultCurrency);
                 receiverAccount.Transactions.Remove(transaction);
                 accountService.DepositAmount(userAccount, transaction.TransactionAmount, bank.DefaultCurrency);
                 userAccount.Transactions.Remove(transaction);

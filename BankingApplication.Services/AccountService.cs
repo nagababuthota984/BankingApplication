@@ -11,24 +11,21 @@ namespace BankingApplication.Services
     {
         TransactionService transService = new TransactionService();
 
-        public Account GetAccountByUserName(string username)
+        public Account GetAccountByUserNameAndPassword(string username,string password)
         {
-
-            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.Accounts.Any(a => a.UserName == username && !a.Status.Equals(AccountStatus.Closed)));
-            if (bank != null)
+            foreach (var bank in RBIStorage.banks)
             {
-                Account account = bank.Accounts.FirstOrDefault(a => a.UserName == username && !a.Status.Equals(AccountStatus.Closed));
-                return account;
+                Account account = bank.Accounts.FirstOrDefault(a => (a.UserName == username) && (!a.Status.Equals(AccountStatus.Closed)) && (a.Password.Equals(password)));
+                if (account != null) return account;
             }
             return null;
         }
         public Account GetAccountByAccNumber(string accNumber)
         {
-            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.Accounts.Any(a => a.AccountNumber == accNumber && !a.Status.Equals(AccountStatus.Closed)));
-            if (bank != null)
+            foreach (var bank in RBIStorage.banks)
             {
                 Account account = bank.Accounts.FirstOrDefault(a => a.AccountNumber == accNumber && !a.Status.Equals(AccountStatus.Closed));
-                return account;
+                if (account != null) return account;
             }
             return null;
         }
@@ -37,7 +34,8 @@ namespace BankingApplication.Services
         {
             foreach (Bank bank in RBIStorage.banks)
             {
-                return bank.Accounts.FirstOrDefault(a => a.AccountId == accountId && !a.Status.Equals(AccountStatus.Closed));
+                Account account =  bank.Accounts.FirstOrDefault(a => a.AccountId == accountId && !a.Status.Equals(AccountStatus.Closed));
+                if (account != null) return account;
             }
             return null;
         }
@@ -72,15 +70,14 @@ namespace BankingApplication.Services
             transService.CreateTransaction(userAccount, TransactionType.Credit, amount, currency);
             FileHelper.WriteData(RBIStorage.banks);
         }
-        public void WithdrawAmount(Account userAccount, decimal amount, Bank bank)
+        public void WithdrawAmount(Account userAccount, decimal amount, Currency defaultCurrency)
         {
 
-            Currency currency = bank.DefaultCurrency;
-            if (currency != null)
+            if (defaultCurrency != null)
             {
-                amount = amount * currency.ExchangeRate;
+                amount = amount * defaultCurrency.ExchangeRate;
                 userAccount.Balance -= amount;
-                transService.CreateTransaction(userAccount, TransactionType.Debit, amount, currency);
+                transService.CreateTransaction(userAccount, TransactionType.Debit, amount, defaultCurrency);
                 FileHelper.WriteData(RBIStorage.banks);
             }
             else

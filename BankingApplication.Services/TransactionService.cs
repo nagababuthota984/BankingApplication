@@ -16,12 +16,10 @@ namespace BankingApplication.Services
         }
         public void CreateTransferTransaction(Account userAccount,Account receiverAccount,decimal transactionAmount,ModeOfTransfer mode, Currency currency)
         {
-            Transaction senderTransaction = new Transaction(userAccount,receiverAccount, TransactionType.Transfer, transactionAmount, currency,mode);
-            userAccount.Transactions.Add(senderTransaction);
-            Transaction receiverTransaction = new Transaction(receiverAccount,userAccount, TransactionType.Transfer, transactionAmount, currency, mode);
-            receiverTransaction.SenderAccountId = userAccount.AccountId;
-            receiverTransaction.ReceiverAccountId = receiverAccount.AccountId;
-            receiverAccount.Transactions.Add(receiverTransaction);
+            Transaction transferTransaction = new Transaction(userAccount,receiverAccount, TransactionType.Transfer, transactionAmount, currency,mode);
+            userAccount.Transactions.Add(transferTransaction);
+            transferTransaction.BalanceAmount = receiverAccount.Balance;
+            receiverAccount.Transactions.Add(transferTransaction);
         }
         public void CreateBankTransaction(Bank bank, string accountId, decimal charges,Currency currency)
         {

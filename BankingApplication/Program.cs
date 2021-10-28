@@ -8,7 +8,9 @@ namespace BankingApplication.CLI
 
     class Program
     {
-        private AccountHolderPage accountHolderPage;
+        private static AccountHolderPage accountHolderPage = new AccountHolderPage();
+        private static BankEmployeePage EmployeePage = new BankEmployeePage();
+
         public static void Main()
         {
             
@@ -18,21 +20,18 @@ namespace BankingApplication.CLI
 
         public static void WelcomeMenu()
         {
-            AccountHolderPage accPage = new AccountHolderPage();
-            BankEmployeePage EmployeePage = new BankEmployeePage();
-            Console.WriteLine("\n\n==============================Welcome to Technovert Banking Solutions=============================.\n********************\n1.Account Holder Login\n2.Bank Employee Login.\n\nPlease enter one option\n********************");
-            MainMenu choice = GetMainMenuByInput(Convert.ToInt32(Console.ReadLine()));
+            Console.WriteLine(Constant.welcomeMessage);
             while (true)
             {
                 try
                 {
-                    switch (choice)
+                    switch (GetMainMenuByInput(Convert.ToInt32(Console.ReadLine())))
                     {
                         case MainMenu.AccountHolder:
-                            accPage.UserInterface();
+                            accountHolderPage.CustomerInterface();
                             break;
                         case MainMenu.BankEmployee:
-                            EmployeePage.UserInterface();
+                            EmployeePage.EmployeeInterface();
                             break;
                         case MainMenu.CloseApplication:
                             Environment.Exit(0);

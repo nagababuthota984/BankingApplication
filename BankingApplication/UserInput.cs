@@ -14,7 +14,7 @@ namespace BankingApplication.CLI
         public static AccountHolderMenu ShowAccountHolderMenu()
         {
             Console.WriteLine("\n================CUSTOMER MENU===================");
-            Console.WriteLine("\nChoose any one option:\n1.Deposit\n2.Withdraw\n3.Transfer Amount\n4.Print Transaction history\n5.Check Balance\n6.Logout");
+            Console.WriteLine(Constant.accountHolderOptions);
             Console.WriteLine("==================================================\n");
             return GetAccountHolderMenuByInteger(Convert.ToInt32(Console.ReadLine()));
         }

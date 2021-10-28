@@ -8,31 +8,31 @@ namespace BankingApplication.CLI
 {
     public class AccountHolderPage
     {
-        public void UserInterface()
+        AccountService accountService = new AccountService();
+        BankService bankService = new BankService();
+        public void CustomerInterface()
         {
             Console.WriteLine("=================CUSTOMER LOGIN================");
             string userName = UserInput.GetInputValue("Username");
             string password = UserInput.GetInputValue("Password");
             Console.WriteLine();
-            AccountService accountService = new AccountService();
-            Account userAccount = accountService.GetAccountByUserName(userName);
+            Account userAccount = accountService.GetAccountByUserNameAndPassword(userName,password);
 
             if (userAccount==null)
             {
                 Console.WriteLine("Invalid Credentials\n");
+                CustomerInterface();
             }
             else
             {
-                TransactionService transService = new TransactionService();
-                BankService bankService =  new BankService();
+                
                 Bank bank = bankService.GetBankByBankId(userAccount.BankId);
                 while (true)
                 {
                     try
                     {
 
-                        AccountHolderMenu choice = UserInput.ShowAccountHolderMenu();
-                        switch (choice)
+                        switch (UserInput.ShowAccountHolderMenu())
                         {
                             case AccountHolderMenu.Deposit:
                                 Console.WriteLine("\t-------Money Deposit-------\n");
@@ -64,7 +64,7 @@ namespace BankingApplication.CLI
                                 {
                                     if (amount <= userAccount.Balance)
                                     {
-                                        accountService.WithdrawAmount(userAccount, amount,bank);
+                                        accountService.WithdrawAmount(userAccount, amount,bank.DefaultCurrency);
                                         UserOutput.ShowMessage("Debited successfully");
                                     }
                                     else

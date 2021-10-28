@@ -200,6 +200,31 @@
         "BankName": null,
         "Branch": null,
         "Ifsc": null
+      },
+      {
+        "Customer": {
+          "AccountId": "Nag19860907",
+          "Name": "Nagarjuna",
+          "Age": "48",
+          "Gender": 1,
+          "ContactNumber": "9282992929",
+          "Dob": "1986-09-07T00:00:00",
+          "Address": "Guntur",
+          "AadharNumber": "9292993292",
+          "PanNumber": "9292992929"
+        },
+        "AccountNumber": "76456805238",
+        "AccountId": "Nag19860907",
+        "AccountType": 1,
+        "Balance": 0.0,
+        "UserName": "Nag1986",
+        "Password": "19860907",
+        "Status": 0,
+        "Transactions": [],
+        "BankId": "Axi20211024",
+        "BankName": "AxisBank",
+        "Branch": "Guntur",
+        "Ifsc": "AXI00091"
       }
     ],
     "SelfRTGS": 0.0,
@@ -287,98 +312,7 @@
         "UserName": "Sen2001",
         "Password": "20010419",
         "Status": 0,
-        "Transactions": [
-          {
-            "TransId": "TXNSta20211026Sen2001041920211026171941",
-            "Type": 2,
-            "SenderAccountId": "Moh20020911",
-            "ReceiverAccountId": "Sen20010419",
-            "SenderBankId": null,
-            "ReceiverBankId": null,
-            "On": "2021-10-26T17:19:41.9095953+05:30",
-            "TransactionAmount": 20.0,
-            "BalanceAmount": 20.0,
-            "Currency": {
-              "CurrencyName": "INR",
-              "ExchangeRate": 1.0
-            },
-            "TransferMode": 1
-          },
-          {
-            "TransId": "TXNSta20211026Sen2001041920211026074251",
-            "Type": 2,
-            "SenderAccountId": "Moh20020911",
-            "ReceiverAccountId": "Sen20010419",
-            "SenderBankId": null,
-            "ReceiverBankId": null,
-            "On": "2021-10-26T19:42:51.1395982+05:30",
-            "TransactionAmount": 100.0,
-            "BalanceAmount": 120.0,
-            "Currency": {
-              "CurrencyName": "INR",
-              "ExchangeRate": 1.0
-            },
-            "TransferMode": 1
-          },
-          {
-            "TransId": "TXNSta20211026Sen2001041920211026074706",
-            "Type": 0,
-            "SenderAccountId": "Sen20010419",
-            "ReceiverAccountId": "Sen20010419",
-            "SenderBankId": null,
-            "ReceiverBankId": null,
-            "On": "2021-10-26T19:47:06.9042745+05:30",
-            "TransactionAmount": 300.0,
-            "BalanceAmount": 420.0,
-            "Currency": null,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNSta20211026Sen2001041920211026074720",
-            "Type": 1,
-            "SenderAccountId": "Sen20010419",
-            "ReceiverAccountId": "Sen20010419",
-            "SenderBankId": null,
-            "ReceiverBankId": null,
-            "On": "2021-10-26T19:47:20.3547801+05:30",
-            "TransactionAmount": 420.0,
-            "BalanceAmount": 0.0,
-            "Currency": null,
-            "TransferMode": 3
-          },
-          {
-            "TransId": "TXNSta20211026Sen2001041920211026074759",
-            "Type": 2,
-            "SenderAccountId": "Sen20010419",
-            "ReceiverAccountId": "Cha20020510",
-            "SenderBankId": null,
-            "ReceiverBankId": null,
-            "On": "2021-10-26T19:47:59.3018167+05:30",
-            "TransactionAmount": -20.0,
-            "BalanceAmount": 20.40,
-            "Currency": {
-              "CurrencyName": "INR",
-              "ExchangeRate": 1.0
-            },
-            "TransferMode": 1
-          },
-          {
-            "TransId": "TXNSta20211026Sen2001041920211027090514",
-            "Type": 2,
-            "SenderAccountId": "Moh20020911",
-            "ReceiverAccountId": "Sen20010419",
-            "SenderBankId": null,
-            "ReceiverBankId": null,
-            "On": "2021-10-27T09:05:14.8448543+05:30",
-            "TransactionAmount": 12.0,
-            "BalanceAmount": 32.40,
-            "Currency": {
-              "CurrencyName": "INR",
-              "ExchangeRate": 1.0
-            },
-            "TransferMode": 1
-          }
-        ],
+        "Transactions": [],
         "BankId": "Sta20211026",
         "BankName": "StateBankOfIndia",
         "Branch": "Guntur",

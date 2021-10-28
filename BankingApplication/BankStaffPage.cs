@@ -11,13 +11,13 @@ namespace BankingApplication.CLI
         BankService bankService = new BankService();
         AccountService accountService = new AccountService();
         TransactionService transactionService = new TransactionService();
-        public void UserInterface()
+        public void EmployeeInterface()
         {
-            Console.WriteLine("\n===================BANK Employee LOGIN===================\n");
+            Console.WriteLine("\n===================BANK EMPLOYEE LOGIN===================\n");
             string userName = UserInput.GetInputValue("Username");
             string password = UserInput.GetInputValue("Password");
             Console.WriteLine();
-            Employee currentWorkingEmployee = bankService.GetEmployeeByUserName(userName);
+            Employee currentWorkingEmployee = bankService.GetEmployeeByUserNameAndPassword(userName,password);
             if (currentWorkingEmployee == null)
             {
                 UserOutput.ShowMessage("Invalid Credentials\n");
@@ -53,8 +53,7 @@ namespace BankingApplication.CLI
                                     string bankName = UserInput.GetInputValue("Name of the bank");
                                     string branch = UserInput.GetInputValue("Branch");
                                     string ifsc = UserInput.GetInputValue("IFSC");
-                                    bankService.Add(bankName, branch, ifsc);
-                                    Bank newBank = bankService.GetBankByIfsc(ifsc);
+                                    Bank newBank = bankService.CreateAndGetBank(bankName, branch, ifsc);
                                     if (newBank == null)
                                     {
                                         UserOutput.ShowMessage("Bank not created! Try again.");
@@ -69,7 +68,7 @@ namespace BankingApplication.CLI
                                     Account userAccount = accountService.GetAccountById(accountId);
                                     if (userAccount != null)
                                     {
-                                        Console.WriteLine("\nYou will only be able to modify customer related properties. Properties like account number, accound Id, Balance Cannot be changed!\n");
+                                        Console.WriteLine("\nYou will only be able to modify customer related properties.\n");
                                         string property = UserInput.GetInputValue("property you want to update");
                                         Console.WriteLine("Enter new value: ");
                                         string newValue = Console.ReadLine();
@@ -78,7 +77,7 @@ namespace BankingApplication.CLI
                                     }
                                     else
                                     {
-                                        UserOutput.ShowMessage("Account Does not exists.\n");
+                                        UserOutput.ShowMessage(Constant.accountNotFoundError);
                                     }
                                     break;
                                 case BankEmployeeMenu.DeleteAccount:
@@ -97,11 +96,11 @@ namespace BankingApplication.CLI
                                     }
                                     else
                                     {
-                                        UserOutput.ShowMessage("Account does not exists.\n");
+                                        UserOutput.ShowMessage(Constant.accountNotFoundError);
                                     }
                                     break;
                                 case BankEmployeeMenu.AddNewEmployee:
-                                    Console.WriteLine("\n-----------New Employee-----------\n");
+                                    Console.WriteLine("\n-----------Add New Employee-----------\n");
                                     name = AskName();
                                     age = AskAge();
                                     dob = Convert.ToDateTime(UserInput.GetInputValue("Employee Date of Birth"));
@@ -151,7 +150,7 @@ namespace BankingApplication.CLI
                                     }
                                     else
                                     {
-                                        UserOutput.ShowMessage("Account does not exists.\n");
+                                        UserOutput.ShowMessage(Constant.accountNotFoundError);
                                     }
                                     break;
                                 case BankEmployeeMenu.RevertTransaction:
@@ -186,16 +185,12 @@ namespace BankingApplication.CLI
                                     break;
                             }
                         }
-
-
-
                     }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
-
             }
         }
         private Gender GetGenderByInteger(int v)
