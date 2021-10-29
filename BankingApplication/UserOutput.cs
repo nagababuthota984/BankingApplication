@@ -33,7 +33,7 @@ namespace BankingApplication.CLI
             }
             else
             {
-                Console.WriteLine("\nNo transactions to show!\n")
+                Console.WriteLine("\nNo transactions to show!\n");
             }
         }
 
