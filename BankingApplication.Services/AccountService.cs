@@ -3,23 +3,38 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace BankingApplication.Services
 {
     public class AccountService
     {
         TransactionService transService = new TransactionService();
-
-        public Account GetAccountByUserNameAndPassword(string username,string password)
+        public List<object> GetAccountByUserNameAndPassword(string username, string password)
         {
             foreach (var bank in RBIStorage.banks)
             {
-                Account account = bank.Accounts.FirstOrDefault(a => (a.UserName == username) && (!a.Status.Equals(AccountStatus.Closed)) && (a.Password.Equals(password)));
-                if (account != null) return account;
+                Account account = bank.Accounts.FirstOrDefault(a => (a.UserName == username) && (a.Status != AccountStatus.Closed) && (a.Password.Equals(password)));
+                if (account != null) return new List<object> { account,bank};
             }
             return null;
         }
+
+        public bool CustomerLogin(string userName, string password)
+        {
+            List<object> accountAndBank = GetAccountByUserNameAndPassword(userName,password);
+            if (accountAndBank != null)
+            {
+                SessionContent.Account = (Account)accountAndBank[0];
+                SessionContent.Bank = (Bank)accountAndBank[1];
+                return true;
+            }
+            else
+            {
+                return false; 
+            }
+
+        }
+
         public Account GetAccountByAccNumber(string accNumber)
         {
             foreach (var bank in RBIStorage.banks)
@@ -34,7 +49,7 @@ namespace BankingApplication.Services
         {
             foreach (Bank bank in RBIStorage.banks)
             {
-                Account account =  bank.Accounts.FirstOrDefault(a => a.AccountId == accountId && !a.Status.Equals(AccountStatus.Closed));
+                Account account = bank.Accounts.FirstOrDefault(a => a.AccountId == accountId && !a.Status.Equals(AccountStatus.Closed));
                 if (account != null) return account;
             }
             return null;
@@ -65,37 +80,28 @@ namespace BankingApplication.Services
         }
         public void DepositAmount(Account userAccount, decimal amount, Currency currency)
         {
-            amount = amount * currency.ExchangeRate;
+            amount *= currency.ExchangeRate;
             userAccount.Balance += amount;
             transService.CreateTransaction(userAccount, TransactionType.Credit, amount, currency);
             FileHelper.WriteData(RBIStorage.banks);
         }
-        public void WithdrawAmount(Account userAccount, decimal amount, Currency defaultCurrency)
+        public void WithdrawAmount(Account userAccount, decimal amount)
         {
-
-            if (defaultCurrency != null)
-            {
-                amount = amount * defaultCurrency.ExchangeRate;
-                userAccount.Balance -= amount;
-                transService.CreateTransaction(userAccount, TransactionType.Debit, amount, defaultCurrency);
-                FileHelper.WriteData(RBIStorage.banks);
-            }
-            else
-            {
-                throw new UnsupportedCurrencyException("Currency Not Supported");
-            }
-        }
-        public void TransferAmount(Account senderAccount,Bank senderBank, Account receiverAccount, decimal amount, ModeOfTransfer mode)
-        {
-            Currency currency = senderBank.DefaultCurrency;
-            amount = amount * currency.ExchangeRate;
-            senderAccount.Balance -= amount;
-            receiverAccount.Balance += amount;
-            ApplyTransferCharges(senderAccount,senderBank, receiverAccount.BankId, amount, mode, currency);
-            transService.CreateTransferTransaction(senderAccount, receiverAccount, amount, mode, currency);
+            amount *= SessionContent.Bank.DefaultCurrency.ExchangeRate;
+            userAccount.Balance -= amount;
+            transService.CreateTransaction(userAccount, TransactionType.Debit, amount, SessionContent.Bank.DefaultCurrency);
             FileHelper.WriteData(RBIStorage.banks);
         }
-        private void ApplyTransferCharges(Account senderAccount,Bank senderBank, string receiverBankId, decimal amount, ModeOfTransfer mode, Currency currency)
+        public void TransferAmount(Account senderAccount, Bank senderBank, Account receiverAccount, decimal amount, ModeOfTransfer mode)
+        {
+            amount *= SessionContent.Bank.DefaultCurrency.ExchangeRate;
+            senderAccount.Balance -= amount;
+            receiverAccount.Balance += amount;
+            ApplyTransferCharges(senderAccount, senderBank, receiverAccount.BankId, amount, mode, SessionContent.Bank.DefaultCurrency);
+            transService.CreateTransferTransaction(senderAccount, receiverAccount, amount, mode, SessionContent.Bank.DefaultCurrency);
+            FileHelper.WriteData(RBIStorage.banks);
+        }
+        private void ApplyTransferCharges(Account senderAccount, Bank senderBank, string receiverBankId, decimal amount, ModeOfTransfer mode, Currency currency)
         {
             if (mode.Equals(ModeOfTransfer.RTGS))
             {
@@ -105,14 +111,14 @@ namespace BankingApplication.Services
                     decimal charges = (senderBank.SelfRTGS * amount) / 100;
                     senderAccount.Balance -= charges;
                     senderBank.Balance += charges;
-                    transService.CreateBankTransaction(senderBank, senderAccount.AccountId, charges, currency);
+                    transService.CreateBankTransaction(senderBank, senderAccount, charges, currency);
                 }
                 else
                 {
                     decimal charges = (senderBank.OtherRTGS * amount) / 100;
                     senderAccount.Balance -= charges;
                     senderBank.Balance += charges;
-                    transService.CreateBankTransaction(senderBank, senderAccount.AccountId, charges, currency);
+                    transService.CreateBankTransaction(senderBank, senderAccount, charges, currency);
                 }
             }
             else
@@ -122,14 +128,14 @@ namespace BankingApplication.Services
                     decimal charges = (senderBank.SelfIMPS * amount) / 100;
                     senderAccount.Balance -= charges;
                     senderBank.Balance += charges;
-                    transService.CreateBankTransaction(senderBank, senderAccount.AccountId, charges, currency);
+                    transService.CreateBankTransaction(senderBank, senderAccount, charges, currency);
                 }
                 else
                 {
                     decimal charges = (senderBank.OtherIMPS * amount) / 100;
                     senderAccount.Balance -= charges;
                     senderBank.Balance += charges;
-                    transService.CreateBankTransaction(senderBank, senderAccount.AccountId, charges, currency);
+                    transService.CreateBankTransaction(senderBank, senderAccount, charges, currency);
                 }
             }
         }

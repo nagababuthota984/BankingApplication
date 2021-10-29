@@ -66,7 +66,7 @@
         "AccountNumber": "58143602568",
         "AccountId": "Moh20020911",
         "AccountType": 1,
-        "Balance": 279.40,
+        "Balance": 200.40,
         "UserName": "Moh2002",
         "Password": "20020911",
         "Status": 0,
@@ -116,7 +116,7 @@
         "AccountNumber": "72722586547",
         "AccountId": "Sri20090909",
         "AccountType": 1,
-        "Balance": 0.0,
+        "Balance": 69.0,
         "UserName": "Sri2009",
         "Password": "20090909",
         "Status": 0,
@@ -141,7 +141,7 @@
         "AccountNumber": "47361533216",
         "AccountId": "nag20001112",
         "AccountType": 1,
-        "Balance": 0.0,
+        "Balance": 11.0,
         "UserName": "nag2000",
         "Password": "20001112",
         "Status": 0,
@@ -225,13 +225,38 @@
         "BankName": "AxisBank",
         "Branch": "Guntur",
         "Ifsc": "AXI00091"
+      },
+      {
+        "Customer": {
+          "AccountId": "Rag20000909",
+          "Name": "Raghu",
+          "Age": "22",
+          "Gender": 1,
+          "ContactNumber": "029200029",
+          "Dob": "2000-09-09T00:00:00",
+          "Address": "GUntur",
+          "AadharNumber": "029020292",
+          "PanNumber": "02929020292"
+        },
+        "AccountNumber": "55625012611",
+        "AccountId": "Rag20000909",
+        "AccountType": 1,
+        "Balance": 0.0,
+        "UserName": "Rag2000",
+        "Password": "20000909",
+        "Status": 0,
+        "Transactions": [],
+        "BankId": "Axi20211024",
+        "BankName": "AxisBank",
+        "Branch": "Guntur",
+        "Ifsc": "AXI00091"
       }
     ],
     "SelfRTGS": 0.0,
     "SelfIMPS": 5.0,
     "OtherRTGS": 5.0,
     "OtherIMPS": 12.0,
-    "Balance": 6.60,
+    "Balance": 16.60,
     "DefaultCurrency": {
       "CurrencyName": "INR",
       "ExchangeRate": 1.0
@@ -308,7 +333,7 @@
         "AccountNumber": "16677721625",
         "AccountId": "Sen20010419",
         "AccountType": 1,
-        "Balance": 32.40,
+        "Balance": 232.40,
         "UserName": "Sen2001",
         "Password": "20010419",
         "Status": 0,
@@ -328,24 +353,7 @@
       "CurrencyName": "INR",
       "ExchangeRate": 1.0
     },
-    "Transactions": [
-      {
-        "TransId": "TXNSta20211026Sen2001041920211026074759",
-        "Type": 3,
-        "SenderAccountId": "Sen20010419",
-        "ReceiverAccountId": "Sta20211026",
-        "SenderBankId": null,
-        "ReceiverBankId": null,
-        "On": "2021-10-26T19:47:59.3016897+05:30",
-        "TransactionAmount": -0.40,
-        "BalanceAmount": -0.40,
-        "Currency": {
-          "CurrencyName": "INR",
-          "ExchangeRate": 1.0
-        },
-        "TransferMode": 3
-      }
-    ],
+    "Transactions": [],
     "Employees": [],
     "SupportedCurrency": [
       {

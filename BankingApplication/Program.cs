@@ -8,18 +8,19 @@ namespace BankingApplication.CLI
 
     class Program
     {
-        private static AccountHolderPage accountHolderPage = new AccountHolderPage();
-        private static BankEmployeePage EmployeePage = new BankEmployeePage();
+        
 
         public static void Main()
         {
-            
+
             RBIStorage.banks = FileHelper.GetData();
             WelcomeMenu();
         }
 
         public static void WelcomeMenu()
         {
+            AccountHolderPage accountHolderPage = new AccountHolderPage();
+            BankEmployeePage employeePage = new BankEmployeePage();
             Console.WriteLine(Constant.welcomeMessage);
             while (true)
             {
@@ -31,9 +32,9 @@ namespace BankingApplication.CLI
                             accountHolderPage.CustomerInterface();
                             break;
                         case MainMenu.BankEmployee:
-                            EmployeePage.EmployeeInterface();
+                            employeePage.EmployeeInterface();
                             break;
-                        case MainMenu.CloseApplication:
+                        case MainMenu.None:
                             Environment.Exit(0);
                             break;
                     }
@@ -51,7 +52,11 @@ namespace BankingApplication.CLI
             else if (value == 2)
                 return MainMenu.BankEmployee;
             else
-                return MainMenu.CloseApplication;
+                return MainMenu.None;
         }
+
+
     }
+
+   
 }

@@ -5,7 +5,7 @@
     {
         AccountHolder=1,
         BankEmployee,
-        CloseApplication
+        None
     }
     public enum AccountHolderMenu
     {

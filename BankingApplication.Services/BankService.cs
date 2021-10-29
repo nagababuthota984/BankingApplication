@@ -9,27 +9,35 @@ namespace BankingApplication.Services
     public class BankService
     {
         AccountService accountService = new AccountService();
-
         public Bank CreateAndGetBank(string name, string branch, string ifsc)
         {
             Bank newBank = new Bank(name, branch, ifsc);
             RBIStorage.banks.Add(newBank);
             return newBank;
         }
-
-        public Employee GetEmployeeByUserNameAndPassword(string userName,string password)
+        public List<object> GetEmployeeByUserNameAndPassword(string userName,string password)
         {
             foreach (var bank in RBIStorage.banks)
             {
-                foreach (var employee in bank.Employees)
-                {
-                    if (employee.UserName.Equals(userName) &&  employee.Password.Equals(password))
-                    {
-                        return employee;
-                    }
-                }
+                Employee employee = bank.Employees.FirstOrDefault(e => (e.UserName == userName)  && (e.Password.Equals(password)));
+                if (employee != null) return new List<object> { employee, bank };
             }
             return null;
+        }
+        public bool EmployeeLogin(string userName, string password)
+        {
+            List<object> employeeDetails = GetEmployeeByUserNameAndPassword(userName, password);
+            if (employeeDetails !=null)
+            {
+                SessionContent.Bank = (Bank)employeeDetails[1];
+                SessionContent.Employee = (Employee)employeeDetails[0];
+                return true; 
+            }
+            else
+            {
+                return false;
+            }
+
         }
         public void CreateAccount(Account newAccount, Bank bank)
         {
@@ -43,7 +51,7 @@ namespace BankingApplication.Services
         }
         private string GenerateAccountNumber(string bankid)
         {
-            string accNumber = "";
+            string accNumber = null;
             do
             {
                 accNumber = Utilities.GenerateRandomNumber(12).ToString();
@@ -143,7 +151,7 @@ namespace BankingApplication.Services
             Account userAccount = accountService.GetAccountById(transaction.SenderAccountId);
             if (transaction.Type.Equals(TransactionType.Credit))
             {
-                accountService.WithdrawAmount(userAccount, transaction.TransactionAmount,bank.DefaultCurrency);
+                accountService.WithdrawAmount(userAccount, transaction.TransactionAmount);
                 userAccount.Transactions.Remove(transaction);
             }
             else if (transaction.Type.Equals(TransactionType.Debit))
@@ -154,7 +162,7 @@ namespace BankingApplication.Services
             else if (transaction.Type.Equals(TransactionType.Transfer))
             {
                 Account receiverAccount = accountService.GetAccountById(transaction.ReceiverAccountId);
-                accountService.WithdrawAmount(receiverAccount, transaction.TransactionAmount,bank.DefaultCurrency);
+                accountService.WithdrawAmount(receiverAccount, transaction.TransactionAmount);
                 receiverAccount.Transactions.Remove(transaction);
                 accountService.DepositAmount(userAccount, transaction.TransactionAmount, bank.DefaultCurrency);
                 userAccount.Transactions.Remove(transaction);
@@ -165,7 +173,6 @@ namespace BankingApplication.Services
 
 
         }
-
         public Employee CreateAndGetEmployee(string name, string age, DateTime dob, Gender gender, EmployeeDesignation role, Bank bank)
         {
             Employee employee = new Employee(name,age,dob,gender,role,bank);

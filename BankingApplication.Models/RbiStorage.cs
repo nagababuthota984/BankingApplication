@@ -8,4 +8,6 @@ namespace BankingApplication.Models
     {
         public static List<Bank> banks = null;
     }
+
+   
 }

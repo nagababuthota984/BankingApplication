@@ -6,59 +6,31 @@ namespace BankingApplication.Models
 {
     public class Transaction
     {
-        public Transaction()
+        
+        public Transaction(Account senderAccount,Account receiverAccount,TransactionType transtype, decimal transactionamount, Currency currency,ModeOfTransfer mode=ModeOfTransfer.None)
         {
-
-        }
-        public Transaction(Account userAccount, TransactionType transtype, decimal transactionamount, Currency currency)
-        {
-            //..Creates a normal (credit/debit) transaction
-            DateTime timestamp = DateTime.Now;
-            this.TransId = $"TXN{userAccount.BankId}{userAccount.AccountId}{timestamp:yyyyMMddhhmmss}";
+            DateTime timestamp = DateTime.Now; 
+            this.TransId = $"TXN{senderAccount.BankId}{senderAccount.AccountId}{timestamp:yyyyMMddhhmmss}";
+            this.SenderAccountId = senderAccount.AccountId;
+            this.ReceiverAccountId = receiverAccount.AccountId;
             this.Type = transtype;
             this.On = timestamp;
-            this.SenderAccountId = userAccount.AccountId;
-            this.ReceiverAccountId = userAccount.AccountId;
-            this.SenderBankId = userAccount.BankId;
-            this.ReceiverBankId = userAccount.BankId;
+            this.SenderBankId = senderAccount.BankId;
+            this.ReceiverBankId = receiverAccount.BankId;
             this.TransactionAmount = transactionamount;
-            this.BalanceAmount = userAccount.Balance;
-            this.TransferMode = ModeOfTransfer.None;
-        }
-
-        public Transaction(string accountId, Bank bank, TransactionType serviceCharge, decimal charges, Currency currency)
-        {
-            DateTime timestamp = DateTime.Now;
-            this.TransId = $"TXN{bank.BankId}{accountId}{timestamp:yyyyMMddhhmmss}";
-            this.Type = TransactionType.ServiceCharge;
-            this.SenderAccountId = accountId;
-            this.ReceiverAccountId = bank.BankId;
-            this.SenderBankId = bank.BankId;
-            this.ReceiverBankId = bank.BankId;
-            this.On = timestamp;
-            this.TransactionAmount = charges;
-            this.TransferMode = ModeOfTransfer.None;
             this.Currency = currency;
+            this.TransferMode = mode;
+            this.BalanceAmount = senderAccount.Balance;
+        }
+        public Transaction(Account userAccount, Bank bank, TransactionType serviceCharge, decimal charges, Currency currency)
+            : this(userAccount,userAccount,serviceCharge,charges,currency)
+        {
+            //..creates a bank transaction
+            this.ReceiverAccountId = bank.BankId;
             this.BalanceAmount = bank.Balance;
         }
 
-        public Transaction(Account userAccount, Account receiverAccount, TransactionType transfer, decimal transactionAmount, Currency currency, ModeOfTransfer mode)
-        {
-            //..Creates a transfer transaction
-            DateTime timestamp = DateTime.Now;
-            this.TransId = $"TXN{userAccount.BankId}{receiverAccount.AccountId}{timestamp:yyyyMMddhhmmss}";
-            this.Type = transfer;
-            this.SenderAccountId = userAccount.AccountId;
-            this.ReceiverAccountId = receiverAccount.AccountId;
-            this.SenderBankId = userAccount.BankId;
-            this.ReceiverBankId = receiverAccount.BankId;
-            this.Type = TransactionType.Transfer;
-            this.On = timestamp;
-            this.TransactionAmount = transactionAmount;
-            this.BalanceAmount = receiverAccount.Balance;
-            this.Currency = currency;
-            this.TransferMode = mode;
-        }
+       
 
 
         public string TransId { get; set; }
