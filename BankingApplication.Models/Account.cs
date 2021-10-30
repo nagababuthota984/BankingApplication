@@ -5,7 +5,7 @@ namespace BankingApplication.Models
     public class Account : BaseBank
     {
 
-        public Account(Customer customer,AccountType type)
+        public Account(Customer customer, AccountType type)
         {
             this.Customer = customer;
             this.UserName = $"{customer.Name.Substring(0, 3)}{customer.Dob:yyyy}";
@@ -22,7 +22,7 @@ namespace BankingApplication.Models
         public AccountType AccountType { get; set; }
         public decimal Balance { get; set; }
         public string UserName { get; set; }
-        public string Password {  get; private set; }
+        public string Password { get; private set; }
         public AccountStatus Status { get; set; }
         public List<Transaction> Transactions { get; set; }
 

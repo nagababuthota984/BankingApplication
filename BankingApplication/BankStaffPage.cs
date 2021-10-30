@@ -21,10 +21,10 @@ namespace BankingApplication.CLI
             string password = UserInput.GetInputValue("Password");
             Console.WriteLine();
 
-            if (!bankService.EmployeeLogin(userName, password))
+            if (!bankService.IsValidEmployee(userName, password))
             {
                 UserOutput.ShowMessage("Invalid Credentials. Please try again or enter 0 for Main menu\n");
-                if(Console.ReadLine() == "0")
+                if (Console.ReadLine() == "0")
                 {
                     Program.WelcomeMenu();
                 }
@@ -77,6 +77,13 @@ namespace BankingApplication.CLI
                             case BankEmployeeMenu.UpdateAccount:
                                 string accountId = UserInput.GetInputValue("Account Id");
                                 Account userAccount = accountService.GetAccountById(accountId);
+                                while (true)
+                                {
+                                    //...1.Name
+                                    //swatch(//)
+                                    //..case 1:
+                                    //userAccount.Customer.Name = "Input from console";
+                                }
                                 if (userAccount != null)
                                 {
                                     Console.WriteLine("\nYou will only be able to modify customer related properties.\n");
@@ -172,7 +179,7 @@ namespace BankingApplication.CLI
                                     if (transaction.SenderBankId.Equals(transaction.ReceiverBankId))
                                     {
                                         Console.WriteLine("Are you sure you want to revert the transaction(Y/N)?\n");
-                                        if (Console.ReadLine().Equals("y",StringComparison.OrdinalIgnoreCase))
+                                        if (Console.ReadLine().Equals("y", StringComparison.OrdinalIgnoreCase))
                                         {
                                             bankService.RevertTransaction(transaction, bank);
                                         }
@@ -193,7 +200,7 @@ namespace BankingApplication.CLI
                                 break;
                             case BankEmployeeMenu.Logout:
                                 SessionContent.Employee = null;
-                                SessionContent.Bank = null; 
+                                SessionContent.Bank = null;
                                 Program.WelcomeMenu();
                                 break;
                         }

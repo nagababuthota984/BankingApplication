@@ -9,30 +9,21 @@ namespace BankingApplication.Services
     public class AccountService
     {
         TransactionService transService = new TransactionService();
-        public List<object> GetAccountByUserNameAndPassword(string username, string password)
+        
+
+        public bool IsValidCustomer(string userName, string password)
         {
             foreach (var bank in RBIStorage.banks)
             {
-                Account account = bank.Accounts.FirstOrDefault(a => (a.UserName == username) && (a.Status != AccountStatus.Closed) && (a.Password.Equals(password)));
-                if (account != null) return new List<object> { account,bank};
+                Account account = bank.Accounts.FirstOrDefault(a => (a.UserName == userName) && (a.Status != AccountStatus.Closed) && (a.Password.Equals(password)));
+                if (account != null)
+                {
+                    SessionContent.Bank = bank;
+                    SessionContent.Account = account;
+                    return true;
+                };
             }
-            return null;
-        }
-
-        public bool CustomerLogin(string userName, string password)
-        {
-            List<object> accountAndBank = GetAccountByUserNameAndPassword(userName,password);
-            if (accountAndBank != null)
-            {
-                SessionContent.Account = (Account)accountAndBank[0];
-                SessionContent.Bank = (Bank)accountAndBank[1];
-                return true;
-            }
-            else
-            {
-                return false; 
-            }
-
+            return false;
         }
 
         public Account GetAccountByAccNumber(string accNumber)
@@ -49,7 +40,7 @@ namespace BankingApplication.Services
         {
             foreach (Bank bank in RBIStorage.banks)
             {
-                Account account = bank.Accounts.FirstOrDefault(a => a.AccountId == accountId && !a.Status.Equals(AccountStatus.Closed));
+                Account account = bank.Accounts.FirstOrDefault(a => a.AccountId.EqualInvariant(accountId) && !a.Status.Equals(AccountStatus.Closed));
                 if (account != null) return account;
             }
             return null;

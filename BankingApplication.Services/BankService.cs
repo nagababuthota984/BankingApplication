@@ -15,28 +15,21 @@ namespace BankingApplication.Services
             RBIStorage.banks.Add(newBank);
             return newBank;
         }
-        public List<object> GetEmployeeByUserNameAndPassword(string userName,string password)
+        
+        public bool IsValidEmployee(string userName, string password)
         {
             foreach (var bank in RBIStorage.banks)
             {
-                Employee employee = bank.Employees.FirstOrDefault(e => (e.UserName == userName)  && (e.Password.Equals(password)));
-                if (employee != null) return new List<object> { employee, bank };
+                Employee employee = bank.Employees.FirstOrDefault(e => (e.UserName == userName) && (e.Password.Equals(password)));
+                if (employee != null)
+                {
+                    SessionContent.Bank = bank;
+                    SessionContent.Employee = employee;
+                    return true;
+                }
             }
-            return null;
-        }
-        public bool EmployeeLogin(string userName, string password)
-        {
-            List<object> employeeDetails = GetEmployeeByUserNameAndPassword(userName, password);
-            if (employeeDetails !=null)
-            {
-                SessionContent.Bank = (Bank)employeeDetails[1];
-                SessionContent.Employee = (Employee)employeeDetails[0];
-                return true; 
-            }
-            else
-            {
-                return false;
-            }
+            return false;
+            
 
         }
         public void CreateAccount(Account newAccount, Bank bank)
@@ -72,7 +65,7 @@ namespace BankingApplication.Services
         }
         public bool AddNewCurrency(Bank bank, string newCurrencyName, decimal exchangeRate)
         {
-            if(bank.SupportedCurrency.Any(c => c.CurrencyName.ToLower() == newCurrencyName.ToLower()))
+            if (bank.SupportedCurrency.Any(c => c.CurrencyName.ToLower() == newCurrencyName.ToLower()))
             {
                 return false;
             }
@@ -113,12 +106,13 @@ namespace BankingApplication.Services
             {
                 if (mode == ModeOfTransfer.RTGS)
                 {
-                    bank.SelfRTGS = newValue; isModified = true;
+                    bank.SelfRTGS = newValue;
                 }
                 else
                 {
-                    bank.SelfIMPS = newValue; isModified = true;
+                    bank.SelfIMPS = newValue;
                 }
+                isModified = true;
             }
             else
             {
@@ -136,15 +130,7 @@ namespace BankingApplication.Services
         }
         public List<Transaction> GetAccountTransactions(string accountId)
         {
-            Account userAccount = accountService.GetAccountById(accountId);
-            if (userAccount != null)
-            {
-                return userAccount.Transactions;
-            }
-            else
-            {
-                return null;
-            }
+            return accountService.GetAccountById(accountId)?.Transactions;
         }
         public void RevertTransaction(Transaction transaction, Bank bank)
         {
@@ -175,7 +161,7 @@ namespace BankingApplication.Services
         }
         public Employee CreateAndGetEmployee(string name, string age, DateTime dob, Gender gender, EmployeeDesignation role, Bank bank)
         {
-            Employee employee = new Employee(name,age,dob,gender,role,bank);
+            Employee employee = new Employee(name, age, dob, gender, role, bank);
             bank.Employees.Add(employee);
             return employee;
         }

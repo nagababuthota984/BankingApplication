@@ -11,4 +11,5 @@ namespace BankingApplication.Models
         public string Branch { get; set; }
         public string Ifsc { get; set; }
     }
+    
 }

@@ -17,7 +17,7 @@ namespace BankingApplication.CLI
             string userName = UserInput.GetInputValue("Username");
             string password = UserInput.GetInputValue("Password");
             Console.WriteLine();
-            if (!accountService.CustomerLogin(userName, password))
+            if (!accountService.IsValidCustomer(userName, password))
             {
                 Console.WriteLine("Invalid Credentials. Please try again or enter 0 for Main Menu\n");
                 if (Console.ReadLine() == "0")
