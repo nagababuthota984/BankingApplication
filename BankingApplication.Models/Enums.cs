@@ -66,4 +66,16 @@
         Female,
         PreferNotToSay
     }
+    public enum CustomerProperties
+    {
+        Name=1,
+        Age,
+        Gender,
+        Dob,
+        AadharNumber,
+        PanNumber,
+        ContactNumber,
+        Address,
+        None
+    }
 }

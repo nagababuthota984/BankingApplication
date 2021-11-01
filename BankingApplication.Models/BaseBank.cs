@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BankingApplication.Models
 {
-    public class BaseBank
+    public  class BaseBank
     {
         public string BankId { get; set; }
         public string BankName { get; set; }

@@ -20,7 +20,7 @@ namespace BankingApplication.Services
         {
             foreach (var bank in RBIStorage.banks)
             {
-                Employee employee = bank.Employees.FirstOrDefault(e => (e.UserName == userName) && (e.Password.Equals(password)));
+                Employee employee = bank.Employees.FirstOrDefault(e => (e.UserName.EqualInvariant(userName)) && (e.Password.Equals(password)));
                 if (employee != null)
                 {
                     SessionContent.Bank = bank;
@@ -53,7 +53,7 @@ namespace BankingApplication.Services
         }
         public Bank GetBankByBankId(string bankId)
         {
-            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankId.Equals(bankId));
+            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankId.EqualInvariant(bankId));
             if (bank != null)
             {
                 return bank;
@@ -65,7 +65,7 @@ namespace BankingApplication.Services
         }
         public bool AddNewCurrency(Bank bank, string newCurrencyName, decimal exchangeRate)
         {
-            if (bank.SupportedCurrency.Any(c => c.CurrencyName.ToLower() == newCurrencyName.ToLower()))
+            if (bank.SupportedCurrency.Any(c => c.CurrencyName.EqualInvariant(newCurrencyName)))
             {
                 return false;
             }
@@ -78,7 +78,7 @@ namespace BankingApplication.Services
             Bank bank = GetBankByBankId(bankId);
             if (isSelfBankTransfer)
             {
-                if (mode.Equals(ModeOfTransfer.IMPS))
+                if (mode == ModeOfTransfer.IMPS)
                 {
                     return bank.SelfIMPS;
                 }
@@ -89,7 +89,7 @@ namespace BankingApplication.Services
             }
             else
             {
-                if (mode.Equals(ModeOfTransfer.IMPS))
+                if (mode == ModeOfTransfer.IMPS)
                 {
                     return bank.OtherIMPS;
                 }
@@ -135,17 +135,17 @@ namespace BankingApplication.Services
         public void RevertTransaction(Transaction transaction, Bank bank)
         {
             Account userAccount = accountService.GetAccountById(transaction.SenderAccountId);
-            if (transaction.Type.Equals(TransactionType.Credit))
+            if (transaction.Type==TransactionType.Credit)
             {
                 accountService.WithdrawAmount(userAccount, transaction.TransactionAmount);
                 userAccount.Transactions.Remove(transaction);
             }
-            else if (transaction.Type.Equals(TransactionType.Debit))
+            else if (transaction.Type==TransactionType.Debit)
             {
                 accountService.DepositAmount(userAccount, transaction.TransactionAmount, bank.DefaultCurrency);
                 userAccount.Transactions.Remove(transaction);
             }
-            else if (transaction.Type.Equals(TransactionType.Transfer))
+            else if (transaction.Type==TransactionType.Transfer)
             {
                 Account receiverAccount = accountService.GetAccountById(transaction.ReceiverAccountId);
                 accountService.WithdrawAmount(receiverAccount, transaction.TransactionAmount);

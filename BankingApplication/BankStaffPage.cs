@@ -25,13 +25,9 @@ namespace BankingApplication.CLI
             {
                 UserOutput.ShowMessage("Invalid Credentials. Please try again or enter 0 for Main menu\n");
                 if (Console.ReadLine() == "0")
-                {
                     Program.WelcomeMenu();
-                }
                 else
-                {
                     EmployeeInterface();
-                }
             }
             else
             {
@@ -66,33 +62,20 @@ namespace BankingApplication.CLI
                                 string ifsc = UserInput.GetInputValue("IFSC");
                                 Bank newBank = bankService.CreateAndGetBank(bankName, branch, ifsc);
                                 if (newBank == null)
-                                {
                                     UserOutput.ShowMessage("Bank not created! Try again.");
-                                }
                                 else
-                                {
                                     UserOutput.ShowMessage($"Bank created with bank id - {newBank.BankId}");
-                                }
                                 break;
                             case BankEmployeeMenu.UpdateAccount:
                                 string accountId = UserInput.GetInputValue("Account Id");
                                 Account userAccount = accountService.GetAccountById(accountId);
-                                while (true)
-                                {
-                                    //...1.Name
-                                    //swatch(//)
-                                    //..case 1:
-                                    //userAccount.Customer.Name = "Input from console";
-                                }
                                 if (userAccount != null)
                                 {
-                                    Console.WriteLine("\nYou will only be able to modify customer related properties.\n");
-                                    string property = UserInput.GetInputValue("property you want to update");
-                                    Console.WriteLine("Enter new value: ");
-                                    string newValue = Console.ReadLine();
-                                    accountService.UpdateAccount(userAccount, property, newValue);
-                                    UserOutput.ShowMessage("Updated!");
+                                    UpdateAccountHandler(userAccount);
+                                    accountService.UpdateAccount(userAccount);
+
                                 }
+
                                 else
                                 {
                                     UserOutput.ShowMessage(Constant.accountNotFoundError);
@@ -133,13 +116,9 @@ namespace BankingApplication.CLI
                                 if (exchangeRate > 0)
                                 {
                                     if (bankService.AddNewCurrency(bank, newCurrency, exchangeRate))
-                                    {
                                         UserOutput.ShowMessage("New Currency Added!");
-                                    }
                                     else
-                                    {
                                         UserOutput.ShowMessage("Currency Already Exists!");
-                                    }
                                 }
                                 else
                                 {
@@ -176,7 +155,7 @@ namespace BankingApplication.CLI
                                 Transaction transaction = transactionService.GetTransactionById(transactionId);
                                 if (transaction != null)
                                 {
-                                    if (transaction.SenderBankId.Equals(transaction.ReceiverBankId))
+                                    if (transaction.SenderBankId.Equals(transaction.ReceiverBankId, StringComparison.OrdinalIgnoreCase))
                                     {
                                         Console.WriteLine("Are you sure you want to revert the transaction(Y/N)?\n");
                                         if (Console.ReadLine().Equals("y", StringComparison.OrdinalIgnoreCase))
@@ -212,6 +191,77 @@ namespace BankingApplication.CLI
                 }
             }
         }
+
+
+        private bool UpdateAccountHandler(Account userAccount)
+        {
+
+            while (true)
+            {
+                Console.WriteLine("\n--------------UPDATE MENU----------------");
+                Console.WriteLine(Constant.customerPropertiesMenu);
+                switch (GetCustomerPropertyByInteger(Convert.ToInt32(Console.ReadLine())))
+                {
+                    case CustomerProperties.Name:
+                        Console.WriteLine($"[Existing : {userAccount.Customer.Name}]");
+                        userAccount.Customer.Name = AskName();
+                        break;
+                    case CustomerProperties.Age:
+                        Console.WriteLine($"[Existing : {userAccount.Customer.Age}]");
+                        userAccount.Customer.Age = AskAge();
+                        break;
+                    case CustomerProperties.Dob:
+                        Console.WriteLine($"[Existing : {userAccount.Customer.Dob}]");
+                        userAccount.Customer.Dob = Convert.ToDateTime(UserInput.GetInputValue("Date of Birth"));
+                        break;
+                    case CustomerProperties.AadharNumber:
+                        Console.WriteLine($"[Existing : {userAccount.Customer.AadharNumber}]");
+                        userAccount.Customer.AadharNumber = UserInput.GetInputValue("Aadhar number");
+                        break;
+                    case CustomerProperties.PanNumber:
+                        Console.WriteLine($"[Existing : {userAccount.Customer.PanNumber}]");
+                        userAccount.Customer.PanNumber = UserInput.GetInputValue("Pan number");
+                        break;
+                    case CustomerProperties.ContactNumber:
+                        Console.WriteLine($"[Existing : {userAccount.Customer.ContactNumber}]");
+                        userAccount.Customer.ContactNumber = UserInput.GetInputValue("Contact number");
+                        break;
+                    case CustomerProperties.Address:
+                        Console.WriteLine($"[Existing : {userAccount.Customer.Address}]");
+                        userAccount.Customer.Address = UserInput.GetInputValue("Address");
+                        break;
+                    default:
+                        return true;
+
+                }
+            }
+        }
+
+
+        private CustomerProperties GetCustomerPropertyByInteger(int v)
+        {
+            if (v == 1)
+                return CustomerProperties.Name;
+            else if (v == 2)
+                return CustomerProperties.Age;
+            else if (v == 3)
+                return CustomerProperties.Gender;
+            else if (v == 4)
+                return CustomerProperties.Dob;
+            else if (v == 5)
+                return CustomerProperties.AadharNumber;
+            else if (v == 6)
+                return CustomerProperties.PanNumber;
+            else if (v == 7)
+                return CustomerProperties.ContactNumber;
+            else if (v == 8)
+                return CustomerProperties.Address;
+            else
+                return CustomerProperties.None;
+
+
+        }
+
         private Gender GetGenderByInteger(int v)
         {
             if (v == 1)

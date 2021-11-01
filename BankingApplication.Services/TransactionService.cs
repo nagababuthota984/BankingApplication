@@ -1,4 +1,5 @@
 ﻿using BankingApplication.Models;
+using System;
 using System.Linq;
 
 namespace BankingApplication.Services
@@ -32,13 +33,13 @@ namespace BankingApplication.Services
             {
                 string bankId = transactionId.Substring(3, 11);
                 string accountId = transactionId.Substring(14, 11);
-                Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankId.Equals(bankId));
+                Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankId.Equals(bankId,StringComparison.OrdinalIgnoreCase));
                 if (bank != null)
                 {
-                    Account account = bank.Accounts.FirstOrDefault(b => b.AccountId.Equals(accountId));
+                    Account account = bank.Accounts.FirstOrDefault(b => b.AccountId.Equals(accountId,StringComparison.OrdinalIgnoreCase));
                     if (account != null)
                     {
-                        transaction = account.Transactions.FirstOrDefault(t => t.TransId.Equals(transactionId));
+                        transaction = account.Transactions.FirstOrDefault(t => t.TransId.Equals(transactionId,StringComparison.OrdinalIgnoreCase));
                         return transaction;
                     }
                 }

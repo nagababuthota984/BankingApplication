@@ -49,3 +49,4 @@ C:\Users\nagab\source\repos\BankingApplication\BankingApplication.Models\obj\Deb
 C:\Users\nagab\source\repos\BankingApplication\BankingApplication.Models\obj\Debug\netcoreapp3.1\BankingApplication.Models.csproj.CopyComplete
 C:\Users\nagab\source\repos\BankingApplication\BankingApplication.Models\obj\Debug\netcoreapp3.1\BankingApplication.Models.dll
 C:\Users\nagab\source\repos\BankingApplication\BankingApplication.Models\obj\Debug\netcoreapp3.1\BankingApplication.Models.pdb
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Models\obj\Debug\netcoreapp3.1\BankingApplication.Models.csproj.CopyComplete

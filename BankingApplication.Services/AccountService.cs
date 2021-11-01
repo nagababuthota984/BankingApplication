@@ -30,7 +30,7 @@ namespace BankingApplication.Services
         {
             foreach (var bank in RBIStorage.banks)
             {
-                Account account = bank.Accounts.FirstOrDefault(a => a.AccountNumber == accNumber && !a.Status.Equals(AccountStatus.Closed));
+                Account account = bank.Accounts.FirstOrDefault(a => (a.AccountNumber.EqualInvariant(accNumber)) && (a.Status!=AccountStatus.Closed));
                 if (account != null) return account;
             }
             return null;
@@ -40,27 +40,15 @@ namespace BankingApplication.Services
         {
             foreach (Bank bank in RBIStorage.banks)
             {
-                Account account = bank.Accounts.FirstOrDefault(a => a.AccountId.EqualInvariant(accountId) && !a.Status.Equals(AccountStatus.Closed));
+                Account account = bank.Accounts.FirstOrDefault(a => a.AccountId.EqualInvariant(accountId) && (a.Status != AccountStatus.Closed));
                 if (account != null) return account;
             }
             return null;
         }
 
-        public void UpdateAccount(Account userAccount, string property, string newValue)
+        public void UpdateAccount(Account userAccount)
         {
-
-            PropertyInfo myProp = userAccount.Customer.GetType().GetProperty(property);
-            if (property.ToLower().Equals("dob"))
-            {
-                DateTime newDate = Convert.ToDateTime(newValue);
-                myProp.SetValue(userAccount.Customer, newDate, null);
-            }
-            else
-            {
-                myProp.SetValue(userAccount.Customer, newValue, null);
-            }
             FileHelper.WriteData(RBIStorage.banks);
-
         }
 
         public bool DeleteAccount(Account userAccount)
@@ -94,10 +82,10 @@ namespace BankingApplication.Services
         }
         private void ApplyTransferCharges(Account senderAccount, Bank senderBank, string receiverBankId, decimal amount, ModeOfTransfer mode, Currency currency)
         {
-            if (mode.Equals(ModeOfTransfer.RTGS))
+            if (mode == ModeOfTransfer.RTGS)
             {
                 //RTGS charge based on transfer to account within the same bank
-                if (senderAccount.BankId.Equals(receiverBankId))
+                if (senderAccount.BankId.EqualInvariant(receiverBankId))
                 {
                     decimal charges = (senderBank.SelfRTGS * amount) / 100;
                     senderAccount.Balance -= charges;
@@ -114,7 +102,7 @@ namespace BankingApplication.Services
             }
             else
             {
-                if (senderAccount.BankId.Equals(receiverBankId))
+                if (senderAccount.BankId.EqualInvariant(receiverBankId))
                 {
                     decimal charges = (senderBank.SelfIMPS * amount) / 100;
                     senderAccount.Balance -= charges;

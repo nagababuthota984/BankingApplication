@@ -84,24 +84,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nagab\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\hp\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj",
+      "projectUniqueName": "C:\\Users\\hp\\source\\repos\\BankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj",
       "projectName": "BankingApplication.Services",
-      "projectPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj",
-      "packagesPath": "C:\\Users\\nagab\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Services\\obj\\",
+      "projectPath": "C:\\Users\\hp\\source\\repos\\BankingApplication\\BankingApplication.Services\\BankingApplication.Services.csproj",
+      "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hp\\source\\repos\\BankingApplication\\BankingApplication.Services\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\nagab\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -115,8 +110,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj": {
-              "projectPath": "C:\\Users\\nagab\\source\\repos\\BankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj"
+            "C:\\Users\\hp\\source\\repos\\BankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj": {
+              "projectPath": "C:\\Users\\hp\\source\\repos\\BankingApplication\\BankingApplication.Models\\BankingApplication.Models.csproj"
             }
           }
         }
