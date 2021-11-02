@@ -3,7 +3,7 @@
     "Accounts": [
       {
         "Customer": {
-          "AccountId": "Nag20001112",
+          "AccountId": "NagababuThota20001112",
           "Name": "NagababuThota",
           "Age": "21",
           "Gender": 1,
@@ -28,7 +28,7 @@
       },
       {
         "Customer": {
-          "AccountId": "Cha20020510",
+          "AccountId": "20020510",
           "Name": "",
           "Age": "21",
           "Gender": 2,
@@ -41,11 +41,28 @@
         "AccountNumber": "17540207068",
         "AccountId": "Cha20020510",
         "AccountType": 1,
-        "Balance": 3730.0,
+        "Balance": 3730.00,
         "UserName": "Cha2002",
         "Password": "20020510",
         "Status": 0,
-        "Transactions": [],
+        "Transactions": [
+          {
+            "TransId": "TXNAxi20211024Cha2002051020211102062738",
+            "Type": 0,
+            "SenderAccountId": "Cha20020510",
+            "ReceiverAccountId": "Cha20020510",
+            "SenderBankId": "Axi20211024",
+            "ReceiverBankId": "Axi20211024",
+            "On": "2021-11-02T18:27:38.0055561+05:30",
+            "TransactionAmount": 24.00,
+            "BalanceAmount": 3730.00,
+            "Currency": {
+              "CurrencyName": "INR",
+              "ExchangeRate": 1.0
+            },
+            "TransferMode": 3
+          }
+        ],
         "BankId": "Axi20211024",
         "BankName": "AxisBank",
         "Branch": "Guntur",
@@ -53,7 +70,7 @@
       },
       {
         "Customer": {
-          "AccountId": "Moh20020911",
+          "AccountId": "Mohith20020911",
           "Name": "Mohith",
           "Age": "20",
           "Gender": 1,
@@ -78,7 +95,7 @@
       },
       {
         "Customer": {
-          "AccountId": "12320001111",
+          "AccountId": "1234520001111",
           "Name": "12345",
           "Age": "30",
           "Gender": 1,
@@ -103,7 +120,7 @@
       },
       {
         "Customer": {
-          "AccountId": "Sri20090909",
+          "AccountId": "Sriram20090909",
           "Name": "Sriram",
           "Age": "29",
           "Gender": 1,
@@ -153,7 +170,7 @@
       },
       {
         "Customer": {
-          "AccountId": "Sur20090812",
+          "AccountId": "Suresh20090812",
           "Name": "Suresh",
           "Age": "21",
           "Gender": 1,
@@ -178,7 +195,7 @@
       },
       {
         "Customer": {
-          "AccountId": "Yas20001111",
+          "AccountId": "Yasin20001111",
           "Name": "Yasin",
           "Age": "20",
           "Gender": 1,
@@ -191,11 +208,44 @@
         "AccountNumber": "77778207842",
         "AccountId": "Yas20001111",
         "AccountType": 1,
-        "Balance": 0.0,
+        "Balance": 0.00,
         "UserName": "Yas2000",
         "Password": "20001111",
         "Status": 0,
-        "Transactions": [],
+        "Transactions": [
+          {
+            "TransId": "TXNAxi20211024Cha2002051020211102062635",
+            "Type": 2,
+            "SenderAccountId": "Cha20020510",
+            "ReceiverAccountId": "Yas20001111",
+            "SenderBankId": "Axi20211024",
+            "ReceiverBankId": "Axi20211024",
+            "On": "2021-11-02T18:26:35.9547766+05:30",
+            "TransactionAmount": 24.0,
+            "BalanceAmount": 24.0,
+            "Currency": {
+              "CurrencyName": "INR",
+              "ExchangeRate": 1.0
+            },
+            "TransferMode": 1
+          },
+          {
+            "TransId": "TXNAxi20211024Yas2000111120211102062738",
+            "Type": 1,
+            "SenderAccountId": "Yas20001111",
+            "ReceiverAccountId": "Yas20001111",
+            "SenderBankId": "Axi20211024",
+            "ReceiverBankId": "Axi20211024",
+            "On": "2021-11-02T18:27:38.0010445+05:30",
+            "TransactionAmount": 24.00,
+            "BalanceAmount": 0.00,
+            "Currency": {
+              "CurrencyName": "INR",
+              "ExchangeRate": 1.0
+            },
+            "TransferMode": 3
+          }
+        ],
         "BankId": "Axi20211024",
         "BankName": null,
         "Branch": null,
@@ -203,7 +253,7 @@
       },
       {
         "Customer": {
-          "AccountId": "Nag19860907",
+          "AccountId": "Nagarjuna19860907",
           "Name": "Nagarjuna",
           "Age": "48",
           "Gender": 1,
@@ -228,7 +278,7 @@
       },
       {
         "Customer": {
-          "AccountId": "Rag20000909",
+          "AccountId": "Raghu20000909",
           "Name": "Raghu",
           "Age": "22",
           "Gender": 1,
@@ -250,6 +300,31 @@
         "BankName": "AxisBank",
         "Branch": "Guntur",
         "Ifsc": "AXI00091"
+      },
+      {
+        "Customer": {
+          "AccountId": "Surender19860419",
+          "Name": "Surender",
+          "Age": "21",
+          "Gender": 1,
+          "ContactNumber": "9209292929",
+          "Dob": "1986-04-19T00:00:00",
+          "Address": "Guntur",
+          "AadharNumber": "9292929",
+          "PanNumber": "029292992"
+        },
+        "AccountNumber": "82846065132",
+        "AccountId": "Surender19860419",
+        "AccountType": 1,
+        "Balance": 0.0,
+        "UserName": "Surender1986",
+        "Password": "19860419",
+        "Status": 0,
+        "Transactions": [],
+        "BankId": "Axi20211024",
+        "BankName": "AxisBank",
+        "Branch": "Guntur",
+        "Ifsc": "AXI00091"
       }
     ],
     "SelfRTGS": 0.0,
@@ -261,7 +336,24 @@
       "CurrencyName": "INR",
       "ExchangeRate": 1.0
     },
-    "Transactions": [],
+    "Transactions": [
+      {
+        "TransId": "TXNAxi20211024Cha2002051020211102062635",
+        "Type": 3,
+        "SenderAccountId": "Cha20020510",
+        "ReceiverAccountId": "Axi20211024",
+        "SenderBankId": "Axi20211024",
+        "ReceiverBankId": "Axi20211024",
+        "On": "2021-11-02T18:26:35.9517479+05:30",
+        "TransactionAmount": 0.00,
+        "BalanceAmount": 16.60,
+        "Currency": {
+          "CurrencyName": "INR",
+          "ExchangeRate": 1.0
+        },
+        "TransferMode": 3
+      }
+    ],
     "Employees": [
       {
         "Name": "Venkatesh Pulibandla",
@@ -320,7 +412,7 @@
     "Accounts": [
       {
         "Customer": {
-          "AccountId": "Sen20010419",
+          "AccountId": "SenaSowseelya20010419",
           "Name": "SenaSowseelya",
           "Age": "22",
           "Gender": 2,

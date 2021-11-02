@@ -9,11 +9,10 @@ namespace BankingApplication.CLI
     class Program
     {
         
-
         public static void Main()
         {
-
-            RBIStorage.banks = FileHelper.GetData();
+            IDataProvider dataProvider = new JsonFileHelper();
+            RBIStorage.banks = dataProvider.GetData<Bank>();
             WelcomeMenu();
         }
 

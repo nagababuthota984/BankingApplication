@@ -6,9 +6,10 @@ using BankingApplication.Models;
 
 namespace BankingApplication.Services
 {
-    public class BankService
+    public class BankService : IBankService
     {
-        AccountService accountService = new AccountService();
+        IAccountService accountService = new AccountService();
+        IDataProvider dataProvider = new JsonFileHelper();
         public Bank CreateAndGetBank(string name, string branch, string ifsc)
         {
             Bank newBank = new Bank(name, branch, ifsc);
@@ -40,9 +41,9 @@ namespace BankingApplication.Services
             newAccount.Ifsc = bank.Ifsc;
             newAccount.AccountNumber = GenerateAccountNumber(bank.BankId);
             bank.Accounts.Add(newAccount);
-            FileHelper.WriteData(RBIStorage.banks);
+            dataProvider.WriteData(RBIStorage.banks);
         }
-        private string GenerateAccountNumber(string bankid)
+        public string GenerateAccountNumber(string bankid)
         {
             string accNumber = null;
             do
@@ -70,35 +71,10 @@ namespace BankingApplication.Services
                 return false;
             }
             bank.SupportedCurrency.Add(new Currency(newCurrencyName, exchangeRate));
-            FileHelper.WriteData(RBIStorage.banks);
+            dataProvider.WriteData(RBIStorage.banks);
             return true;
         }
-        public decimal GetServiceCharge(ModeOfTransfer mode, bool isSelfBankTransfer, string bankId)
-        {
-            Bank bank = GetBankByBankId(bankId);
-            if (isSelfBankTransfer)
-            {
-                if (mode == ModeOfTransfer.IMPS)
-                {
-                    return bank.SelfIMPS;
-                }
-                else
-                {
-                    return bank.SelfRTGS;
-                }
-            }
-            else
-            {
-                if (mode == ModeOfTransfer.IMPS)
-                {
-                    return bank.OtherIMPS;
-                }
-                else
-                {
-                    return bank.OtherRTGS;
-                }
-            }
-        }
+        
         public bool SetServiceCharge(ModeOfTransfer mode, bool isSelfBankCharge, Bank bank, decimal newValue)
         {
             bool isModified;
@@ -125,14 +101,14 @@ namespace BankingApplication.Services
                     bank.OtherIMPS = newValue; isModified = true;
                 }
             }
-            FileHelper.WriteData(RBIStorage.banks);
+            dataProvider.WriteData(RBIStorage.banks);
             return isModified;
         }
         public List<Transaction> GetAccountTransactions(string accountId)
         {
             return accountService.GetAccountById(accountId)?.Transactions;
         }
-        public void RevertTransaction(Transaction transaction, Bank bank)
+        public bool RevertTransaction(Transaction transaction, Bank bank)
         {
             Account userAccount = accountService.GetAccountById(transaction.SenderAccountId);
             if (transaction.Type==TransactionType.Credit)
@@ -155,8 +131,8 @@ namespace BankingApplication.Services
 
 
             }
-            FileHelper.WriteData(RBIStorage.banks);
-
+            dataProvider.WriteData(RBIStorage.banks);
+            return true;
 
         }
         public Employee CreateAndGetEmployee(string name, string age, DateTime dob, Gender gender, EmployeeDesignation role, Bank bank)

@@ -8,9 +8,9 @@ namespace BankingApplication.CLI
 
     public class BankEmployeePage
     {
-        BankService bankService = new BankService();
-        AccountService accountService = new AccountService();
-        TransactionService transactionService = new TransactionService();
+        private readonly IBankService bankService = new BankService();
+        private readonly IAccountService accountService = new AccountService();
+        private readonly ITransactionService transactionService = new TransactionService();
         Bank bank;
         Employee currentWorkingEmployee;
 
@@ -160,7 +160,14 @@ namespace BankingApplication.CLI
                                         Console.WriteLine("Are you sure you want to revert the transaction(Y/N)?\n");
                                         if (Console.ReadLine().Equals("y", StringComparison.OrdinalIgnoreCase))
                                         {
-                                            bankService.RevertTransaction(transaction, bank);
+                                            if(bankService.RevertTransaction(transaction, bank))
+                                            {
+                                                Console.WriteLine("Reverted Successfully!\n");
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Could not revert the transaction. Please try again\n");
+                                            }
                                         }
                                         else
                                         {
@@ -319,8 +326,6 @@ namespace BankingApplication.CLI
                 return BankEmployeeMenu.ViewTransactions;
             else if (v == 9)
                 return BankEmployeeMenu.RevertTransaction;
-            else if (v == 10)
-                return BankEmployeeMenu.Logout;
             else
                 return BankEmployeeMenu.Logout;
         }

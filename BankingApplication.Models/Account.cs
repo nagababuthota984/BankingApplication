@@ -8,9 +8,9 @@ namespace BankingApplication.Models
         public Account(Customer customer, AccountType type)
         {
             this.Customer = customer;
-            this.UserName = $"{customer.Name.Substring(0, 3)}{customer.Dob:yyyy}";
+            this.UserName = $"{customer.Name}{customer.Dob:yyyy}";
             this.Password = $"{customer.Dob:yyyyMMdd}";
-            this.AccountId = $"{customer.Name.Substring(0, 3)}{customer.Dob:yyyyMMdd}";
+            this.AccountId = $"{customer.Name}{customer.Dob:yyyyMMdd}";
             this.Customer.AccountId = this.AccountId;
             this.AccountType = type;
             this.Transactions = new List<Transaction>();

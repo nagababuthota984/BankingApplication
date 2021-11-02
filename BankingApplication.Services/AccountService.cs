@@ -6,10 +6,10 @@ using System.Reflection;
 
 namespace BankingApplication.Services
 {
-    public class AccountService
+    public class AccountService : IAccountService
     {
-        TransactionService transService = new TransactionService();
-        
+        ITransactionService transService = new TransactionService();
+        IDataProvider dataProvider = new JsonFileHelper();
 
         public bool IsValidCustomer(string userName, string password)
         {
@@ -48,13 +48,13 @@ namespace BankingApplication.Services
 
         public void UpdateAccount(Account userAccount)
         {
-            FileHelper.WriteData(RBIStorage.banks);
+            dataProvider.WriteData(RBIStorage.banks);
         }
 
         public bool DeleteAccount(Account userAccount)
         {
             userAccount.Status = AccountStatus.Closed;
-            FileHelper.WriteData(RBIStorage.banks);
+            dataProvider.WriteData(RBIStorage.banks);
             return true;
         }
         public void DepositAmount(Account userAccount, decimal amount, Currency currency)
@@ -62,14 +62,14 @@ namespace BankingApplication.Services
             amount *= currency.ExchangeRate;
             userAccount.Balance += amount;
             transService.CreateTransaction(userAccount, TransactionType.Credit, amount, currency);
-            FileHelper.WriteData(RBIStorage.banks);
+            dataProvider.WriteData(RBIStorage.banks);
         }
         public void WithdrawAmount(Account userAccount, decimal amount)
         {
             amount *= SessionContent.Bank.DefaultCurrency.ExchangeRate;
             userAccount.Balance -= amount;
             transService.CreateTransaction(userAccount, TransactionType.Debit, amount, SessionContent.Bank.DefaultCurrency);
-            FileHelper.WriteData(RBIStorage.banks);
+            dataProvider.WriteData(RBIStorage.banks);
         }
         public void TransferAmount(Account senderAccount, Bank senderBank, Account receiverAccount, decimal amount, ModeOfTransfer mode)
         {
@@ -78,9 +78,9 @@ namespace BankingApplication.Services
             receiverAccount.Balance += amount;
             ApplyTransferCharges(senderAccount, senderBank, receiverAccount.BankId, amount, mode, SessionContent.Bank.DefaultCurrency);
             transService.CreateTransferTransaction(senderAccount, receiverAccount, amount, mode, SessionContent.Bank.DefaultCurrency);
-            FileHelper.WriteData(RBIStorage.banks);
+            dataProvider.WriteData(RBIStorage.banks);
         }
-        private void ApplyTransferCharges(Account senderAccount, Bank senderBank, string receiverBankId, decimal amount, ModeOfTransfer mode, Currency currency)
+        public void ApplyTransferCharges(Account senderAccount, Bank senderBank, string receiverBankId, decimal amount, ModeOfTransfer mode, Currency currency)
         {
             if (mode == ModeOfTransfer.RTGS)
             {

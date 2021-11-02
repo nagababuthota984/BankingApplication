@@ -8,7 +8,7 @@ namespace BankingApplication.CLI
 {
     public class AccountHolderPage
     {
-        AccountService accountService = new AccountService();
+        IAccountService accountService = new AccountService();
         Account userAccount;
         Bank bank;
         public void CustomerInterface()

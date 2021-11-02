@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BankingApplication.Services
 {
-    public class TransactionService
+    public class TransactionService : ITransactionService
     {
 
         public void CreateTransaction(Account userAccount, TransactionType transtype, decimal transactionamount, Currency currency)
@@ -29,7 +29,7 @@ namespace BankingApplication.Services
         public Transaction GetTransactionById(string transactionId)
         {
             Transaction transaction = null;
-            if (transactionId.Substring(0, 3) == "TXN" || transactionId.Length >=38)
+            if (transactionId.Length >=38)
             {
                 string bankId = transactionId.Substring(3, 11);
                 string accountId = transactionId.Substring(14, 11);
