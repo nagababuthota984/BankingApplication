@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BankingApplication.Models
 {
-    public static class SessionContent
+    public static class SessionContext
     {
         public static Bank Bank { get; set; }
         public static Account Account { get; set; }

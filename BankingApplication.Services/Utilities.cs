@@ -32,8 +32,7 @@ namespace BankingApplication.Services
         {
             Random r = new Random();          //account number generator.
             string NumberString = "";
-            int i;
-            for (i = 1; i < length; i++)
+            for (int i = 1; i < length; i++)
             {
                 NumberString += r.Next(0, 9).ToString();
             }

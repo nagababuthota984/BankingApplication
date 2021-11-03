@@ -8,9 +8,14 @@ namespace BankingApplication.CLI
 {
     public class AccountHolderPage
     {
-        IAccountService accountService = new AccountService();
+        IAccountService accountService;
         Account userAccount;
-        Bank bank;
+        Program program;
+        public AccountHolderPage()
+        {
+            accountService = Factory.CreateAccountService();
+            program = new Program(); 
+        }
         public void CustomerInterface()
         {
             Console.WriteLine("=================CUSTOMER LOGIN================");
@@ -22,7 +27,7 @@ namespace BankingApplication.CLI
                 Console.WriteLine("Invalid Credentials. Please try again or enter 0 for Main Menu\n");
                 if (Console.ReadLine() == "0")
                 {
-                    Program.WelcomeMenu();
+                    program.WelcomeMenu();
                 }
                 else
                 {
@@ -31,8 +36,7 @@ namespace BankingApplication.CLI
             }
             else
             {
-                bank = SessionContent.Bank;
-                userAccount = SessionContent.Account;
+                userAccount = SessionContext.Account;
                 while (true)
                 {
                     try
@@ -45,8 +49,8 @@ namespace BankingApplication.CLI
                                 decimal amount = Convert.ToInt32(UserInput.GetInputValue("Amount to Deposit"));
                                 if (amount > 0)
                                 {
-                                    string currencyName = UserInput.GetInputValue("Currency Name");
-                                    Currency currency = bank.SupportedCurrency.FirstOrDefault(c => (c.CurrencyName.Equals(currencyName, StringComparison.OrdinalIgnoreCase)));
+                                    string Name = UserInput.GetInputValue("Currency Name");
+                                    Currency currency = SessionContext.Bank.SupportedCurrency.FirstOrDefault(c => (c.Name.Equals(Name, StringComparison.OrdinalIgnoreCase)));
                                     if (currency != null)
                                     {
                                         accountService.DepositAmount(userAccount, amount, currency);
@@ -96,7 +100,7 @@ namespace BankingApplication.CLI
                                         if (amount <= userAccount.Balance)
                                         {
                                             ModeOfTransfer mode = (ModeOfTransfer)Convert.ToInt32(UserInput.GetInputValue("mode of transfer\n1.RTGS \n2.IMPS."));
-                                            accountService.TransferAmount(userAccount, bank, recipientAccount, amount, mode);
+                                            accountService.TransferAmount(userAccount, SessionContext.Bank, recipientAccount, amount, mode);
                                             UserOutput.ShowMessage("Transferred successfully");
                                         }
                                         else
@@ -122,9 +126,9 @@ namespace BankingApplication.CLI
                                 Console.WriteLine($"\nCurrent Balance - {userAccount.Balance} INR\n");
                                 break;
                             case AccountHolderMenu.LogOut:
-                                SessionContent.Employee = null;
-                                SessionContent.Bank = null;
-                                Program.WelcomeMenu();
+                                SessionContext.Employee = null;
+                                SessionContext.Bank = null;
+                                program.WelcomeMenu();
                                 break;
 
                         }

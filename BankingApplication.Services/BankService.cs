@@ -8,8 +8,11 @@ namespace BankingApplication.Services
 {
     public class BankService : IBankService
     {
-        IAccountService accountService = new AccountService();
-        IDataProvider dataProvider = new JsonFileHelper();
+        private IAccountService accountService = null;
+        public BankService(IAccountService accService)
+        {
+            accountService = Factory.CreateAccountService();
+        }
         public Bank CreateAndGetBank(string name, string branch, string ifsc)
         {
             Bank newBank = new Bank(name, branch, ifsc);
@@ -24,8 +27,8 @@ namespace BankingApplication.Services
                 Employee employee = bank.Employees.FirstOrDefault(e => (e.UserName.EqualInvariant(userName)) && (e.Password.Equals(password)));
                 if (employee != null)
                 {
-                    SessionContent.Bank = bank;
-                    SessionContent.Employee = employee;
+                    SessionContext.Bank = bank;
+                    SessionContext.Employee = employee;
                     return true;
                 }
             }
@@ -36,12 +39,9 @@ namespace BankingApplication.Services
         public void CreateAccount(Account newAccount, Bank bank)
         {
             newAccount.BankId = bank.BankId;
-            newAccount.BankName = bank.BankName;
-            newAccount.Branch = bank.Branch;
-            newAccount.Ifsc = bank.Ifsc;
             newAccount.AccountNumber = GenerateAccountNumber(bank.BankId);
             bank.Accounts.Add(newAccount);
-            dataProvider.WriteData(RBIStorage.banks);
+            JsonFileHelper.WriteData(RBIStorage.banks);
         }
         public string GenerateAccountNumber(string bankid)
         {
@@ -64,14 +64,14 @@ namespace BankingApplication.Services
                 throw new InvalidBankException("Bank Doesnt Exist.");
             }
         }
-        public bool AddNewCurrency(Bank bank, string newCurrencyName, decimal exchangeRate)
+        public bool AddNewCurrency(Bank bank, string newName, decimal exchangeRate)
         {
-            if (bank.SupportedCurrency.Any(c => c.CurrencyName.EqualInvariant(newCurrencyName)))
+            if (bank.SupportedCurrency.Any(c => c.Name.EqualInvariant(newName)))
             {
                 return false;
             }
-            bank.SupportedCurrency.Add(new Currency(newCurrencyName, exchangeRate));
-            dataProvider.WriteData(RBIStorage.banks);
+            bank.SupportedCurrency.Add(new Currency(newName, exchangeRate));
+            JsonFileHelper.WriteData(RBIStorage.banks);
             return true;
         }
         
@@ -101,7 +101,7 @@ namespace BankingApplication.Services
                     bank.OtherIMPS = newValue; isModified = true;
                 }
             }
-            dataProvider.WriteData(RBIStorage.banks);
+            JsonFileHelper.WriteData(RBIStorage.banks);
             return isModified;
         }
         public List<Transaction> GetAccountTransactions(string accountId)
@@ -131,11 +131,11 @@ namespace BankingApplication.Services
 
 
             }
-            dataProvider.WriteData(RBIStorage.banks);
+            JsonFileHelper.WriteData(RBIStorage.banks);
             return true;
 
         }
-        public Employee CreateAndGetEmployee(string name, string age, DateTime dob, Gender gender, EmployeeDesignation role, Bank bank)
+        public Employee CreateAndGetEmployee(string name, int age, DateTime dob, Gender gender, EmployeeDesignation role, Bank bank)
         {
             Employee employee = new Employee(name, age, dob, gender, role, bank);
             bank.Employees.Add(employee);

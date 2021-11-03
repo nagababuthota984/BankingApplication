@@ -6,12 +6,15 @@ namespace BankingApplication.Models
 {
     public class Currency
     {
+        #region Properties
+        public string Name { get; set; }
+        public decimal ExchangeRate { get; set; } 
+        #endregion
         public Currency(string name, decimal exchangeRate)
         {
-            CurrencyName = name;
+            Name = name;
             ExchangeRate = exchangeRate;
         }
-        public string CurrencyName { get; set; }
-        public decimal ExchangeRate { get; set; }
+        
     }
 }

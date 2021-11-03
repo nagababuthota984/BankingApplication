@@ -57,7 +57,7 @@
             "TransactionAmount": 24.00,
             "BalanceAmount": 3730.00,
             "Currency": {
-              "CurrencyName": "INR",
+              "Name": "INR",
               "ExchangeRate": 1.0
             },
             "TransferMode": 3
@@ -224,7 +224,7 @@
             "TransactionAmount": 24.0,
             "BalanceAmount": 24.0,
             "Currency": {
-              "CurrencyName": "INR",
+              "Name": "INR",
               "ExchangeRate": 1.0
             },
             "TransferMode": 1
@@ -240,7 +240,7 @@
             "TransactionAmount": 24.00,
             "BalanceAmount": 0.00,
             "Currency": {
-              "CurrencyName": "INR",
+              "Name": "INR",
               "ExchangeRate": 1.0
             },
             "TransferMode": 3
@@ -333,7 +333,7 @@
     "OtherIMPS": 12.0,
     "Balance": 16.60,
     "DefaultCurrency": {
-      "CurrencyName": "INR",
+      "Name": "INR",
       "ExchangeRate": 1.0
     },
     "Transactions": [
@@ -348,7 +348,7 @@
         "TransactionAmount": 0.00,
         "BalanceAmount": 16.60,
         "Currency": {
-          "CurrencyName": "INR",
+          "Name": "INR",
           "ExchangeRate": 1.0
         },
         "TransferMode": 3
@@ -391,15 +391,15 @@
     ],
     "SupportedCurrency": [
       {
-        "CurrencyName": "INR",
+        "Name": "INR",
         "ExchangeRate": 1.0
       },
       {
-        "CurrencyName": "USD",
+        "Name": "USD",
         "ExchangeRate": 76.0
       },
       {
-        "CurrencyName": "EURO",
+        "Name": "EURO",
         "ExchangeRate": 101.0
       }
     ],
@@ -442,14 +442,14 @@
     "OtherIMPS": 6.0,
     "Balance": -0.40,
     "DefaultCurrency": {
-      "CurrencyName": "INR",
+      "Name": "INR",
       "ExchangeRate": 1.0
     },
     "Transactions": [],
     "Employees": [],
     "SupportedCurrency": [
       {
-        "CurrencyName": "INR",
+        "Name": "INR",
         "ExchangeRate": 1.0
       }
     ],

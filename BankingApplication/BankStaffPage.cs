@@ -8,11 +8,19 @@ namespace BankingApplication.CLI
 
     public class BankEmployeePage
     {
-        private readonly IBankService bankService = new BankService();
-        private readonly IAccountService accountService = new AccountService();
-        private readonly ITransactionService transactionService = new TransactionService();
-        Bank bank;
-        Employee currentWorkingEmployee;
+        private readonly IBankService bankService;
+        private readonly IAccountService accountService;
+        private readonly ITransactionService transactionService;
+        private readonly Program program;
+       
+
+        public BankEmployeePage()
+        {
+            bankService = Factory.CreateBankService();
+            accountService = Factory.CreateAccountService();  
+            transactionService = Factory.CreateTransactionService();
+            program = new Program();
+        }
 
         public void EmployeeInterface()
         {
@@ -25,7 +33,7 @@ namespace BankingApplication.CLI
             {
                 UserOutput.ShowMessage("Invalid Credentials. Please try again or enter 0 for Main menu\n");
                 if (Console.ReadLine() == "0")
-                    Program.WelcomeMenu();
+                    program.WelcomeMenu();
                 else
                     EmployeeInterface();
             }
@@ -33,27 +41,27 @@ namespace BankingApplication.CLI
             {
                 try
                 {
-                    bank = SessionContent.Bank;
-                    currentWorkingEmployee = SessionContent.Employee;
+                    
                     while (true)
                     {
                         Console.WriteLine("\n========================BANK STAFF MENU==========================\n");
-                        switch (GetBankEmployeeMenuByInteger(Convert.ToInt32(UserInput.GetInputValue(Constant.employeeMenu))))
+                        switch (GetBankEmployeeMenuByInput(Convert.ToInt32(UserInput.GetInputValue(Constant.employeeMenu))))
                         {
                             case BankEmployeeMenu.CreateAccount:
                                 Console.WriteLine("\t-------Account Creation-------\n");
-                                string name = AskName();
-                                string age = AskAge();
-                                Gender gender = GetGenderByInteger(Convert.ToInt32(UserInput.GetInputValue("Gender:\n1.Male\n2.Female\n3.Prefer Not to say")));
-                                DateTime dob = Convert.ToDateTime(UserInput.GetInputValue("Date of Birth"));
+                                string name = GetName();
+                                int age = Convert.ToInt32(GetAge());
+                                Gender gender = GetGenderByInput(Convert.ToInt32(UserInput.GetInputValue("Gender:\n1.Male\n2.Female\n3.Prefer Not to say")));
+                                //...validate and handle the datetime conversion
+                                DateTime dob = GetDateOfBirth(UserInput.GetInputValue("Date of Birth"));
                                 string contactNumber = UserInput.GetInputValue("Contact Number");
-                                string aadharNumber = UserInput.GetInputValue("Aadhar Number");
+                                int aadharNumber = Convert.ToInt32(UserInput.GetInputValue("Aadhar Number"));
                                 string panNumber = UserInput.GetInputValue("PAN Number");
                                 string address = UserInput.GetInputValue("Address");
                                 AccountType accountType = (AccountType)Convert.ToInt32(UserInput.GetInputValue("Account Type(1.Savings/2.Current)"));
                                 Customer newCustomer = new Customer(name, age, gender, dob, contactNumber, aadharNumber, panNumber, address);
                                 Account newAccount = new Account(newCustomer, accountType);
-                                bankService.CreateAccount(newAccount, bank);
+                                bankService.CreateAccount(newAccount, SessionContext.Bank);
                                 UserOutput.ShowMessage($"Account has been created!\nCredentials:Username - {newAccount.UserName}\nPassword - {newAccount.Password}\nAccount Number - {newAccount.AccountNumber}\n");
                                 break;
                             case BankEmployeeMenu.AddBank:
@@ -86,13 +94,21 @@ namespace BankingApplication.CLI
                                 userAccount = accountService.GetAccountById(accountId);
                                 if (userAccount != null)
                                 {
-                                    if (accountService.DeleteAccount(userAccount))
+                                    Console.WriteLine("\nAre you sure you want to delete this account?(Y/N)");
+                                    if (Console.ReadLine().Equals("y",StringComparison.OrdinalIgnoreCase))
                                     {
-                                        UserOutput.ShowMessage("Account Deleted");
+                                        if (accountService.DeleteAccount(userAccount))
+                                        {
+                                            UserOutput.ShowMessage("Account Deleted");
+                                        }
+                                        else
+                                        {
+                                            UserOutput.ShowMessage("Account was not deleted. Try again later.");
+                                        } 
                                     }
                                     else
                                     {
-                                        UserOutput.ShowMessage("Account was not deleted. Try again later.");
+                                        break;
                                     }
                                 }
                                 else
@@ -102,12 +118,12 @@ namespace BankingApplication.CLI
                                 break;
                             case BankEmployeeMenu.AddNewEmployee:
                                 Console.WriteLine("\n-----------Add New Employee-----------\n");
-                                name = AskName();
-                                age = AskAge();
-                                dob = Convert.ToDateTime(UserInput.GetInputValue("Employee Date of Birth"));
-                                gender = GetGenderByInteger(Convert.ToInt32(UserInput.GetInputValue("Employee Gender")));
+                                name = GetName();
+                                age = GetAge();
+                                dob = GetDateOfBirth((UserInput.GetInputValue("Employee Date of Birth")));
+                                gender = GetGenderByInput(Convert.ToInt32(UserInput.GetInputValue("Employee Gender")));
                                 EmployeeDesignation role = (EmployeeDesignation)Convert.ToInt32(UserInput.GetInputValue("Employee Designation"));
-                                Employee newEmployee = bankService.CreateAndGetEmployee(name, age, dob, gender, role, bank);
+                                Employee newEmployee = bankService.CreateAndGetEmployee(name, age, dob, gender, role, SessionContext.Bank);
                                 UserOutput.ShowMessage($"Employee {newEmployee.Name} has been added! Credentials:\n{newEmployee.UserName}\n{newEmployee.Password}\n");
                                 break;
                             case BankEmployeeMenu.AddNewCurrency:
@@ -115,7 +131,7 @@ namespace BankingApplication.CLI
                                 decimal exchangeRate = Convert.ToDecimal(UserInput.GetInputValue("exchange rate"));
                                 if (exchangeRate > 0)
                                 {
-                                    if (bankService.AddNewCurrency(bank, newCurrency, exchangeRate))
+                                    if (bankService.AddNewCurrency(SessionContext.Bank, newCurrency, exchangeRate))
                                         UserOutput.ShowMessage("New Currency Added!");
                                     else
                                         UserOutput.ShowMessage("Currency Already Exists!");
@@ -129,7 +145,7 @@ namespace BankingApplication.CLI
                                 ModeOfTransfer mode = (ModeOfTransfer)Convert.ToInt32(UserInput.GetInputValue("Change service charge:\n1.RTGS\n2.IMPS"));
                                 bool isSelfBankTransfer = (Convert.ToInt32(UserInput.GetInputValue("Charge type:\n1.Money Transfer Within bank.\n2.Money transfer to other banks")).Equals(1)) ? true : false;
                                 decimal value = Convert.ToDecimal(UserInput.GetInputValue("New Charge Value:"));
-                                if (bankService.SetServiceCharge(mode, isSelfBankTransfer, bank, value))
+                                if (bankService.SetServiceCharge(mode, isSelfBankTransfer, SessionContext.Bank, value))
                                 {
                                     UserOutput.ShowMessage("Updation success");
                                 }
@@ -160,7 +176,7 @@ namespace BankingApplication.CLI
                                         Console.WriteLine("Are you sure you want to revert the transaction(Y/N)?\n");
                                         if (Console.ReadLine().Equals("y", StringComparison.OrdinalIgnoreCase))
                                         {
-                                            if(bankService.RevertTransaction(transaction, bank))
+                                            if(bankService.RevertTransaction(transaction, SessionContext.Bank))
                                             {
                                                 Console.WriteLine("Reverted Successfully!\n");
                                             }
@@ -185,9 +201,9 @@ namespace BankingApplication.CLI
                                 }
                                 break;
                             case BankEmployeeMenu.Logout:
-                                SessionContent.Employee = null;
-                                SessionContent.Bank = null;
-                                Program.WelcomeMenu();
+                                SessionContext.Employee = null;
+                                SessionContext.Bank = null;
+                                program.WelcomeMenu();
                                 break;
                         }
                     }
@@ -199,6 +215,21 @@ namespace BankingApplication.CLI
             }
         }
 
+        private DateTime GetDateOfBirth(string datetime)
+        {
+            DateTime dob;
+            try
+            {
+                return Convert.ToDateTime(datetime);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Please enter date in valid format YYYYMMDD");
+                dob = GetDateOfBirth(Console.ReadLine());
+            }
+            return dob;
+            
+        }
 
         private bool UpdateAccountHandler(Account userAccount)
         {
@@ -211,19 +242,19 @@ namespace BankingApplication.CLI
                 {
                     case CustomerProperties.Name:
                         Console.WriteLine($"[Existing : {userAccount.Customer.Name}]");
-                        userAccount.Customer.Name = AskName();
+                        userAccount.Customer.Name = GetName();
                         break;
                     case CustomerProperties.Age:
                         Console.WriteLine($"[Existing : {userAccount.Customer.Age}]");
-                        userAccount.Customer.Age = AskAge();
+                        userAccount.Customer.Age = GetAge();
                         break;
                     case CustomerProperties.Dob:
                         Console.WriteLine($"[Existing : {userAccount.Customer.Dob}]");
-                        userAccount.Customer.Dob = Convert.ToDateTime(UserInput.GetInputValue("Date of Birth"));
+                        userAccount.Customer.Dob = GetDateOfBirth(UserInput.GetInputValue("Date of Birth"));
                         break;
                     case CustomerProperties.AadharNumber:
                         Console.WriteLine($"[Existing : {userAccount.Customer.AadharNumber}]");
-                        userAccount.Customer.AadharNumber = UserInput.GetInputValue("Aadhar number");
+                        userAccount.Customer.AadharNumber = Convert.ToInt32(UserInput.GetInputValue("Aadhar number"));
                         break;
                     case CustomerProperties.PanNumber:
                         Console.WriteLine($"[Existing : {userAccount.Customer.PanNumber}]");
@@ -269,7 +300,7 @@ namespace BankingApplication.CLI
 
         }
 
-        private Gender GetGenderByInteger(int v)
+        private Gender GetGenderByInput(int v)
         {
             if (v == 1)
             {
@@ -284,18 +315,18 @@ namespace BankingApplication.CLI
                 return Gender.PreferNotToSay;
             }
         }
-        private string AskName()
+        private string GetName()
         {
             Console.WriteLine("Please enter customer's name:");
             string name = Console.ReadLine();
-            while (name.Any(Char.IsDigit))
+            while (name.Length<3 && name.Any(Char.IsDigit))
             {
-                Console.WriteLine("Name should not have digits in it.Please enter the name again:\n");
+                Console.WriteLine("Name should not have digits in it.Please enter the valid name like Sam Daniels:\n");
                 name = Console.ReadLine();
             }
             return name;
         }
-        private string AskAge()
+        private int GetAge()
         {
             Console.WriteLine("Please enter customer's age");
             int age = Convert.ToInt32(Console.ReadLine());
@@ -304,9 +335,9 @@ namespace BankingApplication.CLI
                 Console.WriteLine("Please enter valid age. Re-enter age:");
                 age = Convert.ToInt32(Console.ReadLine());
             }
-            return age.ToString();
+            return age;
         }
-        private BankEmployeeMenu GetBankEmployeeMenuByInteger(int v)
+        private BankEmployeeMenu GetBankEmployeeMenuByInput(int v)
         {
             if (v == 1)
                 return BankEmployeeMenu.CreateAccount;

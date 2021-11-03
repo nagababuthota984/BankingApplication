@@ -2,20 +2,10 @@
 
 namespace BankingApplication.Models
 {
-    public class Account : BaseBank
+    public class Account
     {
-
-        public Account(Customer customer, AccountType type)
-        {
-            this.Customer = customer;
-            this.UserName = $"{customer.Name}{customer.Dob:yyyy}";
-            this.Password = $"{customer.Dob:yyyyMMdd}";
-            this.AccountId = $"{customer.Name}{customer.Dob:yyyyMMdd}";
-            this.Customer.AccountId = this.AccountId;
-            this.AccountType = type;
-            this.Transactions = new List<Transaction>();
-        }
-
+        #region Properties
+        public string BankId { get; set; }
         public Customer Customer { get; set; }
         public string AccountNumber { get; set; }
         public string AccountId { get; set; }
@@ -25,6 +15,20 @@ namespace BankingApplication.Models
         public string Password { get; private set; }
         public AccountStatus Status { get; set; }
         public List<Transaction> Transactions { get; set; }
+
+        #endregion Properties
+        public Account(Customer customer, AccountType type)
+        {
+            this.Customer = customer;
+            this.UserName = $"{customer.Name}{customer.Dob:yyyy}";
+            this.Password = $"{customer.Dob:yyyyMMdd}";
+            this.AccountId = $"{customer.Name,3}{customer.Dob:yyyyMMdd}";
+            this.Customer.AccountId = this.AccountId;
+            this.AccountType = type;
+            this.Transactions = new List<Transaction>();
+        }
+
+
 
     }
 }

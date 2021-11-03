@@ -8,18 +8,25 @@ namespace BankingApplication.CLI
 
     class Program
     {
-        
+        private AccountHolderPage accountHolderPage;
+        private BankEmployeePage employeePage;
         public static void Main()
         {
-            IDataProvider dataProvider = new JsonFileHelper();
-            RBIStorage.banks = dataProvider.GetData<Bank>();
+            RBIStorage.banks = JsonFileHelper.GetData<Bank>();
+            Program p = new Program();
+            p.InitializeUI();
+        }
+
+        private void InitializeUI()
+        {
+            accountHolderPage = new AccountHolderPage();
+            employeePage = new BankEmployeePage();
             WelcomeMenu();
         }
 
-        public static void WelcomeMenu()
+        public void WelcomeMenu()
         {
-            AccountHolderPage accountHolderPage = new AccountHolderPage();
-            BankEmployeePage employeePage = new BankEmployeePage();
+
             Console.WriteLine(Constant.welcomeMessage);
             while (true)
             {
@@ -57,5 +64,5 @@ namespace BankingApplication.CLI
 
     }
 
-   
+
 }

@@ -7,11 +7,15 @@ using System.Linq;
 
 namespace BankingApplication.Services
 {
-    public class JsonFileHelper : IDataProvider
+    public class JsonFileHelper
     {
 
-
-        public List<T> GetData<T>()//reads data from json file
+        /// <summary>
+        /// Reads the data from json file
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static List<T> GetData<T>()
         {
 
             string data = File.ReadAllText(Constant.filePath);
@@ -19,7 +23,7 @@ namespace BankingApplication.Services
             return JsonConvert.DeserializeObject<List<T>>(data);
         }
 
-        public void WriteData<T>(List<T> dataToWrite)    //writes to json file
+        public static void WriteData<T>(List<T> dataToWrite)    //writes to json file
         {
             string serializedData = JsonConvert.SerializeObject(dataToWrite, Formatting.Indented);
             File.WriteAllText(Constant.filePath, serializedData);

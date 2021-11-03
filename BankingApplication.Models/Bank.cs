@@ -3,8 +3,25 @@ using System.Collections.Generic;
 
 namespace BankingApplication.Models
 {
-    public class Bank : BaseBank
+    public class Bank
     {
+        #region Properties
+        public string BankId { get; set; }
+        public string BankName { get; set; }
+        public string Branch { get; set; }
+        public string Ifsc { get; set; }
+        public List<Account> Accounts { get; set; }
+
+        public decimal SelfRTGS { get; set; }
+        public decimal SelfIMPS { get; set; }
+        public decimal OtherRTGS { get; set; }
+        public decimal OtherIMPS { get; set; }
+        public decimal Balance { get; set; }
+        public Currency DefaultCurrency { get; set; }
+        public List<Transaction> Transactions { get; set; }
+        public List<Employee> Employees { get; set; }
+        public List<Currency> SupportedCurrency { get; set; }
+        #endregion Properties
         public Bank()
         {
 
@@ -26,17 +43,5 @@ namespace BankingApplication.Models
             Transactions = new List<Transaction>();
             Employees = new List<Employee>();
         }
-
-        public List<Account> Accounts { get; set; }
-        
-        public decimal SelfRTGS { get; set; }
-        public decimal SelfIMPS { get; set; }
-        public decimal OtherRTGS { get; set; }
-        public decimal OtherIMPS { get; set; }
-        public decimal Balance { get; set; }
-        public Currency DefaultCurrency { get; set; }
-        public List<Transaction> Transactions  { get; set; }
-        public List<Employee> Employees { get; set; }
-        public List<Currency> SupportedCurrency { get; set; }
     }
 }
