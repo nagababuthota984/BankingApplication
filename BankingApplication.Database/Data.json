@@ -5,12 +5,12 @@
         "Customer": {
           "AccountId": "NagababuThota20001112",
           "Name": "NagababuThota",
-          "Age": "21",
+          "Age": 21,
           "Gender": 1,
           "ContactNumber": "9202029920",
           "Dob": "2000-11-12T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": "9292820229",
+          "AadharNumber": 0,
           "PanNumber": "0292020289"
         },
         "AccountNumber": "63355138146",
@@ -30,12 +30,12 @@
         "Customer": {
           "AccountId": "20020510",
           "Name": "",
-          "Age": "21",
+          "Age": 21,
           "Gender": 2,
           "ContactNumber": "010299303039",
           "Dob": "2002-05-10T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": "0393902903939",
+          "AadharNumber": 0,
           "PanNumber": "93930039393"
         },
         "AccountNumber": "17540207068",
@@ -72,12 +72,12 @@
         "Customer": {
           "AccountId": "Mohith20020911",
           "Name": "Mohith",
-          "Age": "20",
+          "Age": 20,
           "Gender": 1,
           "ContactNumber": "02093993",
           "Dob": "2002-09-11T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": "0393993030",
+          "AadharNumber": 0,
           "PanNumber": "9394393903"
         },
         "AccountNumber": "58143602568",
@@ -97,12 +97,12 @@
         "Customer": {
           "AccountId": "1234520001111",
           "Name": "12345",
-          "Age": "30",
+          "Age": 30,
           "Gender": 1,
           "ContactNumber": "123",
           "Dob": "2000-11-11T00:00:00",
           "Address": "gnt",
-          "AadharNumber": "123",
+          "AadharNumber": 123,
           "PanNumber": "123"
         },
         "AccountNumber": "41480150238",
@@ -122,12 +122,12 @@
         "Customer": {
           "AccountId": "Sriram20090909",
           "Name": "Sriram",
-          "Age": "29",
+          "Age": 29,
           "Gender": 1,
           "ContactNumber": "0229930",
           "Dob": "2009-09-09T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": "9200393939",
+          "AadharNumber": 9200393939,
           "PanNumber": "0399303993"
         },
         "AccountNumber": "72722586547",
@@ -147,12 +147,12 @@
         "Customer": {
           "AccountId": "nag20001112",
           "Name": "nag",
-          "Age": "20",
+          "Age": 20,
           "Gender": 1,
           "ContactNumber": "9200292020",
           "Dob": "2000-11-12T00:00:00",
           "Address": "gnt",
-          "AadharNumber": "0292902902",
+          "AadharNumber": 0292902902,
           "PanNumber": "9292029920"
         },
         "AccountNumber": "47361533216",
@@ -172,12 +172,12 @@
         "Customer": {
           "AccountId": "Suresh20090812",
           "Name": "Suresh",
-          "Age": "21",
+          "Age": 21,
           "Gender": 1,
           "ContactNumber": "0292920929",
           "Dob": "2009-08-12T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": "0092902029",
+          "AadharNumber":0,
           "PanNumber": "029202092920"
         },
         "AccountNumber": "01485423557",
@@ -193,64 +193,7 @@
         "Branch": null,
         "Ifsc": null
       },
-      {
-        "Customer": {
-          "AccountId": "Yasin20001111",
-          "Name": "Yasin",
-          "Age": "20",
-          "Gender": 1,
-          "ContactNumber": "0293903020020",
-          "Dob": "2000-11-11T00:00:00",
-          "Address": "Guntur",
-          "AadharNumber": "010020200202",
-          "PanNumber": "0292902002020"
-        },
-        "AccountNumber": "77778207842",
-        "AccountId": "Yas20001111",
-        "AccountType": 1,
-        "Balance": 0.00,
-        "UserName": "Yas2000",
-        "Password": "20001111",
-        "Status": 0,
-        "Transactions": [
-          {
-            "TransId": "TXNAxi20211024Cha2002051020211102062635",
-            "Type": 2,
-            "SenderAccountId": "Cha20020510",
-            "ReceiverAccountId": "Yas20001111",
-            "SenderBankId": "Axi20211024",
-            "ReceiverBankId": "Axi20211024",
-            "On": "2021-11-02T18:26:35.9547766+05:30",
-            "TransactionAmount": 24.0,
-            "BalanceAmount": 24.0,
-            "Currency": {
-              "Name": "INR",
-              "ExchangeRate": 1.0
-            },
-            "TransferMode": 1
-          },
-          {
-            "TransId": "TXNAxi20211024Yas2000111120211102062738",
-            "Type": 1,
-            "SenderAccountId": "Yas20001111",
-            "ReceiverAccountId": "Yas20001111",
-            "SenderBankId": "Axi20211024",
-            "ReceiverBankId": "Axi20211024",
-            "On": "2021-11-02T18:27:38.0010445+05:30",
-            "TransactionAmount": 24.00,
-            "BalanceAmount": 0.00,
-            "Currency": {
-              "Name": "INR",
-              "ExchangeRate": 1.0
-            },
-            "TransferMode": 3
-          }
-        ],
-        "BankId": "Axi20211024",
-        "BankName": null,
-        "Branch": null,
-        "Ifsc": null
-      },
+  
       {
         "Customer": {
           "AccountId": "Nagarjuna19860907",
@@ -407,55 +350,6 @@
     "BankName": "AxisBank",
     "Branch": "Guntur",
     "Ifsc": "AXI00091"
-  },
-  {
-    "Accounts": [
-      {
-        "Customer": {
-          "AccountId": "SenaSowseelya20010419",
-          "Name": "SenaSowseelya",
-          "Age": "22",
-          "Gender": 2,
-          "ContactNumber": "02093939930",
-          "Dob": "2001-04-19T00:00:00",
-          "Address": "Guntur",
-          "AadharNumber": "0393930993",
-          "PanNumber": "03939030393"
-        },
-        "AccountNumber": "16677721625",
-        "AccountId": "Sen20010419",
-        "AccountType": 1,
-        "Balance": 232.40,
-        "UserName": "Sen2001",
-        "Password": "20010419",
-        "Status": 0,
-        "Transactions": [],
-        "BankId": "Sta20211026",
-        "BankName": "StateBankOfIndia",
-        "Branch": "Guntur",
-        "Ifsc": "SBIN000232"
-      }
-    ],
-    "SelfRTGS": 0.0,
-    "SelfIMPS": 5.0,
-    "OtherRTGS": 2.0,
-    "OtherIMPS": 6.0,
-    "Balance": -0.40,
-    "DefaultCurrency": {
-      "Name": "INR",
-      "ExchangeRate": 1.0
-    },
-    "Transactions": [],
-    "Employees": [],
-    "SupportedCurrency": [
-      {
-        "Name": "INR",
-        "ExchangeRate": 1.0
-      }
-    ],
-    "BankId": "Sta20211026",
-    "BankName": "StateBankOfIndia",
-    "Branch": "Guntur",
-    "Ifsc": "SBIN000232"
   }
+  
 ]

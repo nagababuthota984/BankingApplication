@@ -14,16 +14,14 @@ namespace BankingApplication.Services
         internal static bool IsDuplicateAccountNumber(string accountNumber, string bankid)
         {
 
-            var RequiredBank = RBIStorage.banks.SingleOrDefault(bank => bank.BankId == bankid);
-            if (RequiredBank != null)
+            var requiredBank = RBIStorage.banks.FirstOrDefault(bank => bank.BankId == bankid);
+            if (requiredBank != null)
             {
-                foreach (var Acc in RequiredBank.Accounts)
+                if(requiredBank.Accounts.Any(account => account.AccountNumber == accountNumber))
                 {
-                    if (Acc.AccountNumber == accountNumber)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
+                
             }
             return false;
         }
@@ -31,12 +29,12 @@ namespace BankingApplication.Services
         internal static string GenerateRandomNumber(int length)
         {
             Random r = new Random();          //account number generator.
-            string NumberString = "";
+            string accountNumber = "";
             for (int i = 1; i < length; i++)
             {
-                NumberString += r.Next(0, 9).ToString();
+                accountNumber += r.Next(0, 9).ToString();
             }
-            return NumberString;
+            return accountNumber;
         }
     }
 }

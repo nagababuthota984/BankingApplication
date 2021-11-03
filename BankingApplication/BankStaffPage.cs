@@ -52,10 +52,9 @@ namespace BankingApplication.CLI
                                 string name = GetName();
                                 int age = Convert.ToInt32(GetAge());
                                 Gender gender = GetGenderByInput(Convert.ToInt32(UserInput.GetInputValue("Gender:\n1.Male\n2.Female\n3.Prefer Not to say")));
-                                //...validate and handle the datetime conversion
                                 DateTime dob = GetDateOfBirth(UserInput.GetInputValue("Date of Birth"));
                                 string contactNumber = UserInput.GetInputValue("Contact Number");
-                                int aadharNumber = Convert.ToInt32(UserInput.GetInputValue("Aadhar Number"));
+                                string aadharNumber = UserInput.GetInputValue("Aadhar Number");
                                 string panNumber = UserInput.GetInputValue("PAN Number");
                                 string address = UserInput.GetInputValue("Address");
                                 AccountType accountType = (AccountType)Convert.ToInt32(UserInput.GetInputValue("Account Type(1.Savings/2.Current)"));
@@ -224,8 +223,9 @@ namespace BankingApplication.CLI
             }
             catch(Exception e)
             {
-                Console.WriteLine("Please enter date in valid format YYYYMMDD");
+                Console.WriteLine("Invalid Date. Please enter date in valid format YYYYMMDD");
                 dob = GetDateOfBirth(Console.ReadLine());
+                    
             }
             return dob;
             
@@ -254,7 +254,7 @@ namespace BankingApplication.CLI
                         break;
                     case CustomerProperties.AadharNumber:
                         Console.WriteLine($"[Existing : {userAccount.Customer.AadharNumber}]");
-                        userAccount.Customer.AadharNumber = Convert.ToInt32(UserInput.GetInputValue("Aadhar number"));
+                        userAccount.Customer.AadharNumber = UserInput.GetInputValue("Aadhar number");
                         break;
                     case CustomerProperties.PanNumber:
                         Console.WriteLine($"[Existing : {userAccount.Customer.PanNumber}]");

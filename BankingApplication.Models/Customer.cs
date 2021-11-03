@@ -14,10 +14,10 @@ namespace BankingApplication.Models
         public string ContactNumber { get; set; }
         public DateTime Dob { get; set; }
         public string Address { get; set; }
-        public int AadharNumber { get; set; }
+        public string AadharNumber { get; set; }
         public string PanNumber { get; set; } 
         #endregion
-        public Customer(string name,int age,Gender gender,DateTime dob,string contactNumber,int aadharNumber,string panNumber, string address)
+        public Customer(string name,int age,Gender gender,DateTime dob,string contactNumber,string aadharNumber,string panNumber, string address)
         {
             this.Name = name;
             this.Age = age;
