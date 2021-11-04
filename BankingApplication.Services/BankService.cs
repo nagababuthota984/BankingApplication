@@ -45,7 +45,7 @@ namespace BankingApplication.Services
         }
         public string GenerateAccountNumber(string bankid)
         {
-            string accNumber = null;
+            string accNumber;
             do
             {
                 accNumber = Utilities.GenerateRandomNumber(12).ToString();

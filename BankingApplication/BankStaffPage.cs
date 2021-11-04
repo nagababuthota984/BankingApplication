@@ -50,7 +50,7 @@ namespace BankingApplication.CLI
                             case BankEmployeeMenu.CreateAccount:
                                 Console.WriteLine("\t-------Account Creation-------\n");
                                 string name = GetName();
-                                int age = Convert.ToInt32(GetAge());
+                                int age = GetAge();
                                 Gender gender = GetGenderByInput(Convert.ToInt32(UserInput.GetInputValue("Gender:\n1.Male\n2.Female\n3.Prefer Not to say")));
                                 DateTime dob = GetDateOfBirth(UserInput.GetInputValue("Date of Birth"));
                                 string contactNumber = UserInput.GetInputValue("Contact Number");
@@ -65,13 +65,20 @@ namespace BankingApplication.CLI
                                 break;
                             case BankEmployeeMenu.AddBank:
                                 string bankName = UserInput.GetInputValue("Name of the bank");
-                                string branch = UserInput.GetInputValue("Branch");
-                                string ifsc = UserInput.GetInputValue("IFSC");
-                                Bank newBank = bankService.CreateAndGetBank(bankName, branch, ifsc);
-                                if (newBank == null)
-                                    UserOutput.ShowMessage("Bank not created! Try again.");
+                                if (RBIStorage.banks.Any(bank=>bank.BankName.EqualInvariant(bankName)))
+                                {
+                                    string branch = UserInput.GetInputValue("Branch");
+                                    string ifsc = UserInput.GetInputValue("IFSC");
+                                    Bank newBank = bankService.CreateAndGetBank(bankName, branch, ifsc);
+                                    if (newBank == null)
+                                        UserOutput.ShowMessage("Bank not created! Try again.");
+                                    else
+                                        UserOutput.ShowMessage($"Bank created with bank id - {newBank.BankId}"); 
+                                }
                                 else
-                                    UserOutput.ShowMessage($"Bank created with bank id - {newBank.BankId}");
+                                {
+                                    UserOutput.ShowMessage("A Bank with same name already exists!");
+                                }
                                 break;
                             case BankEmployeeMenu.UpdateAccount:
                                 string accountId = UserInput.GetInputValue("Account Id");
@@ -126,11 +133,11 @@ namespace BankingApplication.CLI
                                 UserOutput.ShowMessage($"Employee {newEmployee.Name} has been added! Credentials:\n{newEmployee.UserName}\n{newEmployee.Password}\n");
                                 break;
                             case BankEmployeeMenu.AddNewCurrency:
-                                string newCurrency = UserInput.GetInputValue("new currency type");
+                                string newCurrencyName = UserInput.GetInputValue("new currency name");
                                 decimal exchangeRate = Convert.ToDecimal(UserInput.GetInputValue("exchange rate"));
                                 if (exchangeRate > 0)
                                 {
-                                    if (bankService.AddNewCurrency(SessionContext.Bank, newCurrency, exchangeRate))
+                                    if (bankService.AddNewCurrency(SessionContext.Bank, newCurrencyName, exchangeRate))
                                         UserOutput.ShowMessage("New Currency Added!");
                                     else
                                         UserOutput.ShowMessage("Currency Already Exists!");
@@ -231,7 +238,7 @@ namespace BankingApplication.CLI
             
         }
 
-        private bool UpdateAccountHandler(Account userAccount)
+        private void UpdateAccountHandler(Account userAccount)
         {
 
             while (true)
@@ -269,7 +276,7 @@ namespace BankingApplication.CLI
                         userAccount.Customer.Address = UserInput.GetInputValue("Address");
                         break;
                     default:
-                        return true;
+                        return;
 
                 }
             }

@@ -46,10 +46,6 @@ namespace BankingApplication.Models
             this.ReceiverAccountId = bank.BankId;
             this.BalanceAmount = bank.Balance;
         }
-
-
-
-
     }
     
 }

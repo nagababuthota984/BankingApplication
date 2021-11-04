@@ -25,10 +25,14 @@ namespace BankingApplication.Services
             }
             return false;
         }
-        
+        /// <summary>
+        /// Account Number Generator
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns>String</returns>
         internal static string GenerateRandomNumber(int length)
         {
-            Random r = new Random();          //account number generator.
+            Random r = new Random();          
             string accountNumber = "";
             for (int i = 1; i < length; i++)
             {

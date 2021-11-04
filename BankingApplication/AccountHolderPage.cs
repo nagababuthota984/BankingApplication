@@ -36,7 +36,6 @@ namespace BankingApplication.CLI
             }
             else
             {
-                userAccount = SessionContext.Account;
                 while (true)
                 {
                     try
@@ -50,7 +49,7 @@ namespace BankingApplication.CLI
                                 if (amount > 0)
                                 {
                                     string Name = UserInput.GetInputValue("Currency Name");
-                                    Currency currency = SessionContext.Bank.SupportedCurrency.FirstOrDefault(c => (c.Name.Equals(Name, StringComparison.OrdinalIgnoreCase)));
+                                    Currency currency = SessionContext.Bank.SupportedCurrency.FirstOrDefault(c => c.Name.EqualInvariant(Name));
                                     if (currency != null)
                                     {
                                         accountService.DepositAmount(userAccount, amount, currency);
