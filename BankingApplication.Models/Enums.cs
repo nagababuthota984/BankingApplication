@@ -24,7 +24,7 @@
         DeleteAccount,
         AddNewEmployee,
         AddNewCurrency,
-        SetServiceCharge,
+        ModifyServiceCharge,
         ViewTransactions,
         RevertTransaction,
         Logout

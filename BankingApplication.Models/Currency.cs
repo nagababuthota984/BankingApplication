@@ -8,8 +8,12 @@ namespace BankingApplication.Models
     {
         #region Properties
         public string Name { get; set; }
-        public decimal ExchangeRate { get; set; } 
+        public decimal ExchangeRate { get; set; }
         #endregion
+        public Currency()
+        {
+
+        }
         public Currency(string name, decimal exchangeRate)
         {
             Name = name;

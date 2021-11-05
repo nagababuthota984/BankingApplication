@@ -36,34 +36,24 @@ namespace BankingApplication.Services
             
 
         }
-        public void CreateAccount(Account newAccount, Bank bank)
+        public void CreateAndAddAccount(Account newAccount, Bank bank)
         {
-            newAccount.BankId = bank.BankId;
-            newAccount.AccountNumber = GenerateAccountNumber(bank.BankId);
             bank.Accounts.Add(newAccount);
             JsonFileHelper.WriteData(RBIStorage.banks);
         }
-        public string GenerateAccountNumber(string bankid)
+        public void UpdateAccount(Account userAccount)
         {
-            string accNumber;
-            do
-            {
-                accNumber = Utilities.GenerateRandomNumber(12).ToString();
-            } while (Utilities.IsDuplicateAccountNumber(accNumber, bankid));
-            return accNumber;
+            JsonFileHelper.WriteData(RBIStorage.banks);
         }
-        public Bank GetBankByBankId(string bankId)
+
+        public bool DeleteAccount(Account userAccount)
         {
-            Bank bank = RBIStorage.banks.FirstOrDefault(b => b.BankId.EqualInvariant(bankId));
-            if (bank != null)
-            {
-                return bank;
-            }
-            else
-            {
-                throw new InvalidBankException("Bank Doesnt Exist.");
-            }
+            userAccount.Status = AccountStatus.Closed;
+            JsonFileHelper.WriteData(RBIStorage.banks);
+            return true;
         }
+
+        
         public bool AddNewCurrency(Bank bank, string newName, decimal exchangeRate)
         {
             if (bank.SupportedCurrency.Any(c => c.Name.EqualInvariant(newName)))
@@ -75,7 +65,7 @@ namespace BankingApplication.Services
             return true;
         }
         
-        public bool SetServiceCharge(ModeOfTransfer mode, bool isSelfBankCharge, Bank bank, decimal newValue)
+        public bool ModifyServiceCharge(ModeOfTransfer mode, bool isSelfBankCharge, Bank bank, decimal newValue)
         {
             bool isModified;
             if (isSelfBankCharge)

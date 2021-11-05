@@ -21,7 +21,7 @@ namespace BankingApplication.Services
             receiverAccount.Transactions.Add(receiverTransaction);
             
         }
-        public void CreateBankTransaction(Bank bank, Account userAccount, decimal charges,Currency currency)
+        public void CreateAndAddBankTransaction(Bank bank, Account userAccount, decimal charges,Currency currency)
         {
             Transaction newBankTransaction = new Transaction(userAccount, bank, TransactionType.ServiceCharge, charges, currency);
             bank.Transactions.Add(newBankTransaction);

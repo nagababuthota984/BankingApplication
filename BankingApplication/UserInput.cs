@@ -18,6 +18,31 @@ namespace BankingApplication.CLI
             Console.WriteLine("==================================================\n");
             return GetAccountHolderMenuByInteger(Convert.ToInt32(Console.ReadLine()));
         }
+
+        internal static string GetPassword()
+        {
+            Console.WriteLine("Please enter your password");
+            string password = Console.ReadLine();
+            if (password == null || password.Length < 5)
+            {
+                Console.WriteLine("Invalid Username!\n");
+                return GetPassword();
+            }
+            else return password;
+        }
+
+        internal static string GetUserName()
+        {
+            Console.WriteLine("Please enter your username");
+            string username = Console.ReadLine();
+            if (username == null || username.Length < 5)
+            {
+                Console.WriteLine("Invalid Username!\n");
+                return GetUserName();
+            }
+            else return username;
+        }
+
         private static AccountHolderMenu GetAccountHolderMenuByInteger(int value)
         {
             if (value == 1)
@@ -34,6 +59,50 @@ namespace BankingApplication.CLI
                 return AccountHolderMenu.LogOut;
             else
                 return AccountHolderMenu.LogOut;
+        }
+
+        internal static decimal GetDecimalInput(string message)
+        {
+            Console.WriteLine($"Enter {message}:");
+            if(decimal.TryParse(Console.ReadLine(), out decimal result))
+            {
+                return result; 
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid decimal value.");
+                return GetDecimalInput(message);
+            }
+
+
+        }
+
+        internal static long GetLongInput(string message)
+        {
+            Console.WriteLine($"Enter {message}:");
+            if (long.TryParse(Console.ReadLine(), out long result))
+            {
+                return result;
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid 12-digit value.");
+                return GetLongInput(message);
+            }
+        }
+
+        internal static int GetIntegerInput(string message)
+        {
+            Console.WriteLine($"Enter {message}:");
+            if (int.TryParse(Console.ReadLine(), out int result))
+            {
+                return result;
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid Integer value.");
+                return GetIntegerInput(message);
+            }
         }
     }
 }

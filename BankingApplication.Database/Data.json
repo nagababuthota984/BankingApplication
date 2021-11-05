@@ -15,7 +15,7 @@
           "ContactNumber": "9202029920",
           "Dob": "2000-11-12T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": "0",
+          "AadharNumber": 0,
           "PanNumber": "0292020289"
         },
         "AccountNumber": "63355138146",
@@ -31,13 +31,13 @@
         "BankId": "Axi20211024",
         "Customer": {
           "AccountId": "Cha20020510",
-          "Name": "Chandrika Thota",
+          "Name": "Chandrika",
           "Age": 21,
           "Gender": 2,
           "ContactNumber": "010299303039",
           "Dob": "2002-05-10T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": "0",
+          "AadharNumber": 0,
           "PanNumber": "93930039393"
         },
         "AccountNumber": "17540207068",
@@ -76,7 +76,7 @@
           "ContactNumber": "02093993",
           "Dob": "2002-09-11T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": "0",
+          "AadharNumber": 0,
           "PanNumber": "9394393903"
         },
         "AccountNumber": "58143602568",
@@ -98,7 +98,7 @@
           "ContactNumber": "123",
           "Dob": "2000-11-11T00:00:00",
           "Address": "gnt",
-          "AadharNumber": "123",
+          "AadharNumber": 123,
           "PanNumber": "123"
         },
         "AccountNumber": "41480150238",
@@ -120,7 +120,7 @@
           "ContactNumber": "0229930",
           "Dob": "2009-09-09T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": "9200393939",
+          "AadharNumber": 9200393939,
           "PanNumber": "0399303993"
         },
         "AccountNumber": "72722586547",
@@ -142,7 +142,7 @@
           "ContactNumber": "0292920929",
           "Dob": "2009-08-12T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": "0",
+          "AadharNumber": 0,
           "PanNumber": "029202092920"
         },
         "AccountNumber": "01485423557",
@@ -164,7 +164,7 @@
           "ContactNumber": "9282992929",
           "Dob": "1986-09-07T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": "9292993292",
+          "AadharNumber": 9292993292,
           "PanNumber": "9292992929"
         },
         "AccountNumber": "76456805238",
@@ -186,7 +186,7 @@
           "ContactNumber": "029200029",
           "Dob": "2000-09-09T00:00:00",
           "Address": "GUntur",
-          "AadharNumber": "029020292",
+          "AadharNumber": 0,
           "PanNumber": "02929020292"
         },
         "AccountNumber": "55625012611",
@@ -208,7 +208,7 @@
           "ContactNumber": "9209292929",
           "Dob": "1986-04-19T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": "9292929",
+          "AadharNumber": 9292929,
           "PanNumber": "029292992"
         },
         "AccountNumber": "82846065132",

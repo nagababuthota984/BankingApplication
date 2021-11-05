@@ -50,17 +50,7 @@ namespace BankingApplication.Services
             return null;
         }
 
-        public void UpdateAccount(Account userAccount)
-        {
-            JsonFileHelper.WriteData(RBIStorage.banks);
-        }
-
-        public bool DeleteAccount(Account userAccount)
-        {
-            userAccount.Status = AccountStatus.Closed;
-            JsonFileHelper.WriteData(RBIStorage.banks);
-            return true;
-        }
+       
         public void DepositAmount(Account userAccount, decimal amount, Currency currency)
         {
             amount *= currency.ExchangeRate;
@@ -94,14 +84,14 @@ namespace BankingApplication.Services
                     decimal charges = (senderBank.SelfRTGS * amount) / 100;
                     senderAccount.Balance -= charges;
                     senderBank.Balance += charges;
-                    transService.CreateBankTransaction(senderBank, senderAccount, charges, currency);
+                    transService.CreateAndAddBankTransaction(senderBank, senderAccount, charges, currency);
                 }
                 else
                 {
                     decimal charges = (senderBank.OtherRTGS * amount) / 100;
                     senderAccount.Balance -= charges;
                     senderBank.Balance += charges;
-                    transService.CreateBankTransaction(senderBank, senderAccount, charges, currency);
+                    transService.CreateAndAddBankTransaction(senderBank, senderAccount, charges, currency);
                 }
             }
             else
@@ -111,14 +101,14 @@ namespace BankingApplication.Services
                     decimal charges = (senderBank.SelfIMPS * amount) / 100;
                     senderAccount.Balance -= charges;
                     senderBank.Balance += charges;
-                    transService.CreateBankTransaction(senderBank, senderAccount, charges, currency);
+                    transService.CreateAndAddBankTransaction(senderBank, senderAccount, charges, currency);
                 }
                 else
                 {
                     decimal charges = (senderBank.OtherIMPS * amount) / 100;
                     senderAccount.Balance -= charges;
                     senderBank.Balance += charges;
-                    transService.CreateBankTransaction(senderBank, senderAccount, charges, currency);
+                    transService.CreateAndAddBankTransaction(senderBank, senderAccount, charges, currency);
                 }
             }
         }

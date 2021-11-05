@@ -18,8 +18,8 @@ namespace BankingApplication.CLI
         public void CustomerInterface()
         {
             Console.WriteLine("=================CUSTOMER LOGIN================");
-            string userName = UserInput.GetInputValue("Username");
-            string password = UserInput.GetInputValue("Password");
+            string userName = UserInput.GetUserName();
+            string password = UserInput.GetPassword();
             Console.WriteLine();
             if (!accountService.IsValidCustomer(userName, password))
             {
@@ -44,7 +44,8 @@ namespace BankingApplication.CLI
                         {
                             case AccountHolderMenu.Deposit:
                                 Console.WriteLine("\t-------Money Deposit-------\n");
-                                decimal amount = Convert.ToInt32(UserInput.GetInputValue("Amount to Deposit"));
+                                decimal amount = UserInput.GetDecimalInput("amount to deposit");
+
                                 if (amount > 0)
                                 {
                                     string Name = UserInput.GetInputValue("Currency Name");
@@ -67,7 +68,7 @@ namespace BankingApplication.CLI
 
                             case AccountHolderMenu.Withdraw:
                                 Console.WriteLine("\n-------Amount Withdrawl-------\n");
-                                amount = Convert.ToDecimal(UserInput.GetInputValue("Amount to Withdraw"));
+                                amount = UserInput.GetDecimalInput("amount to withdraw");
                                 if (amount > 0)
                                 {
                                     if (amount <= SessionContext.Account.Balance)
@@ -92,12 +93,12 @@ namespace BankingApplication.CLI
 
                                 if (recipientAccount != null)
                                 {
-                                    amount = Convert.ToDecimal(UserInput.GetInputValue("Amount to Transfer"));
+                                    amount = UserInput.GetDecimalInput("Amount to Transfer");
                                     if (amount > 0)
                                     {
                                         if (amount <= SessionContext.Account.Balance)
                                         {
-                                            ModeOfTransfer mode = (ModeOfTransfer)Convert.ToInt32(UserInput.GetInputValue("mode of transfer\n1.RTGS \n2.IMPS."));
+                                            ModeOfTransfer mode = (ModeOfTransfer)UserInput.GetIntegerInput("mode of transfer\n1.RTGS \n2.IMPS.");
                                             accountService.TransferAmount(SessionContext.Account, SessionContext.Bank, recipientAccount, amount, mode);
                                             UserOutput.ShowMessage("Transferred successfully");
                                         }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BankingApplication.Models
 {
@@ -17,7 +19,11 @@ namespace BankingApplication.Models
         public List<Transaction> Transactions { get; set; }
 
         #endregion Properties
-        public Account(Customer customer, AccountType type)
+        public Account()
+        {
+
+        }
+        public Account(Customer customer, AccountType type,Bank bank)
         {
             this.Customer = customer;
             this.UserName = $"{customer.Name}{customer.Dob:yyyy}";
@@ -26,9 +32,29 @@ namespace BankingApplication.Models
             this.Customer.AccountId = this.AccountId;
             this.AccountType = type;
             this.Transactions = new List<Transaction>();
+            this.AccountNumber = GenerateAccountNumber(bank);
+            this.BankId = bank.BankId;
         }
 
-
+        private string GenerateAccountNumber(Bank bank)
+        {
+            string accNumber;
+            do
+            {
+                accNumber = GenerateRandomNumber(12);
+            } while (bank.Accounts.Any(account => account.AccountNumber.Equals(accNumber)));
+            return accNumber;
+        }
+        private static string GenerateRandomNumber(int length)
+        {
+            Random r = new Random();
+            string accountNumber = "";
+            for (int i = 1; i < length; i++)
+            {
+                accountNumber += r.Next(0, 9).ToString();
+            }
+            return accountNumber;
+        }
 
     }
 }
