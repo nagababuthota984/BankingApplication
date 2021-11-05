@@ -139,6 +139,7 @@ namespace BankingApplication.Services
         {
             Employee employee = new Employee(name, age, dob, gender, role, bank);
             bank.Employees.Add(employee);
+            JsonFileHelper.WriteData(RBIStorage.banks);
             return employee;
         }
     }

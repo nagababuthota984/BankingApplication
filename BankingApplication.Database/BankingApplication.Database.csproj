@@ -9,6 +9,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Data\accounts.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

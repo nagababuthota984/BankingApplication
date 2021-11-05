@@ -127,8 +127,8 @@ namespace BankingApplication.CLI
                                 name = GetName();
                                 age = GetAge();
                                 dob = GetDateOfBirth((UserInput.GetInputValue("Employee Date of Birth")));
-                                gender = GetGenderByInput(Convert.ToInt32(UserInput.GetInputValue("Employee Gender")));
-                                EmployeeDesignation role = (EmployeeDesignation)Convert.ToInt32(UserInput.GetInputValue("Employee Designation"));
+                                gender = GetGenderByInput(Convert.ToInt32(UserInput.GetInputValue("Employee Gender\n1.Male\n2.Female\n3.Prefer not to say")));
+                                EmployeeDesignation role = (EmployeeDesignation)Convert.ToInt32(UserInput.GetInputValue("Employee Designation\n1.Manager\n2.Accounts Manager\n3.Financial Analyst\n4.LoanOfficer"));
                                 Employee newEmployee = bankService.CreateAndGetEmployee(name, age, dob, gender, role, SessionContext.Bank);
                                 UserOutput.ShowMessage($"Employee {newEmployee.Name} has been added! Credentials:\n{newEmployee.UserName}\n{newEmployee.Password}\n");
                                 break;
@@ -324,18 +324,18 @@ namespace BankingApplication.CLI
         }
         private string GetName()
         {
-            Console.WriteLine("Please enter customer's name:");
+            Console.WriteLine("Please enter name:");
             string name = Console.ReadLine();
-            while (name.Length<3 && name.Any(Char.IsDigit))
+            while (name.Length<3 || name.Any(Char.IsDigit))
             {
-                Console.WriteLine("Name should not have digits in it.Please enter the valid name like Sam Daniels:\n");
+                Console.WriteLine("Name should not contain digits and should be of length greater than 3.Please enter the valid name. Example: Sam Daniels:\n");
                 name = Console.ReadLine();
             }
             return name;
         }
         private int GetAge()
         {
-            Console.WriteLine("Please enter customer's age");
+            Console.WriteLine("Please enter age");
             int age = Convert.ToInt32(Console.ReadLine());
             while (age <= 0 || age > 100)
             {

@@ -27,7 +27,7 @@ namespace BankingApplication.Models
             this.Gender = gender;
             this.BankId = bank.BankId;
             this.Designation = role;
-            this.EmployeeId = $"{bank.BankName,3}{Name,3}{dob:MMdd}";
+            this.EmployeeId = $"{bank.BankName.Substring(0,3)}{DateTime.Now:yyyyMMddhhmm}";
             this.UserName = $"{Name.Substring(0, 3)}{EmployeeId.Substring(5, 3)}";
             this.Password = dob.ToString("yyyyMMdd");
 

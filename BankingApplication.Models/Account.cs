@@ -22,7 +22,7 @@ namespace BankingApplication.Models
             this.Customer = customer;
             this.UserName = $"{customer.Name}{customer.Dob:yyyy}";
             this.Password = $"{customer.Dob:yyyyMMdd}";
-            this.AccountId = $"{customer.Name,3}{customer.Dob:yyyyMMdd}";
+            this.AccountId = $"{customer.Name[..3]}{customer.Dob:yyyyMMdd}";
             this.Customer.AccountId = this.AccountId;
             this.AccountType = type;
             this.Transactions = new List<Transaction>();

@@ -9,7 +9,6 @@ namespace BankingApplication.CLI
     public class AccountHolderPage
     {
         IAccountService accountService;
-        Account userAccount;
         Program program;
         public AccountHolderPage()
         {
@@ -52,7 +51,7 @@ namespace BankingApplication.CLI
                                     Currency currency = SessionContext.Bank.SupportedCurrency.FirstOrDefault(c => c.Name.EqualInvariant(Name));
                                     if (currency != null)
                                     {
-                                        accountService.DepositAmount(userAccount, amount, currency);
+                                        accountService.DepositAmount(SessionContext.Account, amount, currency);
                                         UserOutput.ShowMessage("Credited successfully\n");
                                     }
                                     else
@@ -71,9 +70,9 @@ namespace BankingApplication.CLI
                                 amount = Convert.ToDecimal(UserInput.GetInputValue("Amount to Withdraw"));
                                 if (amount > 0)
                                 {
-                                    if (amount <= userAccount.Balance)
+                                    if (amount <= SessionContext.Account.Balance)
                                     {
-                                        accountService.WithdrawAmount(userAccount, amount);
+                                        accountService.WithdrawAmount(SessionContext.Account, amount);
                                         UserOutput.ShowMessage("Debited successfully");
                                     }
                                     else
@@ -96,10 +95,10 @@ namespace BankingApplication.CLI
                                     amount = Convert.ToDecimal(UserInput.GetInputValue("Amount to Transfer"));
                                     if (amount > 0)
                                     {
-                                        if (amount <= userAccount.Balance)
+                                        if (amount <= SessionContext.Account.Balance)
                                         {
                                             ModeOfTransfer mode = (ModeOfTransfer)Convert.ToInt32(UserInput.GetInputValue("mode of transfer\n1.RTGS \n2.IMPS."));
-                                            accountService.TransferAmount(userAccount, SessionContext.Bank, recipientAccount, amount, mode);
+                                            accountService.TransferAmount(SessionContext.Account, SessionContext.Bank, recipientAccount, amount, mode);
                                             UserOutput.ShowMessage("Transferred successfully");
                                         }
                                         else
@@ -119,10 +118,10 @@ namespace BankingApplication.CLI
                                 break;
                             case AccountHolderMenu.PrintStatement:
                                 Console.WriteLine("\n-------Transaction History-------\n");
-                                UserOutput.ShowTransactions(userAccount.Transactions);
+                                UserOutput.ShowTransactions(SessionContext.Account.Transactions);
                                 break;
                             case AccountHolderMenu.CheckBalance:
-                                Console.WriteLine($"\nCurrent Balance - {userAccount.Balance} INR\n");
+                                Console.WriteLine($"\nCurrent Balance - {SessionContext.Account.Balance} INR\n");
                                 break;
                             case AccountHolderMenu.LogOut:
                                 SessionContext.Employee = null;

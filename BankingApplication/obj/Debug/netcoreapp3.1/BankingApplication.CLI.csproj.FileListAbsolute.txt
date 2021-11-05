@@ -86,3 +86,4 @@ C:\Users\nagab\source\repos\BankingApplication\BankingApplication\obj\Debug\netc
 C:\Users\nagab\source\repos\BankingApplication\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.CLI.pdb
 C:\Users\nagab\source\repos\BankingApplication\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.CLI.genruntimeconfig.cache
 C:\Users\hp\Source\Repos\BankingApplication\BankingApplication\obj\Debug\netcoreapp3.1\BankingApplication.CLI.csproj.CopyComplete
+C:\Users\hp\source\repos\BankingApplication\BankingApplication\bin\Debug\netcoreapp3.1\Data.json

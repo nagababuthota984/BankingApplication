@@ -1,16 +1,21 @@
 [
   {
+    "BankId": "Axi20211024",
+    "BankName": "AxisBank",
+    "Branch": "Guntur",
+    "Ifsc": "AXI00091",
     "Accounts": [
       {
+        "BankId": "Axi20211024",
         "Customer": {
-          "AccountId": "NagababuThota20001112",
+          "AccountId": "Nag20001112",
           "Name": "NagababuThota",
           "Age": 21,
           "Gender": 1,
           "ContactNumber": "9202029920",
           "Dob": "2000-11-12T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": 0,
+          "AadharNumber": "0",
           "PanNumber": "0292020289"
         },
         "AccountNumber": "63355138146",
@@ -20,22 +25,19 @@
         "UserName": "Nag2000",
         "Password": "20001112",
         "Status": 2,
-        "Transactions": [],
-        "BankId": "Axi20211024",
-        "BankName": "AxisBank",
-        "Branch": "Guntur",
-        "Ifsc": "AXI00091"
+        "Transactions": []
       },
       {
+        "BankId": "Axi20211024",
         "Customer": {
-          "AccountId": "20020510",
-          "Name": "",
+          "AccountId": "Cha20020510",
+          "Name": "Chandrika Thota",
           "Age": 21,
           "Gender": 2,
           "ContactNumber": "010299303039",
           "Dob": "2002-05-10T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": 0,
+          "AadharNumber": "0",
           "PanNumber": "93930039393"
         },
         "AccountNumber": "17540207068",
@@ -62,22 +64,19 @@
             },
             "TransferMode": 3
           }
-        ],
-        "BankId": "Axi20211024",
-        "BankName": "AxisBank",
-        "Branch": "Guntur",
-        "Ifsc": "UBIN0000261"
+        ]
       },
       {
+        "BankId": "Axi20211024",
         "Customer": {
-          "AccountId": "Mohith20020911",
+          "AccountId": "Moh20020911",
           "Name": "Mohith",
           "Age": 20,
           "Gender": 1,
           "ContactNumber": "02093993",
           "Dob": "2002-09-11T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": 0,
+          "AadharNumber": "0",
           "PanNumber": "9394393903"
         },
         "AccountNumber": "58143602568",
@@ -87,22 +86,19 @@
         "UserName": "Moh2002",
         "Password": "20020911",
         "Status": 0,
-        "Transactions": [],
-        "BankId": "Axi20211024",
-        "BankName": "AxisBank",
-        "Branch": "Guntur",
-        "Ifsc": "INDJ0091"
+        "Transactions": []
       },
       {
+        "BankId": "Axi20211024",
         "Customer": {
-          "AccountId": "1234520001111",
+          "AccountId": "12320001111",
           "Name": "12345",
           "Age": 30,
           "Gender": 1,
           "ContactNumber": "123",
           "Dob": "2000-11-11T00:00:00",
           "Address": "gnt",
-          "AadharNumber": 123,
+          "AadharNumber": "123",
           "PanNumber": "123"
         },
         "AccountNumber": "41480150238",
@@ -112,22 +108,19 @@
         "UserName": "1232000",
         "Password": "20001111",
         "Status": 2,
-        "Transactions": [],
-        "BankId": "Axi20211024",
-        "BankName": "AxisBank",
-        "Branch": "Guntur",
-        "Ifsc": "UBIN000123"
+        "Transactions": []
       },
       {
+        "BankId": "Axi20211024",
         "Customer": {
-          "AccountId": "Sriram20090909",
+          "AccountId": "Sri20090909",
           "Name": "Sriram",
           "Age": 29,
           "Gender": 1,
           "ContactNumber": "0229930",
           "Dob": "2009-09-09T00:00:00",
           "Address": "Guntur",
-          "AadharNumber": 9200393939,
+          "AadharNumber": "9200393939",
           "PanNumber": "0399303993"
         },
         "AccountNumber": "72722586547",
@@ -137,47 +130,19 @@
         "UserName": "Sri2009",
         "Password": "20090909",
         "Status": 0,
-        "Transactions": [],
-        "BankId": "Axi20211024",
-        "BankName": "AxisBank",
-        "Branch": "Guntur",
-        "Ifsc": "AXI00091"
+        "Transactions": []
       },
       {
-        "Customer": {
-          "AccountId": "nag20001112",
-          "Name": "nag",
-          "Age": 20,
-          "Gender": 1,
-          "ContactNumber": "9200292020",
-          "Dob": "2000-11-12T00:00:00",
-          "Address": "gnt",
-          "AadharNumber": 0292902902,
-          "PanNumber": "9292029920"
-        },
-        "AccountNumber": "47361533216",
-        "AccountId": "nag20001112",
-        "AccountType": 1,
-        "Balance": 11.0,
-        "UserName": "nag2000",
-        "Password": "20001112",
-        "Status": 0,
-        "Transactions": [],
         "BankId": "Axi20211024",
-        "BankName": "AxisBank",
-        "Branch": "Guntur",
-        "Ifsc": "AXI00091"
-      },
-      {
         "Customer": {
-          "AccountId": "Suresh20090812",
+          "AccountId": "Sur20090812",
           "Name": "Suresh",
           "Age": 21,
           "Gender": 1,
           "ContactNumber": "0292920929",
           "Dob": "2009-08-12T00:00:00",
           "Address": "Guntur",
-          "AadharNumber":0,
+          "AadharNumber": "0",
           "PanNumber": "029202092920"
         },
         "AccountNumber": "01485423557",
@@ -187,18 +152,14 @@
         "UserName": "Sur2009",
         "Password": "20090812",
         "Status": 0,
-        "Transactions": [],
-        "BankId": "Axi20211024",
-        "BankName": null,
-        "Branch": null,
-        "Ifsc": null
+        "Transactions": []
       },
-  
       {
+        "BankId": "Axi20211024",
         "Customer": {
-          "AccountId": "Nagarjuna19860907",
+          "AccountId": "Nag19860907",
           "Name": "Nagarjuna",
-          "Age": "48",
+          "Age": 48,
           "Gender": 1,
           "ContactNumber": "9282992929",
           "Dob": "1986-09-07T00:00:00",
@@ -213,17 +174,14 @@
         "UserName": "Nag1986",
         "Password": "19860907",
         "Status": 0,
-        "Transactions": [],
-        "BankId": "Axi20211024",
-        "BankName": "AxisBank",
-        "Branch": "Guntur",
-        "Ifsc": "AXI00091"
+        "Transactions": []
       },
       {
+        "BankId": "Axi20211024",
         "Customer": {
-          "AccountId": "Raghu20000909",
+          "AccountId": "Rag20000909",
           "Name": "Raghu",
-          "Age": "22",
+          "Age": 22,
           "Gender": 1,
           "ContactNumber": "029200029",
           "Dob": "2000-09-09T00:00:00",
@@ -238,17 +196,14 @@
         "UserName": "Rag2000",
         "Password": "20000909",
         "Status": 0,
-        "Transactions": [],
-        "BankId": "Axi20211024",
-        "BankName": "AxisBank",
-        "Branch": "Guntur",
-        "Ifsc": "AXI00091"
+        "Transactions": []
       },
       {
+        "BankId": "Axi20211024",
         "Customer": {
-          "AccountId": "Surender19860419",
+          "AccountId": "Sur19860419",
           "Name": "Surender",
-          "Age": "21",
+          "Age": 21,
           "Gender": 1,
           "ContactNumber": "9209292929",
           "Dob": "1986-04-19T00:00:00",
@@ -263,11 +218,7 @@
         "UserName": "Surender1986",
         "Password": "19860419",
         "Status": 0,
-        "Transactions": [],
-        "BankId": "Axi20211024",
-        "BankName": "AxisBank",
-        "Branch": "Guntur",
-        "Ifsc": "AXI00091"
+        "Transactions": []
       }
     ],
     "SelfRTGS": 0.0,
@@ -303,7 +254,7 @@
         "Gender": 1,
         "Dob": "0001-01-01T00:00:00",
         "BankId": "Axi20211024",
-        "Age": "21",
+        "Age": 21,
         "EmployeeId": "Axi20211024831",
         "UserName": "Ven021",
         "Password": "20001111",
@@ -314,7 +265,7 @@
         "Gender": 2,
         "Dob": "2000-11-12T00:00:00",
         "BankId": "Axi20211024",
-        "Age": "21",
+        "Age": 21,
         "EmployeeId": "Axi20211024343",
         "UserName": "Sur021",
         "Password": "20001112",
@@ -325,11 +276,33 @@
         "Gender": 1,
         "Dob": "2000-11-11T00:00:00",
         "BankId": "Axi20211024",
-        "Age": "20",
+        "Age": 20,
         "EmployeeId": "Axi20211024053",
         "UserName": "Kir021",
         "Password": "20001111",
         "Designation": 1
+      },
+      {
+        "Name": "Vishal",
+        "Gender": 1,
+        "Dob": "2001-11-11T00:00:00",
+        "BankId": "Axi20211024",
+        "Age": 0,
+        "EmployeeId": "Axi202111051026",
+        "UserName": "Vis211",
+        "Password": "20011111",
+        "Designation": 1
+      },
+      {
+        "Name": "Kushi",
+        "Gender": 2,
+        "Dob": "2001-09-12T00:00:00",
+        "BankId": "Axi20211024",
+        "Age": 0,
+        "EmployeeId": "Axi202111051033",
+        "UserName": "Kus211",
+        "Password": "20010912",
+        "Designation": 4
       }
     ],
     "SupportedCurrency": [
@@ -345,11 +318,6 @@
         "Name": "EURO",
         "ExchangeRate": 101.0
       }
-    ],
-    "BankId": "Axi20211024",
-    "BankName": "AxisBank",
-    "Branch": "Guntur",
-    "Ifsc": "AXI00091"
+    ]
   }
-  
 ]
