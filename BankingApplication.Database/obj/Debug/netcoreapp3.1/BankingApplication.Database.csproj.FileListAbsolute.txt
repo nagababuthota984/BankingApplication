@@ -28,3 +28,4 @@ C:\Users\nagab\Source\Repos\TechnovertBankingApplication\BankingApplication.Data
 C:\Users\nagab\Source\Repos\TechnovertBankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.dll
 C:\Users\nagab\Source\Repos\TechnovertBankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.pdb
 C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\bin\Debug\netcoreapp3.1\Data.json
+C:\Users\hp\source\repos\BankingApplication\BankingApplication.Database\obj\Debug\netcoreapp3.1\BankingApplication.Database.csproj.AssemblyReference.cache

@@ -8,8 +8,8 @@ namespace BankingApplication.CLI
 
     class Program
     {
-        private AccountHolderPage accountHolderPage;
-        private BankEmployeePage employeePage;
+        private static AccountHolderPage accountHolderPage;
+        private static BankEmployeePage employeePage;
         public static void Main()
         {
             RBIStorage.banks = JsonFileHelper.GetData<Bank>();
@@ -28,28 +28,29 @@ namespace BankingApplication.CLI
         {
 
             Console.WriteLine(Constant.welcomeMessage);
-            while (true)
+            try
             {
-                try
+                switch (GetMainMenuByInput(Convert.ToInt32(Console.ReadLine())))
                 {
-                    switch (GetMainMenuByInput(Convert.ToInt32(Console.ReadLine())))
-                    {
-                        case MainMenu.AccountHolder:
-                            accountHolderPage.CustomerInterface();
-                            break;
-                        case MainMenu.BankEmployee:
-                            employeePage.EmployeeInterface();
-                            break;
-                        case MainMenu.None:
-                            Environment.Exit(0);
-                            break;
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
+                    case MainMenu.AccountHolder:
+                        accountHolderPage.CustomerInterface();
+                        WelcomeMenu();
+                        break;
+                    case MainMenu.BankEmployee:
+                        employeePage.EmployeeInterface();
+                        WelcomeMenu();
+                        break;
+                    case MainMenu.None:
+                        Environment.Exit(0);
+                        break;
                 }
             }
+
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
         }
         public static MainMenu GetMainMenuByInput(int value)
         {
@@ -63,6 +64,5 @@ namespace BankingApplication.CLI
 
 
     }
-
-
 }
+

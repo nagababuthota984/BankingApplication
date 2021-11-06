@@ -14,7 +14,7 @@ namespace BankingApplication.Models
         public AccountType AccountType { get; set; }
         public decimal Balance { get; set; }
         public string UserName { get; set; }
-        public string Password { get; private set; }
+        public string Password { get; set; }
         public AccountStatus Status { get; set; }
         public List<Transaction> Transactions { get; set; }
 

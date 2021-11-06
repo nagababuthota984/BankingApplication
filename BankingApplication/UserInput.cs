@@ -25,7 +25,7 @@ namespace BankingApplication.CLI
             string password = Console.ReadLine();
             if (password == null || password.Length < 5)
             {
-                Console.WriteLine("Invalid Username!\n");
+                Console.WriteLine("Invalid Password!\n");
                 return GetPassword();
             }
             else return password;
@@ -103,6 +103,11 @@ namespace BankingApplication.CLI
                 Console.WriteLine("Please enter a valid Integer value.");
                 return GetIntegerInput(message);
             }
+        }
+
+        internal static EmployeeDesignation GetIntegerInput(object designationOptions)
+        {
+            throw new NotImplementedException();
         }
     }
 }
