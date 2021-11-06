@@ -23,7 +23,7 @@ namespace BankingApplication.CLI
         {
             Console.WriteLine("Please enter your password");
             string password = Console.ReadLine();
-            if (password == null || password.Length < 5)
+            if (string.IsNullOrEmpty(password) || password.Length < 5)
             {
                 Console.WriteLine("Invalid Password!\n");
                 return GetPassword();
@@ -35,7 +35,7 @@ namespace BankingApplication.CLI
         {
             Console.WriteLine("Please enter your username");
             string username = Console.ReadLine();
-            if (username == null || username.Length < 5)
+            if (string.IsNullOrEmpty(username) || username.Length < 5)
             {
                 Console.WriteLine("Invalid Username!\n");
                 return GetUserName();
@@ -105,9 +105,6 @@ namespace BankingApplication.CLI
             }
         }
 
-        internal static EmployeeDesignation GetIntegerInput(object designationOptions)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
