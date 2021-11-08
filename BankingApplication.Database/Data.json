@@ -219,6 +219,28 @@
         "Password": "19860419",
         "Status": 0,
         "Transactions": []
+      },
+      {
+        "BankId": "Axi20211024",
+        "Customer": {
+          "AccountId": "Sur20021109",
+          "Name": "SuryaKiran",
+          "Age": 20,
+          "Gender": 1,
+          "ContactNumber": "20200202932",
+          "Dob": "2002-11-09T00:00:00",
+          "Address": "Guntur",
+          "AadharNumber": 202920202,
+          "PanNumber": "0292002292"
+        },
+        "AccountNumber": "16016648204",
+        "AccountId": "Sur20021109",
+        "AccountType": 1,
+        "Balance": 0.0,
+        "UserName": "SuryaKiran2002",
+        "Password": "20021109",
+        "Status": 0,
+        "Transactions": []
       }
     ],
     "SelfRTGS": 0.0,

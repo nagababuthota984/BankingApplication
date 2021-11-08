@@ -65,27 +65,25 @@ namespace BankingApplication.CLI
                     UserOutput.ShowTransactions(SessionContext.Account.Transactions);
                     break;
                 case AccountHolderMenu.CheckBalance:
-                    Console.WriteLine($"\nCurrent Balance - {SessionContext.Account.Balance} INR\n");
+                    Console.WriteLine($"\nCurrent Balance - {SessionContext.Account.Balance} {SessionContext.Bank.DefaultCurrency.Name}\n");
                     break;
                 case AccountHolderMenu.LogOut:
                     SessionContext.Employee = null;
                     SessionContext.Bank = null;
-                    SessionContext.isActive = false;
                     program.WelcomeMenu();
-                    break;
+                    return;
                  
             }
-            if (SessionContext.isActive)
                 AccountHolderActions();
         }
 
         private void DepositInterface()
         {
             Console.WriteLine(Constant.moneyDepositHeader);
-            decimal amount = UserInput.GetDecimalInput("amount to deposit");
+            decimal amount = UserInput.GetDecimalInput(Constant.amountToDeposit);
             if (amount > 0)
             {
-                string Name = UserInput.GetInputValue("Currency Name");
+                string Name = UserInput.GetInputValue(Constant.newCurrencyName);
                 Currency currency = SessionContext.Bank.SupportedCurrency.FirstOrDefault(c => c.Name.EqualInvariant(Name));
                 if (currency != null)
                 {
@@ -105,7 +103,7 @@ namespace BankingApplication.CLI
         private void WithdrawInterface()
         {
             Console.WriteLine(Constant.withdrawlHeader);
-            decimal amount = UserInput.GetDecimalInput("amount to withdraw");
+            decimal amount = UserInput.GetDecimalInput(Constant.amountToWithdraw);
             if (amount > 0)
             {
                 if (amount <= SessionContext.Account.Balance)
@@ -126,12 +124,12 @@ namespace BankingApplication.CLI
         private void TransferInterface()
         {
             Console.WriteLine(Constant.transferHeader);
-            string receiverAccNumber = UserInput.GetInputValue("Receiver Account Number");
+            string receiverAccNumber = UserInput.GetInputValue(Constant.receiverAccountNumber);
             Account recipientAccount = accountService.GetAccountByAccNumber(receiverAccNumber);
 
             if (recipientAccount != null)
             {
-                decimal amount = UserInput.GetDecimalInput("Amount to Transfer");
+                decimal amount = UserInput.GetDecimalInput(Constant.amountToTransfer);
                 if (amount > 0)
                 {
                     if (amount <= SessionContext.Account.Balance)

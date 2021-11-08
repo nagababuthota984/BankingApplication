@@ -70,7 +70,7 @@ namespace BankingApplication.CLI
             }
             else
             {
-                Console.WriteLine("Please enter a valid decimal value.");
+                Console.WriteLine("\nPlease enter a valid decimal value.\n");
                 return GetDecimalInput(message);
             }
 
@@ -86,7 +86,7 @@ namespace BankingApplication.CLI
             }
             else
             {
-                Console.WriteLine("Please enter a valid 12-digit value.");
+                Console.WriteLine("\nPlease enter a valid 12-digit value.\n");
                 return GetLongInput(message);
             }
         }
@@ -100,7 +100,7 @@ namespace BankingApplication.CLI
             }
             else
             {
-                Console.WriteLine("Please enter a valid Integer value.");
+                Console.WriteLine("\nPlease enter a valid Integer value.\n");
                 return GetIntegerInput(message);
             }
         }

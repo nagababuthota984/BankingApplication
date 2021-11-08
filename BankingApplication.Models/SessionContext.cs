@@ -9,6 +9,5 @@ namespace BankingApplication.Models
         public static Bank Bank { get; set; }
         public static Account Account { get; set; }
         public static Employee Employee { get; set; }
-        public static bool isActive { get; set; }
     }
 }

@@ -41,7 +41,6 @@ namespace BankingApplication.CLI
             {
                 try
                 {
-                    SessionContext.isActive = true;
                     EmployeeActions();
                 }
                 catch (Exception ex)
@@ -86,12 +85,10 @@ namespace BankingApplication.CLI
                 case BankEmployeeMenu.Logout:
                     SessionContext.Employee = null;
                     SessionContext.Bank = null;
-                    SessionContext.isActive = false;
                     program.WelcomeMenu();
-                    break;
+                    return;
             }
-            if (SessionContext.isActive)
-                EmployeeInterface();
+            EmployeeInterface();
 
         }
 
@@ -101,11 +98,11 @@ namespace BankingApplication.CLI
             string name = GetName();
             int age = GetAge();
             Gender gender = GetGenderByInput(UserInput.GetIntegerInput(Constant.genderOptions));
-            DateTime dob = GetDateOfBirth(UserInput.GetInputValue("Date of Birth"));
-            string contactNumber = UserInput.GetInputValue("Contact Number");
-            long aadharNumber = UserInput.GetLongInput("Aadhar Number");
-            string panNumber = UserInput.GetInputValue("PAN Number");
-            string address = UserInput.GetInputValue("Address");
+            DateTime dob = GetDateOfBirth(UserInput.GetInputValue(Constant.dateOfBirth));
+            string contactNumber = UserInput.GetInputValue(Constant.contactNumber);
+            long aadharNumber = UserInput.GetLongInput(Constant.aadharNumber);
+            string panNumber = UserInput.GetInputValue(Constant.panNumber);
+            string address = UserInput.GetInputValue(Constant.address);
             AccountType accountType = (AccountType)UserInput.GetIntegerInput(Constant.accountTypeOptions);
             Customer newCustomer = new Customer(name, age, gender, dob, contactNumber, aadharNumber, panNumber, address);
             Account newAccount = new Account(newCustomer, accountType, SessionContext.Bank);
@@ -114,11 +111,11 @@ namespace BankingApplication.CLI
         }
         private void AddBankInterface()
         {
-            string bankName = UserInput.GetInputValue("Name of the bank");
+            string bankName = UserInput.GetInputValue(Constant.bankName);
             if (RBIStorage.banks.Any(bank => bank.BankName.EqualInvariant(bankName)))
             {
-                string branch = UserInput.GetInputValue("Branch");
-                string ifsc = UserInput.GetInputValue("IFSC");
+                string branch = UserInput.GetInputValue(Constant.branch);
+                string ifsc = UserInput.GetInputValue(Constant.Ifsc);
                 Bank newBank = bankService.CreateAndGetBank(bankName, branch, ifsc);
                 if (newBank == null)
                     UserOutput.ShowMessage(Constant.bankNotCreated);
@@ -132,7 +129,7 @@ namespace BankingApplication.CLI
         }
         private void UpdateAccountInterface()
         {
-            string accountId = UserInput.GetInputValue("Account Id");
+            string accountId = UserInput.GetInputValue(Constant.accountId);
             Account userAccount = accountService.GetAccountById(accountId);
             if (userAccount != null)
             {
@@ -154,7 +151,7 @@ namespace BankingApplication.CLI
 
             while (true)
             {
-                Console.WriteLine("\n--------------UPDATE MENU----------------");
+                Console.WriteLine(Constant.updateMenuHeader);
                 Console.WriteLine(Constant.customerPropertiesMenu);
                 switch (GetCustomerPropertyByInteger(Convert.ToInt32(Console.ReadLine())))
                 {
@@ -194,7 +191,7 @@ namespace BankingApplication.CLI
         }
         private void DeleteAccountInterface()
         {
-            string accountId = UserInput.GetInputValue("Account Id");
+            string accountId = UserInput.GetInputValue(Constant.accountId);
             Account userAccount = accountService.GetAccountById(accountId);
             if (userAccount != null)
             {
@@ -225,7 +222,7 @@ namespace BankingApplication.CLI
             Console.WriteLine(Constant.addNewEmployeeHeader);
             string name = GetName();
             int age = GetAge();
-            DateTime dob = GetDateOfBirth((UserInput.GetInputValue("Employee Date of Birth")));
+            DateTime dob = GetDateOfBirth((UserInput.GetInputValue(Constant.dateOfBirth)));
             Gender gender = GetGenderByInput(UserInput.GetIntegerInput(Constant.genderOptions));
             EmployeeDesignation role = (EmployeeDesignation)UserInput.GetIntegerInput(Constant.designationOptions);
             Employee newEmployee = bankService.CreateAndGetEmployee(name, age, dob, gender, role, SessionContext.Bank);
@@ -233,12 +230,12 @@ namespace BankingApplication.CLI
         }
         private void AddNewCurrencyInterface()
         {
-            string newCurrencyName = UserInput.GetInputValue("new currency name");
-            decimal exchangeRate = UserInput.GetDecimalInput("exchange rate");
+            string newCurrencyName = UserInput.GetInputValue(Constant.newCurrencyName);
+            decimal exchangeRate = UserInput.GetDecimalInput(Constant.newExchangeRate);
             if (exchangeRate > 0)
             {
                 if (bankService.AddNewCurrency(SessionContext.Bank, newCurrencyName, exchangeRate))
-                    UserOutput.ShowMessage("New Currency Added!");
+                    UserOutput.ShowMessage(Constant.currencyAdded);
                 else
                     UserOutput.ShowMessage(Constant.currencyAlreadyExists);
             }
@@ -251,7 +248,7 @@ namespace BankingApplication.CLI
         {
             ModeOfTransfer mode = (ModeOfTransfer)Convert.ToInt32(UserInput.GetInputValue(Constant.transferModeOptions));
             bool isSelfBankTransfer = UserInput.GetIntegerInput(Constant.selfOrOtherOptions).Equals(1);
-            decimal value = UserInput.GetDecimalInput("New Charge Value:");
+            decimal value = UserInput.GetDecimalInput(Constant.newChargeValue);
             Console.WriteLine(Constant.updateConfirmation);
             if (Console.ReadLine().EqualInvariant("y"))
             {
@@ -267,7 +264,7 @@ namespace BankingApplication.CLI
         }
         private void ViewTransactionsInterface()
         {
-            string accountId = UserInput.GetInputValue("Account Id");
+            string accountId = UserInput.GetInputValue(Constant.accountId);
             List<Transaction> transactions = bankService.GetAccountTransactions(accountId);
             if (transactions != null)
             {
@@ -280,7 +277,7 @@ namespace BankingApplication.CLI
         }
         private void RevertTransactionInterface()
         {
-            string transactionId = UserInput.GetInputValue("Transaction Id");
+            string transactionId = UserInput.GetInputValue(Constant.transactionId);
             Transaction transaction = transactionService.GetTransactionById(transactionId);
             if (transaction != null)
             {

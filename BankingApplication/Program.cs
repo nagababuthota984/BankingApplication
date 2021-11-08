@@ -30,7 +30,7 @@ namespace BankingApplication.CLI
             Console.WriteLine(Constant.welcomeMessage);
             try
             {
-                switch (GetMainMenuByInput(Convert.ToInt32(Console.ReadLine())))
+                switch (GetMainMenuByInput(UserInput.GetIntegerInput("choice")))
                 {
                     case MainMenu.AccountHolder:
                         accountHolderPage.CustomerInterface();

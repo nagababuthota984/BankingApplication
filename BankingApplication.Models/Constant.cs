@@ -51,5 +51,25 @@ namespace BankingApplication.Models
         public static string transferSuccess= "Transferred successfully";
         public static string recipientAccountNotFound="Recipient account doesn't exists.\n";
         public static string transactionHistoryHeader= "\n-------Transaction History-------\n";
+        public static string dateOfBirth = "Date of Birth";
+        public static string contactNumber= "Contact Number";
+        public static string aadharNumber= "Aadhar Number";
+        public static string panNumber= "PAN Number";
+        public static string address= "Address";
+        public static string bankName= "Name of the bank";
+        public static string branch= "Name of the bank";
+        public static string accountId="Account Id";
+        public static string updateMenuHeader = "\n--------------UPDATE MENU----------------";
+        public static string newCurrencyName= "new currency name";
+        public static string currencyName = "Currency Name";
+        public static string newExchangeRate= "exchange rate";
+        public static string currencyAdded= "exchange rate";
+        public static string newChargeValue= "New Charge Value:";
+        public static string transactionId= "Transaction Id";
+        public static string amountToDeposit = "amount to deposit";
+        public static string amountToWithdraw= "amount to withdraw";
+        public static string receiverAccountNumber= "Receiver Account Number";
+        public static string amountToTransfer= "Amount to Transfer";
+        public static string Ifsc = "IFSC";
     }
 }
