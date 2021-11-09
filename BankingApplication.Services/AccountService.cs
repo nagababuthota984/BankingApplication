@@ -60,14 +60,12 @@ namespace BankingApplication.Services
         }
         public void WithdrawAmount(Account userAccount, decimal amount)
         {
-            amount *= SessionContext.Bank.DefaultCurrency.ExchangeRate;
             userAccount.Balance -= amount;
             transService.CreateTransaction(userAccount, TransactionType.Debit, amount, SessionContext.Bank.DefaultCurrency);
             JsonFileHelper.WriteData(RBIStorage.banks);
         }
         public void  TransferAmount(Account senderAccount, Bank senderBank, Account receiverAccount, decimal amount, ModeOfTransfer mode)
         {
-            amount *= SessionContext.Bank.DefaultCurrency.ExchangeRate;
             senderAccount.Balance -= amount;
             receiverAccount.Balance += amount;
             ApplyTransferCharges(senderAccount, senderBank, receiverAccount.BankId, amount, mode, SessionContext.Bank.DefaultCurrency);
