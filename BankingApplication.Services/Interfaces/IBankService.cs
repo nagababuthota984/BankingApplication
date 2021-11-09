@@ -17,6 +17,7 @@ namespace BankingApplication.Services
         List<Transaction> GetAccountTransactions(string accountId);
         bool RevertTransaction(Transaction transaction, Bank bank);
         Employee CreateAndGetEmployee(string name, int age, DateTime dob, Gender gender, EmployeeDesignation role, Bank bank);
-
+        List<Transaction> GetTransactionsByDate(DateTime date, Bank bank);
+        List<Transaction> GetTransactions(Bank bank);
     }
 }

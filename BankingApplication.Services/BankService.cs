@@ -132,6 +132,27 @@ namespace BankingApplication.Services
             JsonFileHelper.WriteData(RBIStorage.banks);
             return employee;
         }
+
+        public List<Transaction> GetTransactionsByDate(DateTime date, Bank bank)
+        {
+            List<Transaction> transactions = new List<Transaction>();
+            foreach(Account account in bank.Accounts)
+            {
+                transactions.AddRange(account.Transactions.FindAll(tr => tr.On.Date == date));
+            }
+            transactions.AddRange(bank.Transactions.FindAll(tr => tr.On.Date == date));
+            return transactions;
+        }
+        public List<Transaction> GetTransactions(Bank bank)
+        {
+            List<Transaction> transactions = new List<Transaction>();
+            foreach (Account account in bank.Accounts)
+            {
+                transactions.AddRange(account.Transactions);
+            }
+            transactions.AddRange(bank.Transactions);
+            return transactions;
+        }
     }
 }
 

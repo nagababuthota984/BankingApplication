@@ -72,6 +72,9 @@ namespace BankingApplication.CLI
                 case BankEmployeeMenu.ModifyServiceCharge:
                     ModifyServiceChargeInterface();
                     break;
+                case BankEmployeeMenu.ViewTransactionsForAccount:
+                    ViewTransactionsForAccountInterface();
+                    break;
                 case BankEmployeeMenu.ViewTransactions:
                     ViewTransactionsInterface();
                     break;
@@ -86,13 +89,31 @@ namespace BankingApplication.CLI
             }
             EmployeeActions();
         }
+
+        private void ViewTransactionsInterface()
+        {
+            Console.WriteLine(Constant.viewTransactionsHeader);
+            switch(UserInput.GetIntegerInput(Constant.viewTransactionsOptions))
+            {
+                case 1:
+                    DateTime date = GetDateTimeInput(UserInput.GetInputValue("Date DD-MM-YYYY"));
+                    UserOutput.ShowTransactions(bankService.GetTransactionsByDate(date,SessionContext.Bank));
+                    break;
+                case 2:
+                    UserOutput.ShowTransactions(bankService.GetTransactions(SessionContext.Bank));
+                    break;
+                default:
+                    return;
+            }
+        }
+
         private void CreateAccountInterface()
         {
             Console.WriteLine(Constant.accountCreationHeader);
             string name = GetName();
             int age = GetAge();
             Gender gender = GetGenderByInput(UserInput.GetIntegerInput(Constant.genderOptions));
-            DateTime dob = GetDateOfBirth(UserInput.GetInputValue(Constant.dateOfBirth));
+            DateTime dob = GetDateTimeInput(UserInput.GetInputValue(Constant.dateOfBirth));
             string contactNumber = UserInput.GetInputValue(Constant.contactNumber);
             long aadharNumber = UserInput.GetLongInput(Constant.aadharNumber);
             string panNumber = UserInput.GetInputValue(Constant.panNumber);
@@ -105,8 +126,8 @@ namespace BankingApplication.CLI
         }
         private void AddBankInterface()
         {
-            string bankName = UserInput.GetInputValue(Constant.bankName);
-            if (RBIStorage.banks.Any(bank => bank.BankName.EqualInvariant(bankName)))
+            string bankName = GetName();
+            if (!RBIStorage.banks.Any(bank => bank.BankName.Equals(bankName,StringComparison.OrdinalIgnoreCase)))
             {
                 string branch = UserInput.GetInputValue(Constant.branch);
                 string ifsc = UserInput.GetInputValue(Constant.Ifsc);
@@ -159,7 +180,7 @@ namespace BankingApplication.CLI
                         break;
                     case CustomerProperties.Dob:
                         Console.WriteLine($"[Existing : {userAccount.Customer.Dob}]");
-                        userAccount.Customer.Dob = GetDateOfBirth(UserInput.GetInputValue("Date of Birth"));
+                        userAccount.Customer.Dob = GetDateTimeInput(UserInput.GetInputValue("Date of Birth"));
                         break;
                     case CustomerProperties.AadharNumber:
                         Console.WriteLine($"[Existing : {userAccount.Customer.AadharNumber}]");
@@ -216,7 +237,7 @@ namespace BankingApplication.CLI
             Console.WriteLine(Constant.addNewEmployeeHeader);
             string name = GetName();
             int age = GetAge();
-            DateTime dob = GetDateOfBirth((UserInput.GetInputValue(Constant.dateOfBirth)));
+            DateTime dob = GetDateTimeInput((UserInput.GetInputValue(Constant.dateOfBirth)));
             Gender gender = GetGenderByInput(UserInput.GetIntegerInput(Constant.genderOptions));
             EmployeeDesignation role = (EmployeeDesignation)UserInput.GetIntegerInput(Constant.designationOptions);
             Employee newEmployee = bankService.CreateAndGetEmployee(name, age, dob, gender, role, SessionContext.Bank);
@@ -256,7 +277,7 @@ namespace BankingApplication.CLI
                 }
             }
         }
-        private void ViewTransactionsInterface()
+        private void ViewTransactionsForAccountInterface()
         {
             string accountId = UserInput.GetInputValue(Constant.accountId);
             List<Transaction> transactions = bankService.GetAccountTransactions(accountId);
@@ -344,8 +365,10 @@ namespace BankingApplication.CLI
             else if (v == 7)
                 return BankEmployeeMenu.ModifyServiceCharge;
             else if (v == 8)
+                return BankEmployeeMenu.ViewTransactionsForAccount;
+            else if(v==9)
                 return BankEmployeeMenu.ViewTransactions;
-            else if (v == 9)
+            else if (v == 10)
                 return BankEmployeeMenu.RevertTransaction;
             else
                 return BankEmployeeMenu.Logout;
@@ -369,12 +392,27 @@ namespace BankingApplication.CLI
         {
             Console.WriteLine("Please enter name:");
             string name = Console.ReadLine();
+            if(hasSpecialChar(name))
+            {
+                Console.WriteLine("Name should not contain special characters. please enter again");
+                return GetName();
+            }
             while (name.Length < 3 || name.Any(Char.IsDigit))
             {
                 Console.WriteLine(Constant.invalidNameFormat);
                 name = Console.ReadLine();
             }
             return name;
+        }
+        private bool hasSpecialChar(string input)
+        {
+            string specialChar = @"\|!#$%&/()=?»«@£§€{}.-;'<>_,";
+            foreach (var item in specialChar)
+            {
+                if (input.Contains(item)) return true;
+            }
+
+            return false;
         }
         private int GetAge()
         {
@@ -386,7 +424,7 @@ namespace BankingApplication.CLI
             }
             return age;
         }
-        private DateTime GetDateOfBirth(string datetime)
+        private DateTime GetDateTimeInput(string datetime)
         {
             DateTime dob;
             try
@@ -396,7 +434,7 @@ namespace BankingApplication.CLI
             catch (Exception e)
             {
                 Console.WriteLine(Constant.invalidDateFormat);
-                dob = GetDateOfBirth(Console.ReadLine());
+                dob = GetDateTimeInput(Console.ReadLine());
 
             }
             return dob;

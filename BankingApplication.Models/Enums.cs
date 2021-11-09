@@ -25,6 +25,7 @@
         AddNewEmployee,
         AddNewCurrency,
         ModifyServiceCharge,
+        ViewTransactionsForAccount,
         ViewTransactions,
         RevertTransaction,
         Logout

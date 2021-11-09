@@ -6,7 +6,7 @@ namespace BankingApplication.Models
     {
         public static string projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
         public static string filePath = $"{projectDirectory}\\BankingApplication.Database\\Data.json";
-        public static string employeeMenu = "Choice\n1.Create Account\n2.AddBank\n3.UpdateAccount\n4.Delete an Account\n5.AddNewEmployee\n6.AddNewCurrency\n7.ModifyServiceCharge\n8.ViewTransactions\n9.RevertTransaction\nAny other key to logout.";
+        public static string employeeMenu = "Choice\n1.Create Account\n2.AddBank\n3.UpdateAccount\n4.Delete an Account\n5.AddNewEmployee\n6.AddNewCurrency\n7.ModifyServiceCharge\n8.ViewTransactionsForAccount\n9.View Transactions\n10.RevertTransaction\nAny other key to logout.";
         public static string welcomeMessage = "\n\n==============================Welcome to Technovert Banking Solutions=============================.\n********************\n1.Account Holder Login\n2.Bank Employee Login.\n\nPlease enter one option\n********************";
         public static string accountNotFoundError = "Account Does not exists.\n";
         public static string customerPropertiesMenu = "Please enter an option:\n1.Name\n2.Age\n3.Gender\n4.Dob\n5.Aadhar\n6.PAN\n7.Contact Number\n8.Address\nAny other key to exit.";
@@ -71,5 +71,7 @@ namespace BankingApplication.Models
         public static string receiverAccountNumber= "Receiver Account Number";
         public static string amountToTransfer= "Amount to Transfer";
         public static string Ifsc = "IFSC";
+        public static string viewTransactionsHeader = "\n-----------View Transactions----------\n";
+        public static string viewTransactionsOptions = "\n1.On Particular date\n2.All transactions\nPlease enter your choice";
     }
 }
