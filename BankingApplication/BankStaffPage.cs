@@ -84,7 +84,7 @@ namespace BankingApplication.CLI
                     program.WelcomeMenu();
                     return;
             }
-            EmployeeInterface();
+            EmployeeActions();
         }
         private void CreateAccountInterface()
         {

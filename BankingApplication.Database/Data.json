@@ -63,6 +63,38 @@
               "ExchangeRate": 1.0
             },
             "TransferMode": 3
+          },
+          {
+            "TransId": "TXNAxi20211024Moh2002091120211109052229",
+            "Type": 2,
+            "SenderAccountId": "Moh20020911",
+            "ReceiverAccountId": "Cha20020510",
+            "SenderBankId": "Axi20211024",
+            "ReceiverBankId": "Axi20211024",
+            "On": "2021-11-09T17:22:29.3170645+05:30",
+            "TransactionAmount": 200.0,
+            "BalanceAmount": 3930.00,
+            "Currency": {
+              "Name": "INR",
+              "ExchangeRate": 1.0
+            },
+            "TransferMode": 2
+          },
+          {
+            "TransId": "TXNAxi20211024Cha2002051020211109052305",
+            "Type": 1,
+            "SenderAccountId": "Cha20020510",
+            "ReceiverAccountId": "Cha20020510",
+            "SenderBankId": "Axi20211024",
+            "ReceiverBankId": "Axi20211024",
+            "On": "2021-11-09T17:23:05.5687531+05:30",
+            "TransactionAmount": 200.00,
+            "BalanceAmount": 3730.00,
+            "Currency": {
+              "Name": "INR",
+              "ExchangeRate": 1.0
+            },
+            "TransferMode": 3
           }
         ]
       },
@@ -82,7 +114,7 @@
         "AccountNumber": "58143602568",
         "AccountId": "Moh20020911",
         "AccountType": 1,
-        "Balance": 960.40,
+        "Balance": 950.40,
         "UserName": "Moh2002",
         "Password": "20020911",
         "Status": 0,
@@ -100,6 +132,22 @@
             "Currency": {
               "Name": "USD",
               "ExchangeRate": 76.0
+            },
+            "TransferMode": 3
+          },
+          {
+            "TransId": "TXNAxi20211024Moh2002091120211109052305",
+            "Type": 0,
+            "SenderAccountId": "Moh20020911",
+            "ReceiverAccountId": "Moh20020911",
+            "SenderBankId": "Axi20211024",
+            "ReceiverBankId": "Axi20211024",
+            "On": "2021-11-09T17:23:05.5751859+05:30",
+            "TransactionAmount": 200.00,
+            "BalanceAmount": 950.40,
+            "Currency": {
+              "Name": "INR",
+              "ExchangeRate": 1.0
             },
             "TransferMode": 3
           }
@@ -264,7 +312,7 @@
     "SelfIMPS": 5.0,
     "OtherRTGS": 5.0,
     "OtherIMPS": 12.0,
-    "Balance": 16.60,
+    "Balance": 26.60,
     "DefaultCurrency": {
       "Name": "INR",
       "ExchangeRate": 1.0
@@ -280,6 +328,22 @@
         "On": "2021-11-02T18:26:35.9517479+05:30",
         "TransactionAmount": 0.00,
         "BalanceAmount": 16.60,
+        "Currency": {
+          "Name": "INR",
+          "ExchangeRate": 1.0
+        },
+        "TransferMode": 3
+      },
+      {
+        "TransId": "TXNAxi20211024Moh2002091120211109052229",
+        "Type": 3,
+        "SenderAccountId": "Moh20020911",
+        "ReceiverAccountId": "Axi20211024",
+        "SenderBankId": "Axi20211024",
+        "ReceiverBankId": "Axi20211024",
+        "On": "2021-11-09T17:22:29.3145302+05:30",
+        "TransactionAmount": 10.00,
+        "BalanceAmount": 26.60,
         "Currency": {
           "Name": "INR",
           "ExchangeRate": 1.0
