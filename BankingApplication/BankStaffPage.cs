@@ -12,8 +12,6 @@ namespace BankingApplication.CLI
         private readonly IAccountService accountService;
         private readonly ITransactionService transactionService;
         private readonly Program program;
-
-
         public BankEmployeePage()
         {
             bankService = Factory.CreateBankService();
@@ -21,7 +19,6 @@ namespace BankingApplication.CLI
             transactionService = Factory.CreateTransactionService();
             program = new Program();
         }
-
         public void EmployeeInterface()
         {
             Console.WriteLine(Constant.employeeInterfaceHeader);
@@ -49,7 +46,6 @@ namespace BankingApplication.CLI
                 }
             }
         }
-
         private void EmployeeActions()
         {
             Console.WriteLine(Constant.employeeMenuHeader);
@@ -89,9 +85,7 @@ namespace BankingApplication.CLI
                     return;
             }
             EmployeeInterface();
-
         }
-
         private void CreateAccountInterface()
         {
             Console.WriteLine(Constant.accountCreationHeader);

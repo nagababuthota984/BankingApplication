@@ -83,7 +83,7 @@ namespace BankingApplication.CLI
             decimal amount = UserInput.GetDecimalInput(Constant.amountToDeposit);
             if (amount > 0)
             {
-                string Name = UserInput.GetInputValue(Constant.newCurrencyName);
+                string Name = UserInput.GetInputValue(Constant.currencyName);
                 Currency currency = SessionContext.Bank.SupportedCurrency.FirstOrDefault(c => c.Name.EqualInvariant(Name));
                 if (currency != null)
                 {

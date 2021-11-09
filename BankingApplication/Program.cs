@@ -1,7 +1,6 @@
 ﻿using BankingApplication.Services;
 using System;
 using BankingApplication.Models;
-using System.Collections.Generic;
 
 namespace BankingApplication.CLI
 {

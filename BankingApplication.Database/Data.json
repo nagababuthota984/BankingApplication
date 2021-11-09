@@ -82,11 +82,28 @@
         "AccountNumber": "58143602568",
         "AccountId": "Moh20020911",
         "AccountType": 1,
-        "Balance": 200.40,
+        "Balance": 960.40,
         "UserName": "Moh2002",
         "Password": "20020911",
         "Status": 0,
-        "Transactions": []
+        "Transactions": [
+          {
+            "TransId": "TXNAxi20211024Moh2002091120211109043338",
+            "Type": 0,
+            "SenderAccountId": "Moh20020911",
+            "ReceiverAccountId": "Moh20020911",
+            "SenderBankId": "Axi20211024",
+            "ReceiverBankId": "Axi20211024",
+            "On": "2021-11-09T16:33:38.5664075+05:30",
+            "TransactionAmount": 760.0,
+            "BalanceAmount": 960.40,
+            "Currency": {
+              "Name": "USD",
+              "ExchangeRate": 76.0
+            },
+            "TransferMode": 3
+          }
+        ]
       },
       {
         "BankId": "Axi20211024",

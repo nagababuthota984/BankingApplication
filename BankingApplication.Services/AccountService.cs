@@ -65,7 +65,7 @@ namespace BankingApplication.Services
             transService.CreateTransaction(userAccount, TransactionType.Debit, amount, SessionContext.Bank.DefaultCurrency);
             JsonFileHelper.WriteData(RBIStorage.banks);
         }
-        public void TransferAmount(Account senderAccount, Bank senderBank, Account receiverAccount, decimal amount, ModeOfTransfer mode)
+        public void  TransferAmount(Account senderAccount, Bank senderBank, Account receiverAccount, decimal amount, ModeOfTransfer mode)
         {
             amount *= SessionContext.Bank.DefaultCurrency.ExchangeRate;
             senderAccount.Balance -= amount;
