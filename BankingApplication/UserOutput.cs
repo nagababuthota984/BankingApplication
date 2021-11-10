@@ -1,6 +1,7 @@
 ﻿using BankingApplication.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BankingApplication.CLI
@@ -20,12 +21,10 @@ namespace BankingApplication.CLI
 
             if (transactions.Count>=1)
             {
-                string heading = "Sno  | Transaction Id\t\t\t\t|  Type  | Amount | Balance | Transaction On";
-                Console.WriteLine(heading);
-                Console.WriteLine("-----------------------------------------------------------------------------------------------");
-                foreach (Transaction trans in transactions)
+                Console.WriteLine(Constant.showTransactionsHeader);
+                foreach (Transaction trans in transactions.OrderBy(tr => tr.On))
                 {
-                    string output = $"{count,5}|{trans.TransId,19}   |{trans.Type,7}|{trans.TransactionAmount,7}|{trans.BalanceAmount,10}|{trans.On}";
+                    string output = $"{count,5}|{trans.TransId,19}   |{trans.Type,14}|{trans.TransactionAmount,7}|{trans.BalanceAmount,10}|{trans.On}";
                     Console.WriteLine(output);
                     count++;
                     Console.WriteLine();
@@ -33,7 +32,7 @@ namespace BankingApplication.CLI
             }
             else
             {
-                Console.WriteLine("\nNo transactions to show!\n");
+                Console.WriteLine(Constant.noTransactions);
             }
         }
 

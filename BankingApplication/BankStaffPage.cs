@@ -93,11 +93,11 @@ namespace BankingApplication.CLI
         private void ViewTransactionsInterface()
         {
             Console.WriteLine(Constant.viewTransactionsHeader);
-            switch(UserInput.GetIntegerInput(Constant.viewTransactionsOptions))
+            switch (UserInput.GetIntegerInput(Constant.viewTransactionsOptions))
             {
                 case 1:
                     DateTime date = GetDateTimeInput(UserInput.GetInputValue("Date DD-MM-YYYY"));
-                    UserOutput.ShowTransactions(bankService.GetTransactionsByDate(date,SessionContext.Bank));
+                    UserOutput.ShowTransactions(bankService.GetTransactionsByDate(date, SessionContext.Bank));
                     break;
                 case 2:
                     UserOutput.ShowTransactions(bankService.GetTransactions(SessionContext.Bank));
@@ -116,7 +116,7 @@ namespace BankingApplication.CLI
             DateTime dob = GetDateTimeInput(UserInput.GetInputValue(Constant.dateOfBirth));
             string contactNumber = UserInput.GetInputValue(Constant.contactNumber);
             long aadharNumber = UserInput.GetLongInput(Constant.aadharNumber);
-            string panNumber = UserInput.GetInputValue(Constant.panNumber);
+            string panNumber = GetPanNumber();
             string address = UserInput.GetInputValue(Constant.address);
             AccountType accountType = (AccountType)UserInput.GetIntegerInput(Constant.accountTypeOptions);
             Customer newCustomer = new Customer(name, age, gender, dob, contactNumber, aadharNumber, panNumber, address);
@@ -126,8 +126,9 @@ namespace BankingApplication.CLI
         }
         private void AddBankInterface()
         {
+            Console.WriteLine(Constant.addBankHeader);
             string bankName = GetName();
-            if (!RBIStorage.banks.Any(bank => bank.BankName.Equals(bankName,StringComparison.OrdinalIgnoreCase)))
+            if (!RBIStorage.banks.Any(bank => bank.BankName.EqualInvariant(bankName)))
             {
                 string branch = UserInput.GetInputValue(Constant.branch);
                 string ifsc = UserInput.GetInputValue(Constant.Ifsc);
@@ -145,7 +146,7 @@ namespace BankingApplication.CLI
         private void UpdateAccountInterface()
         {
             string accountId = UserInput.GetInputValue(Constant.accountId);
-            Account userAccount = accountService.GetAccountById(accountId);
+            Account userAccount = SessionContext.Bank.Accounts.FirstOrDefault(acc => acc.AccountId.EqualInvariant(accountId));
             if (userAccount != null)
             {
                 UpdateAccountHandler(userAccount);
@@ -163,51 +164,48 @@ namespace BankingApplication.CLI
         }
         private void UpdateAccountHandler(Account userAccount)
         {
-
-            while (true)
+            Console.WriteLine(Constant.updateMenuHeader);
+            Console.WriteLine(Constant.customerPropertiesMenu);
+            switch (GetCustomerPropertyByInteger(Convert.ToInt32(Console.ReadLine())))
             {
-                Console.WriteLine(Constant.updateMenuHeader);
-                Console.WriteLine(Constant.customerPropertiesMenu);
-                switch (GetCustomerPropertyByInteger(Convert.ToInt32(Console.ReadLine())))
-                {
-                    case CustomerProperties.Name:
-                        Console.WriteLine($"[Existing : {userAccount.Customer.Name}]");
-                        userAccount.Customer.Name = GetName();
-                        break;
-                    case CustomerProperties.Age:
-                        Console.WriteLine($"[Existing : {userAccount.Customer.Age}]");
-                        userAccount.Customer.Age = GetAge();
-                        break;
-                    case CustomerProperties.Dob:
-                        Console.WriteLine($"[Existing : {userAccount.Customer.Dob}]");
-                        userAccount.Customer.Dob = GetDateTimeInput(UserInput.GetInputValue("Date of Birth"));
-                        break;
-                    case CustomerProperties.AadharNumber:
-                        Console.WriteLine($"[Existing : {userAccount.Customer.AadharNumber}]");
-                        userAccount.Customer.AadharNumber = UserInput.GetLongInput("Aadhar number");
-                        break;
-                    case CustomerProperties.PanNumber:
-                        Console.WriteLine($"[Existing : {userAccount.Customer.PanNumber}]");
-                        userAccount.Customer.PanNumber = UserInput.GetInputValue("Pan number");
-                        break;
-                    case CustomerProperties.ContactNumber:
-                        Console.WriteLine($"[Existing : {userAccount.Customer.ContactNumber}]");
-                        userAccount.Customer.ContactNumber = UserInput.GetInputValue("Contact number");
-                        break;
-                    case CustomerProperties.Address:
-                        Console.WriteLine($"[Existing : {userAccount.Customer.Address}]");
-                        userAccount.Customer.Address = UserInput.GetInputValue("Address");
-                        break;
-                    default:
-                        return;
+                case CustomerProperties.Name:
+                    Console.WriteLine($"[Existing : {userAccount.Customer.Name}]");
+                    userAccount.Customer.Name = GetName();
+                    break;
+                case CustomerProperties.Age:
+                    Console.WriteLine($"[Existing : {userAccount.Customer.Age}]");
+                    userAccount.Customer.Age = GetAge();
+                    break;
+                case CustomerProperties.Dob:
+                    Console.WriteLine($"[Existing : {userAccount.Customer.Dob}]");
+                    userAccount.Customer.Dob = GetDateTimeInput(UserInput.GetInputValue("Date of Birth"));
+                    break;
+                case CustomerProperties.AadharNumber:
+                    Console.WriteLine($"[Existing : {userAccount.Customer.AadharNumber}]");
+                    userAccount.Customer.AadharNumber = UserInput.GetLongInput("Aadhar number");
+                    break;
+                case CustomerProperties.PanNumber:
+                    Console.WriteLine($"[Existing : {userAccount.Customer.PanNumber}]");
+                    userAccount.Customer.PanNumber = UserInput.GetInputValue("Pan number");
+                    break;
+                case CustomerProperties.ContactNumber:
+                    Console.WriteLine($"[Existing : {userAccount.Customer.ContactNumber}]");
+                    userAccount.Customer.ContactNumber = UserInput.GetInputValue("Contact number");
+                    break;
+                case CustomerProperties.Address:
+                    Console.WriteLine($"[Existing : {userAccount.Customer.Address}]");
+                    userAccount.Customer.Address = UserInput.GetInputValue("Address");
+                    break;
+                default:
+                    return;
 
-                }
             }
+            UpdateAccountHandler(userAccount);
         }
         private void DeleteAccountInterface()
         {
             string accountId = UserInput.GetInputValue(Constant.accountId);
-            Account userAccount = accountService.GetAccountById(accountId);
+            Account userAccount = SessionContext.Bank.Accounts.FirstOrDefault(acc => acc.AccountId.EqualInvariant(accountId));
             if (userAccount != null)
             {
                 Console.WriteLine(Constant.deleteAccountConfirmation);
@@ -366,7 +364,7 @@ namespace BankingApplication.CLI
                 return BankEmployeeMenu.ModifyServiceCharge;
             else if (v == 8)
                 return BankEmployeeMenu.ViewTransactionsForAccount;
-            else if(v==9)
+            else if (v == 9)
                 return BankEmployeeMenu.ViewTransactions;
             else if (v == 10)
                 return BankEmployeeMenu.RevertTransaction;
@@ -392,17 +390,27 @@ namespace BankingApplication.CLI
         {
             Console.WriteLine("Please enter name:");
             string name = Console.ReadLine();
-            if(hasSpecialChar(name))
+            if (hasSpecialChar(name) || name.Length < 3 || name.Any(Char.IsDigit))
             {
-                Console.WriteLine("Name should not contain special characters. please enter again");
+                Console.WriteLine("Name should not contain special characters. please enter again ");
                 return GetName();
             }
-            while (name.Length < 3 || name.Any(Char.IsDigit))
+            else
             {
-                Console.WriteLine(Constant.invalidNameFormat);
-                name = Console.ReadLine();
+                return name;
             }
-            return name;
+        }
+        private string GetPanNumber()
+        {
+            Console.WriteLine("Please enter your PAN number");
+            string pan = Console.ReadLine();
+            if (!hasSpecialChar(pan))
+                return pan;
+            else
+            {
+                Console.WriteLine("PAN doesnt contain special characters. Enter again");
+                return GetPanNumber();
+            }
         }
         private bool hasSpecialChar(string input)
         {

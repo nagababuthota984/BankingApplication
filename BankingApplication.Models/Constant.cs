@@ -57,7 +57,7 @@ namespace BankingApplication.Models
         public static string panNumber= "PAN Number";
         public static string address= "Address";
         public static string bankName= "Name of the bank";
-        public static string branch= "Name of the bank";
+        public static string branch= "bank branch";
         public static string accountId="Account Id";
         public static string updateMenuHeader = "\n--------------UPDATE MENU----------------";
         public static string newCurrencyName= "new currency name";
@@ -73,5 +73,11 @@ namespace BankingApplication.Models
         public static string Ifsc = "IFSC";
         public static string viewTransactionsHeader = "\n-----------View Transactions----------\n";
         public static string viewTransactionsOptions = "\n1.On Particular date\n2.All transactions\nPlease enter your choice";
+        public static string addBankHeader = "\n-------------ADD BANK---------------\n";
+        public static string showTransactionsHeader= "Sno  | Transaction Id\t\t\t\t|     Type     | Amount | Balance | Transaction On\n-----------------------------------------------------------------------------------------------";
+        public static string noTransactions = "\nNo transactions to show!\n";
+        public static string customerMenuHeader = "\n================CUSTOMER MENU===================";
+        public static string invalidUserName = "Invalid Username!\n";
+        public static string invalidPassword= "Invalid Password!\n";
     }
 }

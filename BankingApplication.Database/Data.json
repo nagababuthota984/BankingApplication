@@ -306,6 +306,28 @@
         "Password": "20021109",
         "Status": 0,
         "Transactions": []
+      },
+      {
+        "BankId": "Axi20211024",
+        "Customer": {
+          "AccountId": "Sat20001111",
+          "Name": "Satwik",
+          "Age": 20,
+          "Gender": 1,
+          "ContactNumber": "02020200202",
+          "Dob": "2000-11-11T00:00:00",
+          "Address": "Guntur",
+          "AadharNumber": 202902020329,
+          "PanNumber": "-020920029292"
+        },
+        "AccountNumber": "05511654335",
+        "AccountId": "Sat20001111",
+        "AccountType": 1,
+        "Balance": 0.0,
+        "UserName": "Satwik2000",
+        "Password": "20001111",
+        "Status": 0,
+        "Transactions": []
       }
     ],
     "SelfRTGS": 0.0,

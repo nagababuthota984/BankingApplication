@@ -11,9 +11,10 @@ namespace BankingApplication.CLI
             Console.WriteLine("Please Enter {0}", property);
             return Console.ReadLine();
         }
+        
         public static AccountHolderMenu ShowAccountHolderMenu()
         {
-            Console.WriteLine("\n================CUSTOMER MENU===================");
+            Console.WriteLine(Constant.customerMenuHeader);
             Console.WriteLine(Constant.accountHolderOptions);
             Console.WriteLine("==================================================\n");
             return GetAccountHolderMenuByInteger(Convert.ToInt32(Console.ReadLine()));
@@ -25,7 +26,7 @@ namespace BankingApplication.CLI
             string password = Console.ReadLine();
             if (string.IsNullOrEmpty(password) || password.Length < 5)
             {
-                Console.WriteLine("Invalid Password!\n");
+                Console.WriteLine(Constant.invalidPassword);
                 return GetPassword();
             }
             else return password;
@@ -37,7 +38,7 @@ namespace BankingApplication.CLI
             string username = Console.ReadLine();
             if (string.IsNullOrEmpty(username) || username.Length < 5)
             {
-                Console.WriteLine("Invalid Username!\n");
+                Console.WriteLine(Constant.invalidUserName);
                 return GetUserName();
             }
             else return username;
