@@ -19,8 +19,19 @@ namespace BankingApplication.Models
         {
 
         }
-        public Employee(string name, int age, DateTime dob, Gender gender, EmployeeDesignation role, Bank bank)
+        public Employee(string bankId)
         {
+            this.UserName = bankId;
+            this.Password = bankId;
+            this.BankId = bankId;
+            this.Name = "Admin";
+            this.Age = 0;
+            this.Dob = DateTime.Now;
+            this.Gender = Gender.PreferNotToSay;
+                
+        }
+        public Employee(string name, int age, DateTime dob, Gender gender, EmployeeDesignation role, Bank bank)
+        {   
             this.Name = name;
             this.Age = Age;
             this.Dob = dob;

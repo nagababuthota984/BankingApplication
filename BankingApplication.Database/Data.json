@@ -428,6 +428,17 @@
         "UserName": "Kus211",
         "Password": "20010912",
         "Designation": 4
+      },
+      {
+        "Name": "Rajesh",
+        "Gender": 1,
+        "Dob": "1985-05-23T00:00:00",
+        "BankId": "Axi20211024",
+        "Age": 0,
+        "EmployeeId": "Axi202111100219",
+        "UserName": "Raj211",
+        "Password": "19850523",
+        "Designation": 2
       }
     ],
     "SupportedCurrency": [
@@ -445,4 +456,6 @@
       }
     ]
   }
+  
+  
 ]

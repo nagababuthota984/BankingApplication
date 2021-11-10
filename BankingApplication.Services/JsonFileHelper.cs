@@ -15,10 +15,10 @@ namespace BankingApplication.Services
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static List<T> GetData<T>()
+        public static List<T> GetData<T>(string filePath)
         {
 
-            string data = File.ReadAllText(Constant.filePath);
+            string data = File.ReadAllText(filePath);
             if (string.IsNullOrEmpty(data)) return new List<T>();
             return JsonConvert.DeserializeObject<List<T>>(data);
         }

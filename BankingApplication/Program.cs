@@ -11,7 +11,7 @@ namespace BankingApplication.CLI
         private static BankEmployeePage employeePage;
         public static void Main()
         {
-            RBIStorage.banks = JsonFileHelper.GetData<Bank>();
+            RBIStorage.banks = JsonFileHelper.GetData<Bank>(Constant.filePath);
             Program p = new Program();
             p.InitializeUI();
         }
